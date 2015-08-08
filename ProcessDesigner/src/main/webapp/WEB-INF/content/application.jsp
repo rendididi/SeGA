@@ -23,6 +23,7 @@
 
 <div>
     <a href="/home">Home</a> - <a href="/projects">Projects</a>
+    test
 </div>
 
 <div ng-controller="AppController">
