@@ -1,0 +1,25 @@
+<project>
+
+<target name="schemaexport">
+    <path id="apache.ant.ext.lib.classpath">
+        <fileset dir="C:\\Users\\glp\\.m2\\repository" includes="**/*.jar" />
+    </path>
+
+    <taskdef name="schemaexport"
+        classname="org.hibernate.tool.hbm2ddl.SchemaExportTask"
+        classpathref="apache.ant.ext.lib.classpath"/>
+    
+
+    
+    <schemaexport
+        quiet="no"
+        text="no"
+        drop="no"
+        delimiter=";">
+        <fileset dir="/">
+            <include name="src/main/java/*.hbm.xml"/>
+        </fileset>
+    </schemaexport>
+</target>
+
+</project>
