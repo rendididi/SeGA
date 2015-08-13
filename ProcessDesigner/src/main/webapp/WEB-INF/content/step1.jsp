@@ -21,7 +21,9 @@
         </div>
 	</section>
 	<section class="gallery container">
-		
+		<s:iterator value="process_list">
+			<img src="images/process/<s:property value="processImageUrl"/>"/>
+		</s:iterator>		
 	</section>
 	
 </body>

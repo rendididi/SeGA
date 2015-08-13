@@ -48,11 +48,19 @@ public class ProcessTemplate implements Serializable {
 		this.name = name;
 	}
 	
+	public String getProcessImageUrl() {
+		return processImageUrl;
+	}
+	public void setProcessImageUrl(String processImageUrl) {
+		this.processImageUrl = processImageUrl;
+	}
+
 	private long id;
 	private String processJSON;
 	private String entityJSON;
 	private String databaseSQL;
 	private String EDmappingJSON;
+	private String processImageUrl;
 	private String description;
 	private String name;
 	

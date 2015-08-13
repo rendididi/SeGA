@@ -81,7 +81,18 @@
            <artifactId>hibernate-core</artifactId>
            <version>4.3.10.Final</version>
         </dependency>
-
+        <dependency>  
+            <groupId>org.hibernate</groupId>  
+            <artifactId>hibernate-c3p0</artifactId>  
+            <version>4.3.10.Final</version>  
+        </dependency>
+        
+        <dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+          
     </dependencies>
 
     <build>
@@ -92,8 +103,9 @@
                 <version>3.3</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
             <plugin>
