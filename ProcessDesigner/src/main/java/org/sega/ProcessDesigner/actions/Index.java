@@ -35,7 +35,7 @@ public class Index extends ActionSupport {
     private String redirectName;
 
     public String execute() {
-        redirectName = "application";
+        redirectName = "step1";
         return Action.SUCCESS;
     }
 

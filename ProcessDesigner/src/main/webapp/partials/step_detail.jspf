@@ -1,0 +1,47 @@
+<%
+
+	String[] step_names = {
+		"Select Process Template",
+		"Customize Process",
+		"Customize Entity",
+		"Entity-EDB Mapping",
+		"Service Binding",
+		"Deploy"
+		};
+%>
+
+
+
+<div id="step_detail">
+	<div id="step_desc" class="container">
+		<div class="col-sm-7">
+			<h1><%= step_names[step-1] %></h1>
+
+		</div>
+		<img src="images/step_detail/step<%=step %>.png" width=192 height=192 />
+	</div>
+	<div id="step_bar" class="container">
+		<div class="row">
+			<ul class="list-inline step_list">
+<%	for(int i=1;i<=6;i++){
+		if(i>1){
+%>
+				<li class="step_line<%=i>step?" off":""%>">
+					<div class="dot" style="<%=i==step?"animation: step_turn_on 0.3s linear 0s 1":""%>"></div>
+					<div class="dot" style="<%=i==step?"animation: step_turn_on 0.3s linear 0.2s 1":""%>"></div>
+					<div class="dot" style="<%=i==step?"animation: step_turn_on 0.3s linear 0.4s 1":""%>"></div>
+					<div class="dot" style="<%=i==step?"animation: step_turn_on 0.3s linear 0.6s 1":""%>"></div>
+				</li>
+<%
+		}
+%>
+				<li><a href="#" class="step_thumbnail<%=i>step?" off":""%><%=i==step?" current":""%>"> 
+					<img src="images/step_detail/step<%=i %>.png" width=64 height=64 />
+					<!-- <span><%=step_names[i-1] %>
+					</span> -->
+				</a></li>
+<%	}%>
+			</ul>
+		</div>
+	</div>
+</div>
