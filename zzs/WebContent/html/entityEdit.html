@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/common/common.css">
+    <link rel="stylesheet" href="../css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/vendor/jstree/themes/default/style.css"/>
+</head>
+<body>
+<nav>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand" style="color: #ffffff">Entity Edit</a>
+            </div>
+        </div>
+        <form class="navbar-form navbar-right" role="search">
+            <button type="button" class="btn btn-default">保存</button>
+            <button type="button" class="btn btn-default" onclick="window.location.href='processEdit.html'">下一步</button>
+        </form>
+    </div>
+</nav>
+<div class="f-cb g-bd2">
+    <div class="g-mn2">
+        <div id="entityTree">
+            <ul>
+                <li>申请表
+                    <ul>
+                        <li id="child_node_1">申请人信息
+                            <ul>
+                                <li>id</li>
+                                <li>姓名</li>
+                            </ul>
+                        </li>
+                        <li>配偶信息
+                            <ul>
+                                <li>id</li>
+                                <li>姓名</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="g-sd2">
+        <form action="">
+            <div class="form-group">
+                <label for="taskName">name:</label>
+                <input type="text" class="form-control"  id="taskName">
+            </div>
+            <div class="form-group">
+                <label for="taskid">id:</label>
+                <input type="text" id="taskid" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="taskdsp">description:</label>
+                <textarea id="taskdsp" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="entityType">type:</label>
+                <select class="form-control" id="entityType">
+                    <option>--</option>
+                    <option>artifact</option>
+                    <option>artifact_n</option>
+                    <option>key</option>
+                    <option>group</option>
+                    <option>attribute</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="formType">FormType:</label>
+                <select class="form-control" id="formType">
+                    <option>text</option>
+                    <option>textarea</option>
+                    <option>checkbox</option>
+                    <option>select</option>
+                </select>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<script data-main="../js/page/entityEdit" src="../js/vendor/require.js"></script>
+</body>
+</html>

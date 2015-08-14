@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/vendor/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/vendor/joint.all.css">
+    <link rel="stylesheet" href="../css/common/common.css">
+
+</head>
+<body>
+<nav>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand" style="color: #ffffff">Process Configuration</a>
+            </div>
+        </div>
+        <form class="navbar-form navbar-right" role="search">
+            <button type="button" class="btn btn-default">保存</button>
+            <button type="button" class="btn btn-default" onclick="window.location.href='deploy.html'">下一步</button>
+        </form>
+    </div>
+</nav>
+<div class="g-bd2 f-cb">
+    <div class="g-mn2">
+        <div class="g-mn2c draw" id="draw"></div>
+    </div>
+    <div class="g-sd2 configPanel">
+        <form id="taskConfigForm" >
+            <h1>Task</h1>
+            <div class="form-group">
+                <label for="taskName">name:</label>
+                <input type="text" class="form-control"  id="taskName" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="taskid">id:</label>
+                <input type="text" id="taskid" class="form-control" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="taskdsp">description:</label>
+                <textarea id="taskdsp" class="form-control" readonly="readonly"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="splitmode">SplitMode:</label>
+                <select class="form-control" id="splitMode" readonly="readonly" onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;">
+                    <option>--</option>
+                    <option>AND</option>
+                    <option>OR</option>
+                    <option>XOR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="joinmode">JoinMode:</label>
+                <select class="form-control" id="joinMode" readonly="readonly" onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;">
+                    <option>--</option>
+                    <option>AND</option>
+                    <option>OR</option>
+                    <option>XOR</option>
+                </select>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" onclick="return false;">
+                    设为同步点
+                </label>
+            </div>
+
+        </form>
+        <form id="conConfigForm"  readonly="true">
+            <h1>Connection</h1>
+            <div class="form-group">
+                <label for="linkId">id:</label>
+                <input type="text" class="form-control"  id="linkId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="sourceId">sourceId:</label>
+                <input type="text" class="form-control"  id="sourceId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="targetId">sourceId:</label>
+                <input type="text" class="form-control"  id="targetId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="expression">Expression:</label>
+                <input type="text" class="form-control"  id="expression" readonly="readonly">
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--模态框-->
+<div class="modal fade" id="modal1" draggable="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">活动配置</h4>
+            </div>
+            <div class="modal-body">
+                <!--tab选项-->
+                <div>
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">表单绑定</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">事件绑定</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">服务绑定</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <ul class="list-group">
+                                <li class="list-group-item">申请表</li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                            </ul>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <h4>活动前</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                            </ul>
+                            <h4>活动时</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                            </ul>
+                            <h4>活动后</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                            </ul>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="messages">
+                            <h4>数据服务</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                            </ul>
+                            <h4>特殊业务服务</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                                <li class="list-group-item"> </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="../js/vendor/joint.all.js"></script>
+<script src="../js/vendor/bootstrap.js"></script>
+<script src="../js/page/processConfig.js"></script>
+</body>
+</html>

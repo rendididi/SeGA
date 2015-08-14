@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/vendor/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/vendor/joint.all.css">
+    <link rel="stylesheet" href="../css/common/common.css">
+    <style>
+        .toolbar{
+            position: absolute;
+            height: 150px;
+            width: 100%;;
+            bottom: 0;
+            background: #34495E;
+        }
+        #draw{
+            bottom:150px;
+        }
+        .taskShape{
+            width:60px;
+            height:60px;
+            background: white;
+            border:solid 1px #101010;
+            position: absolute;
+            bottom:45px;
+            left:45px;
+            text-align: center;
+            line-height: 60px;
+            cursor: move;;
+        }
+
+        .label {
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+<nav>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand" style="color: #ffffff">Process Edit</a>
+            </div>
+        </div>
+        <form class="navbar-form navbar-right" role="search">
+            <button type="button" class="btn btn-default">保存</button>
+            <button type="button" class="btn btn-default" id="submit">下一步</button>
+        </form>
+    </div>
+</nav>
+<div class="g-bd2 f-cb">
+    <div class="g-mn2">
+        <div class="g-mn2c draw" id="draw"></div>
+        <div class="g-mn2c toolbar">
+            <div class="taskShape" id="taskShape" draggable="true">task</div>
+        </div>
+    </div>
+    <div class="g-sd2 configPanel">
+        <form id="taskConfigForm">
+            <h1>Task</h1>
+            <div class="form-group">
+                <label for="taskName">name:</label>
+                <input type="text" class="form-control"  id="taskName">
+            </div>
+            <div class="form-group">
+                <label for="taskid">id:</label>
+                <input type="text" id="taskid" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="taskdsp">description:</label>
+                <textarea id="taskdsp" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="splitmode">SplitMode:</label>
+                <select class="form-control" id="splitMode">
+                    <option>--</option>
+                    <option>AND</option>
+                    <option>OR</option>
+                    <option>XOR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="joinmode">JoinMode:</label>
+                <select class="form-control" id="joinMode">
+                    <option>--</option>
+                    <option>AND</option>
+                    <option>OR</option>
+                    <option>XOR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="syncPoint" >设置为同步点
+            </div>
+            <button type="button" id="taskRead" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Read</button>
+            <button type="button" id="taskWrite" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Write</button>
+        </form>
+        <form id="conConfigForm">
+            <h1>Connection</h1>
+            <div class="form-group">
+                <label for="linkId">id:</label>
+                <input type="text" class="form-control"  id="linkId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="sourceId">sourceId:</label>
+                <input type="text" class="form-control"  id="sourceId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="targetId">sourceId:</label>
+                <input type="text" class="form-control"  id="targetId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="expression">Expression:</label>
+                <input type="text" class="form-control"  id="expression" >
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<!--read&&write-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div id="reads">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="checkbox listcbx">
+                                <label>
+                                    <input type="checkbox" value="">
+                                   申请人id
+                                </label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="checkbox listcbx">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    申请人姓名
+                                </label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="checkbox listcbx">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    身份证号码
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="writes">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="checkbox listcbx">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    id
+                                </label>
+                                <select name="" id="">
+                                    <option value="">Automatic</option>
+                                    <option value="">Persist</option>
+                                    <option value="">Modify</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="checkbox listcbx">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    姓名
+                                </label>
+                                <select name="" id="">
+                                    <option value="">Automatic</option>
+                                    <option value="">Persist</option>
+                                    <option value="">Modify</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="checkbox listcbx">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    身份证号码
+                                </label>
+                                <select name="" id="">
+                                    <option value="">Automatic</option>
+                                    <option value="">Persist</option>
+                                    <option value="">Modify</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/vendor/joint.all.js"></script>
+<script src="../js/page/joint.sega_extension.js"></script>
+
+
+<script src="../js/vendor/bootstrap.js"></script>
+<script src="../js/page/processEdit.js"></script>
+</body>
+</html>
