@@ -1,3 +1,42 @@
 .filter .panel {
 	
 } 
+.gallery-item{
+	width:100%;
+	overflow: hidden;
+	margin-bottom: 30px;
+	background-color:#45484b;
+	color:#fff;
+	font-family: "微软雅黑"
+}
+.gallery-item .img-holder{
+	width:inherit;
+	height: 250px;
+	background-color: #88c5cc;
+}
+.gallery-item img{
+	display: block;
+	vertical-align: middle;
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: middle;
+	magin:0 auto;
+}
+.gallery-item .gallery-item-title{
+	text-align: center;
+	font-size: 20px;
+	margin-top: 10px;
+}
+.gallery-item .gallery-buttonGroup{
+	font-size:0;
+}
+.gallery-item .gallery-buttonGroup button{
+	margin:0;
+	width:50%;
+	border-radius: 0;
+	height:40px;
+}
+.input-group{
+	margin:auto 15px;
+	margin-bottom: 30px;
+}
