@@ -10,9 +10,11 @@
     
     <!-- bootstrap & jquery -->
 	<link rel="stylesheet" href="<s:url value="js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" />">
-	<link rel="stylesheet" href="<s:url value="js/lib/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css" />">
 	<script src="<s:url value="js/lib/jquery/jquery-2.1.4.min.js" />"></script>
 	<script src="<s:url value="js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js" />"></script>
+	<script src="<s:url value="js/lib/selectpicker/bootstrap-select.min.js" />"></script>
 	
 	<link href="<s:url value="css/font.css" />" rel="stylesheet">
 	<link href="<s:url value="css/theme.css" />" rel="stylesheet">
+	<link href="<s:url value="js/lib/selectpicker/css/bootstrap-select.css" />" rel="stylesheet">
+	

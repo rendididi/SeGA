@@ -2,8 +2,8 @@
 
 	String[] step_names = {
 		"Select Process Template",
-		"Customize Process",
 		"Customize Entity",
+		"Customize Process",
 		"Entity-EDB Mapping",
 		"Service Binding",
 		"Deploy"

@@ -1,0 +1,84 @@
+.jstree-node {
+	font-family: "Open Sans", "Microsoft Yahei";
+	font-weight: 300;
+	
+}
+
+.toolbox_container {
+	position: relative !important;
+}
+
+.toolbox {
+	padding: 20px 10px;
+	
+	background-color: #F8F8F8;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+	font-family: "Open Sans", "Microsoft Yahei";
+	font-weight: 300;
+}
+
+.toolbox.affix {
+	top: 80px;
+}
+
+.toolbox.affix-top {
+	position: static;
+}
+
+.toolbox label {
+	font-weight: 400;
+}
+
+.toolbox .btn-default {
+	background-image: none;
+}
+
+.toolbox .bootstrap-select .dropdown-toggle.btn-default:focus {
+    border-color: #66afe9;
+    outline: 0!important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+.toolbox .dropdown-menu a:focus {
+	outline: 0!important;
+}
+
+.toolbox span.node_icon {
+	padding-left: 30px;
+	background-repeat: no-repeat;
+	background-position: center left;	
+}
+
+.toolbox span.node_artifact {
+	background-image: url(/images/tree_icons/artifact.svg);
+	background-size: 20px auto;
+}
+
+.toolbox span.node_artifact_n {
+	background-image: url(/images/tree_icons/artifact_n.svg);
+	background-size: 20px auto;
+}
+
+.toolbox span.node_attribute {
+	background-image: url(/images/tree_icons/attribute.svg);
+	background-size: 10px auto;
+}
+
+.toolbox span.node_group {
+	background-image: url(/images/tree_icons/group.svg);
+	background-size: 16px auto;
+}
+
+.toolbox span.node_key {
+	background-image: url(/images/tree_icons/key.svg);
+	background-size: 18px auto;
+}
+
+.toolbox .bootstrap-select[disabled] button{
+	background-color: #eeeeee;
+	color: #dddddd;
+}
