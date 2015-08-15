@@ -25204,6 +25204,7 @@ joint.shapes.basic.PortsModelInterface = {
             var portAttributes = this.getPortAttrs(portName, index, ports.length, '.inPorts', 'in');
             this._portSelectors = this._portSelectors.concat(_.keys(portAttributes));
             _.extend(attrs, portAttributes);
+            console.log();
         }, this);
 
         _.each(this.get('outPorts'), function(portName, index, ports) {
@@ -25244,7 +25245,6 @@ joint.shapes.basic.PortsViewInterface = {
 
         // `Model` emits the `process:ports` whenever it's done configuring the `attrs` object for ports.
         this.listenTo(this.model, 'process:ports', this.update);
-
         joint.dia.ElementView.prototype.initialize.apply(this, arguments);
     },
 
@@ -25257,14 +25257,13 @@ joint.shapes.basic.PortsViewInterface = {
     },
 
     renderPorts: function() {
-
         var $inPorts = this.$('.inPorts').empty();
         var $outPorts = this.$('.outPorts').empty();
 
         var portTemplate = _.template(this.model.portMarkup);
 
         _.each(_.filter(this.model.ports, function(p) { return p.type === 'in'; }), function(port, index) {
-
+   
             $inPorts.append(V(portTemplate({ id: index, port: port })).node);
         });
         _.each(_.filter(this.model.ports, function(p) { return p.type === 'out'; }), function(port, index) {

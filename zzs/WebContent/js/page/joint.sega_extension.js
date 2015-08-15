@@ -6,11 +6,80 @@ joint.shapes.sega = {};
  *
  */
 
-joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.shapes.basic.PortsModelInterface, {
+joint.shapes.sega.PortsModelInterface=$.extend(true,new Object(), joint.shapes.basic.PortsModelInterface,{
+
+});
+
+joint.shapes.sega.PortsViewInterface=$.extend(true,new Object(),joint.shapes.basic.PortsViewInterface,{
+     /*update: function() {
+
+        // First render ports so that `attrs` can be applied to those newly created DOM elements
+        // in `ElementView.prototype.update()`.
+        this.renderPorts();
+        joint.dia.ElementView.prototype.update.apply(this, arguments);
+    },*/
+
+    renderPorts: function() {
+        var $inPorts = this.$('.inPorts').empty();
+        var $outPorts = this.$('.outPorts').empty();
+
+        var portTemplate = _.template(this.model.portMarkup);
+        var portANDTemplate = _.template(this.model.portANDMarkup);
+        var portXORTemplate = _.template(this.model.portXORMarkup);
+        var portORTemplate = _.template(this.model.portORMarkup);
+
+        _.each(_.filter(this.model.ports, function(p) { return p.type === 'in';}), function(port, index) {
+
+            switch(port.jointmode){
+                case 'XOR':
+                    $inPorts.append(V(portXORTemplate({ id: index, port: port })).node);
+                    console.log("jointXOR");
+                    break;
+                case 'AND':
+                    $inPorts.append(V(portANDTemplate({ id: index, port: port })).node);
+                    console.log('jointAND');
+                    break;
+                case 'OR':
+                    $inPorts.append(V(portORTemplate({ id: index, port: port })).node);
+                    console.log('jointOR');
+                    break;
+                default:
+                    $inPorts.append(V(portTemplate({ id: index, port: port })).node);
+            }
+            
+        });
+        _.each(_.filter(this.model.ports, function(p) { return p.type === 'out'; }), function(port, index) {
+
+            switch(port.splitemode){
+                case 'XOR':
+                    $outPorts.append(V(portXORTemplate({ id: index, port: port })).node);
+                    console.log("spliteXOR");
+                    break;
+                case 'AND':
+                    $outPorts.append(V(portANDTemplate({ id: index, port: port })).node);
+                    console.log('spliteAND');
+                    break;
+                case 'OR':
+                    $outPorts.append(V(portORTemplate({ id: index, port: port })).node);
+                    console.log('spliteOR');
+                    break;
+                default:
+                    $outPorts.append(V(portTemplate({ id: index, port: port })).node);
+            }
+            
+        });
+
+    }
+})
+
+joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.shapes.sega.PortsModelInterface, {
 
     markup: '<g class="rotatable"><g class="scalable"><rect class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
     portMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
-
+    portXORMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
+    portANDMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
+    portORMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
+   
     defaults: joint.util.deepSupplement({
 
         type: 'sega.Task',
@@ -31,7 +100,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
                 magnet: true,
                 stroke: '#ffffff',
                 'stroke-width': 3,
-                fill: '#f4a915'
+                fill: '#f4a915',
             },
             text: {
                 'pointer-events': 'none'
@@ -74,8 +143,13 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
         attrs[portBodySelector] = { port: { id: portName || _.uniqueId(type) , type: type } };
         attrs[portSelector] = { ref: '.body', 'ref-y': (index + 0.5) * (1 / total) };
 
-        if (selector === '.outPorts') { attrs[portSelector]['ref-dx'] = 0; }
-
+        if (selector === '.outPorts') { 
+            attrs[portSelector]['ref-dx'] = 0; 
+            attrs[portBodySelector]["port"]["splitemode"]="XOR";
+        }else{
+            attrs[portBodySelector]["port"]["jointmode"]="XOR";
+        }
+        console.log(attrs);
         return attrs;
     },
     setText: function(text) {
@@ -91,17 +165,21 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
         this.attr(".label", label_attr);
 
     },
-    setPortType: function(type, port) {
-        
+    setPortType: function(model) {
+        model.ports.out.splitemode=model.prop("data").splitemode;
+        model.ports.in.jointmode=model.prop("data").jointmode;
     }
 }));
 
 
 joint.shapes.sega.TaskView = joint.dia.ElementView.extend(
-    _.extend({},joint.shapes.basic.PortsViewInterface,{
+    _.extend({},joint.shapes.sega.PortsViewInterface,{
         initialize: function() {
             joint.dia.ElementView.prototype.initialize.apply(this, arguments);
             this.listenTo(this.model, 'change:attrs', function(cell) {
+                
+                this.model.setPortType(this.model);
+                            
                 this.update();
                 this.resize();
             });

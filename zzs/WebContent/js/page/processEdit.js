@@ -187,10 +187,13 @@ paper.on("render:done",function(evt,x,y){
 })
 $('#splitMode').blur(function(){
     cc.model.prop("data").splitemode=$('#splitMode').val();
-    console.log($('#splitMode').val());
+    console.log(cc.model.prop("data"));
+    cc.update();
 });
 $('#joinMode').blur(function(){
-    cc.model.prop("data").joinmode=$('#joinMode').val();
+    cc.model.prop("data").jointmode=$('#joinMode').val();
+    console.log(cc.model.prop("data"));
+    cc.update();
 })
 $('#taskdsp').blur(function(){
     cc.model.prop("data").description=$('#taskdsp').val();
