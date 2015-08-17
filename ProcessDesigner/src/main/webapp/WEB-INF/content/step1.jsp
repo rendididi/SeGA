@@ -22,7 +22,7 @@
         </div>
 	</section>
 	<section class="gallery container">
-		<s:iterator value="process_list">
+		<s:iterator value="process_list" var="process_list">
 		<div class = "col-md-4" ng-repeat="node in thumbs|filter:search">
 			<div class="gallery-item img-thumbnail">
 				<div class="img-holder vertical-center" >
@@ -31,8 +31,11 @@
 				
 				<p class="gallery-item-title">{{node.name}}</p>
 				<div class="gallery-buttonGroup">
-					<button class="btn btn-primary">编 辑</button>
-					<button class="btn btn-success">部 署</button>
+					<s:form action="step1-submit">
+					<s:hidden name="process_id" value="%{#process_list.id}"></s:hidden>
+					<button class="btn btn-primary" type="submit">Custom</button>
+					<button class="btn btn-success">Deploy</button>
+					</s:form>
 				</div>
 			</div>			
 		</div>

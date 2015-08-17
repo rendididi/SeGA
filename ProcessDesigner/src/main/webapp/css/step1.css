@@ -5,14 +5,15 @@
 	width:100%;
 	overflow: hidden;
 	margin-bottom: 30px;
-	background-color:#45484b;
-	color:#fff;
-	font-family: "微软雅黑"
+	background-color:#F7F7F7;
+	border-width: 0;
+	color:#333;
+	font-family: "Microsoft Yahei"
 }
 .gallery-item .img-holder{
 	width:inherit;
 	height: 250px;
-	background-color: #88c5cc;
+	background-color: #F7F7F7;
 }
 .gallery-item img{
 	display: block;
@@ -28,13 +29,14 @@
 	margin-top: 10px;
 }
 .gallery-item .gallery-buttonGroup{
-	font-size:0;
+	margin: 0 auto 6px auto;
+	width:90%;
+	font-size: 0;
 }
 .gallery-item .gallery-buttonGroup button{
-	margin:0;
-	width:50%;
-	border-radius: 0;
+	width: 50%;
 	height:40px;
+	border-radius: 0;
 }
 .input-group{
 	margin:auto 15px;

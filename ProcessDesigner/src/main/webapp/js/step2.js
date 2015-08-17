@@ -10,7 +10,7 @@ $(function() {
         "stripes" : true,
         "dots" : false
       },
-      'data' : [{"id":"j1_1","text":"公租房申请表","type":"artifact","data":{"value_type":"auto"},"children":[{"id":"j1_4","text":"id","type":"key","data":{"value_type":"auto"},"children":[]},{"id":"j1_5","text":"申请人信息","type":"artifact","data":{"value_type":"auto"},"children":[{"id":"j1_6","text":"id","type":"key","data":{"value_type":"auto"},"children":[]},{"id":"j1_7","text":"姓名","type":"attribute","data":{"value_type":"auto"},"children":[]},{"id":"j1_8","text":"身份证号码","type":"attribute","data":{"value_type":"auto"},"children":[]},{"id":"j1_9","text":"民族","type":"attribute","data":{"value_type":"auto"},"children":[]},{"id":"j1_10","text":"婚姻状况","type":"attribute","data":{"value_type":"auto"},"children":[]}]}]}]
+      'data' : entity_json
     },
     "types" : {
       "#" : {

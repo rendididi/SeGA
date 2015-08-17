@@ -8,12 +8,11 @@ import org.sega.ProcessDesigner.models.ProcessTemplate;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Step2Action extends ActionSupport {
-
+public class Step3Action extends ActionSupport {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7111980754311792137L;
+	private static final long serialVersionUID = 5364807827254896140L;
 	
 	private String entityJSON;
 	

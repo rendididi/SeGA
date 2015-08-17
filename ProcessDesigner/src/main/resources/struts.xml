@@ -6,9 +6,17 @@
 
   <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
   <constant name="struts.devMode" value="true"/>
-
   <constant name="struts.convention.default.parent.package" value="angularstruts"/>
   <package name="angularstruts" extends="json-default"></package>
   <package name="data" extends="angularstruts" namespace="/data"></package>
+  
+  <package name="process-designer-support" namespace="/" extends="struts-default">
+	<global-results>
+	    <result name="error" type="redirectAction">step1</result>
+	</global-results>  
+    <action name="step1-submit" method="submit" class="org.sega.ProcessDesigner.actions.Step1Action">
+    	 <result type="redirectAction">step2</result>
+    </action>
+  </package>
 
 </struts>

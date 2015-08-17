@@ -8,14 +8,13 @@ import org.sega.ProcessDesigner.models.ProcessTemplate;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Step2Action extends ActionSupport {
-
+public class Step4Action extends ActionSupport {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7111980754311792137L;
+	private static final long serialVersionUID = 2715550204984464046L;
 	
-	private String entityJSON;
+	private String processJSON;
 	
 	public String execute() throws Exception {
 
@@ -23,7 +22,7 @@ public class Step2Action extends ActionSupport {
 		try {
 			Map<String, Object> session = ActionContext.getContext().getSession();
 			ProcessTemplate process = (ProcessTemplate)session.get("process");
-			entityJSON = new String(Base64.getDecoder().decode(process.getEntityJSON()),"UTF-8");
+			processJSON = new String(Base64.getDecoder().decode(process.getProcessJSON()),"UTF-8");
 		} catch (Exception e) {
 			return ERROR;
 		}
@@ -32,13 +31,13 @@ public class Step2Action extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String getEntityJSON() {
-		return entityJSON;
+	public String getProcessJSON() {
+		return processJSON;
 	}
 
-	public void setEntityJSON(String entityJSON) {
-
-		this.entityJSON = entityJSON;
+	public void setProcessJSON(String processJSON) {
+		this.processJSON = processJSON;
 	}
+
 
 }

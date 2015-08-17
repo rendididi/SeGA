@@ -3,8 +3,8 @@
 	String[] step_names = {
 		"Select Process Template",
 		"Customize Entity",
-		"Customize Process",
 		"Entity-EDB Mapping",
+		"Customize Process",
 		"Service Binding",
 		"Deploy"
 		};
@@ -34,8 +34,10 @@
 				</li>
 <%
 		}
+		String action_name = "step"+i;
 %>
-				<li><a href="#" class="step_thumbnail<%=i>step?" off":""%><%=i==step?" current":""%>"> 
+				<s:set var="action_name"><%=action_name%></s:set>
+				<li><a href="<s:url action="%{#action_name}"/>" class="step_thumbnail<%=i>step?" off":""%><%=i==step?" current":""%>"> 
 					<img src="images/step_detail/step<%=i %>.png" width=64 height=64 />
 					<!-- <span><%=step_names[i-1] %>
 					</span> -->

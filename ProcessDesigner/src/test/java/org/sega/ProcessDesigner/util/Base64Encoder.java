@@ -10,7 +10,7 @@ public class Base64Encoder {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		String str = FileUtils.readFileToString(new File("d:/temp/公租房申请表.json"));
+		String str = FileUtils.readFileToString(new File("d:/temp/temp.json"));
 		//System.out.println(str);
 		byte[] base64 = Base64.getEncoder().encode(str.getBytes());
 		
