@@ -20,6 +20,7 @@ public class Step3Action extends ActionSupport {
 	private static final long serialVersionUID = 5364807827254896140L;
 	
 	private String entityJSON = "";
+	private String dbJSON = "";
 	
 	private String edb_connect_url = "";
 	
@@ -31,6 +32,7 @@ public class Step3Action extends ActionSupport {
 			if(!session.containsKey("process_id"))
 				return ERROR;
 			entityJSON = (String) session.get("process_entityJSON");
+			dbJSON = (String) session.get("process_dbJSON");
 			if(session.containsKey("edb_connect_url"))
 				edb_connect_url = (String) session.get("edb_connect_url");
 			else
@@ -68,6 +70,14 @@ public class Step3Action extends ActionSupport {
 
 	public void setEdb_connect_url(String edb_connect_url) {
 		this.edb_connect_url = edb_connect_url;
+	}
+
+	public String getDbJSON() {
+		return dbJSON;
+	}
+
+	public void setDbJSON(String dbJSON) {
+		this.dbJSON = dbJSON;
 	}
 
 }

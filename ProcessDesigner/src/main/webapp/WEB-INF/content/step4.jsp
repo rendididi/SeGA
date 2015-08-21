@@ -52,7 +52,10 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-	
+
+	<script type="text/javascript">
+	var process_json = <s:property value="processJSON" escape="false"/>;
+	</script>
 	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.nojquery.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.sega_extension.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/step4.js" />"></script>

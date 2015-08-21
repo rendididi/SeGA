@@ -117,6 +117,7 @@
   
   <script type="text/javascript">
 var entity_json = <s:property value="entityJSON" escape="false"/>;
+var db_info = <s:property value="dbJSON" escape="false"/>;
   </script>
   <script type="text/javascript" src="<s:url value="js/lib/d3/d3.min.js" />"></script>
   <script type="text/javascript" src="<s:url value="js/lib/jstree/jstree.min.js" />"></script>

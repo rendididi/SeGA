@@ -1,5 +1,5 @@
 var tree = null;
-var db_info = false;
+
 
 $(function() {
 

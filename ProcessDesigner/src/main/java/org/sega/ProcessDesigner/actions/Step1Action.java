@@ -41,11 +41,17 @@ public class Step1Action extends ActionSupport {
 			hb_session.beginTransaction();
 			ProcessTemplate process = (ProcessTemplate)hb_session.get(
 					"org.sega.ProcessDesigner.models.ProcessTemplate", process_id);
-			String entityJSONBase64 = process.getEntityJSON();
-			String entityJSON = new String(Base64.getDecoder().decode(entityJSONBase64), "UTF-8");
+			
+			String entityJSON = new String(Base64.getDecoder().decode(process.getEntityJSON()), "UTF-8");
+			String processJSON = new String(Base64.getDecoder().decode(process.getProcessJSON()),"UTF-8");
+			String dbJSON = new String(Base64.getDecoder().decode(process.getDatabaseSQL()),"UTF-8");
+			
 			
 			session.put("process_id",process.getId());
 			session.put("process_entityJSON", entityJSON);
+			session.put("process_processJSON", processJSON);
+			session.put("process_dbJSON", dbJSON);
+			
 			
 			
 			hb_session.getTransaction().commit();

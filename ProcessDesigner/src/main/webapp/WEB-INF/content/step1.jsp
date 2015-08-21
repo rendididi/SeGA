@@ -23,7 +23,7 @@
 	</section>
 	<section class="gallery container">
 		<s:iterator value="process_list" var="process_list">
-		<div class = "col-md-4" ng-repeat="node in thumbs|filter:search">
+		<div class = "col-md-4" ng-repeat="node in thumbs|filter:search track by $index">
 			<div class="gallery-item img-thumbnail">
 				<div class="img-holder vertical-center" >
 					<img src={{node.processImageUrl}} />
