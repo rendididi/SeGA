@@ -31,12 +31,15 @@
 .gallery-item .gallery-buttonGroup{
 	margin: 0 auto 6px auto;
 	width:90%;
-	font-size: 0;
 }
+
+.gallery-item .gallery-buttonGroup .btn-group {
+	width: 100%;
+}
+
 .gallery-item .gallery-buttonGroup button{
 	width: 50%;
-	height:40px;
-	border-radius: 0;
+	border-radius: 4px;
 }
 .input-group{
 	margin:auto 15px;

@@ -81,7 +81,9 @@ $(function() {
 
   /* Handle "View JSON" */
   $("button#btn_viewjson").on("click",function(e){
-    $("#modal_viewjson .modal-body p").html(JSON.stringify(tree.get_sega_json()));
+    var json = JSON.stringify(tree.get_sega_json());
+    $("#modal_viewjson .modal-body p").html(json);
+    $("#modal_viewjson input[name=entityJSON]").val(json);
     $("#modal_viewjson").modal();
   });
 

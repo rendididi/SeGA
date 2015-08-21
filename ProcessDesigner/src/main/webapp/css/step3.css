@@ -1,0 +1,134 @@
+body {
+	font-family: "Open Sans", "Microsoft Yahei";
+	font-weight: 300;
+	
+}
+
+body label {
+	font-weight: 400;
+}
+
+.toolbox {
+	padding: 20px 10px;
+	
+	background-color: #F8F8F8;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+	font-family: "Open Sans", "Microsoft Yahei";
+	font-weight: 300;
+	
+	margin-bottom: 30px;
+	line-height: 34px;
+}
+
+.toolbox .btn {
+	margin-left: 10px;
+}
+
+#db-config-modal .modal-dialog {
+	width: 70%;
+}
+
+#db-config-modal .modal-body:after {
+	content:'';
+    display:block;
+	clear: both;
+}
+
+#mappingbox {
+	padding-left: 0px;
+	padding-right: 0px;
+	position:relative;
+}
+
+#mappingbox #entity_tree {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#mappingbox #db_tables {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#db_tables>table {
+	padding-left: 5px;
+	cursor: default;
+}
+
+#db_tables>table>caption {
+	background: #337ab7;
+	color: #ffffff;
+	transition: all 0.5s ease;	
+	border-color: #2e6da4;
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 0px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding-left: 12px;
+
+	cursor: pointer;
+}
+
+#db_tables>table>thead {
+	background: #286090;
+	border-color: #2e6da4;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	color: #ffffff;
+}
+
+#db_tables>table>thead>tr>th {
+	font-weight: 400!important;
+}
+
+#db_tables>table>thead>tr>th.mapping_status {
+	width: 32px;
+}
+
+#db_tables>table.closed>caption {
+	border-width: 1px;
+	border-radius: 4px;
+	background: #286090;
+	border-color: #2e6da4;
+}
+
+#db_tables>table.closed>thead, #db_tables>table.closed>tbody {
+	display: none;
+}
+
+#db_tables>table>tbody>tr.active, #db_tables>table>tbody>tr.active>td {
+	background: #beebff;
+    background: -webkit-linear-gradient(top, #beebff 0%, #a8e4ff 100%);
+    background: linear-gradient(to bottom, #beebff 0%, #a8e4ff 100%);
+}
+
+#mapping_panel {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	height: 70px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.7); 
+	transition: all 0.6s ease;
+}
+
+#mapping_panel>.container {
+	height: 70px;
+}
+
+#mapping_panel #entity_path, #mapping_panel #db_path {
+	color: #fff;
+	font-size: 18px;
+}
+
+#mappingbox #svg_mapping_tool path.suggest_line {
+	transition: all 0.5s;
+}
+#mappingbox #svg_mapping_tool path.suggest_line.active{
+	stroke-opacity: 0.4;
+}

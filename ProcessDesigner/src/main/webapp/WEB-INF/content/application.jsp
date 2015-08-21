@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<html lang="en" ng-app="app">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>My AngularJS Struts2 App</title>
@@ -18,24 +18,7 @@
 </head>
 <body>
 
-<h2><s:property value="message"/></h2>
+<h2>ERROR</h2>
 
-<div>
-    <a href="/home">Home</a> - <a href="/projects">Projects</a>
-    test
-</div>
-
-<div ng-controller="AppController">
-    <div ng-view></div>
-</div>
-
-<script src="<s:url value="js/lib/angular/angular.min.js" />"></script>
-<script src="<s:url value="js/lib/angular/angular-route.min.js" />"></script>
-<script src="<s:url value="js/app.js" />"></script>
-<script src="<s:url value="js/config.js" />"></script>
-<script src="<s:url value="js/services/DataService.js" />"></script>
-<script src="<s:url value="js/controllers/AppController.js" />"></script>
-<script src="<s:url value="js/controllers/HomeController.js" />"></script>
-<script src="<s:url value="js/controllers/ApacheProjectsController.js" />"></script>
 </body>
 </html>

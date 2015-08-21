@@ -21,8 +21,8 @@ public class Step4Action extends ActionSupport {
 		
 		try {
 			Map<String, Object> session = ActionContext.getContext().getSession();
-			ProcessTemplate process = (ProcessTemplate)session.get("process");
-			processJSON = new String(Base64.getDecoder().decode(process.getProcessJSON()),"UTF-8");
+			processJSON = (String)session.get("process_processJSON");
+			
 		} catch (Exception e) {
 			return ERROR;
 		}

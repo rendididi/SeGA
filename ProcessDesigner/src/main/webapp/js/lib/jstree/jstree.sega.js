@@ -64,6 +64,10 @@
 		
 			return (obj.id === $.jstree.root ? tmp.children : tmp);
 		};
+
+		this.get_selected_node_sega_path = function () {
+			return this.get_path(this.get_selected()).join("/");
+		};
 	};
 
 	// $.jstree.defaults.plugins.push("sega");
