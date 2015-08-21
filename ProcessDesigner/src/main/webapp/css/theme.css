@@ -10,6 +10,10 @@ body {
 	color: #434343;
 }
 
+*:focus {
+    outline: 0!important;
+}
+
 .affix {
 	padding: 0px;
 	-webkit-transition: padding 0.3s linear;
@@ -555,6 +559,18 @@ section {
 	}
 	100% {
 		transform: scale(1);
+	}
+}
+
+@keyframes step_detail_img_turn_on
+{
+	0% {
+		transform: scale(0.01);
+		opacity: 0;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
 	}
 }
 

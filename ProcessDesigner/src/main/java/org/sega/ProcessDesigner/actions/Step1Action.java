@@ -1,8 +1,11 @@
 package org.sega.ProcessDesigner.actions;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.sega.ProcessDesigner.models.ProcessTemplate;
@@ -10,6 +13,7 @@ import org.sega.ProcessDesigner.util.HibernateUtil;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
 
 public class Step1Action extends ActionSupport {
 
@@ -37,10 +41,15 @@ public class Step1Action extends ActionSupport {
 			hb_session.beginTransaction();
 			ProcessTemplate process = (ProcessTemplate)hb_session.get(
 					"org.sega.ProcessDesigner.models.ProcessTemplate", process_id);
-			session.put("process",process);
+			String entityJSONBase64 = process.getEntityJSON();
+			String entityJSON = new String(Base64.getDecoder().decode(entityJSONBase64), "UTF-8");
+			
+			session.put("process_id",process.getId());
+			session.put("process_entityJSON", entityJSON);
+			
 			
 			hb_session.getTransaction().commit();
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			return ERROR;
 		}
 		return SUCCESS;

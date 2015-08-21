@@ -11,11 +11,46 @@
   <package name="data" extends="angularstruts" namespace="/data"></package>
   
   <package name="process-designer-support" namespace="/" extends="struts-default">
+	<result-types>
+		<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+	</result-types>
+
 	<global-results>
 	    <result name="error" type="redirectAction">step1</result>
-	</global-results>  
+	</global-results>
+
     <action name="step1-submit" method="submit" class="org.sega.ProcessDesigner.actions.Step1Action">
     	 <result type="redirectAction">step2</result>
+    </action>
+    
+    <action name="step2-submit" method="submit" class="org.sega.ProcessDesigner.actions.Step2Action">
+    	 <result type="redirectAction">step3</result>
+    </action>
+    
+    <action name="edb-conn-test" method="test" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
+    	<result type="json">
+    		<param name="root">testResult</param>
+    	</result>
+    </action>
+    
+    <action name="edb-conn-save" method="save" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
+    	<result type="json">
+    		<param name="root">saveResult</param>
+    	</result>
+    </action>
+    
+    <action name="edb-conn-load" method="load" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
+    	<result type="json">
+    	</result>
+    </action>
+    
+	<action name="edb-load-schema" method="loadSchema" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
+    	<result type="json">
+    		<param name="includeProperties">loadSchemaResult,tables_json,columns_json,keys_json</param>
+    	</result>
+    	<result name="error" type="json">
+    		<param name="includeProperties">loadSchemaResult</param>
+    	</result>
     </action>
   </package>
 
