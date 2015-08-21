@@ -22,8 +22,8 @@
         </div>
 	</section>
 	<section class="gallery container">
-		<s:iterator value="process_list" var="process_list">
-		<div class = "col-md-4" ng-repeat="node in thumbs|filter:search">
+		<%--<s:iterator value="process_list" var="process_list">--%>
+		<div class = "col-md-4" ng-repeat="node in thumbs|filter:search track by $index">
 			<div class="gallery-item img-thumbnail">
 				<div class="img-holder vertical-center" >
 					<img src={{node.processImageUrl}} />
@@ -32,7 +32,7 @@
 				<p class="gallery-item-title">{{node.name}}</p>
 				<div class="gallery-buttonGroup">
 					<s:form action="step1-submit">
-					<s:hidden name="process_id" value="%{#process_list.id}"></s:hidden>
+					<input type="hidden" name="process_id" value="{{node.id}}"/>
 					<button class="btn btn-primary" type="submit">Custom</button>
 					<button class="btn btn-success">Deploy</button>
 					</s:form>
@@ -40,16 +40,18 @@
 			</div>			
 		</div>
 			
-		</s:iterator>		
+		<%--</s:iterator>--%>
 	</section>
 		
 	
 	<script>
 		var list = [];
-		var obj={}
+		var obj={};
 		<s:iterator value="process_list">
+			obj = {};
 			obj.processImageUrl="images/process/<s:property value="processImageUrl"/>";
-			obj.name="<s:property value="name"/>";
+			obj.name="<s:property value="name"/>"
+			obj.id=<s:property value="id"/>
 			list.push(obj);
 		</s:iterator>	
 	</script>

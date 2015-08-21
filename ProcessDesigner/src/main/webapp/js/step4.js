@@ -1,7 +1,12 @@
 ;var step4=(function(){
 	// init
 	var globleData="";
+
 	var graph = new joint.dia.Graph;
+	$.getJSON("processJSON.json",function(data){
+		console.log(data);
+		graph.fromJSON(data);
+	})
 	var cc='';
 	$('#task-attrs').hide();
 	$('#link-attrs').hide();
