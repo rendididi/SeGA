@@ -77,7 +77,7 @@ img {
 
 @
 keyframes fadein {from { opacity:0;
-	
+
 }
 
 to {
@@ -89,7 +89,7 @@ to {
 /* Firefox */
 @
 -moz-keyframes fadein {from { opacity:0;
-	
+
 }
 
 to {
@@ -101,7 +101,7 @@ to {
 /* Safari and Chrome */
 @
 -webkit-keyframes fadein {from { opacity:0;
-	
+
 }
 
 to {
@@ -113,7 +113,7 @@ to {
 /* Internet Explorer */
 @
 -ms-keyframes fadein {from { opacity:0;
-	
+
 }
 
 to {
@@ -125,7 +125,7 @@ to {
 /* Opera */
 @
 -o-keyframes fadein {from { opacity:0;
-	
+
 }
 
 to {
@@ -183,7 +183,7 @@ to {
 	border-left-width: 0;
 	box-shadow: 0 0 0 rgba(0, 0, 0, 0.08);
 }
- 
+
 #main .panel-heading {
 	border-bottom-width: 0;
 }
@@ -221,7 +221,7 @@ and
 }
 
 .navbar-bright li>a {
-	
+
 }
 
 @media
@@ -390,17 +390,17 @@ section {
 
 #step_detail {
 	position:relative;
-	
+
 	min-height: 150px;
 	height: 410px;
-	
+
 	margin-top: 0;
 	margin-bottom: 30px;
-	
+
 	background-color: #32383e;
 	background-repeat: no-repeat;
 	background-position: center;
-	
+
 	text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 	font-weight: 500;
 	border: 0 solid #ccc;
@@ -411,7 +411,7 @@ section {
 .vertical-center{
 	min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
 	/* min-height: 100vh;  *//* These two lines are counted as one :-)       */
-	
+
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -445,7 +445,7 @@ section {
 	margin-top: 100px;
 	border-radius: 0px;
 	font-family: 'Roboto', sans-serif;
-	font-weight: 300; 
+	font-weight: 300;
 }
 
 #step_desc .well {
@@ -482,7 +482,7 @@ section {
 	text-align:center;
 	text-decoration: none;
 	color: white;
-	
+
 	font-family: Open Sans;
 	font-weight: 300;
 }
@@ -528,11 +528,11 @@ section {
 
 .step_line .dot{
 	display:inline-block;
-	
+
 	width: .5em;
 	height:.5em;
 	margin-right: 0.2em;
-	
+
 	border-radius: 2em;
 	background-color: #88C5CC;
 }
@@ -544,7 +544,7 @@ section {
          -o-filter: grayscale(100%) contrast(50%);
         -ms-filter: grayscale(100%) contrast(50%);
             filter: grayscale(100%) contrast(50%);
-	opacity: 0.5;		
+	opacity: 0.5;
     filter: gray; /* IE6-9 */
 }
 

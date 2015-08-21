@@ -157,14 +157,14 @@ paper.on('cell:pointerclick',function(evt,x,y){
                 this.selected="selected"
             }
         });*/
-        $('#taskdsp').val(evt.model.prop("data").description);
+        $('#taskdsp').val(evt.model.attr("data").description);
         $('#splitMode').children("option").each(function(){
-            if($(this).text()==evt.model.prop("data").splitemode){
+            if($(this).text()==evt.model.attr("data").splitemode){
                 this.selected="selected"
             }
         });
         $('#joinMode').children("option").each(function(){
-            if($(this).text()==evt.model.prop("data").jointmode){
+            if($(this).text()==evt.model.attr("data").jointmode){
                 this.selected="selected"
             }
         })
@@ -178,7 +178,7 @@ paper.on('cell:pointerdblclick',function(evt,x,y){
 $('#taskName').blur(function(){
 
     cc.model.setText($(this).val());
-    cc.model.prop("data").name=$(this).val();
+    cc.model.attr("data").name=$(this).val();
     //cc.update();
 });
 paper.on("render:done",function(evt,x,y){
@@ -186,17 +186,14 @@ paper.on("render:done",function(evt,x,y){
 
 })
 $('#splitMode').blur(function(){
-    cc.model.prop("data").splitemode=$('#splitMode').val();
-    console.log(cc.model.prop("data"));
-    cc.update();
+    console.log(cc.model.attr("data/splitemode",$('#splitMode').val()));
 });
 $('#joinMode').blur(function(){
-    cc.model.prop("data").jointmode=$('#joinMode').val();
-    console.log(cc.model.prop("data"));
-    cc.update();
+    $('#joinMode').val();
+    console.log(cc.model.attr("data/jointmode",$('#joinMode').val()));
 })
 $('#taskdsp').blur(function(){
-    cc.model.prop("data").description=$('#taskdsp').val();
+   
 })
 
 

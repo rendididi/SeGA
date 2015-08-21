@@ -118,14 +118,14 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
                    
             },
             data:{
-            name:'name',
-            read:[],
-            write:[],
-            description:'',
-            jointmode:'XOR',
-            splitemode:'XOR',
-            isSyncPoint:false
-        }
+                name:'name',
+                read:[],
+                write:[],
+                description:'',
+                jointmode:'XOR',
+                splitemode:'XOR',
+                isSyncPoint:false
+            }
         },
         
 
@@ -199,7 +199,8 @@ joint.shapes.sega.Link = joint.dia.Link.extend({
         type: 'sega.Link',
         attrs: { 
             '.connection' : { stroke:"#F4A915", 'stroke-width' :  2 },
-            '.marker-target': { stroke: '#F4A915', fill: '#F4A915', d: 'M 10 0 L 0 5 L 10 10 z' }
+            '.marker-target': { stroke: '#F4A915', fill: '#F4A915', d: 'M 10 0 L 0 5 L 10 10 z'},
+            expression:{}
         },
         router: { name: 'manhattan' },
         connector: { name: 'rounded' }
