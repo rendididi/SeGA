@@ -86,21 +86,6 @@
 	}
 })
 
-	//
-	var my_task = new joint.shapes.sega.Task({
-    	position: {x:500,y:30}
-	});
-
-
-	var my_start = new joint.shapes.sega.Start({
-    	position: {x:300,y:30}
-	})
-	console.log('draggalbe'+my_start.is_draggable)
-	var my_end = new joint.shapes.sega.End({
-    	position: {x:700,y:30}
-	});
-	//graph.addCells([rect, rect2,rect3,rect4]);
-	graph.addCells([my_task, my_start, my_end]);
 
 	/*click event*/
 	paper.on('cell:pointerclick',function(evt,x,y){

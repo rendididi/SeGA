@@ -33,8 +33,10 @@
 				<div class="gallery-buttonGroup">
 					<s:form action="step1-submit">
 					<input type="hidden" name="process_id" value="{{node.id}}"/>
+					<div class="btn-group">
 					<button class="btn btn-primary" type="submit">Custom</button>
-					<button class="btn btn-success">Deploy</button>
+					<button class="btn btn-success" type="button">Deploy</button>
+					</div>
 					</s:form>
 				</div>
 			</div>			

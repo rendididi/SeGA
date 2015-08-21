@@ -56,6 +56,13 @@ $(function() {
    $(window).resize(resize); 
    resize();
   */
+  if(db_info){
+    populateDBTable(
+        db_info.tables, 
+        db_info.columns,
+        db_info.keys
+      );
+  }
   
   $("#btn-db-config").click(function(){
     $("#span-db-msg").html("");
