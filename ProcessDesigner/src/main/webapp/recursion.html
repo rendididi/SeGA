@@ -1,0 +1,6 @@
+<script id="recursion.html" type="text/ng-template">
+    <li ng-repeat="item in cate">
+        <a href="{{item.cateId}}">{{item.cateName}}</a>
+        <ul ng-if="item.child.length" ng-include="'recursion'"  ng-init="cate=item.child"></ul>
+    </li>
+</script>
