@@ -32,15 +32,7 @@
                     		<option>XOR</option>
                 		</select>
             		</div>
-            		<!-- <div class="form-group">
-                		<label for="joinmode">JoinMode:</label>
-                		<select class="form-control" id="joinMode">
-                   			<option>--</option>
-                    		<option>AND</option>
-                    		<option>OR</option>
-                    		<option>XOR</option>
-                		</select>
-            		</div> -->
+
 				</div>
 				
 
