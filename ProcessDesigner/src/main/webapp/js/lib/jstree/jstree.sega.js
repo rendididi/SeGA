@@ -42,6 +42,9 @@
 		}
 	};
 
+	var mapIcon = document.createElement("span");
+	mapIcon.className = "sega.jstree.mapicon";
+
 	$.jstree.plugins.sega = function (options, parent) {
 		this.get_sega_json = function (obj, options, flat) {
 			obj = this.get_node(obj || $.jstree.root);
@@ -68,7 +71,39 @@
 		this.get_selected_node_sega_path = function () {
 			return this.get_path(this.get_selected()).join("/");
 		};
-	};
+
+		this.redraw_node = function(obj, deep, callback, force_draw) {
+			obj = parent.redraw_node.call(this, obj, deep, callback, force_draw);
+			if(obj) {
+				var i, j, tmp = null, chk = mapIcon.cloneNode(true);
+				for(i = 0, j = obj.childNodes.length; i < j; i++) {
+					if(obj.childNodes[i] && obj.childNodes[i].className && obj.childNodes[i].className.indexOf("jstree-anchor") !== -1) {
+						tmp = obj.childNodes[i];
+						break;
+					}
+				}
+				if(tmp) {
+					for(i = 0, j = tmp.childNodes.length; i < j; i++) {
+						if(tmp.childNodes[i] && tmp.childNodes[i].className && tmp.childNodes[i].className.indexOf("jstree-checkbox") !== -1) {
+							tmp = tmp.childNodes[i];
+							break;
+						}
+					}
+				}
+				console.log(tmp);
+				if(tmp && tmp.tagName === "I") {
+					tmp.style.backgroundColor = "transparent";
+					tmp.style.backgroundImage = "none";
+					tmp.appendChild(chk);
+					console.log(chk);
+				}
+			}
+			return obj;
+		};
+
+	};//End of $.jstree.plugins.sega
+	
+
 
 	// $.jstree.defaults.plugins.push("sega");
 }));

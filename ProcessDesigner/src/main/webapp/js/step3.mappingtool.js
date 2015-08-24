@@ -63,10 +63,6 @@ var mapping_tool = {
       d3.select(this).classed("active", false);
     }
 
-    function onMouseClick(e){
-      $("#svg_mapping_tool").trigger("sega.mapping.svg.link.click");
-    }
-
     this._suggest_line = this._svg
       .append("g")
       .append("path")
@@ -77,30 +73,28 @@ var mapping_tool = {
       .attr("fill", "none")
       .classed("suggest_line", true)
       .on("mouseover", onMouseOver)
-      .on("mouseout", onMouseOut)
-      .on("click", onMouseClick);
+      .on("mouseout", onMouseOut);
+    
+    $("#svg_mapping_tool").trigger("sega.mapping.svg.link.refresh");
+    
     return true;
   },
 
   clear: function(){
     this._svg.select("*").remove();
     this._suggest_line = null;
-  }
+  },
+  
 
 }.init();
 
 $(function(){
-  $("#svg_mapping_tool").on("sega.mapping.svg.link.click", function(){
+  $("#svg_mapping_tool").on("sega.mapping.svg.link.refresh", function(){
     $("#mapping_panel").show().height(70);
     $("#mapping_panel #entity_path span").text($("#entity_tree").jstree(true).get_selected_node_sega_path());
     var db_dom = $("#db_tables>table>tbody>tr.active");
     $("#mapping_panel #db_path span").text(db_dom.parent().parent().find("caption").text()+"/"+db_dom.find("td.name").text());
   });
-  $("#db_tables").on("sega.db.selected sega.db.table_state_change", function(){
-    $("#mapping_panel").height(0);
-  });
-  $("#entity_tree").on("select_node.jstree", function(){
-    $("#mapping_panel").height(0);
-  });
+  
 
 });
