@@ -83,6 +83,9 @@
 	$(document).keyup(function(e){
 	if(e.keyCode==46&&current_selected!=''){
 		current_selected.model.remove();
+		current='';
+		$('#task-attrs').hide();
+		$('#link-attrs').hide();
 	}
 })
 

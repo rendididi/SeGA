@@ -28,7 +28,7 @@
 .toolbox>div:hover{
     opacity: 1;
 }
-.startShape,.endShape,.taskShape{
+.startShape,.endShape,.taskShape,.linkShape{
     background: url("../images/tools-bg.png");
 }
 .endShape{
@@ -37,6 +37,9 @@
 .taskShape{
     background-position:-2px -102px;
 }
+.linkShape{
+    background-position:-0px -150px;
+}
 .toolbox>img{
 	width:100px;
 }
@@ -44,7 +47,7 @@
 	background: #f7f7f7;
 	border:1px solid #eeeeee;
 }
-.form-panel>.col-md-4,.form-panel>.col-md-3{
+.form-panel>.col-md-4,.form-panel>.col-md-3,.form-panel .col-md-2{
     margin-top: 15px;
 }
 #syncPoint{

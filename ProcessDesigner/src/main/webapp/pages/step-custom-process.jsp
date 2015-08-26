@@ -19,13 +19,14 @@
 			<%@include file="/partials/navbar.jspf" %>
 			<%@include file="/partials/step_detail.jspf" %>
 	</header>
-	<section class="container relative">
+	<section class=" relative">
 		<%@include file="/pages/step4_partials/step4_attrsForm.jsp" %>
 
 		<div class="toolbox" >
 			<div class="startShape" id="startShape" draggable="true"></div>
 			<div class="endShape" id="endShape" draggable="true"></div>
 			<div class="taskShape" id="taskShape" draggable="true"></div>
+			<div class="linkShape" id="linkShape" draggable="true"></div>
 			<!-- <img  src="<s:url value="images/task.png" />" draggble/> -->
 		</div>
 		<div class="paper-container" id = "draw">
