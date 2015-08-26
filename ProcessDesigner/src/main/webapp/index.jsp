@@ -1,1 +1,1 @@
-<% response.sendRedirect("step1"); %>
+<% response.sendRedirect("step-process-select"); %>

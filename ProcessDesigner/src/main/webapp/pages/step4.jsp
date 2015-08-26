@@ -20,7 +20,7 @@
 			<%@include file="/partials/step_detail.jspf" %>
 	</header>
 	<section class="container relative">
-		<%@include file="/WEB-INF/content/step4_partials/step4_attrsForm.jsp" %>
+		<%@include file="/pages/step4_partials/step4_attrsForm.jsp" %>
 
 		<div class="toolbox" >
 			<div class="startShape" id="startShape" draggable="true"></div>

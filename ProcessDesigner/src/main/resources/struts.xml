@@ -7,6 +7,8 @@
   <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
   <constant name="struts.devMode" value="true"/>
   <constant name="struts.convention.default.parent.package" value="angularstruts"/>
+  <constant name="struts.convention.result.path" value="/pages/"/>  
+  
   <package name="angularstruts" extends="json-default"></package>
   <package name="data" extends="angularstruts" namespace="/data"></package>
   
@@ -16,10 +18,13 @@
 	</result-types>
 
 	<global-results>
-	    <result name="error" type="redirectAction">step1</result>
+	    <result name="error" type="redirectAction">step-process-select</result>
 	</global-results>
 
-    <action name="step1-submit" method="submit" class="org.sega.ProcessDesigner.actions.Step1Action">
+	<action name="step-process-select" class="org.sega.ProcessDesigner.actions.StepProcessSelectAction">
+    </action>
+    
+    <action name="step-process-select-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepProcessSelectAction">
     	 <result type="redirectAction">step2</result>
     </action>
     
@@ -54,7 +59,7 @@
     </action>
     
     <action name="step-dbtemplate-edb-mapping" class="org.sega.ProcessDesigner.actions.StepDBTemplateEDBMapping">
-    	 <result>/WEB-INF/content/step-dbtemplate-edb-mapping.jsp</result>
+    	 <result>/pages/step-dbtemplate-edb-mapping.jsp</result>
     </action>
   </package>
 

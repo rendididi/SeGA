@@ -4,7 +4,7 @@
 <html lang="zh-CN" ng-app="step1">
 <head>
 	<%@include file="/partials/common_header.jspf" %>
-	<link href="<s:url value="css/step1.css" />" rel="stylesheet">
+	<link href="<s:url value="css/step-process-select.css" />" rel="stylesheet">
 	<script src="<s:url value="js/lib/angular/angular.js" />"></script>
 </head>
 <body ng-controller="step1_controller">
@@ -57,6 +57,6 @@
 			list.push(obj);
 		</s:iterator>	
 	</script>
-	<script src="<s:url value="js/step1.js" />"></script>
+	<script src="<s:url value="js/step-process-select.js" />"></script>
 </body>
 </html>

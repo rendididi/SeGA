@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 
-public class Step1Action extends ActionSupport {
+public class StepProcessSelectAction extends ActionSupport {
 
 	private static final long serialVersionUID = 3047873710625821949L;
 
