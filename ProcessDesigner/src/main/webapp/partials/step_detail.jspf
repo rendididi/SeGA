@@ -7,17 +7,17 @@
 		"Entity-EDB Mapping",
 		"Customize Process",
 		"Service Binding",
-		"Deploy"
+		"Publish"
 	};
 
 	String[] action_names = {
-		"step1",
-		"step2",
+		"step-process-select",
+		"step-custom-entity",
 		"step-dbtemplate-edb-mapping",
-		"step3",
-		"step4",
-		"step5",
-		"step6"
+		"step-entity-edb-mapping",
+		"step-custom-process",
+		"step-bind-process",
+		"step-publish"
 	};
 %>
 

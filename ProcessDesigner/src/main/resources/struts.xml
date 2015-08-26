@@ -21,15 +21,12 @@
 	    <result name="error" type="redirectAction">step-process-select</result>
 	</global-results>
 
-	<action name="step-process-select" class="org.sega.ProcessDesigner.actions.StepProcessSelectAction">
-    </action>
-    
     <action name="step-process-select-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepProcessSelectAction">
-    	 <result type="redirectAction">step2</result>
+    	 <result type="redirectAction">step-custom-entity</result>
     </action>
     
-    <action name="step2-submit" method="submit" class="org.sega.ProcessDesigner.actions.Step2Action">
-    	 <result type="redirectAction">step3</result>
+    <action name="step-custom-entity-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepCustomEntityAction">
+    	 <result type="redirectAction">step-dbtemplate-edb-mapping</result>
     </action>
     
     <action name="edb-conn-test" method="test" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
@@ -56,6 +53,10 @@
     	<result name="error" type="json">
     		<param name="includeProperties">loadSchemaResult</param>
     	</result>
+    </action>
+    
+    <action name="step-entity-edb-mapping" class="org.sega.ProcessDesigner.actions.StepEntityEDBMappingAction">
+    	 <result>/pages/step-entity-edb-mapping.jsp</result>
     </action>
     
     <action name="step-dbtemplate-edb-mapping" class="org.sega.ProcessDesigner.actions.StepDBTemplateEDBMapping">

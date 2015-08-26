@@ -9,13 +9,13 @@
 	<title>Insert title here</title>
 	<link href="<s:url value="js/lib/joint/joint.all.css" />" rel="stylesheet">
 	<link href="<s:url value="css/theme.css" />" rel="stylesheet">
-	<link href="<s:url value="css/step4.css" />" rel="stylesheet">
+	<link href="<s:url value="css/step-custom-process.css" />" rel="stylesheet">
   	<link href="<s:url value="css/icomoon-font.css" />" rel="stylesheet">
 	
 </head>
 <body>
 	<header>
-			<%int step=4; %>
+			<%int step=5; %>
 			<%@include file="/partials/navbar.jspf" %>
 			<%@include file="/partials/step_detail.jspf" %>
 	</header>
@@ -58,6 +58,6 @@
 	</script>
 	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.nojquery.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.sega_extension.js" />"></script>
-	<script type="text/javascript" src="<s:url value="js/step4.js" />"></script>
+	<script type="text/javascript" src="<s:url value="js/step-custom-process.js" />"></script>
 </body>
 </html>

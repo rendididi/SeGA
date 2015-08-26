@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 <head>
 <%@include file="/partials/common_header.jspf"%>
-<link href="<s:url value="css/step2.css" />" rel="stylesheet">
+<link href="<s:url value="css/step-custom-entity.css" />" rel="stylesheet">
 <link href="<s:url value="css/icomoon-font.css" />" rel="stylesheet">
 <link rel="stylesheet"
 	href="<s:url value="js/lib/jstree/themes/default/style.css" />" />
@@ -139,7 +139,7 @@
 				</div>
 
 				<div class="modal-footer">
-					<s:form action="step2-submit">
+					<s:form action="step-custom-entity-submit">
 						<s:hidden name="entityJSON"></s:hidden>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary">Submit</button>
@@ -155,6 +155,6 @@
 	<script type="text/javascript">
 var entity_json = (<s:property value="entityJSON" escape="false"/>);
   </script>
-	<script type="text/javascript" src="<s:url value="js/step2.js" />"></script>
+	<script type="text/javascript" src="<s:url value="js/step-custom-entity.js" />"></script>
 </body>
 </html>

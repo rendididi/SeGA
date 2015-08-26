@@ -31,7 +31,7 @@
 				
 				<p class="gallery-item-title">{{node.name}}</p>
 				<div class="gallery-buttonGroup">
-					<s:form action="step1-submit">
+					<s:form action="step-process-select-submit">
 					<input type="hidden" name="process_id" value="{{node.id}}"/>
 					<div class="btn-group">
 					<button class="btn btn-primary" type="submit">Custom</button>

@@ -8,7 +8,7 @@ import org.sega.ProcessDesigner.models.ProcessTemplate;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Step4Action extends ActionSupport {
+public class StepCustomProcessAction extends ActionSupport {
 	/**
 	 * 
 	 */

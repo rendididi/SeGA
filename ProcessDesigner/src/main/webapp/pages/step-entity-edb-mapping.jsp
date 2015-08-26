@@ -4,14 +4,14 @@
 <html lang="zh-CN">
 <head>
 	<%@include file="/partials/common_header.jspf" %>
-	<link href="<s:url value="css/step3.css" />" rel="stylesheet">
+	<link href="<s:url value="css/step-entity-edb-mapping.css" />" rel="stylesheet">
 	<link href="<s:url value="css/icomoon-font.css" />" rel="stylesheet">
 	<link rel="stylesheet" href="<s:url value="js/lib/jstree/themes/default/style.css" />" />
 
 </head>
 <body>
   <header>
-  	<%int step=3; %>
+  	<%int step=4; %>
   	<%@include file="/partials/navbar.jspf" %>
   	<%@include file="/partials/step_detail.jspf" %>
   </header>
@@ -122,8 +122,8 @@ var db_info = <s:property value="dbJSON" escape="false"/>;
   <script type="text/javascript" src="<s:url value="js/lib/d3/d3.min.js" />"></script>
   <script type="text/javascript" src="<s:url value="js/lib/jstree/jstree.min.js" />"></script>
   <script type="text/javascript" src="<s:url value="js/lib/jstree/jstree.sega.js" />"></script>
-  <script type="text/javascript" src="<s:url value="js/step3.js" />"></script>
-  <script type="text/javascript" src="<s:url value="js/step3.mappingtool.js" />"></script>
+  <script type="text/javascript" src="<s:url value="js/step-entity-edb-mapping.js" />"></script>
+  <script type="text/javascript" src="<s:url value="js/step-entity-edb-mapping.mappingtool.js" />"></script>
 
 </body>
 </html>
