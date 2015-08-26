@@ -47,7 +47,7 @@
 	background: #f7f7f7;
 	border:1px solid #eeeeee;
 }
-.form-panel>.col-md-4,.form-panel>.col-md-3,.form-panel .col-md-2{
+.form-panel .col-md-4,.form-panel .col-md-3,.form-panel .col-md-2{
     margin-top: 15px;
 }
 #syncPoint{
