@@ -3,9 +3,9 @@
 	var globleData="";
 
 	var graph = new joint.dia.Graph;
-	var cc='';
-	$('#task-attrs').hide();
-	$('#link-attrs').hide();
+	var current_selected='';//current selected cell
+	$('#task-attrs').hide();//task input panel
+	$('#link-attrs').hide();//link input panel
 	var paper = new joint.dia.Paper({
     	el:$('#draw'),
     	width:2000,
@@ -81,19 +81,19 @@
 	}
 
 	$(document).keyup(function(e){
-	if(e.keyCode==46&&cc!=''){
-		cc.model.remove();
+	if(e.keyCode==46&&current_selected!=''){
+		current_selected.model.remove();
 	}
 })
 
 
 	/*click event*/
 	paper.on('cell:pointerclick',function(evt,x,y){
-    	if(cc!=""){
-        	cc.unhighlight();
+    	if(current_selected!=""){
+        	current_selected.unhighlight();
     	}
     	evt.highlight();
-    	cc=evt;;
+    	current_selected=evt;;
     if(evt.model.isLink()){
         $('#link-attrs').show();
         $('#task-attrs').hide();
@@ -130,27 +130,36 @@
   /*  alert(JSON.stringify(evt.model.toJSON()))*/
 })
 
+	paper.on('blank:pointerclick',function(evt,x,y){
+		if(current_selected!=""){
+			current_selected.unhighlight();
+			current_selected='';
+			$('#task-attrs').hide();
+			$('#link-attrs').hide();
+		}
+	})
+
 
 	/*set attrs*/
 
 	$('#taskName').blur(function(){
 
-		cc.model.setText($(this).val());
-		cc.model.attr("data").name=$(this).val();
-		//cc.update();
+		current_selected.model.setText($(this).val());
+		current_selected.model.attr("data").name=$(this).val();
+		//current_selected.update();
 	});
 	$('#splitMode').blur(function(){
-		console.log(cc.model.attr("data/splitemode",$('#splitMode').val()));
+		console.log(current_selected.model.attr("data/splitemode",$('#splitMode').val()));
 	});
 	$('#joinMode').blur(function(){
 		$('#joinMode').val();
-		cc.model.attr("data/jointmode",$('#joinMode').val());
+		current_selected.model.attr("data/jointmode",$('#joinMode').val());
 	})
 	$('#taskdsp').blur(function(){
 
 	})
 	$("#expression").blur(function(){
-		cc.model.attr("expression",$("#expression").val());
+		current_selected.model.attr("expression",$("#expression").val());
 	})
 
 
@@ -161,9 +170,9 @@
 		$("#modal_viewjson").modal();
 	});
 	function getcc(){
-		return cc;
+		return current_selected;
 	}
 	return {
-		cc:getcc
+		current_selected:getcc
 	}
 })()
