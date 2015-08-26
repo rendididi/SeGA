@@ -3,27 +3,31 @@
 	String[] step_names = {
 		"Select Process Template",
 		"Customize Entity",
+		"DB Template-EDB Mapping",
 		"Entity-EDB Mapping",
 		"Customize Process",
 		"Service Binding",
 		"Deploy"
-		};
+	};
+
+	String[] action_names = {
+		"step1",
+		"step2",
+		"step-dbtemplate-edb-mapping",
+		"step3",
+		"step4",
+		"step5",
+		"step6"
+	};
 %>
 
 
 
 <div id="step_detail">
-	<div id="step_desc" class="container">
-		<div class="col-sm-7">
-			<h1><%= step_names[step-1] %></h1>
-
-		</div>
-		<img src="images/step_detail/step<%=step %>.png" width=192 height=192 />
-	</div>
 	<div id="step_bar" class="container">
 		<div class="row">
 			<ul class="list-inline step_list">
-<%	for(int i=1;i<=6;i++){
+<%	for(int i=1;i<=7;i++){
 		if(i>1){
 %>
 				<li class="step_line<%=i>step?" off":""%>">
@@ -34,11 +38,11 @@
 				</li>
 <%
 		}
-		String action_name = "step"+i;
+		String action_name = action_names[i-1];
 %>
 				<s:set var="action_name"><%=action_name%></s:set>
 				<li><a href="<s:url action="%{#action_name}"/>" class="step_thumbnail<%=i>step?" off":""%><%=i==step?" current":""%>"> 
-					<img src="images/step_detail/step<%=i %>.png" width=64 height=64 />
+					<img src="images/step_detail/<%=action_name %>.png" width=64 height=64 />
 					<!-- <span><%=step_names[i-1] %>
 					</span> -->
 				</a></li>

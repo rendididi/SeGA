@@ -392,10 +392,11 @@ section {
 	position:relative;
 
 	min-height: 150px;
-	height: 410px;
+	height: 180px;
 
 	margin-top: 0;
 	margin-bottom: 30px;
+	padding-top: 90px;
 
 	background-color: #32383e;
 	background-repeat: no-repeat;
@@ -431,41 +432,7 @@ section {
   align-items: center;
 }
 
-/*
-	step desc
-*/
-#step_detail #step_desc {
-	height: 320px;
-}
 
-#step_desc h1 {
-	font-size: 32px;
-	line-height: 1;
-	color: #fff;
-	margin-top: 100px;
-	border-radius: 0px;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 300;
-}
-
-#step_desc .well {
-	margin-top: 3%;
-	background-color: #21272d;
-	border-color: #30363c;
-}
-
-#step_desc p {
-	color: #f8f8f8;
-	font-weight: 300;
-	font-size:16px;
-	line-height: 2em;
-}
-
-#step_desc img {
-	float:right!important;
-	margin-top:8%;
-	margin-right:5%;
-}
 /*
 	step bar
 */
@@ -477,7 +444,7 @@ section {
 .step_thumbnail {
 	display: block;
 
-	width: 120px;
+	width: 95px;
 	height: 90px;
 	text-align:center;
 	text-decoration: none;

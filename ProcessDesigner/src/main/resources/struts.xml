@@ -52,6 +52,10 @@
     		<param name="includeProperties">loadSchemaResult</param>
     	</result>
     </action>
+    
+    <action name="step-dbtemplate-edb-mapping" class="org.sega.ProcessDesigner.actions.StepDBTemplateEDBMapping">
+    	 <result>/WEB-INF/content/step-dbtemplate-edb-mapping.jsp</result>
+    </action>
   </package>
 
 </struts>
