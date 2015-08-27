@@ -8,7 +8,7 @@
 	$('#link-attrs').hide();//link input panel
 	var paper = new joint.dia.Paper({
     	el:$('#draw'),
-    	width:2000,
+    	width:"100%",
     	height:600,
     	model:graph,
     	gridSize:1,
@@ -24,6 +24,16 @@
 	});
 	
 	graph.fromJSON(process_json);
+	
+
+	graph.on("change",function(){
+		paper.fitToContent({
+			minWidth:800,
+			minHeight:600,
+			allowNewOrigin:"negative",
+		})
+	})
+	
 	var taskTool=document.getElementById("taskShape");
 	var startTool = document.getElementById("startShape");
 	var endTool = document.getElementById("endShape");
