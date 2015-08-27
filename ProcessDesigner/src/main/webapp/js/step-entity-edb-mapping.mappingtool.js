@@ -6,6 +6,10 @@ var mapping_tool = {
     .target(function(d) { return {"x":d.target.y, "y":d.target.x}; })
     .projection(function(d) { return [d.y, d.x]; }),
 
+  entity_node: null,
+  db_node: null,
+  mapping_rules: [],
+
   init: function(){
     $($.proxy(function(){
       //init svg element
@@ -21,9 +25,16 @@ var mapping_tool = {
       $("#entity_tree").on("ready.jstree",$.proxy(this.resize, this));
       $("#db_tables").on("sega.db.table_state_change",$.proxy(this.resize, this));
 
-      $("#entity_tree").on("select_node.jstree",$.proxy(this.drawSuggestion, this));
-      $("#db_tables").on("sega.db.selected",$.proxy(this.drawSuggestion, this));
+      $("#entity_tree").on("select_node.jstree open_node.jstree close_node.jstree open_all.jstree close_all.jstree",$.proxy(this.onSelectChange, this));
+      $("#db_tables").on("sega.db.selected",$.proxy(this.onSelectChange, this));
+
+      //$("#svg_mapping_tool").on("sega.mapping.svg.link.refresh", $.proxy(this.onSelectChange, this));
+
+      $("#mapping_panel #btn-confirm").click($.proxy(this.doMap, this));
+
     },this));
+
+    return this;
   },
 
   resize: function(){
@@ -34,9 +45,10 @@ var mapping_tool = {
 
   drawSuggestion: function() {
     var tree = $("#entity_tree").jstree(true);
-    var tree_node_dom = $(tree.get_node(tree.get_selected(), true));
-    var db_row_dom = $("#db_tables>table>tbody>tr.active");
-    
+    var tree_node_dom = $(tree.get_node(this.entity_node, true));
+    var db_row_dom = this.db_node;
+
+    this.clear();
     if(db_row_dom.length==0 || tree_node_dom.length==0)
       return;
 
@@ -53,8 +65,6 @@ var mapping_tool = {
       target: tgt
     }];
     
-    this.clear();
-
     function onMouseOver(e){
       d3.select(this).classed("active", true);
     }
@@ -63,13 +73,17 @@ var mapping_tool = {
       d3.select(this).classed("active", false);
     }
 
+    var isRule = this.hasRule();
     this._suggest_line = this._svg
       .append("g")
+      .classed(isRule?"rule":"candidate", true);
+    this._suggest_line
       .append("path")
       .data(path_data)
       .attr("d", this._diagonal)
       .attr("stroke", "#beebff")
-      .attr("stroke-width", 32)
+      .attr("stroke-width", isRule?32:16)
+      .attr("stroke-dasharray", isRule?"":"12 8")
       .attr("fill", "none")
       .classed("suggest_line", true)
       .on("mouseover", onMouseOver)
@@ -85,16 +99,201 @@ var mapping_tool = {
     this._suggest_line = null;
   },
   
+  doMap: function(){
+    this._doMap(this.entity_node, this.db_node);
+  },
+
+  _doMap: function(e, d) {
+    var tree = $("#entity_tree").jstree(true);
+    var column = d.attr("data-column-name"),
+      table = d.parent().parent().attr("data-table-name");
+    var rule = {
+      entity: {
+        text: tree.get_path(e, "/"),
+        path: tree.get_path(e, false, true),
+        id: e
+      },
+      db: {
+        column: d.attr("data-column-name"),
+        table: d.parent().parent().attr("data-table-name")
+      }
+    };
+
+    // validate rule
+    if(!this.canMap())
+      return false;
+
+    // clear related rules
+    var filtered_rules = [];
+    for(var i=0, rules=this.mapping_rules, len=rules.length; i<len; i++){
+      if(e === rules[i].entity.id){
+        tree.sega_demap_node(rules[i].entity.id);
+        demapTableRow(findRow(rules[i].db.table, rules[i].db.column));
+      }else if(table == rules[i].db.table && column == rules[i].db.column) {
+        tree.sega_demap_node(rules[i].entity.id);
+        demapTableRow(findRow(rules[i].db.table, rules[i].db.column));
+      }else {
+        filtered_rules.push(rules[i]);
+      }
+    }
+
+    this.mapping_rules = filtered_rules;
+    
+    // save the rule and update components
+    if(tree.get_node(e).type == "artifact"||tree.get_node(e).type == "artifact_n"){
+      rule.ref_db = {
+        table: d.attr("refFK-table"),
+        column: d.attr("refFK-column")
+      };
+    }
+    this.mapping_rules.push(rule);
+    this.doMapEntity(e, d);
+    mapTableRow(d);
+    this.drawSuggestion();
+
+    // handle checkbox event
+    var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
+    var chk2 = d.children("td.isMapped");
+    var handler = $.proxy(function(evt){
+      selectTableRow(d);
+      tree.deselect_all();
+      tree.select_node(e);
+      evt.stopImmediatePropagation();
+      return false;
+    },{
+      db_node: d,
+      entity_node: e
+    });
+    chk1.on("click mousedown focus click.jstree", handler);
+    chk2.click(handler);
+    
+  },
+
+  onSelectChange:  function(){
+    this.entity_node = $("#entity_tree").jstree(true).get_selected()[0];
+    this.db_node = $("#db_tables>table>tbody>tr.active");
+    
+    this.clear();
+
+    if(!this.entity_node || this.db_node.length<=0)
+      return;
+
+    this.updatePanel();
+    this.drawSuggestion();
+  },
+
+  updatePanel: function(){
+    $("#mapping_panel").show().height(70);
+    $("#mapping_panel #entity_path span").text($("#entity_tree").jstree(true).get_path(this.entity_node, "/"));
+    $("#mapping_panel #db_path span").text(this.db_node.parent().parent().find("caption").text()+"/"+this.db_node.find("td.name").text());
+  },
+
+  hasRule: function() {
+    var column = this.db_node.attr("data-column-name"),
+      table = this.db_node.parent().parent().attr("data-table-name");
+    for(var i=0, rules=this.mapping_rules, len=rules.length; i<len; i++){
+      if(this.entity_node === rules[i].entity.id && table == rules[i].db.table && column == rules[i].db.column) {
+        return true;
+      }
+    }
+    return false;
+  },
+
+  lookUpRuleByEntity: function(entity){
+    for(var i=0, rules=this.mapping_rules, len=rules.length; i<len; i++){
+      if(entity == rules[i].entity.id ) {
+        return rules[i];
+      }
+    }
+    return false;
+  },
+
+  canMap: function() {
+    var tree = $("#entity_tree").jstree(true);
+    var p = tree.get_parent_artifact(this.entity_node);
+    var entity = tree.get_node(this.entity_node);
+    var column = this.db_node.attr("data-column-name"),
+      table = this.db_node.parent().parent().attr("data-table-name");
+    console.log(entity, p);
+    if(p) {   //not root?
+      if(entity.type == "key"){   //id?
+        var pp = tree.get_parent_artifact(p);
+        if(pp){   //sub artifact?
+          if(!pp.data.isMapped)  //parent artifact must be mapped
+            return false;
+          if(!this.db_node.attr("isPK"))    // must map to primary key
+            return false;
+          // TODO: check if db has foreign key to its parent
+
+          return false;
+        }else {   // main artifact
+          if(!this.db_node.attr("isPK"))
+            return false;
+          return true;
+        }
+      }else if (entity.type == "artifact"){
+        if(!this.db_node.attr("isFK"))
+          return false;
+        if(!p.data.isMapped)
+          return false;
+        if(tree.get_node(p.id).data.mapTo!=table) 
+          return false;
+        return true;
+      }else if (entity.type == "artifact_n"){
+        if(!this.db_node.attr("isFK"))
+          return false;
+        if(!p.data.isMapped)
+          return false;
+        if(tree.get_node(p.id).data.mapTo!=this.db_node.attr("refFK-table")) 
+          return false;
+        return true;
+      }else if(entity.type == "attribute"){ //attribute node
+        console.log(tree.get_node(p.id).data.mapTo,table);
+        if(!p.data.isMapped)
+          return false;
+        if(tree.get_node(p.id).data.mapTo!=table) // must map into same table 
+          return false;
+        return true;
+      }
+    }else {
+      return false; //ignore root
+    }
+    return false;
+  },
+
+  // map entity cascadely
+  doMapEntity: function(e, d) {
+    tree.sega_map_node(e);
+    var entity = tree.get_node(e);
+    var column = d.attr("data-column-name"),
+      table = d.parent().parent().attr("data-table-name");
+    if(entity.type=="key") { //handle main entity
+      tree.sega_map_node(entity.parent);
+      tree.get_node(entity.parent).data.mapTo = table;
+    }else if(entity.type=="artifact"){ //auto map key
+      //find key
+      var key = tree.get_key_child(entity.id);
+      if(key){
+        this._doMap(key.id, findRow(d.attr("refFK-table"),d.attr("refFK-column")));
+      }
+    }else if(entity.type=="artifact_n"){ //auto map key
+      //find key
+      var key = tree.get_key_child(entity.id);
+      if(key){
+        this._doMap(key.id, d.siblings("tr[ispk=true]"));
+      }
+    }
+
+  },
+
+  // demap entity cascadely
+  doDemapEntity: function() {
+    //TODO : need think through
+  }
 
 }.init();
 
 $(function(){
-  $("#svg_mapping_tool").on("sega.mapping.svg.link.refresh", function(){
-    $("#mapping_panel").show().height(70);
-    $("#mapping_panel #entity_path span").text($("#entity_tree").jstree(true).get_selected_node_sega_path());
-    var db_dom = $("#db_tables>table>tbody>tr.active");
-    $("#mapping_panel #db_path span").text(db_dom.parent().parent().find("caption").text()+"/"+db_dom.find("td.name").text());
-  });
-  
+
 
 });

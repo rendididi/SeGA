@@ -5,7 +5,7 @@ $(function() {
 
   $('#entity_tree').jstree({
     "core" : {
-      "animation" : 200,
+      "animation" : false,
       "check_callback" : true,
       "themes" : {
         "stripes" : true,
@@ -39,7 +39,7 @@ $(function() {
         "valid_children" : []
       }
     },
-    "plugins" : [  "dnd", "state", "types", "wholerow", "sega" ]
+    "plugins" : [  "state", "types", "wholerow", "sega" ]
 
   });
 
@@ -164,6 +164,8 @@ function loadDBSchema(){
   });
 }
 
+//TODO: wrap db component
+
 function populateDBTable(tables, columns, keys){
   $("#db_tables").empty();
   
@@ -199,7 +201,10 @@ function populateDBTable(tables, columns, keys){
           })
           .appendTo(tbody_dom);
 
-        $("<td/>").appendTo(tr_dom);
+        $("<td/>")
+          .addClass("isMapped")
+          .appendTo(tr_dom);
+
         var key_dom = $("<td/>").appendTo(tr_dom);
         var isKey = lookUpKey(columns[j], keys);
         if(isKey.isPK) {
@@ -207,6 +212,7 @@ function populateDBTable(tables, columns, keys){
             .text("PK")
             .addClass("PK")
             .appendTo(key_dom);
+          tr_dom.attr("isPK", true);
         }
         else if(isKey.isFK) {
           $("<span/>")
@@ -215,6 +221,9 @@ function populateDBTable(tables, columns, keys){
             .attr("data-fk-ref-table", isKey.refFK.table)
             .attr("data-fk-ref-column", isKey.refFK.column)
             .appendTo(key_dom);
+          tr_dom.attr("isFK", true);
+          tr_dom.attr("refFK-table", isKey.refFK.table);
+          tr_dom.attr("refFK-column", isKey.refFK.column);
         }
 
         $("<td class='name'/>")
@@ -263,14 +272,39 @@ function toggleTable(table){
     $("#db_tables>table")
       .addClass("closed");
   }
-
+  $("#db_tables>table>tbody>tr").removeClass("active");
   $("#db_tables").trigger("sega.db.table_state_change");
 }
 
 function selectTableRow(row){
+  //open table
+  var table_dom = $("#db_tables table[data-table-name='"+row.parent().parent().attr("data-table-name")+"']");
+  if(table_dom.hasClass("closed")){
+    $("#db_tables>table")
+      .addClass("closed");
+    table_dom.removeClass("closed");
+  }
+  // activate row
   var column = row.attr("data-column-name");
   $("#db_tables>table>tbody>tr").removeClass("active");
   row.addClass("active");
   $("#db_tables").trigger("sega.db.selected");
 }
 
+function mapTableRow(row){
+  var td = row.children("td.isMapped");
+  td.html("");
+  $("<span/>")
+    .addClass("sega-jstree-mapicon glyphicon glyphicon-ok")
+    .appendTo(td);
+}
+
+function demapTableRow(row){
+  var td = row.children("td.isMapped");
+  td.html("");
+}
+
+function findRow(table, column) {
+  var r = $("#db_tables table[data-table-name='"+table+"'] tr[data-column-name='"+column+"']");
+  return r.length>0? r: false;
+}

@@ -43,7 +43,7 @@
 	};
 
 	var mapIcon = document.createElement("span");
-	mapIcon.className = "sega.jstree.mapicon";
+	mapIcon.className = "sega-jstree-mapicon glyphicon glyphicon-ok";
 
 	$.jstree.plugins.sega = function (options, parent) {
 		this.get_sega_json = function (obj, options, flat) {
@@ -74,10 +74,11 @@
 
 		this.redraw_node = function(obj, deep, callback, force_draw) {
 			obj = parent.redraw_node.call(this, obj, deep, callback, force_draw);
+			
 			if(obj) {
 				var i, j, tmp = null, chk = mapIcon.cloneNode(true);
 				for(i = 0, j = obj.childNodes.length; i < j; i++) {
-					if(obj.childNodes[i] && obj.childNodes[i].className && obj.childNodes[i].className.indexOf("jstree-anchor") !== -1) {
+					if(obj.childNodes[i] && obj.childNodes[i].className && obj.childNodes[i].className.indexOf("jstree-wholerow") !== -1) {
 						tmp = obj.childNodes[i];
 						break;
 					}
@@ -90,15 +91,47 @@
 						}
 					}
 				}
-				console.log(tmp);
-				if(tmp && tmp.tagName === "I") {
-					tmp.style.backgroundColor = "transparent";
-					tmp.style.backgroundImage = "none";
+				
+				if(tmp && tmp.tagName === "DIV" && this.get_node(obj.id).data && this.get_node(obj.id).data.isMapped) {
+					
 					tmp.appendChild(chk);
-					console.log(chk);
 				}
 			}
 			return obj;
+		};
+
+		this.sega_map_node = function(obj) {
+			obj = this.get_node(obj);
+			obj.data.isMapped = true;
+			this.redraw_node(obj, false);
+		};
+
+		this.sega_demap_node = function(obj) {
+			obj = this.get_node(obj);
+			obj.data.isMapped = false;
+			this.redraw_node(obj, false);
+		};
+
+		this.get_parent_artifact = function (obj) {
+			obj = this.get_node(obj);
+			if(!obj || obj.id === $.jstree.root) {
+				return false;
+			}
+			var tmp = this.get_node(obj.parent);
+			return tmp.type==="artifact"||tmp.type==="artifact_n"?tmp:this.get_parent_artifact(tmp);
+		};
+
+		this.get_key_child = function (obj) {
+			obj = this.get_node(obj);
+			var key = false;
+			for(var i=0,len=obj.children.length; i<len; i++){
+				var chd = tree.get_node(obj.children[i]);
+				if(chd.type === "key"){
+					key=chd;
+					break;
+				}
+			}
+			return key;
 		};
 
 	};//End of $.jstree.plugins.sega

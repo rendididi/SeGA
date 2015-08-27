@@ -104,6 +104,8 @@ body label {
 
 #db_tables>table>tbody>tr {
 	transition: all 0.1s ease;
+	line-height: 31px;
+	height: 31px;
 }
 
 #db_tables>table>tbody>tr:hover {
@@ -114,6 +116,10 @@ body label {
 	background: #beebff;
     background: -webkit-linear-gradient(top, #beebff 0%, #a8e4ff 100%);
     background: linear-gradient(to bottom, #beebff 0%, #a8e4ff 100%);
+}
+
+#db_tables>table>tbody>tr>td.isMapped {
+	padding: 4px;
 }
 
 #mapping_panel {
@@ -139,6 +145,38 @@ body label {
 	transition: all 0.5s;
 }
 
+#mappingbox #svg_mapping_tool g.candidate path.suggest_line {
+	animation: dashing 0.8s linear infinite;
+}
+
+@keyframes dashing {
+	0% {stroke-dashoffset: 0;}
+	100% {stroke-dashoffset: -20;}
+}
+
+
 #mappingbox #svg_mapping_tool path.suggest_line.active{
 	stroke-opacity: 0.4;
+}
+
+.sega-jstree-mapicon {
+	border-radius: 20px;
+	width:20px;
+	line-height: 20px;
+	text-align: center;
+	background-color: transparent;
+	color: #00a885;
+	transition: all 0.2s linear;
+}
+
+#entity_tree .sega-jstree-mapicon {
+	display: block;
+	float: right;
+	margin-right: 5px;
+	margin-top: 6px;
+}
+
+.sega-jstree-mapicon:hover {
+	background-color: #00a885;
+	color: #f8f8f8;
 }
