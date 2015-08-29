@@ -28,9 +28,9 @@
 
 	graph.on("change",function(){
 		paper.fitToContent({
-			minWidth:800,
+			minWidth:document.body.clientWidth ,
 			minHeight:600,
-			allowNewOrigin:"negative",
+
 		})
 	})
 	

@@ -33,15 +33,15 @@ joint.shapes.sega.PortsViewInterface=$.extend(true,new Object(),joint.shapes.bas
             switch(port.jointmode){
                 case 'XOR':
                     $inPorts.append(V(portXORTemplate({ id: index, port: port })).node);
-                    console.log("jointXOR");
-                    break;
+                    //console.log("jo break;intXOR");
+
                 case 'AND':
                     $inPorts.append(V(portANDTemplate({ id: index, port: port })).node);
-                    console.log('jointAND');
+                    //console.log('jointAND');
                     break;
                 case 'OR':
                     $inPorts.append(V(portORTemplate({ id: index, port: port })).node);
-                    console.log('jointOR');
+                    //console.log('jointOR');
                     break;
                 default:
                     $inPorts.append(V(portTemplate({ id: index, port: port })).node);
@@ -53,15 +53,15 @@ joint.shapes.sega.PortsViewInterface=$.extend(true,new Object(),joint.shapes.bas
             switch(port.splitemode){
                 case 'XOR':
                     $outPorts.append(V(portXORTemplate({ id: index, port: port })).node);
-                    console.log("spliteXOR");
+                    //console.log("spliteXOR");
                     break;
                 case 'AND':
                     $outPorts.append(V(portANDTemplate({ id: index, port: port })).node);
-                    console.log('spliteAND');
+                    //console.log('spliteAND');
                     break;
                 case 'OR':
                     $outPorts.append(V(portORTemplate({ id: index, port: port })).node);
-                    console.log('spliteOR');
+                    //console.log('spliteOR');
                     break;
                 default:
                     $outPorts.append(V(portTemplate({ id: index, port: port })).node);
@@ -150,7 +150,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
         }else{
             attrs[portBodySelector]["port"]["jointmode"]="XOR";
         }
-        console.log(attrs);
+        //console.log(attrs);
         return attrs;
     },
     setText: function(text) {
@@ -198,7 +198,7 @@ joint.shapes.sega.Link = joint.dia.Link.extend({
     defaults: {
         type: 'sega.Link',
         attrs: { 
-            '.connection' : { stroke:"#F4A915", 'stroke-width' :  2 },
+            '.connection' : { stroke:"#F4A915", 'stroke-width' :  2,fill:'none' },
             '.marker-target': { stroke: '#F4A915', fill: '#F4A915', d: 'M 10 0 L 0 5 L 10 10 z'},
             expression:{}
         },
@@ -212,11 +212,89 @@ joint.shapes.sega.LinkView = joint.dia.LinkView.extend({
         type: 'sega.LinkView',
         interactive: {"vertexAdd": false}
     },
+    update: function() {
+
+        if(this.options.interactive==false){
+            this.model.attr({
+                '.connection-wrap':{display:"none"},
+                '.link-tools':{display:'none'},
+                '.marker-arrowheads':{display:'none'}
+            })
+        }else{
+            this.model.attr({
+                '.connection-wrap':{display:""},
+                '.link-tools':{display:''},
+                '.marker-arrowheads':{display:''}
+            })
+        }
+        // Update attributes.
+        _.each(this.model.get('attrs'), function(attrs, selector) {
+
+            var processedAttributes = [];
+
+            // If the `fill` or `stroke` attribute is an object, it is in the special JointJS gradient format and so
+            // it becomes a special attribute and is treated separately.
+            if (_.isObject(attrs.fill)) {
+
+                this.applyGradient(selector, 'fill', attrs.fill);
+                processedAttributes.push('fill');
+            }
+
+            if (_.isObject(attrs.stroke)) {
+
+                this.applyGradient(selector, 'stroke', attrs.stroke);
+                processedAttributes.push('stroke');
+            }
+
+            // If the `filter` attribute is an object, it is in the special JointJS filter format and so
+            // it becomes a special attribute and is treated separately.
+            if (_.isObject(attrs.filter)) {
+
+                this.applyFilter(selector, attrs.filter);
+                processedAttributes.push('filter');
+            }
+
+            // remove processed special attributes from attrs
+            if (processedAttributes.length > 0) {
+
+                processedAttributes.unshift(attrs);
+                attrs = _.omit.apply(_, processedAttributes);
+            }
+
+            this.findBySelector(selector).attr(attrs);
+
+        }, this);
+
+        // Path finding
+        var vertices = this.route = this.findRoute(this.model.get('vertices') || []);
+
+        // finds all the connection points taking new vertices into account
+        this._findConnectionPoints(vertices);
+
+        var pathData = this.getPathData(vertices);
+
+        // The markup needs to contain a `.connection`
+        this._V.connection.attr('d', pathData);
+        this._V.connectionWrap && this._V.connectionWrap.attr('d', pathData);
+
+        this._translateAndAutoOrientArrows(this._V.markerSource, this._V.markerTarget);
+
+        //partials updates
+        this.updateLabelPositions();
+        this.updateToolsPosition();
+        this.updateArrowheadMarkers();
+
+        delete this.options.perpendicular;
+        // Mark that postponed update has been already executed.
+        this.updatePostponed = false;
+
+        return this;
+    },
 
     //check the restrictions here
     _afterArrowheadMove: function(){
         joint.dia.LinkView.prototype._afterArrowheadMove.apply(this, arguments);
-        console.log(this.model.get("target"));
+        //console.log(this.model.get("target"));
         if(this.model.get("target").port === undefined){
             this.model.remove();
         }else if(this.model.get("target").port === "out"){
@@ -362,3 +440,26 @@ joint.shapes.sega.EndView = joint.dia.ElementView.extend(
         }
     })
 );
+
+//hide the link's interative style when the graph need fixed
+function linkFixed(links){
+    for(var i = 0;i<links.length;i++){
+        links[i].attr({
+            '.connection-wrap':{display:"none"},
+            '.link-tools':{display:'none'},
+            '.marker-arrowheads':{display:'none'},
+        });
+        console.log(links[i])
+    }
+}
+
+function unLinkFixed(link){
+    for(var i = 0;i<links.length;i++){
+        links[i].attr({
+            '.connection-wrap':{display:""},
+            '.link-tools':{display:''},
+            '.marker-arrowheads':{display:''},
+        });
+
+    }
+}
