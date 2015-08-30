@@ -110,7 +110,6 @@
     if(evt.model.isLink()){
         $('#link-attrs').show();
         $('#task-attrs').hide();
-        evt.model.prop('expression',"expression1");
         $('#linkId').val(evt.model.id);
         $('#sourceId').val(evt.model.attributes.source.id);
         $('#targetId').val(evt.model.attributes.target.id);
@@ -169,10 +168,10 @@
 		current_selected.model.attr("data/jointmode",$('#joinMode').val());
 	})
 	$('#taskdsp').blur(function(){
-
+		current_selected.model.attr("data/description",$('#taskdsp').val());
 	})
 	$("#expression").blur(function(){
-		current_selected.model.attr("expression",$("#expression").val());
+		current_selected.model.prop("expression",$("#expression").val());
 	})
 
 
