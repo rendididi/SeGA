@@ -1,24 +1,30 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2015-8-9 17:27:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 2015-8-28 14:18:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="org.sega.ProcessDesigner.models.ProcessTemplate" table="PROCESSTEMPLATE" optimistic-lock="version">
+    <class name="org.sega.ProcessDesigner.models.Process" table="PROCESS" optimistic-lock="version">
         <id name="id" type="long">
             <column name="ID" />
             <generator class="identity" />
         </id>
         <property name="processJSON" type="java.lang.String">
-            <column name="PROCESSJSON" sql-type="mediumtext"/>
+            <column name="PROCESSJSON"  sql-type="mediumtext"/>
+        </property>
+        <property name="processXML" type="java.lang.String">
+            <column name="PROCESSXML"  sql-type="mediumtext"/>
         </property>
         <property name="entityJSON" type="java.lang.String">
-            <column name="ENTITYJSON" sql-type="mediumtext"/>
+            <column name="ENTITYJSON"  sql-type="mediumtext"/>
         </property>
-        <property name="databaseSQL" type="java.lang.String">
-            <column name="DATABASESQL" sql-type="mediumtext"/>
+        <property name="databaseJSON" type="java.lang.String">
+            <column name="DATABASEJSON"  sql-type="mediumtext"/>
+        </property>
+        <property name="DDmappingJSON" type="java.lang.String">
+            <column name="DDMAPPINGJSON"  sql-type="mediumtext"/>
         </property>
         <property name="EDmappingJSON" type="java.lang.String">
-            <column name="EDMAPPINGJSON" sql-type="mediumtext"/>
+            <column name="EDMAPPINGJSON"  sql-type="mediumtext"/>
         </property>
         <property name="processImageUrl" type="java.lang.String">
             <column name="PROCESSIMAGEURL" />
@@ -29,5 +35,8 @@
         <property name="name" type="java.lang.String">
             <column name="NAME" />
         </property>
+        <many-to-one name="template" class="org.sega.ProcessDesigner.models.ProcessTemplate" fetch="join">
+            <column name="TEMPLATE" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

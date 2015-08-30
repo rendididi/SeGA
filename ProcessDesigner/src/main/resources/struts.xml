@@ -13,20 +13,106 @@
   <package name="data" extends="angularstruts" namespace="/data"></package>
   
   <package name="process-designer-support" namespace="/" extends="struts-default">
-	<result-types>
+  	<result-types>
 		<result-type name="json" class="org.apache.struts2.json.JSONResult" />
 	</result-types>
+	
+	<interceptors>
+	    <interceptor name="authentication"
+	                 class="org.sega.ProcessDesigner.interceptor.AuthenticationInterceptor"/>
+	
+	    <interceptor-stack name="user" >
+	        <interceptor-ref name="authentication" />
+	        <interceptor-ref name="defaultStack"/>
+	    </interceptor-stack>
+	
+	    <interceptor-stack name="user-submit" >
+	        <interceptor-ref name="tokenSession" />
+	        <interceptor-ref name="user"/>
+	    </interceptor-stack>
+	
+	    <interceptor-stack name="guest" >
+	        <interceptor-ref name="defaultStack"/>
+	    </interceptor-stack>
+	
+	</interceptors>
+	
+	<default-interceptor-ref name="user"/>  
+  
+
 
 	<global-results>
-	    <result name="error" type="redirectAction">step-process-select</result>
+	    <result name="error" type="redirectAction">login</result>
+	    <result name="invalid.token">login</result>
+        <result name="login" type="redirectAction">login</result>
 	</global-results>
+	
+	<action name="index" class="org.sega.ProcessDesigner.actions.Index">
+		<interceptor-ref name="guest"/>
+	</action>
+	
+	<!-- 登录相关  -->
+	
+	<action name="login" class="org.sega.ProcessDesigner.actions.LoginAction">
+		<interceptor-ref name="guest"/>
+	</action>
+	
+	<action name="dologin" method="doLogin" class="org.sega.ProcessDesigner.actions.LoginAction">
+		<interceptor-ref name="guest"/>
+		<result type="redirectAction">task-list</result>
+	</action>
+	
+	<action name="dologout" method="doLogout" class="org.sega.ProcessDesigner.actions.LoginAction">
+	</action>
+
+	<!-- 任务列表  -->
+		
+	<action name="task-list" class="org.sega.ProcessDesigner.actions.TaskListAction">
+	</action>
+
+	<!-- Step 1  -->
+	
+	<action name="step-process-select" class="org.sega.ProcessDesigner.actions.StepProcessSelectAction">
+    </action>
 
     <action name="step-process-select-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepProcessSelectAction">
-    	 <result type="redirectAction">step-custom-entity</result>
+    	<result type="redirectAction">step-custom-entity</result>
+    </action>
+    
+   	<!-- Step 2  -->
+	
+	<action name="step-custom-entity" class="org.sega.ProcessDesigner.actions.StepCustomEntityAction">
     </action>
     
     <action name="step-custom-entity-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepCustomEntityAction">
-    	 <result type="redirectAction">step-dbtemplate-edb-mapping</result>
+    	<result type="redirectAction">step-dbtemplate-edb-mapping</result>
+    </action>    
+    
+   	<!-- Step 3  -->
+   	
+   	<action name="step-dbtemplate-edb-mapping" class="org.sega.ProcessDesigner.actions.StepDBTemplateEDBMapping">
+    	 <result>/pages/step-dbtemplate-edb-mapping.jsp</result>
+    </action>
+    
+    <!-- Step 4  -->
+    
+    <action name="step-entity-edb-mapping" class="org.sega.ProcessDesigner.actions.StepEntityEDBMappingAction">
+    	 <result>/pages/step-entity-edb-mapping.jsp</result>
+    </action>
+    
+    <!-- Step 5  -->
+    
+    <action name="step-custom-process" class="org.sega.ProcessDesigner.actions.StepCustomProcessAction">
+    </action>
+    
+    <!-- Step 6  -->
+    
+    <action name="step-bind-process" class="org.sega.ProcessDesigner.actions.StepBindProcess">
+    </action>
+    
+    <!-- Step 7  -->
+    
+    <action name="step-publish" class="org.sega.ProcessDesigner.actions.StepPublish">
     </action>
     
     <action name="edb-conn-test" method="test" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
@@ -55,13 +141,9 @@
     	</result>
     </action>
     
-    <action name="step-entity-edb-mapping" class="org.sega.ProcessDesigner.actions.StepEntityEDBMappingAction">
-    	 <result>/pages/step-entity-edb-mapping.jsp</result>
-    </action>
+
     
-    <action name="step-dbtemplate-edb-mapping" class="org.sega.ProcessDesigner.actions.StepDBTemplateEDBMapping">
-    	 <result>/pages/step-dbtemplate-edb-mapping.jsp</result>
-    </action>
+
   </package>
 
 </struts>

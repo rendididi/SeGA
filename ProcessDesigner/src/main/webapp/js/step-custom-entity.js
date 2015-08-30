@@ -80,10 +80,10 @@ $(function() {
   }
 
   /* Handle "View JSON" */
-  $("button#btn_viewjson").on("click",function(e){
+  $("button#btn_viewjson, button#btn-navbar-submit").on("click",function(e){
     var json = JSON.stringify(tree.get_sega_json());
     $("#modal_viewjson .modal-body p").html(json);
-    $("#modal_viewjson input[name=entityJSON]").val(json);
+    $("#modal_viewjson input#entityJSON").val(json);
     $("#modal_viewjson").modal();
   });
 

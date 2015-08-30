@@ -22,5 +22,7 @@
   <property name="hibernate.current_session_context_class">thread</property>
 
   <mapping resource="ProcessTemplate.hbm.xml"/>
+  <mapping resource="Process.hbm.xml"/>
+  <mapping resource="ProcessEdit.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

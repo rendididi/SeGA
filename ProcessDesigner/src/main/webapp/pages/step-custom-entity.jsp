@@ -36,11 +36,11 @@
 						<select class="selectpicker form-control node-type"
 							data-dropup-auto="false" data-hide-disabled="true">
 							<option
-								data-content="<span class='node_artifact node_icon'>Artifact</span>"
-								value="artifact">Artifact</option>
+								data-content="<span class='node_artifact node_icon'>Entity</span>"
+								value="artifact">Entity</option>
 							<option
-								data-content="<span class='node_artifact_n node_icon'>Artifact 1-n</span>"
-								value="artifact_n">Artifact 1-n</option>
+								data-content="<span class='node_artifact_n node_icon'>Entity 1-n</span>"
+								value="artifact_n">Entity 1-n</option>
 							<option
 								data-content="<span class='node_attribute node_icon'>Attribute</span>"
 								value="attribute">Attribute</option>
@@ -76,7 +76,7 @@
 					</label>
 					<button type="button" class="btn btn-primary btn-md btn-block"
 						data-type="artifact">
-						<span class="icon-artifact"></span> Artifact
+						<span class="icon-artifact"></span> Entity
 					</button>
 					<button type="button" class="btn btn-primary btn-md btn-block"
 						data-type="artifact_n">
@@ -87,7 +87,7 @@
 							class="path8"></span><span class="path9"></span><span
 							class="path10"></span><span class="path11"></span><span
 							class="path12"></span>
-						</span> Artifact_n
+						</span> Entity 1-n
 					</button>
 					<button type="button" class="btn btn-primary btn-md btn-block"
 						data-type="attribute">
@@ -132,7 +132,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Entity JSON</h4>
+					<h4 class="modal-title">Please Confirm Entity JSON to Submit</h4>
 				</div>
 				<div class="modal-body">
 					<p></p>
@@ -140,9 +140,9 @@
 
 				<div class="modal-footer">
 					<s:form action="step-custom-entity-submit">
-						<s:hidden name="entityJSON"></s:hidden>
+						<s:hidden name="process.entityJSON" id="entityJSON"></s:hidden>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-success">Confirm</button>
 					</s:form>
 				</div>
 			</div>
@@ -153,7 +153,7 @@
 	<!-- /.modal -->
 
 	<script type="text/javascript">
-var entity_json = (<s:property value="entityJSON" escape="false"/>);
+var entity_json = (<s:property value="process.entityJSON" escape="false"/>);
   </script>
 	<script type="text/javascript" src="<s:url value="js/step-custom-entity.js" />"></script>
 </body>

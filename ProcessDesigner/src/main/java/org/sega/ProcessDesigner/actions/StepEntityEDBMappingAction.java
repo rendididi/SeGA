@@ -13,7 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Results({
 	@Result(name="error",type="redirectAction", location="step1")
 })
-public class StepEntityEDBMappingAction extends ActionSupport {
+public class StepEntityEDBMappingAction extends EditStepAction {
 	/**
 	 * 
 	 */

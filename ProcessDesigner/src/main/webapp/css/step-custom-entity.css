@@ -82,3 +82,10 @@
 	background-color: #eeeeee;
 	color: #dddddd;
 }
+
+#modal_viewjson .modal-body {
+	height: 16em;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	
+}

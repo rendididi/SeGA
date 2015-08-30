@@ -51,3 +51,9 @@
 		</div>
 	</div>
 </div>
+
+<div class="container">
+<h1>
+<%=step_names[step-1] %>
+</h1>
+</div>

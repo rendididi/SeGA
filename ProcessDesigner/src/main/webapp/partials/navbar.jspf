@@ -13,7 +13,36 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Process Designer</a></li>
             <li><a href="#about">About</a></li>
+
           </ul>
+          <% if(step>1) { %>
+          <form class="navbar-form navbar-left">
+            <button type="button" class="btn btn-success" id="btn-navbar-submit">Submit</button>
+          </form>
+          <% }
+            if(step>=0) { %>
+          <div class="navbar-right navbar-user">
+	          <img src="/images/user/<s:property value="userType"/>.png" height="32px" width="32px"/>
+
+	          <div class="dropdown">
+			  <span class="dropdown-toggle" data-toggle="dropdown">
+		          	<s:set value="userType" var="user"/>
+		          	<s:if test="%{#user=='expert'}">Business Expert</s:if>
+		          	<s:elseif test="%{#user=='developer'}">Developer</s:elseif>
+		      </span>
+				<ul class="dropdown-menu">
+					<li>
+						<s:form action="dologout">
+							<button class="input-logout btn-block" type="submit">
+							Logout
+							</button>
+						</s:form>
+					</li>
+				</ul>
+			  </div>
+          </div>
+          <% } %>
         </div><!-- /.nav-collapse -->
+
       </div><!-- /.container -->
     </nav><!-- /.navbar -->

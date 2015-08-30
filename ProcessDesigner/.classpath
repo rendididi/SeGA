@@ -16,7 +16,7 @@
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/jsp-api/2.0/jsp-api-2.0.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/apache/struts/struts2-core/2.5-BETA1/struts2-core-2.5-BETA1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/struts/struts2-core/2.5-BETA1/struts2-core-2.5-BETA1.jar" sourcepath="C:/Users/glp/.m2/repository/org/apache/struts/struts2-core/2.5-BETA1/struts2-core-2.5-BETA1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/freemarker/freemarker/2.3.22/freemarker-2.3.22.jar"/>
 	<classpathentry kind="var" path="M2_REPO/ognl/ognl/3.0.11/ognl-3.0.11.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javassist/javassist/3.11.0.GA/javassist-3.11.0.GA.jar"/>

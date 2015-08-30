@@ -1,0 +1,152 @@
+html, body {
+	margin: 0;
+    height: 100%;
+    overflow:hidden;
+}
+
+body.login-bg {
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	background-image: url("/images/wood-view.jpg");
+	margin: 0;
+}
+
+.login-bg nav a{
+	color: #f8f8f8;
+	transition: all 0.3s linear;
+}
+
+.login-bg .nav>li>a:focus, 
+.login-bg .nav>li>a:hover {
+    text-decoration: none;
+    background-color: rgba(255,255,255, 0.25);
+    color: #0f0f0f;
+}
+
+header {
+	margin-top: 5%;
+}
+
+header h1 {
+	color: #f8f8f8;
+}
+
+.login-bg section {
+	background: transparent;
+}
+
+.login {
+	margin-top: 100px;
+
+}
+
+.login-container {
+	position: relative;
+	margin-top: 50px;
+	transition: margin-top 0.5s ease;
+}
+
+.login-container>img {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -64px;
+}
+
+.login-container .title {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+}
+
+.login-container .title h2 {
+	display: block;
+	position: relative;
+	margin-left: -50%;
+	color: #f8f8f8;
+
+	font-weight: 300;
+	text-shadow: -1px 1px 8px rgba(255,255,200,0.4), 1px -1px 8px rgba(255,255,255,0.4);
+	transition: all 0.5s ease;
+}
+
+
+.login-panel {
+	border-radius: 6px;
+	background-color: rgba(255,255,255,0.1);
+	width: 100%;
+	height: 0;
+	margin-top: 64px;
+	padding-top: 0;
+
+	opacity: 0;
+	transition: all 0.5s ease;
+}
+
+.login-container:hover {
+	margin-top: 0;
+}
+
+.login-container:hover .title h2 {
+	text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+}
+
+.login-container:hover .login-panel {
+	height: 360px;
+	padding-top: 120px;
+	opacity: 1;
+}
+
+.login-panel ul {
+	list-style-type: none;
+}
+
+.login-panel ul li {
+	line-height: 40px;
+
+	color: #e8e8e8;
+	font-size: 16px;
+	font-weight: 300;
+	font-family: Open Sans;
+}
+
+.login-panel ul li img {
+	margin-right: 10px;
+}
+
+.login-panel button {
+	margin-top: 40px;
+	height: 80px;
+
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-width: 0;
+
+	background-color: transparent;
+	transition: all 0.2s ease;
+
+	color: #333;
+	font-size: 32px;
+	font-weight: 300;
+	font-family: Roboto;
+}
+
+.login-panel button:focus {
+	background-color: transparent;
+}
+
+.login-panel button:hover {
+	background-color: rgba(255,255,255,0.3);
+	color: #e8e8e8;
+	text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+}
+
+.login-panel button:active:focus {
+	background-color: rgba(255,255,255,0.3);
+	box-shadow: none;
+	color: #333;
+	text-shadow: none;
+}

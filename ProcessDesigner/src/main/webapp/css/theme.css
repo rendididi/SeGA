@@ -10,6 +10,10 @@ body {
 	color: #434343;
 }
 
+header {
+	margin-bottom: 25px;
+}
+
 *:focus {
     outline: 0!important;
 }
@@ -36,16 +40,19 @@ h3 {
 	margin-bottom: 4px;
 	font-size: 18px;
 	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 }
 
 h2 {
 	margin-top: 30px;
 	margin-bottom: 5px;
 	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 }
 
 h1 {
 	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 }
 
 hr {
@@ -68,11 +75,7 @@ hr {
 }
 
 img {
-	-webkit-animation: fadein 2.5s; /* Safari and Chrome */
-	-moz-animation: fadein 2.5s; /* Firefox */
-	-ms-animation: fadein 2.5s; /* Internet Explorer */
-	-o-animation: fadein 2.5s; /* Opera */
-	animation: fadein 2.5s;
+
 }
 
 @
@@ -395,7 +398,6 @@ section {
 	height: 180px;
 
 	margin-top: 0;
-	margin-bottom: 30px;
 	padding-top: 90px;
 
 	background-color: #32383e;
@@ -545,3 +547,41 @@ section {
 	animation: step_turn_on 2s;
 }
 
+#navbar {
+	
+}
+
+.navbar-user {
+	line-height: 50px;
+}
+
+.navbar-user .dropdown {
+	display: inline-block;
+}
+
+.navbar-user .dropdown span.dropdown-toggle {
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.navbar-user .dropdown span.dropdown-toggle:hover {
+	color: #fff;
+}
+
+.navbar-user .input-logout {
+	display: block;
+	background: transparent;
+	border: none;
+	display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 300;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+.navbar-user .input-logout:hover {
+	color: #eee;
+	background-color: #888;
+}

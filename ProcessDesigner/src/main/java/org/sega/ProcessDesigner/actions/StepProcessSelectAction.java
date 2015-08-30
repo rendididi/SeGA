@@ -9,13 +9,15 @@ import org.apache.struts2.convention.annotation.Results;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.sega.ProcessDesigner.models.ProcessTemplate;
+import org.sega.ProcessDesigner.util.Base64Util;
 import org.sega.ProcessDesigner.util.HibernateUtil;
+import org.sega.ProcessDesigner.models.Process;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 
-public class StepProcessSelectAction extends ActionSupport {
+public class StepProcessSelectAction extends ProcessDesignerSupport {
 
 	private static final long serialVersionUID = 3047873710625821949L;
 
@@ -24,6 +26,7 @@ public class StepProcessSelectAction extends ActionSupport {
 	private long process_id;
 	
 	// view
+	@SuppressWarnings("unchecked")
 	public String execute() throws Exception {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -36,26 +39,21 @@ public class StepProcessSelectAction extends ActionSupport {
 	public String submit() {
 		
 		try {
-			Map<String, Object> session = ActionContext.getContext().getSession();
 			Session hb_session = HibernateUtil.getSessionFactory().getCurrentSession();
 			hb_session.beginTransaction();
-			ProcessTemplate process = (ProcessTemplate)hb_session.get(
+			ProcessTemplate process_t = (ProcessTemplate)hb_session.get(
 					"org.sega.ProcessDesigner.models.ProcessTemplate", process_id);
-			
-			String entityJSON = new String(Base64.getDecoder().decode(process.getEntityJSON()), "UTF-8");
-			String processJSON = new String(Base64.getDecoder().decode(process.getProcessJSON()),"UTF-8");
-			String dbJSON = new String(Base64.getDecoder().decode(process.getDatabaseSQL()),"UTF-8");
-			
-			
-			session.put("process_id",process.getId());
-			session.put("process_entityJSON", entityJSON);
-			session.put("process_processJSON", processJSON);
-			session.put("process_dbJSON", dbJSON);
-			
-			
-			
 			hb_session.getTransaction().commit();
+
+			Process process = new Process();
+			process.setTemplate(process_t);
+			process.setEntityJSON(Base64Util.decode(process.getTemplate().getEntityJSON()));
+			process.setDatabaseJSON(Base64Util.decode(process.getTemplate().getDatabaseSQL()));
+			process.setProcessJSON(Base64Util.decode(process.getTemplate().getProcessJSON()));
+			getSession().put("process", process);
+			
 		} catch (Exception e) {
+			e.printStackTrace();
 			return ERROR;
 		}
 		return SUCCESS;

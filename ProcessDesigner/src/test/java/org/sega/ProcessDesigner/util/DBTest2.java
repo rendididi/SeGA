@@ -8,7 +8,6 @@ import java.util.Map;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.MapListHandler;
-import org.sega.ProcessDesigner.models.ProcessTemplateHome;
 
 public class DBTest2 {
 
