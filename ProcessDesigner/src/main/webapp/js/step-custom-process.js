@@ -177,8 +177,10 @@
 
 
 
-	$("button#btn_viewjson").on("click",function(e){
-		$("#modal_viewjson .modal-body p").html(JSON.stringify(graph.toJSON()));
+	$("button#btn_viewjson,button#btn-navbar-submit").on("click",function(e){
+		var json = JSON.stringify(graph.toJSON());
+		$("#modal_viewjson .modal-body p").html(json);
+		$("#modal_viewjson input#processJSON").val(json);
 		$("#modal_viewjson").modal();
 	});
 	function getcc(){

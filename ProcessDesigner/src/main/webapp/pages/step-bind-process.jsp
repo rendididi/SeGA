@@ -26,8 +26,28 @@
 
 
   <%@include file="/pages/step-bind-process_partials/task-config.jsp" %>
+
+	<div class="modal fade" id="modal_viewjson">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Process JSON</h4>
+				</div>
+				<div class="modal-body">
+					<p></p>
+				</div>
+				<div class="modal-footer">
+					<s:hidden name="process.processJSON" id="processJSON"></s:hidden>
+					<s:hidden name="svg" id="svg"></s:hidden>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
   	<script type="text/javascript">
-	  	var process_json = <s:property value="processJSON" escape="false"/>;
+	  	var process_json = <s:property value="process.processJSON" escape="false"/>;
 	</script>
   	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.nojquery.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.sega_extension.js" />"></script>
