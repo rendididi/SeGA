@@ -51,12 +51,12 @@
               </div>
 
               <ul class="list-unstyled" id="activityList">
-                <li ng-repeat="activity in activities | orderBy: 'id' : true">
+                <li ng-repeat="activity in activities">
                   <img class="activityImg" src="{{activity.step_image_url}}"/>
                   <div class="info">
                     <p class="header text-elli"></p>
                     <p class="date">{{activity.date}}</p>
-                    <p class="decription">{{activity.step}}</p>
+                    <p class="decription">{{activity.stepName}}</p>
                   </div>
                 </li>
 
@@ -160,6 +160,7 @@
           var activity = {
             id: <s:property value="id"/>,
             step: '<s:property value="step"/>',
+            stepName: '<s:property value="stepName"/>',
             date: '<s:date name="datetime"/>',
             step_image_url: "images/step_detail/<s:property value="step"/>.png"
           };
