@@ -16,23 +16,7 @@
   	<%@include file="/partials/step_detail.jspf" %>
   </header>
 
-  <section class="container toolbox">
-  	<div class="container form-group">
-  		<label class="col-xs-2">Database Connection</label>
-  		<div class="col-xs-5">
-  			<input type="text" class="form-control" readonly value="" id="input-db-conn-string"/>
-  		</div>
-  		<button class="btn btn-primary col-xs-2" id="btn-db-config">Configure</button>
-  		<button class="btn btn-primary col-xs-2" id="btn-db-import">Import Schema</button>
-  	</div>
-  	
-  	<div class="container form-group">
-  		<button class="btn btn-default col-xs-2 ">Toggle Mapping Lines</button>
-  		<button class="btn btn-default col-xs-2 ">View Mapping Rules <span class="badge">0</span></button>
-  		<button class="btn btn-success col-xs-2 ">Submit</button>
-  		
-  	</div>
-  </section>
+
 
   <section class="container" id="mappingbox">
   	<div id="entity_tree" class="col-lg-6">
