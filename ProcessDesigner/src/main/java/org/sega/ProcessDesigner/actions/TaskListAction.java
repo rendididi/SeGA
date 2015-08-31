@@ -5,6 +5,7 @@ import java.util.*;
 import com.opensymphony.xwork2.ActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.sega.ProcessDesigner.util.HibernateUtil;
@@ -34,6 +35,7 @@ public class TaskListAction extends ProcessDesignerSupport {
         Criteria criteria = session.createCriteria(ProcessEdit.class);
         criteria.setFirstResult((page - 1) * pageSize);
         criteria.setMaxResults(pageSize);
+        criteria.addOrder(Order.desc("datetime"));
 
         if (!userType.isEmpty()) {
             criteria.add(Restrictions.eq("userType", userType));
@@ -43,6 +45,8 @@ public class TaskListAction extends ProcessDesignerSupport {
 
         total = (Long) session.createCriteria(ProcessEdit.class).setProjection(Projections.rowCount()).uniqueResult();
         totalPages = total / pageSize;
+        if (total % pageSize != 0)
+            ++totalPages;
 
         session.getTransaction().commit();
     }
