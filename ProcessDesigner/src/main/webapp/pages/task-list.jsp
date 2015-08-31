@@ -54,9 +54,9 @@
                 <li ng-repeat="activity in activities">
                   <img class="activityImg" src="{{activity.step_image_url}}"/>
                   <div class="info">
-                    <p class="header text-elli"></p>
+                    <p class="header text-elli">{{activity.stepName}}</p>
                     <p class="date">{{activity.date}}</p>
-                    <p class="decription">{{activity.stepName}}</p>
+                    <p class="decription">Process: {{activity.process.name}}</p>
                   </div>
                 </li>
 
@@ -157,12 +157,16 @@
         var activities = [];
 
         <s:iterator value="activities">
+          var process_name = '<s:property value="process.name" />';
           var activity = {
             id: <s:property value="id"/>,
             step: '<s:property value="step"/>',
             stepName: '<s:property value="stepName"/>',
             date: '<s:date name="datetime"/>',
-            step_image_url: "images/step_detail/<s:property value="step"/>.png"
+            step_image_url: "images/step_detail/<s:property value="step"/>.png",
+            process: {
+              name: process_name == '' ? 'unnamed' : process_name
+            }
           };
 
           activities.push(activity);
