@@ -17,7 +17,7 @@
                         -DarchetypeArtifactId=struts2-archetype-angularjs \
                             -DarchetypeVersion=<CURRENT_STRUTS_VERSION> \
                             -DremoteRepositories=http://struts.apache.org
-
+                            
 其中，要把`<CURRENT_STRUTS_VERSION>`改为2.5。整行命令要在一行中，也就是说您需要把‘\\’符号删掉，将命令整理在一行中。
       
 **即** 在windows命令提示符下，输入以下命令：
