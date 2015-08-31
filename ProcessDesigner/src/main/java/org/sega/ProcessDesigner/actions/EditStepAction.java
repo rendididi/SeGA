@@ -75,7 +75,7 @@ public class EditStepAction extends ProcessDesignerSupport {
 		return SUCCESS;
 	}
 
-	public void updateProcess(org.sega.ProcessDesigner.models.Process sp) {
+	public void updateProcess(org.sega.ProcessDesigner.models.Process sp) throws Exception {
 		
 	}
 	

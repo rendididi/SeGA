@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-8-31 10:45:26 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="org.sega.ProcessDesigner.models.DatabaseConfiguration" table="DATABASECONFIGURATION" optimistic-lock="version">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
+        <property name="host" type="java.lang.String">
+            <column name="HOST" />
+        </property>
+        <property name="port" type="long">
+            <column name="PORT" />
+        </property>
+        <property name="database_name" type="java.lang.String">
+            <column name="DATABASE_NAME" />
+        </property>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="tables_json" type="java.lang.String">
+            <column name="TABLES_JSON" sql-type="mediumtext"/>
+        </property>
+        <property name="columns_json" type="java.lang.String">
+            <column name="COLUMNS_JSON" sql-type="mediumtext"/>
+        </property>
+        <property name="keys_json" type="java.lang.String">
+            <column name="KEYS_JSON" sql-type="mediumtext"/>
+        </property>
+    </class>
+</hibernate-mapping>

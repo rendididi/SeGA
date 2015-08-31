@@ -105,6 +105,10 @@
     <action name="step-custom-process" class="org.sega.ProcessDesigner.actions.StepCustomProcessAction">
     </action>
     
+    <action name="step-custom-process-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepCustomProcessAction">
+    	<result type="redirectAction">step-bind-process</result>
+    </action>
+    
     <!-- Step 6  -->
     
     <action name="step-bind-process" class="org.sega.ProcessDesigner.actions.StepBindProcess">

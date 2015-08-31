@@ -32,7 +32,7 @@
     </header>
     
     <section class="container login">
-    	<div class="col-md-4 col-md-offset-2 login-container">
+    	<div class="col-md-4 col-md-offset-1 login-container">
     		<img src="/images/user/expert.png" width="128px" height="128px"/>
         <div class="title"><h2>Business Expert</h2></div>  
     		<div class="login-panel">
@@ -56,7 +56,7 @@
           </s:form>
         </div>
     	</div>
-      <div class="col-md-4 col-md-offset-1 login-container">
+      <div class="col-md-4 col-md-offset-2 login-container">
         <img src="/images/user/developer.png" width="128px" height="128px"/>
         <div class="title"><h2>Developer</h2></div>  
         <div class="login-panel">

@@ -27,6 +27,7 @@ public class Process implements Serializable {
 	private String description;
 	private String name;
 	private ProcessTemplate template;
+	private DatabaseConfiguration dbconfig;
 	
 	public long getId() {
 		return id;
@@ -93,5 +94,11 @@ public class Process implements Serializable {
 	}
 	public void setDDmappingJSON(String dDmappingJSON) {
 		DDmappingJSON = dDmappingJSON;
+	}
+	public DatabaseConfiguration getDbconfig() {
+		return dbconfig;
+	}
+	public void setDbconfig(DatabaseConfiguration dbconfig) {
+		this.dbconfig = dbconfig;
 	}
 }
