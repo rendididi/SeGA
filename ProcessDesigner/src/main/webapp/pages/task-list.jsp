@@ -37,7 +37,7 @@
 					<small class="totalNum">共<em> <s:property value="total" /> </em>个</small>
 				</h3>
 				<div class="btn-create">
-						<a class="" href="#">
+						<a class="" href="<s:url action='step-process-select'/>">
 							<span class="glyphicon glyphicon-plus-sign addActivity" aria-hidden="true"></span>
 							Create </a>
 				</div>
