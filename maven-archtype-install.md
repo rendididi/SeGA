@@ -1,10 +1,10 @@
-# Maven安装
+# Maven安装 
 
 标签（空格分隔）： 编译环境
 
 ---
 
-**Maven下载安装**
+**Maven下载安装**   <br>
 1. [Maven下载地址][1]  <br>  
 2. 下载后，解压. 新建环境变量**MAVEN_HOME**，设置值为maven中bin文件存放的路径。例如：MAVEN_HOME：E:\Program Files\maven\apache-maven-3.3.3   <br> 
 3. 在**PATH**里加入maven的bin的路径。例如：%MAVEN_HOME%\bin;   <br> 
