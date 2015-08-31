@@ -18,9 +18,9 @@
                             -DarchetypeVersion=<CURRENT_STRUTS_VERSION> \
                             -DremoteRepositories=http://struts.apache.org
                             
-其中，要把`<CURRENT_STRUTS_VERSION>`改为2.5。整行命令要在一行中，也就是说您需要把‘\\’符号删掉，将命令整理在一行中。
+   其中，要把`<CURRENT_STRUTS_VERSION>`改为2.5。整行命令要在一行中，也就是说您需要把‘\\’符号删掉，将命令整理在一行中。
       
-**即** 在windows命令提示符下，输入以下命令：
+   **即** 在windows命令提示符下，输入以下命令：
 `mvn archetype:generate -B -DgropId=com.mycompany.mysystem -DartifactId=myWebApp -DarchetypeGroupId=org.apache.struts -DarchetypeArtifactId=struts2-archetype-angularjs -DarchetypeVersion=2.5 -DremoteRepositories=http://struts.apache.org`
 然后回车自行安装即可。
 
