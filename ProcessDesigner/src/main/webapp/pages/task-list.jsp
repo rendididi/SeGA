@@ -54,6 +54,7 @@
                 <li ng-repeat="activity in activities">
                   <img class="activityImg" src="{{activity.step_image_url}}"/>
                   <div class="info">
+                    <div class="btn-edit"><a href="javascript:;"><span class="glyphicon glyphicon-edit"></span></a></div>
                     <p class="header text-elli">{{activity.stepName}}</p>
                     <p class="date">{{activity.date}}</p>
                     <p class="decription">Process: {{activity.process.name}}</p>

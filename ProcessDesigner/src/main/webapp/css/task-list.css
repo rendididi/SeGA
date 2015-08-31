@@ -102,6 +102,19 @@
   top:0;
   right:0;
 }
+
+#activityList li .btn-edit{
+  margin-top: 20px;
+  position: absolute;
+  bottom: -5px;
+  right: 0;
+  display: none;
+}
+
+#activityList li:hover .btn-edit{
+  display: block;
+}
+
 .m-activity .flr{
   float:right;
   margin-right:5px;
