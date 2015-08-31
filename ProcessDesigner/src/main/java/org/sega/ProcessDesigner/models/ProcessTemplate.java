@@ -4,6 +4,16 @@ import java.io.Serializable;
 
 
 public class ProcessTemplate implements Serializable {
+	
+	private long id;
+	private String processJSON;
+	private String entityJSON;
+	private String databaseSQL;
+	private String EDmappingJSON;
+	private String processImageUrl;
+	private String description;
+	private String name;
+	
 	public long getId() {
 		return id;
 	}
@@ -55,14 +65,7 @@ public class ProcessTemplate implements Serializable {
 		this.processImageUrl = processImageUrl;
 	}
 
-	private long id;
-	private String processJSON;
-	private String entityJSON;
-	private String databaseSQL;
-	private String EDmappingJSON;
-	private String processImageUrl;
-	private String description;
-	private String name;
+
 	
 	
 }

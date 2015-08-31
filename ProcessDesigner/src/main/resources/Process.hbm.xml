@@ -38,5 +38,8 @@
         <many-to-one name="template" class="org.sega.ProcessDesigner.models.ProcessTemplate" fetch="join">
             <column name="TEMPLATE" />
         </many-to-one>
+        <many-to-one name="dbconfig" class="org.sega.ProcessDesigner.models.DatabaseConfiguration" fetch="join">
+            <column name="DBCONFIG" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

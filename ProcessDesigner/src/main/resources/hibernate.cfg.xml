@@ -24,5 +24,6 @@
   <mapping resource="ProcessTemplate.hbm.xml"/>
   <mapping resource="Process.hbm.xml"/>
   <mapping resource="ProcessEdit.hbm.xml"/>
+  <mapping resource="DatabaseConfiguration.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

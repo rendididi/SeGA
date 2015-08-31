@@ -48,8 +48,12 @@
 					<p></p>
 				</div>
 				<div class="modal-footer">
-					<s:hidden name="process.processJSON" id="processJSON"></s:hidden>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					<s:form action="step-custom-process-submit">
+						<s:hidden name="process.processJSON" id="processJSON"></s:hidden>
+						<s:hidden name="svg" id="input-svg"></s:hidden>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-success">Confirm</button>
+					</s:form>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
