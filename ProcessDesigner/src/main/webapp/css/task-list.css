@@ -1,3 +1,13 @@
+#user-area{
+  margin-top: 100px;
+  border-top: 1px #ccc solid;
+}
+
+#user-area > div{
+  margin-top: -50px;
+  padding-left: 30px;
+}
+
 .g-header{
   position:relative;
   margin:0 auto;
@@ -17,8 +27,8 @@
 
 .g-content{
   position:relative;
-  margin-top:140px;
-  border-top: 1px #ccc solid;
+  /*margin-top:140px;*/
+  /*border-top: 1px #ccc solid;*/
 }
 .g-content .userImg{
   position:absolute;
@@ -29,9 +39,9 @@
 }
 .m-activity{
   position:relative;
-  margin-top:20px;
+  margin-top:0;
   float:left;
-  width:800px;
+  width: 100%;
   color:#4e5562;
   font-weight: 500;
   /* outline:1px solid red; */
@@ -99,10 +109,10 @@
 }
 .m-sidebar{
   float:left;
-  margin-left:30px;
-  margin-top:20px;
-  width:300px;
-  height:100%;
+  /*margin-left:30px;*/
+  /*margin-top:20px;*/
+  /*width:300px;*/
+  /*height:100%;*/
   color:#4e5562;
 }
 .m-sidebar .latestTask{
@@ -173,4 +183,9 @@
   float:left;
   height:70px;
   width:70px;
+}
+
+
+#my-pagination{
+  float: right;
 }
