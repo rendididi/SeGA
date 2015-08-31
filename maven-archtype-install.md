@@ -1,11 +1,11 @@
 # Maven安装
 
-标签（空格分隔）： 未分类
+标签（空格分隔）： 编译环境
 
 ---
 
 **Maven下载安装**
-1. [mvn下载地址](http://maven.apache.org/download.cgi?Preferred=http%3A%2F%2Fmirrors.hust.edu.cn%2Fapache%2F)
+1. [Maven下载地址][1]
 2. 下载后，解压. 新建环境变量**MAVEN_HOME**，设置值为maven中bin文件存放的路径。例如：MAVEN_HOME：E:\Program Files\maven\apache-maven-3.3.3
 3. 在**PATH**里加入maven的bin的路径。例如：%MAVEN_HOME%\bin;
 
@@ -27,3 +27,10 @@
 自行安装即可。
 
  
+
+
+ 
+
+
+  [1]: http://maven.apache.org/download.cgi?Preferred=http://mirrors.hust.edu.cn/apache/
+  [2]: https://struts.apache.org/docs/struts-2-maven-archetypes.html
