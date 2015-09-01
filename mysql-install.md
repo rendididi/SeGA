@@ -17,9 +17,9 @@
  
 ###  5. 修改配置文件
 找到“C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini"配置文件，在其中修改配置：
->  [mysqld] 
-   # basedir=C:\Program Files\MySQL\MySQL Server 5.6 
-   # datadir=C:\Program Files\MySQL\MySQL Server 5.6\data 
+>  [mysqld]   <br>
+   # basedir=C:\Program Files\MySQL\MySQL Server 5.6    <br>
+   # datadir=C:\Program Files\MySQL\MySQL Server 5.6\data   <br>
 
 ### 6. 安装mysql，启动服务
 以管理员身份运行cmd，进入“C:\Program Files\MySQL\MySQL Server 5.6\bin”路径下，输入`mysqld -install`，安装成功。安装成功后，继续在cmd中输入`net start mysql`，显示“服务启动成功”则为成功！
