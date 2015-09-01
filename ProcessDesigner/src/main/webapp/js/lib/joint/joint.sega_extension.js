@@ -441,25 +441,10 @@ joint.shapes.sega.EndView = joint.dia.ElementView.extend(
     })
 );
 
-//hide the link's interative style when the graph need fixed
-function linkFixed(links){
-    for(var i = 0;i<links.length;i++){
-        links[i].attr({
-            '.connection-wrap':{display:"none"},
-            '.link-tools':{display:'none'},
-            '.marker-arrowheads':{display:'none'},
-        });
-        console.log(links[i])
-    }
-}
-
-function unLinkFixed(link){
-    for(var i = 0;i<links.length;i++){
-        links[i].attr({
-            '.connection-wrap':{display:""},
-            '.link-tools':{display:''},
-            '.marker-arrowheads':{display:''},
-        });
-
-    }
+joint.dia.Paper.prototype.exportSvg=function(){
+	var newSvg = ($(this.svg).clone(true))[0];
+	var svgParent = document.createElement("div");
+	svgParent.appendChild(newSvg);
+	$(svgParent).find("*").remove(".connection-wrap, .link-tools,.marker-arrowheads");
+	return svgParent.innerHTML;
 }

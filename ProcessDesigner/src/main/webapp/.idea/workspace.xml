@@ -21,21 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="step-bind-process.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="step-bind-process.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/step-bind-process.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6018182">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="step-bind-process.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/step-bind-process.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="4" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+            <state vertical-scroll-proportion="-1.6964285">
+              <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -45,17 +35,7 @@
         <entry file="file://$PROJECT_DIR$/css/step-entity-edb-mapping.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="joint.sega_extension.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/lib/joint/joint.sega_extension.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.0333333">
-              <caret line="203" column="22" selection-start-line="203" selection-start-column="22" selection-end-line="203" selection-end-column="22" />
+              <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -71,31 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="service-pane.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="service-pane.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/step-bind-process_partials/service-pane.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.571428">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8682796">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="step-custom-process.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/step-custom-process.js">
+      <file leaf-file-name="task-config.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/step-bind-process_partials/task-config.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.652174">
-              <caret line="174" column="6" selection-start-line="174" selection-start-column="6" selection-end-line="174" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="step-custom-entity.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/step-custom-entity.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+            <state vertical-scroll-proportion="-12.892858">
+              <caret line="19" column="107" selection-start-line="19" selection-start-column="107" selection-end-line="19" selection-end-column="107" />
               <folding />
             </state>
           </provider>
@@ -105,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/js/step-bind-process.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding>
                 <element signature="e#0#49#0" expanded="false" />
               </folding>
@@ -144,15 +114,15 @@
         <option value="$PROJECT_DIR$/js/step4.js" />
         <option value="$PROJECT_DIR$/WEB-INF/content/step1.jsp" />
         <option value="$PROJECT_DIR$/pages/step-bind-process_partials/task-config.html" />
-        <option value="$PROJECT_DIR$/pages/step-bind-process_partials/task-config.jsp" />
         <option value="$PROJECT_DIR$/css/step-bind-process.css" />
-        <option value="$PROJECT_DIR$/js/lib/joint/joint.nojquery.js" />
         <option value="$PROJECT_DIR$/js/lib/Pablo/pablo.js" />
-        <option value="$PROJECT_DIR$/js/step-bind-process.js" />
+        <option value="$PROJECT_DIR$/js/lib/joint/joint.nojquery.js" />
         <option value="$PROJECT_DIR$/js/lib/joint/joint.sega_extension.js" />
         <option value="$PROJECT_DIR$/js/step-custom-process.js" />
-        <option value="$PROJECT_DIR$/pages/step-bind-process_partials/service-pane.jsp" />
         <option value="$PROJECT_DIR$/pages/step-bind-process.jsp" />
+        <option value="$PROJECT_DIR$/pages/step-bind-process_partials/task-config.jsp" />
+        <option value="$PROJECT_DIR$/js/step-bind-process.js" />
+        <option value="$PROJECT_DIR$/pages/step-bind-process_partials/service-pane.jsp" />
       </list>
     </option>
   </component>
@@ -166,7 +136,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1370" />
+    <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -192,6 +162,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -211,73 +182,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="step-bind-process_partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="step4_partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -298,6 +204,7 @@
       <recent name="E:\GitHub Projects\SeGA\ProcessDesigner\src\main\webapp\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\GitHub Projects\SeGA\ProcessDesigner\src\main\webapp\js\lib\joint" />
       <recent name="E:\GitHub Projects\SeGA\ProcessDesigner\src\main\webapp" />
       <recent name="E:\GitHub Projects\SeGA\ProcessDesigner\src\main\webapp\WEB-INF\content" />
     </key>
@@ -356,13 +263,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2296898" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22767204" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5058565" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5087848" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32440946" sideWeight="0.49121523" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -374,7 +282,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32913387" sideWeight="0.4941435" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -394,24 +301,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/css/step-bind-process.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/step-bind-process.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/step-bind-process_partials/task-config.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -596,23 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/theme.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/lib/joint/joint.all.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/entity.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.033391915">
@@ -641,31 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/step-bind-process_partials/task-config.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/lib/joint/joint.nojquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13934" column="6" selection-start-line="13870" selection-start-column="3" selection-end-line="13934" selection-end-column="6" />
-          <folding>
-            <element signature="e#473928#474020#0" expanded="false" />
-            <element signature="e#474036#474226#0" expanded="false" />
-            <element signature="e#474263#475199#0" expanded="false" />
-            <element signature="e#475233#476677#0" expanded="false" />
-            <element signature="e#476738#478384#0" expanded="false" />
-            <element signature="e#478416#480932#0" expanded="false" />
-            <element signature="e#480963#482089#0" expanded="false" />
-            <element signature="e#482128#482825#0" expanded="false" />
-            <element signature="e#483961#486187#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/canvg/rgbcolor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -680,27 +527,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/step-custom-process.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.150519">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/lib/Pablo/pablo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.723959">
           <caret line="147" column="63" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/step-bind-process.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -712,55 +542,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/step-custom-process.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.652174">
-          <caret line="174" column="6" selection-start-line="174" selection-start-column="6" selection-end-line="174" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/lib/joint/joint.sega_extension.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0333333">
-          <caret line="203" column="22" selection-start-line="203" selection-start-column="22" selection-end-line="203" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/step4_partials/step4_attrsForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/step_detail/step-bind-process.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/step-bind-process_partials/service-pane.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.571428">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/step-entity-edb-mapping.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/step-process-select.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.4602076">
           <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/lib/joint/joint.all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5743073">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439636203297" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/lib/joint/joint.nojquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-35.923706">
+          <caret line="13610" column="0" selection-start-line="13610" selection-start-column="0" selection-end-line="13610" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/step-custom-entity.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/lib/joint/joint.sega_extension.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6893733">
+          <caret line="446" column="4" selection-start-line="446" selection-start-column="4" selection-end-line="446" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/step-custom-process.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="9.216803">
+          <caret line="179" column="77" selection-start-line="179" selection-start-column="77" selection-end-line="179" selection-end-column="77" />
           <folding />
         </state>
       </provider>
@@ -773,10 +670,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/step-custom-process.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3306233">
+          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/step-entity-edb-mapping.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/step-bind-process.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6018182">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state vertical-scroll-proportion="-1.6964285">
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/step4_partials/step4_attrsForm.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/step-bind-process.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#49#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/step-bind-process_partials/task-config.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.892858">
+          <caret line="19" column="107" selection-start-line="19" selection-start-column="107" selection-end-line="19" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/wood-view.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/theme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.047858942">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/step-bind-process_partials/service-pane.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8682796">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
           <folding />
         </state>
       </provider>
