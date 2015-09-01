@@ -79,12 +79,14 @@
             <!-- 最近任务 -->
             <div class="latestTask">
               <h4 class="header">Latest Task</h4>
-              <div class="list-unstyled" id="latestTaskList">
-                <img class="activityImg" src="images/step_detail/step-bind-process.png">
+              <div ng-show="firstActivity" class="list-unstyled" id="latestTaskList">
+                <img class="activityImg" src="{{firstActivity.step_image_url}}">
                 <div class="info">
-                  <p class="info-header">张三 </p>
-                  <p class="date">2015年3月27日 16:31</p>
-                  <p class="decription">详细描述详细描述详细描述详细描述详细描述详细</p>
+                  <p class="info-header">
+                   {{firstActivity.stepName}}
+                  </p>
+                  <p class="date">{{firstActivity.date}}</p>
+                  <p class="decription">Process: {{firstActivity.process.name}}</p>
                 </div>
               </div>
             </div>
@@ -110,34 +112,39 @@
              <!-- 按图标筛选栏 -->
              <div class="select">
                <ul class="list-unstyled" id="taskList">
+               <li>
+                 <img class="activityImg" src="images/step_detail/step-process-select.png">
+                 <p>Select Process Template</p>
+               </li>
+                <li>
+                 <img class="activityImg" src="images/step_detail/step-custom-entity.png">
+                 <p>Customize Entity</p>
+               </li>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-dbtemplate-edb-mapping.png">
-                  <p>任务名简称</p>
-                </li>
-                <li>
-                  <img class="activityImg" src="images/step_detail/step-bind-process.png">
-                  <p>任务名简称</p>
-                </li>
-                <li>
-                  <img class="activityImg" src="images/step_detail/step-custom-process.png">
-                  <p>任务名简称</p>
-                </li>
-                <li>
-                  <img class="activityImg" src="images/step_detail/step-custom-entity.png">
-                  <p>任务名简称</p>
-                </li>
-                <li>
-                  <img class="activityImg" src="images/step_detail/step-publish.png">
-                  <p>任务名简称</p>
-                </li>
-                <li>
-                  <img class="activityImg" src="images/step_detail/step-process-select.png">
-                  <p>任务名简称</p>
+                  <p>Template DB-EDB Mapping</p>
                 </li>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-entity-edb-mapping.png">
-                  <p>任务名简称</p>
+                  <p>Entity-EDB Mapping</p>
                 </li>
+
+                <div style="clear:both;"></div>
+                <li>
+                  <img class="activityImg" src="images/step_detail/step-custom-process.png">
+                  <p>Customize Process</p>
+                </li>
+                <li>
+                  <img class="activityImg" src="images/step_detail/step-bind-process.png">
+                  <p>Service Binding</p>
+                </li>
+
+                <li>
+                  <img class="activityImg" src="images/step_detail/step-publish.png">
+                  <p>Publish</p>
+                </li>
+
+
               </ul>
              </div>
 
@@ -174,6 +181,17 @@
         </s:iterator>
 
         $scope.activities = activities;
+
+        $scope.firstActivity = {
+            id: '<s:property value="firstActivity.id"/>',
+            step: '<s:property value="firstActivity.step" />',
+            stepName: '<s:property value="firstActivity.stepName" />',
+            date: '<s:date name="firstActivity.datetime" />',
+            step_image_url: "images/step_detail/<s:property value="firstActivity.step" />.png",
+            process: {
+                name: '<s:property value="firstActivity.process.name"/>'
+            }
+        };
       }
     });
 

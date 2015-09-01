@@ -8,12 +8,12 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.sega.ProcessDesigner.data.StepConstant;
 import org.sega.ProcessDesigner.util.HibernateUtil;
 import org.sega.ProcessDesigner.models.ProcessEdit;
 
 public class TaskListAction extends ProcessDesignerSupport {
     public List<ProcessEdit> activities = new ArrayList<>();
+    public ProcessEdit firstActivity = null;
     public long totalPages = 0L;
     public long total = 0L;
 
@@ -33,16 +33,23 @@ public class TaskListAction extends ProcessDesignerSupport {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        Criteria criteria = session.createCriteria(ProcessEdit.class);
-        criteria.setFirstResult((page - 1) * pageSize);
-        criteria.setMaxResults(pageSize);
-        criteria.addOrder(Order.desc("datetime"));
+        Criteria criteria = session
+                .createCriteria(ProcessEdit.class)
+                .setFirstResult((page - 1) * pageSize)
+                .setMaxResults(pageSize)
+                .addOrder(Order.desc("datetime"));
 
         if (!userType.isEmpty()) {
             criteria.add(Restrictions.eq("userType", userType));
         }
 
         activities = (List<ProcessEdit>) criteria.list();
+
+        firstActivity = (ProcessEdit) session
+                .createCriteria(ProcessEdit.class)
+                .addOrder(Order.desc("datetime"))
+                .setMaxResults(1)
+                .uniqueResult();
 
         total = (Long) session.createCriteria(ProcessEdit.class).setProjection(Projections.rowCount()).uniqueResult();
         totalPages = total / pageSize;

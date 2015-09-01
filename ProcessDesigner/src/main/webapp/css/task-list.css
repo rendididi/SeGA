@@ -186,6 +186,9 @@
   float:left;
   padding:10px 10px 5px;
   cursor:pointer;
+  width: 25%;
+  text-align: center;
+  font-size: 14px;
 
 }
 .m-sidebar .select #taskList li:focus{
@@ -196,6 +199,7 @@
   float:left;
   height:70px;
   width:70px;
+  margin-bottom: 5px;
 }
 
 
