@@ -134,7 +134,7 @@
 					</button>
 					<h4 class="modal-title">Please Confirm Entity JSON to Submit</h4>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body json-modal-body">
 					<p></p>
 				</div>
 

@@ -585,3 +585,13 @@ section {
 	color: #eee;
 	background-color: #888;
 }
+
+.json-modal-body{
+	height:300px;
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
+.json-modal-body>p{
+	
+	word-wrap:break-word;
+}

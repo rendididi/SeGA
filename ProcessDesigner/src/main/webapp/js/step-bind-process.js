@@ -2,6 +2,10 @@
  * Created by Administrator on 2015/8/26.
  */
 (function(){
+    var configApp = angular.module('processConfig',[]);
+  configApp.controller("serviceController",function($scope){
+
+  })
     var graph = new joint.dia.Graph;
     var current_selected='';//current selected cell
     var paper = new joint.dia.Paper({
@@ -52,6 +56,7 @@
 		$("#modal_viewjson input#svg").val(svg);
 		$("#modal_viewjson").modal();
 	});
+
 
 
 

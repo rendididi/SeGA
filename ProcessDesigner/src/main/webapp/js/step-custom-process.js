@@ -179,8 +179,10 @@
 
 	$("button#btn_viewjson,button#btn-navbar-submit").on("click",function(e){
 		var json = JSON.stringify(graph.toJSON());
+		var svg = paper.exportSvg();
 		$("#modal_viewjson .modal-body p").html(json);
 		$("#modal_viewjson input#processJSON").val(json);
+		$("#modal_viewjson input#input-svg").val(svg);
 		$("#modal_viewjson").modal();
 	});
 	function getcc(){

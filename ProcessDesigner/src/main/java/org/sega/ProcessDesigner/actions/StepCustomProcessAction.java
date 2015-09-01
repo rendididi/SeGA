@@ -22,8 +22,8 @@ public class StepCustomProcessAction extends EditStepAction {
 		ServletContext context = ServletActionContext.getServletContext();
 		String path = context.getRealPath(context.getContextPath());
 		File file = Paths.get(path, "images","process",random_name).toFile();
+		FileUtils.writeStringToFile(file, svg,"utf-8");
 		
-		FileUtils.writeStringToFile(file, svg);
 		sp.setProcessImageUrl(random_name);
 	}
 	

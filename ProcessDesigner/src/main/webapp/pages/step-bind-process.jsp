@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<html lang="zh-CN">
+<html lang="zh-CN" ng-app="processConfig">
 <head>
 	<%@include file="/partials/common_header.jspf" %>
 	<link href="<s:url value="js/lib/joint/joint.all.css" />" rel="stylesheet">
@@ -34,7 +34,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title">Process JSON</h4>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body json-modal-body">
 					<p></p>
 				</div>
 				<div class="modal-footer">
@@ -51,7 +51,7 @@
 	</script>
   	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.nojquery.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.sega_extension.js" />"></script>
-  <script type="text/javascript" src="<s:url value="js/lib/Pablo/pablo.js" />"></script>
+  	<script type="text/javascript" src = "<s:url value="js/lib/angular/angular.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/step-bind-process.js" />"></script>
  </body>
  </html>
