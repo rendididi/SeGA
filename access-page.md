@@ -18,17 +18,17 @@
 ### 4. 导入数据库文件
 继续在命令行中输入`exit`或者`quit`退出mysql。显示`c:\users\administrator>`后，输入命令行
 
-    `mysql -h localhost -u root -p uar < D:\sega\fudanglp-SeGA-fd14a10\ProcessDesigner\src\main\resources\sql\Dump20150831-uar.sql`
+    mysql -h localhost -u root -p uar < D:\sega\fudanglp-SeGA-fd14a10\ProcessDesigner\src\main\resources\sql\Dump20150831-uar.sql
 按回车等待输入密码就可以了。
 ###  5. 检验是否已经导入数据库
 命令行进入mysql，方法同上。简单介绍下mysql命令：
 
-> mysql->CREATE DATABASE dbname;//创建数据库
-mysql->CREATE TABLE tablename;//创建表
-mysql->SHOW DATABASES;//显示数据库信息，有那些可用的数据库。
-mysql->USE dbname;//选择数据库
-mysql->SHOW TABLES;//显示表信息，有那些可用的表
-mysql->DESCRIBE tablename;//显示创建的表的信息
+> mysql->CREATE DATABASE dbname;//创建数据库  <br>
+mysql->CREATE TABLE tablename;//创建表   <br>
+mysql->SHOW DATABASES;//显示数据库信息，有那些可用的数据库。   <br>
+mysql->USE dbname;//选择数据库   <br>
+mysql->SHOW TABLES;//显示表信息，有那些可用的表   <br>
+mysql->DESCRIBE tablename;//显示创建的表的信息   <br>
   
 使用 `use uar;`来进入uar数据库，`show tables;`来查看是否已经导入我们的表。
 ### 6. 启动jetty服务，访问页面
