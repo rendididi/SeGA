@@ -47,9 +47,9 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 
 			Process process = new Process();
 			process.setTemplate(process_t);
-			process.setEntityJSON(Base64Util.decode(process.getTemplate().getEntityJSON()));
-			process.setDatabaseJSON(Base64Util.decode(process.getTemplate().getDatabaseSQL()));
-			process.setProcessJSON(Base64Util.decode(process.getTemplate().getProcessJSON()));
+			process.setEntityJSON(process.getTemplate().getEntityJSON());
+			process.setProcessJSON(process.getTemplate().getProcessJSON());
+			process.setEDmappingJSON(process_t.getEDmappingJSON());
 			getSession().put("process", process);
 			
 		} catch (Exception e) {

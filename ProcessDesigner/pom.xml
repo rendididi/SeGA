@@ -105,6 +105,13 @@
 			<version>1.6</version>
 		</dependency>
 
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20141113</version>
+        </dependency>
+
+
     </dependencies>
     
 
@@ -136,7 +143,7 @@
                             <value>com.opensymphony.xwork2.util.logging.log4j2.Log4j2LoggerFactory</value>
                         </systemProperty>
                     </systemProperties>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
                     <webAppSourceDirectory>${basedir}/src/main/webapp/</webAppSourceDirectory>
                     <webAppConfig>
 		                <defaultsDescriptor>webdefault.xml</defaultsDescriptor>

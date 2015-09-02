@@ -8,7 +8,48 @@ body label {
 	font-weight: 400;
 }
 
+.toolbox {
+	margin-bottom: 30px;
+	padding: 5px 10px;
+		
+	background-color: #F8F8F8;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 
+	font-family: "Open Sans", "Microsoft Yahei";
+	font-weight: 300;
+}
+
+.toolbox .form-group {
+	margin-bottom: 0;
+}
+
+.toolbox label, .toolbox button{
+	font-family: "Open Sans", "Microsoft Yahei";
+	font-weight: 300;
+	font-size:14px;
+	line-height: 20px;
+	padding: 6px 12px;
+	margin:0;
+}
+.toolbox .btn {
+	margin-left: 10px;
+}
+
+.toolbox .btn .glyphicon {
+	margin-right: 5px;
+}
+
+#db-config-modal .modal-dialog {
+	width: 70%;
+}
+
+#db-config-modal .modal-body:after {
+	content:'';
+    display:block;
+	clear: both;
+}
 
 #mappingbox {
 	padding-left: 0px;
@@ -16,23 +57,25 @@ body label {
 	position:relative;
 }
 
-#mappingbox #entity_tree {
+.db-titles {
+	padding: 0;
+}
+
+.db-titles h2 {
+	font-weight: 200;
+}
+
+
+.db_tables {
 	padding-left: 0px;
 	padding-right: 0px;
 }
 
-#mappingbox #db_tables {
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
-#db_tables>table {
-	padding-left: 5px;
+.db_tables>table {
 	cursor: default;
-
 }
 
-#db_tables>table>caption {
+.db_tables>table>caption {
 	background: #337ab7;
 	color: #ffffff;
 	transition: all 0.5s ease;	
@@ -48,7 +91,7 @@ body label {
 	cursor: pointer;
 }
 
-#db_tables>table>thead {
+.db_tables>table>thead {
 	background: #286090;
 	border-color: #2e6da4;
 	border-right-width: 1px;
@@ -56,43 +99,55 @@ body label {
 	color: #ffffff;
 }
 
-#db_tables>table>thead>tr>th {
+.db_tables>table>thead>tr>th {
 	font-weight: 400!important;
 }
 
-#db_tables>table>thead>tr>th.mapping_status {
+.db_tables>table>thead>tr>th.mapping_status {
 	width: 32px;
 }
 
-#db_tables>table.closed>caption {
+.db_tables>table.closed>caption {
 	border-width: 1px;
 	border-radius: 4px;
 	background: #286090;
 	border-color: #2e6da4;
 }
 
-#db_tables>table.closed>thead, #db_tables>table.closed>tbody {
-	display: none;
-}
 
-#db_tables>table>tbody>tr {
+.db_tables>table>tbody>tr {
 	transition: all 0.1s ease;
 	line-height: 31px;
 	height: 31px;
 }
 
-#db_tables>table>tbody>tr:hover {
+.db_tables>table>tbody>tr:hover {
 	background-color: #e7f4f9;		
 }
 
-#db_tables>table>tbody>tr.active, #db_tables>table>tbody>tr.active>td {
+.db_tables>table>tbody>tr.active, .db_tables>table>tbody>tr.active>td {
 	background: #beebff;
     background: -webkit-linear-gradient(top, #beebff 0%, #a8e4ff 100%);
     background: linear-gradient(to bottom, #beebff 0%, #a8e4ff 100%);
 }
 
-#db_tables>table>tbody>tr>td.isMapped {
+.db_tables>table>tbody>tr>td.isMapped {
 	padding: 4px;
+}
+
+.sega-mapicon {
+	border-radius: 20px;
+	width:20px;
+	line-height: 20px;
+	text-align: center;
+	background-color: transparent;
+	color: #00a885;
+	transition: all 0.2s linear;
+}
+
+.sega-mapicon:hover, .sega-mapicon.linked {
+	background-color: #00a885;
+	color: #f8f8f8;
 }
 
 #mapping_panel {
@@ -130,26 +185,4 @@ body label {
 
 #mappingbox #svg_mapping_tool path.suggest_line.active{
 	stroke-opacity: 0.4;
-}
-
-.sega-jstree-mapicon {
-	border-radius: 20px;
-	width:20px;
-	line-height: 20px;
-	text-align: center;
-	background-color: transparent;
-	color: #00a885;
-	transition: all 0.2s linear;
-}
-
-#entity_tree .sega-jstree-mapicon {
-	display: block;
-	float: right;
-	margin-right: 5px;
-	margin-top: 6px;
-}
-
-.sega-jstree-mapicon:hover {
-	background-color: #00a885;
-	color: #f8f8f8;
 }

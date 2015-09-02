@@ -3,3 +3,5 @@ RemoteSystemsTempFiles/
 target/
 .settings/
 .idea/
+*.log
+ProcessDesigner/src/main/webapp/images/process/p_svg_*.*

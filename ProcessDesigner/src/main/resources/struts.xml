@@ -20,6 +20,9 @@
 	<interceptors>
 	    <interceptor name="authentication"
 	                 class="org.sega.ProcessDesigner.interceptor.AuthenticationInterceptor"/>
+	                 
+	    <interceptor name="jsonbase64"
+	                 class="org.sega.ProcessDesigner.interceptor.JSONBase64Intercepter"/>
 	
 	    <interceptor-stack name="user" >
 	        <interceptor-ref name="authentication" />
@@ -33,6 +36,12 @@
 	
 	    <interceptor-stack name="guest" >
 	        <interceptor-ref name="defaultStack"/>
+	    </interceptor-stack>
+	    
+	    <interceptor-stack name="base64" >
+	        <interceptor-ref name="user"/>
+	        <interceptor-ref name="jsonbase64"/>
+	        
 	    </interceptor-stack>
 	
 	</interceptors>
@@ -82,22 +91,59 @@
    	<!-- Step 2  -->
 	
 	<action name="step-custom-entity" class="org.sega.ProcessDesigner.actions.StepCustomEntityAction">
+		<interceptor-ref name="base64"/>
     </action>
     
     <action name="step-custom-entity-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepCustomEntityAction">
+    	<interceptor-ref name="base64"/>
     	<result type="redirectAction">step-dbtemplate-edb-mapping</result>
     </action>    
     
    	<!-- Step 3  -->
    	
    	<action name="step-dbtemplate-edb-mapping" class="org.sega.ProcessDesigner.actions.StepDBTemplateEDBMapping">
-    	 <result>/pages/step-dbtemplate-edb-mapping.jsp</result>
+   		<interceptor-ref name="base64"/>
+		<result>/pages/step-dbtemplate-edb-mapping.jsp</result>
     </action>
     
+    <action name="step-dbtemplate-edb-mapping-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepDBTemplateEDBMapping">
+    	<interceptor-ref name="base64"/>
+    	<result type="redirectAction">step-entity-edb-mapping</result>
+    </action>
+    
+    <!-- Step 3 Database -->
+    
+    <action name="edb-conn-save" method="save" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
+    	<result type="json">
+    		<param name="root">saveResult</param>
+    	</result>
+    </action>
+    
+    <action name="edb-conn-test" method="test" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
+    	<result type="json">
+    		<param name="root">testResult</param>
+    	</result>
+    </action>
+    
+	<action name="edb-load-schema" method="loadSchema" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
+    	<result type="json">
+    		<param name="includeProperties">loadSchemaResult, dbconfig.*</param>
+    	</result>
+    	<result name="error" type="json">
+    		<param name="includeProperties">loadSchemaResult</param>
+    	</result>
+    </action>
+        
     <!-- Step 4  -->
     
     <action name="step-entity-edb-mapping" class="org.sega.ProcessDesigner.actions.StepEntityEDBMappingAction">
-    	 <result>/pages/step-entity-edb-mapping.jsp</result>
+    	<interceptor-ref name="base64"/>
+		<result>/pages/step-entity-edb-mapping.jsp</result>
+    </action>
+    
+    <action name="step-entity-edb-mapping-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepEntityEDBMappingAction">
+    	<interceptor-ref name="base64"/>
+		<result type="redirectAction">step-custom-process</result>
     </action>
     
     <!-- Step 5  -->
@@ -119,32 +165,7 @@
     <action name="step-publish" class="org.sega.ProcessDesigner.actions.StepPublish">
     </action>
     
-    <action name="edb-conn-test" method="test" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
-    	<result type="json">
-    		<param name="root">testResult</param>
-    	</result>
-    </action>
-    
-    <action name="edb-conn-save" method="save" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
-    	<result type="json">
-    		<param name="root">saveResult</param>
-    	</result>
-    </action>
-    
-    <action name="edb-conn-load" method="load" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
-    	<result type="json">
-    	</result>
-    </action>
-    
-	<action name="edb-load-schema" method="loadSchema" class="org.sega.ProcessDesigner.actions.EDBConnectionAction">
-    	<result type="json">
-    		<param name="includeProperties">loadSchemaResult,tables_json,columns_json,keys_json</param>
-    	</result>
-    	<result name="error" type="json">
-    		<param name="includeProperties">loadSchemaResult</param>
-    	</result>
-    </action>
-    
+
 
     
 

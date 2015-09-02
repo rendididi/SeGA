@@ -3,6 +3,7 @@ package org.sega.ProcessDesigner.actions;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.commons.lang3.SerializationUtils;
 import org.apache.struts2.dispatcher.Dispatcher;
 import org.hibernate.Session;
 import org.sega.ProcessDesigner.models.ProcessEdit;
@@ -20,9 +21,8 @@ public class EditStepAction extends ProcessDesignerSupport {
 				return ERROR;
 			}
 			org.sega.ProcessDesigner.models.Process process = (org.sega.ProcessDesigner.models.Process) getSession().get("process");
+			setProcess(SerializationUtils.clone(process));
 			
-			setProcess(process);
-
 		} catch (Exception e) {
 			return ERROR;
 		}
@@ -39,7 +39,7 @@ public class EditStepAction extends ProcessDesignerSupport {
 			//persist process
 			Session hb_session = HibernateUtil.getSessionFactory().getCurrentSession();
 			hb_session.beginTransaction();
-			hb_session.save(sp);
+			hb_session.saveOrUpdate(sp);
 			hb_session.getTransaction().commit();
 			
 			//save persisted process in session

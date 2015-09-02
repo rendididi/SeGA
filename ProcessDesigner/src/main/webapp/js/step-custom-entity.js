@@ -43,7 +43,7 @@ $(function() {
   });
 
   tree = $("#entity_tree").jstree(true);
-
+  tree.open_all();
 });
 
 $(function() {
@@ -82,9 +82,9 @@ $(function() {
   /* Handle "View JSON" */
   $("button#btn_viewjson, button#btn-navbar-submit").on("click",function(e){
     var json = JSON.stringify(tree.get_sega_json());
-    $("#modal_viewjson .modal-body p").html(json);
+    //$("#modal_viewjson .modal-body p").html(json);
     $("#modal_viewjson input#entityJSON").val(json);
-    $("#modal_viewjson").modal();
+    $("#form-submit").submit();
   });
 
   /* Handle modify node*/

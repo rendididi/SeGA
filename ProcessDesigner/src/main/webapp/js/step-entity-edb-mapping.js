@@ -44,125 +44,16 @@ $(function() {
   });
 
   tree = $("#entity_tree").jstree(true);
+  tree.open_all();
 
+  populateDBTable(
+    database_json.tables,
+    database_json.columns,
+    database_json.keys
+  );
 });
 
 
-$(function() {
-  /*
-   var $affix = $(".toolbox"), 
-       $parent = $affix.parent(), 
-       resize = function() { $affix.width($parent.width()); };
-   $(window).resize(resize); 
-   resize();
-  */
-  if(db_info){
-    populateDBTable(
-        db_info.tables, 
-        db_info.columns,
-        db_info.keys
-      );
-  }
-  
-  $("#btn-db-config").click(function(){
-    $("#span-db-msg").html("");
-    $("#db-config-modal").modal();
-  });
-
-  $("#btn-db-test-connection").click(testDBConnection);
-  $("#btn-db-save").click(saveDBConnection);
-  $("#btn-db-import").click(loadDBSchema);
-});
-
-function testDBConnection(){
-  $("#span-db-msg").text("Testing...");
-  
-  $.ajax({
-    method: "POST",
-    url: "/edb-conn-test",
-    data: {
-      edbType: $("#sel-edb-type").val(),
-      hostName: $("#input-edb-host").val(),
-      portName: $("#input-edb-port").val(),
-      userName: $("#input-edb-user").val(),
-      password: $("#input-edb-password").val(),
-      dbName: $("#input-edb-dbname").val()
-    },
-    success: function(msg){
-      if($.trim(msg)==="true"){
-        $("#span-db-msg").html("Success<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>");
-      }else{
-        $("#span-db-msg").html("Fail<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>");
-      }
-    }
-  });
-}
-
-function saveDBConnection(){
-  $.ajax({
-    method: "POST",
-    url: "/edb-conn-save",
-    data: {
-      edbType: $("#sel-edb-type").val(),
-      hostName: $("#input-edb-host").val(),
-      portName: $("#input-edb-port").val(),
-      userName: $("#input-edb-user").val(),
-      password: $("#input-edb-password").val(),
-      dbName: $("#input-edb-dbname").val()
-    },
-    success: function(msg){
-      if($.trim(msg)==="true"){
-        $("#input-db-conn-string").val("jdbc:mysql://"+$("#input-edb-host").val()+":"+$("#input-edb-port").val()+"/"+$("#input-edb-dbname").val());
-        $("#span-db-msg").html("Success<span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>");
-        $("#db-config-modal").modal('hide');
-        
-      }else{
-        $("#span-db-msg").html("Fail<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>");
-      }
-    }
-  });
-}
-
-function loadDBSchema(){
-  $.ajax({
-    method: "POST",
-    url: "/edb-load-schema",
-    data: {
-      edbType: $("#sel-edb-type").val(),
-      hostName: $("#input-edb-host").val(),
-      portName: $("#input-edb-port").val(),
-      userName: $("#input-edb-user").val(),
-      password: $("#input-edb-password").val(),
-      dbName: $("#input-edb-dbname").val()
-    },
-    success: function(msg){
-      if(msg.loadSchemaResult){
-        db_info = {
-          tables: $.parseJSON(msg.tables_json),
-          columns: $.parseJSON(msg.columns_json),
-          keys: $.parseJSON(msg.keys_json)
-        };
-        
-        populateDBTable(
-          db_info.tables, 
-          db_info.columns,
-          db_info.keys
-        );
-      }else{
-        $("#btn-db-import").popover({
-          placement: "bottom",
-          html: true,
-          title: '<span class="text-danger"><strong>Error</strong></span>'+
-                '<button type="button" id="close" class="close" onclick="$(&quot;#btn-db-import&quot;).popover(&quot;hide&quot;);">&times;</button>',
-          content: "Failed to import database schema. Please check your database configuration.",
-          trigger: "manual"
-        });
-
-        $("#btn-db-import").popover("show");
-      }
-    }
-  });
-}
 
 //TODO: wrap db component
 
@@ -186,7 +77,7 @@ function populateDBTable(tables, columns, keys){
       })
       .appendTo(table_dom);
 
-    table_dom.append($("<thead><tr><th class='mapping_status'></th><th>Key</th><th>Name</th><th>Type</th>"));
+    table_dom.append($("<thead><tr><th class='mapping_status'></th><th>Key</th><th>Name</th><th>Type</th></tr></thead>"));
 
     var tbody_dom = $("<tbody/>").appendTo(table_dom);
 

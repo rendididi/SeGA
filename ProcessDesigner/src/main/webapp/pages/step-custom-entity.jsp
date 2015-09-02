@@ -139,7 +139,7 @@
 				</div>
 
 				<div class="modal-footer">
-					<s:form action="step-custom-entity-submit">
+					<s:form action="step-custom-entity-submit" id="form-submit">
 						<s:hidden name="process.entityJSON" id="entityJSON"></s:hidden>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-success">Confirm</button>

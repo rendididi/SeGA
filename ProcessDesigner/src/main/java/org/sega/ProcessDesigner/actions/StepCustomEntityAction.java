@@ -43,5 +43,4 @@ public class StepCustomEntityAction extends EditStepAction {
 		sp.setEntityJSON(getProcess().getEntityJSON());
 	}
 	
-
 }
