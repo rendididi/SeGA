@@ -8,8 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.sega.ProcessDesigner.models.*;
+import org.sega.ProcessDesigner.models.Process;
 import org.sega.ProcessDesigner.util.HibernateUtil;
-import org.sega.ProcessDesigner.models.ProcessEdit;
 
 public class TaskListAction extends ProcessDesignerSupport {
     public List<ProcessEdit> activities = new ArrayList<>();
@@ -20,8 +21,24 @@ public class TaskListAction extends ProcessDesignerSupport {
     private int page = 1;
     private int pageSize = 5;
 
+    public long processId;
+
     public String execute() throws Exception {
         getActivities(page);
+
+        return SUCCESS;
+    }
+
+    public String selectProcess() throws Exception{
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Process process = (Process) session
+                .get("org.sega.ProcessDesigner.models.Process", processId);
+
+        session.getTransaction().commit();
+
+        getSession().put("process", process);
 
         return SUCCESS;
     }

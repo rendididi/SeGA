@@ -54,7 +54,7 @@
                 <li ng-repeat="activity in activities">
                   <img class="activityImg" src="{{activity.step_image_url}}"/>
                   <div class="info">
-                    <div class="btn-edit"><a href="javascript:;"><span class="glyphicon glyphicon-edit"></span></a></div>
+                    <div class="btn-edit"><a class="btn btn-default btn-xs" href="{{activity.process_url}}"><span class="glyphicon glyphicon-edit"></span></a></div>
                     <p class="header text-elli">{{activity.stepName}}</p>
                     <p class="date">{{activity.date}}</p>
                     <p class="decription">Process: {{activity.process.name}}</p>
@@ -172,6 +172,7 @@
             stepName: '<s:property value="stepName"/>',
             date: '<s:date name="datetime"/>',
             step_image_url: "images/step_detail/<s:property value="step"/>.png",
+            process_url: "<s:url action='select-task-process'/>?processId=<s:property value='process.id'/>",
             process: {
               name: process_name == '' ? 'unnamed' : process_name
             }

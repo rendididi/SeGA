@@ -106,7 +106,7 @@
 #activityList li .btn-edit{
   margin-top: 20px;
   position: absolute;
-  bottom: -5px;
+  bottom: 0;
   right: 0;
   display: none;
 }
