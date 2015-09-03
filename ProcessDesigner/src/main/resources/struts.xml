@@ -80,7 +80,9 @@
 	</action>
 
 	<action name="select-task-process" method="selectProcess" class="org.sega.ProcessDesigner.actions.TaskListAction">
-		<result type="redirectAction">step-custom-entity</result>
+		<result type="redirectAction">
+			<param name="actionName">${redirectAction}</param>
+		</result>
 	</action>
 
 	<!-- Step 1  -->

@@ -21,7 +21,8 @@ public class TaskListAction extends ProcessDesignerSupport {
     private int page = 1;
     private int pageSize = 5;
 
-    public long processId;
+    public long activityId;
+    public String redirectAction;
 
     public String execute() throws Exception {
         getActivities(page);
@@ -33,13 +34,15 @@ public class TaskListAction extends ProcessDesignerSupport {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        Process process = (Process) session
-                .get("org.sega.ProcessDesigner.models.Process", processId);
+        ProcessEdit activity = (ProcessEdit) session
+                .get("org.sega.ProcessDesigner.models.ProcessEdit", activityId);
 
         session.getTransaction().commit();
 
-        getSession().put("process", process);
+        getSession().put("process", activity.getProcess());
 
+        // Dynamically redirect a certain step action based on the step name
+        redirectAction = activity.getStep();
         return SUCCESS;
     }
 

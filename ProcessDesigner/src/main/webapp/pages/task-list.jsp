@@ -172,7 +172,7 @@
             stepName: '<s:property value="stepName"/>',
             date: '<s:date name="datetime"/>',
             step_image_url: "images/step_detail/<s:property value="step"/>.png",
-            process_url: "<s:url action='select-task-process'/>?processId=<s:property value='process.id'/>",
+            process_url: "<s:url action='select-task-process'/>?activityId=<s:property value='id'/>",
             process: {
               name: process_name == '' ? 'unnamed' : process_name
             }
