@@ -9,30 +9,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 @Entity
-@Table(name="processtemplate")
 public class ProcessTemplate extends BaseModel {
 
-    @Column(name="PROCESSJSON")
     private String processJSON;
 
-    @Column(name="ENTITYJSON")
     private String entityJSON;
 
-    @Column(name="DATABASESQL")
     private String databaseSQL;
 
-    @Column(name="EDMAPPINGJSON")
     private String EDmappingJSON;
 
-    @Column(name="PROCESSIMAGEURL")
     private String processImageUrl;
 
-    @Column(name="DESCRIPTION")
     private String description;
 
-    @Column(name="NAME")
     private String name;
 
     @OneToMany(mappedBy = "template", cascade = { CascadeType.ALL } )

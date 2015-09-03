@@ -6,34 +6,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Table(name="databaseconfiguration")
 public class DatabaseConfiguration extends BaseModel {
 
-    @Column(name="TYPE")
     private String type;
 
-    @Column(name="HOST")
     private String host;
 
-    @Column(name="PORT")
     private long port;
 
-    @Column(name="DATABASE_NAME")
     private String database_name;
 
-    @Column(name="USERNAME")
     private String username;
 
-    @Column(name="PASSWORD")
     private String password;
 
-    @Column(name="TABLES_JSON")
     private String tables_json;
 
-    @Column(name="COLUMNS_JSON")
     private String columns_json;
 
-    @Column(name="KEYS_JSON")
     private String keys_json;
 
     @OneToMany(mappedBy = "dbconfig", cascade = { CascadeType.ALL } )

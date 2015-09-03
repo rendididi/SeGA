@@ -11,23 +11,17 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "processedit")
 public class ProcessEdit extends BaseModel {
 
-    @Column(name="USERTYPE")
     private String userType;
 
     @ManyToOne
-    @JoinColumn(name="PROCESS")
     private Process process;
 
-    @Column(name="DATETIME")
     private Date datetime;
 
-    @Column(name="STEP")
     private String step;
 
-    @Column(name="SESSIONID")
     private String sessionid;
 
     public String getUserType() {

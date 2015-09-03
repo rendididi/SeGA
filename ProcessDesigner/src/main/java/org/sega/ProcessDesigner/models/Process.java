@@ -7,42 +7,32 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "process")
 public class Process extends BaseModel {
 
-    @Column(name="PROCESSJSON")
     private String processJSON;
 
-    @Column(name="PROCESSXML")
     private String processXML;
 
-    @Column(name="ENTITYJSON")
     private String entityJSON;
 
-    @Column(name="DATABASEJSON")
     private String databaseJSON;
 
-    @Column(name="DDMAPPINGJSON")
     private String DDmappingJSON;
 
-    @Column(name="EDMAPPINGJSON")
     private String EDmappingJSON;
 
-    @Column(name="PROCESSIMAGEURL")
     private String processImageUrl;
 
-    @Column(name="DESCRIPTION")
     private String description;
 
-    @Column(name="NAME")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="TEMPLATE")
+    @JoinColumn(name="template")
     private ProcessTemplate template;
 
     @ManyToOne
-    @JoinColumn(name="DBCONFIG")
+    @JoinColumn(name="dbconfig")
     private DatabaseConfiguration dbconfig;
 
     @OneToMany(mappedBy = "process", cascade = { CascadeType.ALL } )
