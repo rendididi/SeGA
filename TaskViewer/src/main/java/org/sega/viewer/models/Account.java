@@ -8,13 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "account")
 @NamedQuery(name = Account.FIND_BY_EMAIL, query = "select a from Account a where a.email = :email")
-public class Account implements java.io.Serializable {
+public class Account extends BaseModel implements java.io.Serializable {
 
     public static final String FIND_BY_EMAIL = "Account.findByEmail";
-
-    @Id
-    @GeneratedValue
-    private Long id;
 
     @Column(unique = true)
     private String email;
@@ -34,9 +30,6 @@ public class Account implements java.io.Serializable {
         this.role = role;
     }
 
-    public Long getId() {
-        return id;
-    }
 
     public String getEmail() {
         return email;

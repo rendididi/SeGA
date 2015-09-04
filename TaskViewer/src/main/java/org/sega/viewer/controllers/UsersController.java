@@ -1,6 +1,10 @@
 package org.sega.viewer.controllers;
 
 import org.sega.viewer.common.Constant;
+import org.sega.viewer.models.Process;
+import org.sega.viewer.services.IModel;
+import org.sega.viewer.services.IModelImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,9 +20,12 @@ import javax.validation.Valid;
 public class UsersController {
     private static final String VIEW_SIGNIN = "users/signin";
 
+    @Autowired
+    private IModel model;
+
     @RequestMapping(value = "signin")
-    public String signin(Model model) {
-        model.addAttribute(new SigninForm());
+    public String signin(Model form) {
+        form.addAttribute(new SigninForm());
         return VIEW_SIGNIN;
     }
 
