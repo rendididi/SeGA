@@ -13,12 +13,18 @@ public class Process extends BaseModel {
 
     private String processXML;
 
+    @Basic(fetch = FetchType.LAZY)
     private String entityJSON;
 
+    // TODO The lazy loading doesn't work
+    //@Lob
+    @Basic(fetch = FetchType.LAZY)
     private String databaseJSON;
 
+    @Basic(fetch = FetchType.LAZY)
     private String DDmappingJSON;
 
+    @Basic(fetch = FetchType.LAZY)
     private String EDmappingJSON;
 
     private String processImageUrl;
@@ -28,14 +34,14 @@ public class Process extends BaseModel {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="template")
+    @JoinColumn(name = "template")
     private ProcessTemplate template;
 
     @ManyToOne
-    @JoinColumn(name="dbconfig")
+    @JoinColumn(name = "dbconfig")
     private DatabaseConfiguration dbconfig;
 
-    @OneToMany(mappedBy = "process", cascade = { CascadeType.ALL } )
+    @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL})
     private Collection<ProcessEdit> processEdits = new ArrayList<>();
 
     public String getProcessJSON() {

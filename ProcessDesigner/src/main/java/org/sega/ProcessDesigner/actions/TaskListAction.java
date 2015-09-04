@@ -41,6 +41,13 @@ public class TaskListAction extends ProcessDesignerSupport {
 
         getSession().put("process", activity.getProcess());
 
+        System.out.println("--------------");
+        System.out.println("process id: " + activity.getProcess().getId());
+        System.out.println("--------------");
+        System.out.println("process db json: " + activity.getProcess().getDatabaseJSON());
+        System.out.println("--------------");
+
+
         // Dynamically redirect a certain step action based on the step name
         redirectAction = activity.getStep();
         return SUCCESS;
