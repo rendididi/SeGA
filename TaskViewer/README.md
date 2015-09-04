@@ -10,5 +10,5 @@ This is a Maven project powered by Spring MVC framework. The following commands 
 ```
 mvn install -DskipTests
 
-mvn clean tomcat7:run
+mvn clean jetty:run
 ```

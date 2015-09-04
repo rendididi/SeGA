@@ -27,22 +27,15 @@ import org.sega.viewer.models.Process;
 @RunWith(MockitoJUnitRunner.class)
 public class ModelsTest {
 
-//    @Mock
-    private IModel model = new IModelImpl();
+    @Mock
+    private IModel model;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void modelShouldnotBeNull() {
-        Account c = model.create(new Account("user1","demo","ROLE_USER"));
 
-        List<Account> processes = model.findAll(Account.class);
-        for (Account p : processes){
-            System.out.println(p.getId());
-        }
-        Process p = model.get(Process.class, 21L);
-        System.out.println(p==null);
         assertThat(model != null);
     }
 
