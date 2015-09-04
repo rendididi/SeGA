@@ -15,26 +15,31 @@
 </head>
 <body>
 	<header>
-			<%int step=5; %>
-			<%@include file="/partials/navbar.jspf" %>
-			<%@include file="/partials/step_detail.jspf" %>
+		<%int step=5; %>
+		<%@include file="/partials/navbar.jspf" %>
+		<%@include file="/partials/step_detail.jspf" %>
+		<div class="container step-title2">
+			<h1>
+			<%=step_names[step-1] %>
+			</h1>
+			<div class="toolbox" >
+				<span>Create</span>
+				<div class="toolShape startShape" id="startShape" draggable="true"></div>
+				<div class="toolShape endShape" id="endShape" draggable="true"></div>
+				<div class="toolShape taskShape" id="taskShape" draggable="true"></div>
+				<div class="toolShape linkShape" id="linkShape" draggable="true"></div>
+				<!-- <img  src="<s:url value="images/task.png" />" draggble/> -->
+			</div>
+		</div>
 	</header>
-	<section class=" relative">
-		<%@include file="/pages/step4_partials/step4_attrsForm.jsp" %>
 
-		<div class="toolbox" >
-			<div class="startShape" id="startShape" draggable="true"></div>
-			<div class="endShape" id="endShape" draggable="true"></div>
-			<div class="taskShape" id="taskShape" draggable="true"></div>
-			<div class="linkShape" id="linkShape" draggable="true"></div>
-			<!-- <img  src="<s:url value="images/task.png" />" draggble/> -->
-		</div>
-		<div class="paper-container" id = "draw">
-	<div class="col-md-2 fr">
-		<button class="btn-block btn btn-success " id="btn_viewjson">Submit</button>
-	</div>
-		</div>
+
+	<section class=" relative">
 		
+		<div class="paper-container" id = "draw">
+
+		</div>
+		<%@include file="/pages/step-custom-process-partials/step-custom-process-attrsForm.jsp" %>
 	</section>
 
 	<div class="modal fade" id="modal_viewjson">

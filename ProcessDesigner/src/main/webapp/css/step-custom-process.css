@@ -6,30 +6,72 @@
 	overflow-x: auto;
 
 }
-.toolbox{
-	/*width:110px;
-	height:100px;
-	background: #F7F7F7;*/
 
-    position:absolute;
-    margin:15px;
-    text-align: center;
-   /* border:3px solid #989898;
-    border-radius:10px;*/
+.step-title {
+    display: none;
 }
-.toolbox>div{
+
+.step-title2 h1 {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.toolbox {
+    display: inline-block;
+
+    margin-left: 20px;
+    margin-top: 20px;
+
+    border-radius: 6px;
+    background: #ECF0F1; 
+    width: 300px;
+    height: 50px;
+    line-height: 0px;
+    vertical-align: middle;
+    font-size: 0;
+}
+
+.toolbox>span {
+    display: inline-block;
+    line-height: 50px;
+    height: 50px;
+    width: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    background: #2C3E50;
+    vertical-align: middle;
+}
+
+.toolShape {
+    background: url("../images/tools-bg.png") no-repeat;
     opacity: 0.5;
     display:inline-block;
-	width:50px;
-	height:50px;
-	border:2px solid #666666;
+    width:50px;
+    height:50px;
+    vertical-align: middle;
+    transition: all 0.3s linear;
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
-.toolbox>div:hover{
+
+.toolShape:hover {
     opacity: 1;
+    background-color: #1ABC9C;
 }
-.startShape,.endShape,.taskShape,.linkShape{
-    background: url("../images/tools-bg.png");
+
+.toolShape:active {
+    cursor: none;
 }
+
 .endShape{
     background-position:0px -50px;
 }
@@ -38,10 +80,46 @@
 }
 .linkShape{
     background-position:-0px -150px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
 }
-.toolbox>img{
-	width:100px;
+
+.paper-container svg g.highlighted {
+    outline: 0px solid #FF0000;
 }
+
+.paper-container svg g.sega.Task rect.body {
+    fill: #34495E;
+    transition:all 0.3s linear;
+}
+
+.paper-container svg g.sega.Task rect.body:hover {
+    fill: #269085;
+}
+
+.paper-container svg g.sega.Task.highlighted rect.body {
+    fill: #1ABC9C;
+}
+
+.paper-container svg g.sega.Link path {
+    transition:all 0.3s linear;
+}
+
+.paper-container svg g.sega.Link.highlighted path.connection {
+    stroke: #1ABC9C;
+}
+
+.paper-container svg g.sega.Link.highlighted path.connection-wrap {
+    opacity: 0;
+    stroke-opacity: .2;
+}
+
+.paper-container svg g.sega.Link.highlighted path.connection-wrap:hover {
+    opacity: 1;
+    stroke-opacity: .2;
+}
+
 .form-panel{
 	background: #f7f7f7;
 	margin-top:-30px;
@@ -49,6 +127,7 @@
 .form-panel .col-md-4,.form-panel .col-md-3,.form-panel .col-md-2{
     margin-top: 15px;
 }
+
 #syncPoint{
 	margin:0;
 	vertical-align: middle;
@@ -60,7 +139,7 @@
     margin-top:15px !important;
 }
 
-.data-modal{
+.data-modal {
     height:500px;
     overflow: auto;
 }

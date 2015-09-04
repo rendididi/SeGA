@@ -30,7 +30,6 @@
 		paper.fitToContent({
 			minWidth:document.body.clientWidth ,
 			minHeight:600,
-
 		})
 	})
 	
@@ -191,4 +190,4 @@
 	return {
 		current_selected:getcc
 	}
-})()
+})();
