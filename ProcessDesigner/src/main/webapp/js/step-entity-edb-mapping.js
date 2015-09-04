@@ -39,18 +39,31 @@ $(function() {
         "valid_children" : []
       }
     },
-    "plugins" : [  "state", "types", "wholerow", "sega" ]
+    "plugins" : [  "types", "wholerow", "sega" ]
 
   });
 
   tree = $("#entity_tree").jstree(true);
-  tree.open_all();
+  
 
   populateDBTable(
     database_json.tables,
     database_json.columns,
     database_json.keys
   );
+
+  $("#entity_tree").on("ready.jstree" ,function(){
+    tree.open_all();
+    mapping_tool.init();
+    mapping_tool.loadRules(ed_rules);
+  });
+
+  $("button#btn-navbar-submit").on("click",function(e){
+    var rules_json = JSON.stringify(mapping_tool.mapping_rules);
+    $("#hidden-ruleJSON").val(rules_json);
+    $("#form-submit").submit();
+  });
+
 });
 
 
@@ -174,6 +187,7 @@ function selectTableRow(row){
     $("#db_tables>table")
       .addClass("closed");
     table_dom.removeClass("closed");
+    $("#db_tables").trigger("sega.db.table_state_change");
   }
   // activate row
   var column = row.attr("data-column-name");
