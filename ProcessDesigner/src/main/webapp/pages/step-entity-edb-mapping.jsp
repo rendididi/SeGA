@@ -40,7 +40,11 @@
     </div>
   </section>
 
-
+  <section>
+    <s:form action="step-entity-edb-mapping-submit" id="form-submit">
+      <s:hidden name="process.EDmappingJSON" id="hidden-ruleJSON"></s:hidden>
+    </s:form>
+  </section>
   
   <script type="text/javascript">
 var entity_json = <s:property value="process.entityJSON" escape="false"/>;

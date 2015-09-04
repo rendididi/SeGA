@@ -11,13 +11,13 @@ var mapping_tool = {
   mapping_rules: [],
 
   init: function(){
-    $($.proxy(function(){
+    
       //init svg element
       this._svg = d3.select("#mappingbox").append("svg:svg")
         .attr("id","svg_mapping_tool")
         .style("position","absolute")
         .style("top", 0)
-        .style("left", $("#entity_tree").width());
+        .style("left", $("#entity_tree").width()-5);
       this.resize();
 
       //register events
@@ -32,14 +32,14 @@ var mapping_tool = {
 
       $("#mapping_panel #btn-confirm").click($.proxy(this.doMap, this));
 
-    },this));
+
 
     return this;
   },
 
   resize: function(){
     this.clear();
-    this._svg.attr("width", $("#db_tables").outerWidth(true) - $("#db_tables").outerWidth(false))
+    this._svg.attr("width", $("#db_tables").outerWidth(true) - $("#db_tables").outerWidth(false)+9)
         .attr("height", Math.max($("#db_tables").height(), $("#entity_tree").height()));
   },
 
@@ -81,8 +81,8 @@ var mapping_tool = {
       .append("path")
       .data(path_data)
       .attr("d", this._diagonal)
-      .attr("stroke", "#beebff")
-      .attr("stroke-width", isRule?32:16)
+      .attr("stroke", isRule?"#00a885":"#beebff")
+      .attr("stroke-width", 4)
       .attr("stroke-dasharray", isRule?"":"12 8")
       .attr("fill", "none")
       .classed("suggest_line", true)
@@ -90,13 +90,17 @@ var mapping_tool = {
       .on("mouseout", onMouseOut);
     
     $("#svg_mapping_tool").trigger("sega.mapping.svg.link.refresh");
-    
+    if(isRule){
+      tree_node_dom.children("div.jstree-wholerow").children("span.sega-jstree-mapicon").addClass("linked");
+      db_row_dom.find("td.isMapped span.sega-jstree-mapicon").addClass("linked");
+    }
     return true;
   },
 
   clear: function(){
     this._svg.select("*").remove();
     this._suggest_line = null;
+    $("span.sega-jstree-mapicon").removeClass("linked");
   },
   
   doMap: function(){
@@ -120,9 +124,10 @@ var mapping_tool = {
     };
 
     // validate rule
-    if(!this.canMap())
-      return false;
 
+    if(!this.canMap(e, d))
+      return false;
+  
     // clear related rules
     var filtered_rules = [];
     for(var i=0, rules=this.mapping_rules, len=rules.length; i<len; i++){
@@ -155,9 +160,9 @@ var mapping_tool = {
     var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
     var chk2 = d.children("td.isMapped");
     var handler = $.proxy(function(evt){
-      selectTableRow(d);
+      selectTableRow(this.db_node);
       tree.deselect_all();
-      tree.select_node(e);
+      tree.select_node(this.entity_node);
       evt.stopImmediatePropagation();
       return false;
     },{
@@ -208,31 +213,31 @@ var mapping_tool = {
     return false;
   },
 
-  canMap: function() {
+  canMap: function(e, d) {
     var tree = $("#entity_tree").jstree(true);
-    var p = tree.get_parent_artifact(this.entity_node);
-    var entity = tree.get_node(this.entity_node);
-    var column = this.db_node.attr("data-column-name"),
-      table = this.db_node.parent().parent().attr("data-table-name");
-    console.log(entity, p);
+    var p = tree.get_parent_artifact(e);
+    var entity = tree.get_node(e);
+    var column = d.attr("data-column-name"),
+      table = d.parent().parent().attr("data-table-name");
+    
     if(p) {   //not root?
       if(entity.type == "key"){   //id?
         var pp = tree.get_parent_artifact(p);
         if(pp){   //sub artifact?
           if(!pp.data.isMapped)  //parent artifact must be mapped
             return false;
-          if(!this.db_node.attr("isPK"))    // must map to primary key
+          if(!d.attr("isPK"))    // must map to primary key
             return false;
           // TODO: check if db has foreign key to its parent
 
           return false;
         }else {   // main artifact
-          if(!this.db_node.attr("isPK"))
+          if(!d.attr("isPK"))
             return false;
           return true;
         }
       }else if (entity.type == "artifact"){
-        if(!this.db_node.attr("isFK"))
+        if(!d.attr("isFK"))
           return false;
         if(!p.data.isMapped)
           return false;
@@ -240,15 +245,14 @@ var mapping_tool = {
           return false;
         return true;
       }else if (entity.type == "artifact_n"){
-        if(!this.db_node.attr("isFK"))
+        if(!d.attr("isFK"))
           return false;
         if(!p.data.isMapped)
           return false;
-        if(tree.get_node(p.id).data.mapTo!=this.db_node.attr("refFK-table")) 
+        if(tree.get_node(p.id).data.mapTo!=d.attr("refFK-table")) 
           return false;
         return true;
       }else if(entity.type == "attribute"){ //attribute node
-        console.log(tree.get_node(p.id).data.mapTo,table);
         if(!p.data.isMapped)
           return false;
         if(tree.get_node(p.id).data.mapTo!=table) // must map into same table 
@@ -289,11 +293,44 @@ var mapping_tool = {
   // demap entity cascadely
   doDemapEntity: function() {
     //TODO : need think through
+  },
+
+  loadRules: function(rules) {
+    if(!rules)
+      return;
+
+    this.mapping_rules = rules.slice();
+    for(var i=0, len=rules.length;i<len;i++){
+      var tree = $("#entity_tree").jstree(true);
+      var e = rules[i].entity.id;
+      var entity = tree.get_node(e);
+      var d = findRow(rules[i].db.table, rules[i].db.column);
+      
+      if(e && d) {
+        
+        tree.sega_map_node(e);
+        mapTableRow(d);
+        if(entity.type == "key") { //handle main entity
+          tree.get_node(entity.parent).data.isMapped = true;
+          tree.get_node(entity.parent).data.mapTo = rules[i].db.table;
+        }
+        var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
+        var chk2 = d.children("td.isMapped");
+        var handler = $.proxy(function(evt){
+          selectTableRow(this.db_node);
+          tree.deselect_all();
+          tree.select_node(this.entity_node);
+          evt.stopImmediatePropagation();
+          return false;
+        },{
+          db_node: d,
+          entity_node: e
+        });
+        chk1.on("click mousedown focus click.jstree", handler);
+        chk2.click(handler);
+      }
+    }
   }
 
-}.init();
+};
 
-$(function(){
-
-
-});

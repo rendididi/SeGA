@@ -149,7 +149,7 @@ body label {
 	margin-top: 6px;
 }
 
-.sega-jstree-mapicon:hover {
+.sega-jstree-mapicon:hover, .sega-jstree-mapicon.linked {
 	background-color: #00a885;
 	color: #f8f8f8;
 }

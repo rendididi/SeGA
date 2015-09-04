@@ -38,12 +38,15 @@ $(function() {
         "valid_children" : []
       }
     },
-    "plugins" : [  "dnd", "state", "types", "wholerow", "sega" ]
+    "plugins" : [  "dnd",  "types", "wholerow", "sega" ]
 
   });
 
   tree = $("#entity_tree").jstree(true);
-  tree.open_all();
+  
+  $("#entity_tree").on("ready.jstree" ,function(){
+    tree.open_all();
+  });
 });
 
 $(function() {

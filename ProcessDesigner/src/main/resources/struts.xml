@@ -155,15 +155,18 @@
     <!-- Step 5  -->
     
     <action name="step-custom-process" class="org.sega.ProcessDesigner.actions.StepCustomProcessAction">
+    	<interceptor-ref name="base64"/>
     </action>
     
     <action name="step-custom-process-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepCustomProcessAction">
+    	<interceptor-ref name="base64"/>
     	<result type="redirectAction">step-bind-process</result>
     </action>
     
     <!-- Step 6  -->
     
     <action name="step-bind-process" class="org.sega.ProcessDesigner.actions.StepBindProcess">
+    	<interceptor-ref name="base64"/>
     </action>
     
     <!-- Step 7  -->
