@@ -13,8 +13,4 @@ public class HomeController {
 		return principal != null ? "home/task_list" : "users/signin";
 	}
 
-	@RequestMapping(value = "jade")
-	public String jade(){
-		return "jade/test";
-	}
 }
