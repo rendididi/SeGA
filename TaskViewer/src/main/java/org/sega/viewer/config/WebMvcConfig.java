@@ -5,6 +5,7 @@ import static org.springframework.context.annotation.ComponentScan.Filter;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
 import de.neuland.jade4j.spring.view.JadeViewResolver;
+import org.sega.viewer.config.resolvers.JsonViewResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,10 +20,10 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -34,8 +35,10 @@ import org.sega.viewer.Application;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Configuration
 @ComponentScan(basePackageClasses = Application.class, includeFilters = @Filter(Controller.class), useDefaultFilters = false)
@@ -47,13 +50,6 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     private static final String RESOURCES_LOCATION = "/resources/";
     private static final String RESOURCES_HANDLER = RESOURCES_LOCATION + "**";
 
-    @Override
-    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-        RequestMappingHandlerMapping requestMappingHandlerMapping = super.requestMappingHandlerMapping();
-        requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
-        requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
-        return requestMappingHandlerMapping;
-    }
 
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
@@ -63,13 +59,10 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         return messageSource;
     }
 
-    /*
-     * Configure ContentNegotiationManager
-     */
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer.ignoreAcceptHeader(true).defaultContentType(
-                MediaType.TEXT_HTML);
+        configurer.ignoreAcceptHeader(true)
+                .defaultContentType(MediaType.TEXT_HTML);
     }
 
     /*
@@ -85,9 +78,15 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
         resolvers.add(jadeViewResolver());
         resolvers.add(htmlViewResolver());
+        resolvers.add(jsonViewResolver());
 
         resolver.setViewResolvers(resolvers);
         return resolver;
+    }
+
+    @Bean
+    public ViewResolver jsonViewResolver() {
+        return new JsonViewResolver();
     }
 
     @Bean
@@ -135,9 +134,9 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Bean
     public ViewResolver jadeViewResolver() {
-        JadeViewResolver viewResolver = new JadeViewResolver();
-        viewResolver.setConfiguration(jadeConfiguration());
-        return viewResolver;
+        JadeViewResolver resolver = new JadeViewResolver();
+        resolver.setConfiguration(jadeConfiguration());
+        return resolver;
     }
 
     @Override
