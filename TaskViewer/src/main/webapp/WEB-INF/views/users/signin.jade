@@ -9,15 +9,15 @@ html
     meta(name="author", content="SeGA Group.")
     title SeGA Workflow System Demo
     
-    link(rel="stylesheet", href="/resources/vendors/bootstrap-3.3.5-dist/css/bootstrap.min.css")
-    link(href="/resources/css/font.css", rel="stylesheet")
-    link(href="/resources/css/theme.css", rel="stylesheet")
-    link(rel="stylesheet", href="/resources/vendors/selectpicker/css/bootstrap-select.min.css")
-    link(href="/resources/css/login.css", rel="stylesheet")
+    link(rel="stylesheet", href="#{basePath}/resources/vendors/bootstrap-3.3.5-dist/css/bootstrap.min.css")
+    link(href="#{basePath}/resources/css/font.css", rel="stylesheet")
+    link(href="#{basePath}/resources/css/theme.css", rel="stylesheet")
+    link(rel="stylesheet", href="#{basePath}/resources/vendors/selectpicker/css/bootstrap-select.min.css")
+    link(href="#{basePath}/resources/css/login.css", rel="stylesheet")
     
-    script(src="/resources/vendors/jquery/jquery-2.1.4.min.js")
-    script(src="/resources/vendors/bootstrap-3.3.5-dist/js/bootstrap.min.js")
-    script(src="/resources/vendors/selectpicker/bootstrap-select.min.js")
+    script(src="#{basePath}/resources/vendors/jquery/jquery-2.1.4.min.js")
+    script(src="#{basePath}/resources/vendors/bootstrap-3.3.5-dist/js/bootstrap.min.js")
+    script(src="#{basePath}/resources/vendors/selectpicker/bootstrap-select.min.js")
     
   body.login-bg
     nav.navbar.navbar-fixed-top
@@ -40,15 +40,17 @@ html
               
     .container.login
       .col-md-4.col-md-offset-4.login-container
-        img(src="/resources/images/user/expert.png",width="128px",height="128px")
+        img(src="#{basePath}/resources/images/user/expert.png", width="128px",height="128px")
         .title
           h2 Operator 
         .login-panel
           ul 
             li
-              img(src="/resources/images/step_detail/step-process-select.png", width="28px", height="28px")
+              img(src="#{basePath}/resources/images/step_detail/step-process-select.png", width="28px", height="28px")
               span Process Execution
-          form(method="post",action="/authenticate")
+            li
+
+          form(method="post",action="#{basePath}/authenticate")
             input(type="hidden", name='_csrf', value='#{_csrf.token}')
             input(style="display:none;",type="text",name="username",value="user")
             input(style="display:none;",type="password",name="password",value="demo")

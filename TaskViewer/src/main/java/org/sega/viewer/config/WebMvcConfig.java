@@ -141,17 +141,21 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(csrfTokenAddingInterceptor());
+        registry.addInterceptor(viewObjectAddingInterceptor());
     }
 
     @Bean
-    public HandlerInterceptor csrfTokenAddingInterceptor() {
+    public HandlerInterceptor viewObjectAddingInterceptor() {
         return new HandlerInterceptorAdapter() {
             @Override
             public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView view) {
                 CsrfToken token = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
                 if (token != null) {
+                    // add csrf token
                     view.addObject(token.getParameterName(), token);
+
+                    // add base path of application
+                    view.addObject("basePath", request.getContextPath());
                 }
             }
         };

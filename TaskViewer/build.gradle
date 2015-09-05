@@ -4,7 +4,7 @@ apply plugin: 'eclipse-wtp'
 //apply plugin: 'jetty' //too old, Jetty 6, use gretty plugin
 apply plugin: 'org.akhikhl.gretty'
 
-// JDK 7
+// JDK 8
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -87,7 +87,7 @@ buildscript {
 // It will cause "No Spring WebApplicationInitializer types detected on classpath"
 gretty {
     port = 8080
-    contextPath = ''
+//    contextPath = 'taskviewer'
     servletContainer = 'jetty9' //tomcat7 or tomcat8
 }
 
@@ -98,7 +98,7 @@ eclipse {
         component {
 
             //define context path, default to project folder name
-            contextPath = ''
+//            contextPath = ''
 
         }
 

@@ -8,7 +8,7 @@ body.login-bg {
 	height: 100%;
 	width: 100%;
 	background-size: cover;
-	background-image: url("/resources/images/wood-view.jpg");
+	background-image: url("../images/wood-view.jpg");
 	margin: 0;
 }
 

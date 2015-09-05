@@ -9,11 +9,17 @@ This is a Maven project powered by Spring MVC framework. The following commands 
 
 
 **Gradle** (recommended)
+Make sure Gradle is installed in your machine. Try `gradle -v` command. Otherwise install in from [http://www.gradle.org/](http://www.gradle.org/).
 
 ```
-gradle 
+# Install artifacts to your local repository
+gradle install
+
+# Start the web application
 gradle jettyRun
 ```
+
+Now, open your browser and view `http://localhost:8080/TaskViewer`.
 
 **Maven**
 
@@ -21,4 +27,5 @@ gradle jettyRun
 mvn install -DskipTests
 mvn clean jetty:run
 ```
+
 
