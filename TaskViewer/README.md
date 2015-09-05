@@ -7,8 +7,18 @@ TaskViewer is for business operators to perform tasks and execute business proce
 
 This is a Maven project powered by Spring MVC framework. The following commands are useful for local development and testing:
 
+
+**Gradle** (recommended)
+
+```
+gradle 
+gradle jettyRun
+```
+
+**Maven**
+
 ```
 mvn install -DskipTests
-
 mvn clean jetty:run
 ```
+
