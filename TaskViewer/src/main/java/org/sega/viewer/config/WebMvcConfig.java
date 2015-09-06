@@ -5,6 +5,7 @@ import static org.springframework.context.annotation.ComponentScan.Filter;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
 import de.neuland.jade4j.spring.view.JadeViewResolver;
+import org.sega.viewer.config.interceptors.RequestProcessingTimeInterceptor;
 import org.sega.viewer.config.resolvers.JsonViewResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -142,6 +143,11 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(viewObjectAddingInterceptor());
+        registry.addInterceptor(requestProcessTimeInterceptor());
+    }
+
+    @Bean HandlerInterceptor requestProcessTimeInterceptor(){
+        return new RequestProcessingTimeInterceptor();
     }
 
     @Bean

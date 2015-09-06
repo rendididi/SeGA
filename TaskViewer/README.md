@@ -13,10 +13,10 @@ Make sure Gradle is installed in your machine. Try `gradle -v` command. Otherwis
 
 ```
 # Install artifacts to your local repository
-gradle install
+./gradlew build
 
 # Start the web application
-gradle jettyRun
+./gradlew jettyRun
 ```
 
 View `http://localhost:8080/TaskViewer` on your browser.
