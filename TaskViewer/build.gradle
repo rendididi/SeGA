@@ -72,6 +72,9 @@ dependencies {
     compile 'org.webjars:angularjs:1.4.4'
     compile 'org.webjars:bootstrap-select:1.7.3-1'
 
+    // compile 'org.webjars:d3js:3.5.6'
+    // compile 'org.webjars.npm:jointjs:0.9.4'
+
     // test
     testCompile 'junit:junit:+'
     testCompile 'org.mockito:mockito-core:+'
