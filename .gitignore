@@ -4,5 +4,9 @@ RemoteSystemsTempFiles/
 target/
 .settings/
 .idea/
+.gradle
+build/
+.DS_Store
 *.log
+*.iml
 ProcessDesigner/src/main/webapp/images/process/p_svg_*.*

@@ -5,6 +5,9 @@ import static org.springframework.context.annotation.ComponentScan.Filter;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
 import de.neuland.jade4j.spring.view.JadeViewResolver;
+import org.sega.viewer.common.Constants;
+import org.sega.viewer.config.interceptors.RequestProcessingTimeInterceptor;
+import org.sega.viewer.config.resolvers.JsonViewResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,10 +22,10 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -34,42 +37,27 @@ import org.sega.viewer.Application;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Configuration
 @ComponentScan(basePackageClasses = Application.class, includeFilters = @Filter(Controller.class), useDefaultFilters = false)
 class WebMvcConfig extends WebMvcConfigurationSupport {
 
-    private static final String MESSAGE_SOURCE = "/WEB-INF/i18n/messages";
-    private static final String VIEWS = "/WEB-INF/views/";
-
-    private static final String RESOURCES_LOCATION = "/resources/";
-    private static final String RESOURCES_HANDLER = RESOURCES_LOCATION + "**";
-
-    @Override
-    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-        RequestMappingHandlerMapping requestMappingHandlerMapping = super.requestMappingHandlerMapping();
-        requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
-        requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
-        return requestMappingHandlerMapping;
-    }
-
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename(MESSAGE_SOURCE);
+        messageSource.setBasename(Constants.MESSAGE_SOURCE);
         messageSource.setCacheSeconds(5);
         return messageSource;
     }
 
-    /*
-     * Configure ContentNegotiationManager
-     */
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer.ignoreAcceptHeader(true).defaultContentType(
-                MediaType.TEXT_HTML);
+        configurer.ignoreAcceptHeader(true)
+                .defaultContentType(MediaType.TEXT_HTML);
     }
 
     /*
@@ -85,15 +73,21 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
         resolvers.add(jadeViewResolver());
         resolvers.add(htmlViewResolver());
+        resolvers.add(jsonViewResolver());
 
         resolver.setViewResolvers(resolvers);
         return resolver;
     }
 
     @Bean
+    public ViewResolver jsonViewResolver() {
+        return new JsonViewResolver();
+    }
+
+    @Bean
     public TemplateResolver htmlTemplateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
-        templateResolver.setPrefix(VIEWS);
+        templateResolver.setPrefix(Constants.VIEWS);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
         templateResolver.setCacheable(false);
@@ -119,7 +113,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     @Bean
     public SpringTemplateLoader jadeTemplateLoader() {
         SpringTemplateLoader templateLoader = new SpringTemplateLoader();
-        templateLoader.setBasePath(VIEWS);
+        templateLoader.setBasePath(Constants.VIEWS);
         templateLoader.setEncoding("UTF-8");
         templateLoader.setSuffix(".jade");
         return templateLoader;
@@ -135,24 +129,34 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Bean
     public ViewResolver jadeViewResolver() {
-        JadeViewResolver viewResolver = new JadeViewResolver();
-        viewResolver.setConfiguration(jadeConfiguration());
-        return viewResolver;
+        JadeViewResolver resolver = new JadeViewResolver();
+        resolver.setConfiguration(jadeConfiguration());
+        return resolver;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(csrfTokenAddingInterceptor());
+        registry.addInterceptor(viewObjectAddingInterceptor());
+        registry.addInterceptor(requestProcessTimeInterceptor());
+    }
+
+    @Bean HandlerInterceptor requestProcessTimeInterceptor(){
+        return new RequestProcessingTimeInterceptor();
     }
 
     @Bean
-    public HandlerInterceptor csrfTokenAddingInterceptor() {
+    public HandlerInterceptor viewObjectAddingInterceptor() {
         return new HandlerInterceptorAdapter() {
             @Override
             public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView view) {
                 CsrfToken token = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
                 if (token != null) {
+                    // add csrf token
                     view.addObject(token.getParameterName(), token);
+
+                    // add base path of application
+                    view.addObject("basePath", request.getContextPath());
+
                 }
             }
         };
@@ -167,7 +171,9 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(RESOURCES_HANDLER).addResourceLocations(RESOURCES_LOCATION);
+        registry
+                .addResourceHandler(Constants.RESOURCES_HANDLER)
+                .addResourceLocations(Constants.RESOURCES_LOCATION);
     }
 
     @Override

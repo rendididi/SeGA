@@ -1,6 +1,6 @@
 package org.sega.viewer.models;
 
-import org.sega.viewer.common.Constant;
+import org.sega.viewer.common.Constants;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -64,6 +64,6 @@ public class ProcessEdit extends BaseModel {
     }
 
     public String getStepName() {
-        return Constant.STEPS.get(this.step);
+        return Constants.STEPS.get(this.step);
     }
 }

@@ -1,9 +1,7 @@
 package org.sega.viewer.controllers;
 
-import org.sega.viewer.common.Constant;
-import org.sega.viewer.models.Process;
+import org.sega.viewer.common.Constants;
 import org.sega.viewer.services.IModel;
-import org.sega.viewer.services.IModelImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +41,7 @@ public class UsersController {
         }
 
         if (form.getUserType().equals("operator")) {
-            request.getSession().setAttribute(Constant.KEY_USER_TYPE, Constant.UserType.OPERATOR);
+            request.getSession().setAttribute(Constants.KEY_USER_TYPE, Constants.UserType.OPERATOR);
         } else {
             return VIEW_SIGNIN;
         }

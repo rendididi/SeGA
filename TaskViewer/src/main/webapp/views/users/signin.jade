@@ -1,0 +1,21 @@
+extends ../layout/signin
+
+block content
+  .container.login
+    .col-md-4.col-md-offset-4.login-container
+      img(src="#{basePath}/resources/images/user/expert.png", width="128px",height="128px")
+      .title
+        h2 Operator
+      .login-panel
+        ul
+          li
+            img(src="#{basePath}/resources/images/step_detail/step-process-select.png", width="28px", height="28px")
+            span Process Execution
+          li
+
+        form(method="post",action="#{basePath}/authenticate")
+          input(type="hidden", name='_csrf', value='#{_csrf.token}')
+          input(style="display:none;",type="text",name="username",value="user")
+          input(style="display:none;",type="password",name="password",value="demo")
+          button.btn.btn-default.btn-block(type="submit") Login
+  

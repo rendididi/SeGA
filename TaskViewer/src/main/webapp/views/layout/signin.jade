@@ -1,0 +1,39 @@
+!!! 5
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+
+    meta(name="description", content="SeGA Workflow System Demo")
+    meta(name="author", content="SeGA Group.")
+    title SeGA Workflow System Demo
+
+    link(rel='stylesheet', type='text/css', href='#{basePath}/webjars/bootstrap/3.3.5/css/bootstrap.min.css')
+    link(rel="stylesheet", type='text/css', href="#{basePath}/resources/css/font.css")
+    link(rel="stylesheet", type='text/css', href="#{basePath}/resources/css/theme.css")
+    link(rel="stylesheet", type='text/css', href="#{basePath}/resources/css/login.css")
+
+    script(src="#{basePath}/webjars/jquery/2.1.4/jquery.min.js")
+
+
+  body.login-bg
+    nav.navbar.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="#")
+            span(style="color:#f9f9f9;font-weight:200;") SeGA
+            span Workflow System
+        .collapse.navbar-collapse#navbar
+          ul.nav.navbar-nav
+            li.active
+              a(href="#") Task Viewer
+            li
+              a(href="#") About
+
+    block content

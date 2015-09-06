@@ -1,0 +1,15 @@
+web:
+  image: niaquinto/jetty
+  volumes:
+    - ./build/libs:/opt/jetty/webapps
+  links:
+    - mysql
+  ports:
+    - 8080:8080
+
+mysql:
+  image: mysql:5.6
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+  volumes:
+    - /data/mysql:/var/lib/mysql
