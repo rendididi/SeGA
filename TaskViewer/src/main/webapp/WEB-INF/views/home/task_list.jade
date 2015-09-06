@@ -1,0 +1,95 @@
+extends ../layout/app_ng 
+
+block content
+  .row#user-area 
+    .col-sm-12
+      img.userImg(src="#{basePath}/resources/images/user/expert.png", style="height:90px;width:90px;")
+  
+  .row
+    .col-sm-8
+      .g-content 
+        .m-activity
+          h3 
+            span Activities
+            small.totalNum 共 0 个
+          
+          .btn-create
+            a(href="#")
+              span.glyphicon.glyphicon-plus-sign.addActivity(aria-hidden="true")
+              span Create 
+          
+          ul.list-unstyled#activityList
+            li(ng-repeat="activity in activities")
+              img.activityImg(src="{{activity.step_image_url}}")
+              
+              .info 
+                .btn-edit 
+                  a.btn.btn-default.btn-xs(href="{{activity.process_url}}")
+                    span.glyphicon.glyphicon-edit
+                
+                p.header.text-elli {{activity.stepName}}
+                p.date {{activity.date}}
+                p.description Process: {{activity.process.name}}
+          
+          div#my-pagination
+                
+      
+    // sidebar
+    .col-sm-4
+      .m-sidebar 
+        .latestTask
+          h4.header Lastest Task 
+          
+          .list-unstyled#latestTaskList(ng-show="firstActivity")
+            img.activityImg(src="{{firstActivity.step_image_url}}")
+            .info 
+              p.info-header {{firstActivity.stepName}}
+              p.date {{firstActivity.date}}
+              p.description Process: {{firstActivity.process.name}}
+          
+        .search 
+          h4
+            span.glyphicon.glyphicon-search(aria-hidden="true")
+            span.header Search 
+          
+          .row 
+            .col-lg-3
+              .input-group
+                input.form-control(type="text",placeholder="Search for...")
+                span.input-group-btn
+                  button.btn.btn-default(type="button") Go!
+        
+        // 按图标筛选栏
+        .select 
+          ul.list-unstyled#taskList
+            li
+              img.activityImg(src="#{basePath}/resources/images/step_detail/step-process-select.png")
+              p Select Process Template 
+            
+            li
+              img.activityImg(src="#{basePath}/resources/images/step_detail/step-custom-entity.png")
+              p Customize Entity
+            
+            li
+              img.activityImg(src="#{basePath}/resources/images/step_detail/step-dbtemplate-edb-mapping.png")
+              p Template DB-EDB Mapping
+            
+            li
+              img.activityImg(src="#{basePath}/resources/images/step_detail/step-entity-edb-mapping.png")
+              p Entity-EDB Mapping
+
+            .clearfix
+            
+            li
+              img.activityImg(src="#{basePath}/resources/images/step_detail/step-custom-process.png")
+              p Customize Process
+            
+            li
+              img.activityImg(src="#{basePath}/resources/images/step_detail/step-bind-process.png")
+              p Service Binding
+            
+            
+            li
+              img.activityImg(src="#{basePath}/resources/images/step_detail/step-publish.png")
+              p Publish 
+          

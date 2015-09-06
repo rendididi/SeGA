@@ -1,35 +1,50 @@
 package org.sega.viewer.config.resolvers;
 
 import de.neuland.jade4j.JadeConfiguration;
-import de.neuland.jade4j.spring.template.SpringTemplateLoader;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.sega.viewer.config.views.JadeView;
+import org.springframework.web.servlet.view.AbstractTemplateViewResolver;
+import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
-/**
- * TODO
- * Jade view resolver
- *
- * @author: Raysmond
- */
 
-public class JadeViewResolver extends de.neuland.jade4j.spring.view.JadeViewResolver{
+public class JadeViewResolver extends AbstractTemplateViewResolver {
 
-    public JadeViewResolver(){
-        super();
+    private JadeConfiguration configuration;
+    private boolean renderExceptions = false;
+    private String contentType = "text/html;charset=UTF-8";
+
+    public JadeViewResolver() {
+        setViewClass(requiredViewClass());
     }
 
-    public SpringTemplateLoader jadeTemplateLoader() {
-        SpringTemplateLoader templateLoader = new SpringTemplateLoader();
-        templateLoader.setBasePath("/WEB-INF/views/");
-        templateLoader.setEncoding("UTF-8");
-        templateLoader.setSuffix(".jade");
-        return templateLoader;
+    @Override
+    @SuppressWarnings("rawtypes")
+    protected Class requiredViewClass() {
+        return JadeView.class;
     }
 
-    public JadeConfiguration jadeConfiguration() {
-        JadeConfiguration configuration = new JadeConfiguration();
-        configuration.setCaching(false);
-        configuration.setTemplateLoader(jadeTemplateLoader());
-        return configuration;
+    @Override
+    protected AbstractUrlBasedView buildView(String viewName) throws Exception {
+        JadeView view = (JadeView) super.buildView(viewName);
+        view.setConfiguration(this.configuration);
+        view.setContentType(contentType);
+        view.setRenderExceptions(renderExceptions);
+        return view;
     }
+
+    public void setConfiguration(JadeConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    public void setRenderExceptions(boolean renderExceptions) {
+        this.renderExceptions = renderExceptions;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
 }

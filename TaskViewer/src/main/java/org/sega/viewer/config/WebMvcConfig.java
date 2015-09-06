@@ -162,6 +162,9 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
                     // add base path of application
                     view.addObject("basePath", request.getContextPath());
+
+                    // add authorization
+//                    view.addObject("authorization", "")
                 }
             }
         };
