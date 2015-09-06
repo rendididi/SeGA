@@ -12,6 +12,7 @@ body {
 
 header {
 	margin-bottom: 25px;
+	min-width: 100%;
 }
 
 *:focus {
@@ -396,6 +397,7 @@ section {
 
 	min-height: 150px;
 	height: 180px;
+	min-width: 100%;
 
 	margin-top: 0;
 	padding-top: 90px;

@@ -17,7 +17,7 @@ var mapping_tool = {
         .attr("id","svg_mapping_tool")
         .style("position","absolute")
         .style("top", 0)
-        .style("left", $("#entity_tree").width()-5);
+        .style("left", Math.floor($("#entity_tree").width()-5)+"px");
       this.resize();
 
       //register events

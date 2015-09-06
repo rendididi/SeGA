@@ -4,8 +4,7 @@
 
 	var graph = new joint.dia.Graph;
 	var current_selected='';//current selected cell
-	$('#task-attrs').hide();//task input panel
-	$('#link-attrs').hide();//link input panel
+
 	var paper = new joint.dia.Paper({
     	el:$('#draw'),
     	width:"100%",
@@ -25,13 +24,21 @@
 	
 	graph.fromJSON(process_json);
 	
+  var resize = function(){
+    paper.setDimensions(
+      Math.max(document.body.clientWidth, paper.getContentBBox().x+paper.getContentBBox().width+600), 
+      Math.max(document.body.clientHeight - $("#draw").offset().top,paper.getContentBBox().y+paper.getContentBBox().height+450)
+    );
+    $(".paper-container").height(document.body.clientHeight - $(".paper-container").offset().top);
+  };
 
-	graph.on("change",function(){
-		paper.fitToContent({
-			minWidth:document.body.clientWidth ,
-			minHeight:600,
-		})
-	})
+  $(function(){
+    paper.setOrigin($(".step-title2").offset().left, 0);
+    $(window).resize(resize);
+    resize();
+  });
+
+	graph.on("change", resize);
 	
 	var taskTool=document.getElementById("taskShape");
 	var startTool = document.getElementById("startShape");
@@ -41,74 +48,70 @@
 	endTool.ondragend=dragEvent;
 
 	function dragEvent(ev){
-		console.log($("#draw").offset());
-		console.log(ev.pageY);
-		console.log(ev.pageX);
-		var x=ev.pageX-$("#draw").offset().left;
-    	var y=ev.pageY-$("#draw").offset().top;
-    	var newCell='';
-    	var elements = graph.getElements();
-    	var startNum=0;
-    	var endNum=0;
 
-    	for(var i=0;i<elements.length;i++){
-    		if(elements[i].prop("type")=="sega.Start"){
-    			startNum++
-    		}else if(elements[i].prop("type")=="sega.End"){
-    			endNum++;
-    		}
-    	}
+		var x=ev.pageX-$("#draw").offset().left- paper.options.origin.x + $("#draw").scrollLeft();
+  	var y=ev.pageY-$("#draw").offset().top-paper.options.origin.y + $("#draw").scrollTop();
+  	var newCell='';
+  	var elements = graph.getElements();
+  	var startNum=0;
+  	var endNum=0;
 
-    	switch(ev.target.attributes.id.value){
-    		case "taskShape":
-    			newCell= new joint.shapes.sega.Task({
-        			position : {x: x-75,y: y-30}
-   				});
-   				break;
-   			case "startShape":
-   				if(startNum==0){
-   					newCell= new joint.shapes.sega.Start({
-        				position : {x: x-17,y: y-17}
-   					});
-   				}else{
-   					alert("Start Node is exist");
-   				}
-    			
-   				break;
-   			case "endShape":
-   				if(endNum==0){
-   					newCell= new joint.shapes.sega.End({
-        				position : {x: x-17,y: y-17}
-   					});
-   				}else{
-   					alert("End Node is exist");
-   				}
-   				break;
+  	for(var i=0;i<elements.length;i++){
+  		if(elements[i].prop("type")=="sega.Start"){
+  			startNum++
+  		}else if(elements[i].prop("type")=="sega.End"){
+  			endNum++;
+  		}
+  	}
 
-    	}
-    	graph.addCell(newCell);
+  	switch(ev.target.attributes.id.value){
+  		case "taskShape":
+  			newCell= new joint.shapes.sega.Task({
+      			position : {x: x-75,y: y-30}
+ 				});
+ 				break;
+ 			case "startShape":
+ 				if(startNum==0){
+ 					newCell= new joint.shapes.sega.Start({
+      				position : {x: x-17,y: y-17}
+ 					});
+ 				}else{
+ 					alert("Start Node is exist");
+ 				}
+  			
+ 				break;
+ 			case "endShape":
+
+ 					newCell= new joint.shapes.sega.End({
+      				position : {x: x-17,y: y-17}
+ 					});
+
+ 				break;
+
+  	}
+  	graph.addCell(newCell);
 	}
 
 	$(document).keyup(function(e){
-	if(e.keyCode==46&&current_selected!=''){
-		current_selected.model.remove();
-		current='';
-		$('#task-attrs').hide();
-		$('#link-attrs').hide();
-	}
-})
+  	if(e.keyCode==46&&current_selected!=''){
+  		current_selected.model.remove();
+  		current='';
+  		$('#task-attrs').removeClass("active");
+  		$('#link-attrs').removeClass("active");
+  	}
+  })
 
 
 	/*click event*/
-	paper.on('cell:pointerclick',function(evt,x,y){
+	paper.on('cell:pointerdown',function(evt,x,y){
     	if(current_selected!=""){
         	current_selected.unhighlight();
     	}
     	evt.highlight();
     	current_selected=evt;;
     if(evt.model.isLink()){
-        $('#link-attrs').show();
-        $('#task-attrs').hide();
+        $('#link-attrs').addClass("active");
+        $('#task-attrs').removeClass("active");
         $('#linkId').val(evt.model.id);
         $('#sourceId').val(evt.model.attributes.source.id);
         $('#targetId').val(evt.model.attributes.target.id);
@@ -117,8 +120,8 @@
     }else if(evt.model.prop("type")=="sega.Task"){
 
         $('#taskid').val(evt.model.id);
-        $('#link-attrs').hide();
-        $('#task-attrs').show();
+        $('#link-attrs').removeClass("active");
+        $('#task-attrs').addClass("active");
         $('#taskName').val(evt.model.attributes.attrs['.label'].text);
 /*        $('#splitMode').children("option").each(function(){
             if($(this).text()=='XOR'){
@@ -139,39 +142,43 @@
 
     }
   /*  alert(JSON.stringify(evt.model.toJSON()))*/
-})
+  })
 
-	paper.on('blank:pointerclick',function(evt,x,y){
+	paper.on('blank:pointerdown',function(evt,x,y){
 		if(current_selected!=""){
 			current_selected.unhighlight();
 			current_selected='';
-			$('#task-attrs').hide();
-			$('#link-attrs').hide();
+			$('#task-attrs').removeClass("active");
+			$('#link-attrs').removeClass("active");
 		}
 	})
 
 
+  $(".form-panel").bind("mousedown",function(event){
+    event.stopPropagation();
+  });
+
 	/*set attrs*/
 
-	$('#taskName').blur(function(){
+  var setTaskAttr = function(){
+    current_selected.model.setText($('#taskName').val());
+    current_selected.model.attr("data").name=$('#taskName').val();
+    //console.log(current_selected.model.attr("data/splitemode",$('#splitMode').val()));
+    $('#joinMode').val();
+    current_selected.model.attr("data/jointmode",$('#joinMode').val());
+    current_selected.model.attr("data/description",$('#taskdsp').val());
+  };
 
-		current_selected.model.setText($(this).val());
-		current_selected.model.attr("data").name=$(this).val();
-		//current_selected.update();
-	});
-	$('#splitMode').blur(function(){
-		console.log(current_selected.model.attr("data/splitemode",$('#splitMode').val()));
-	});
-	$('#joinMode').blur(function(){
-		$('#joinMode').val();
-		current_selected.model.attr("data/jointmode",$('#joinMode').val());
-	})
-	$('#taskdsp').blur(function(){
-		current_selected.model.attr("data/description",$('#taskdsp').val());
-	})
-	$("#expression").blur(function(){
-		current_selected.model.prop("expression",$("#expression").val());
-	})
+	$('#taskName').bind("blur focusout change keyup paste", setTaskAttr);
+	$('#splitMode').bind("blur focusout change keyup paste", setTaskAttr);
+	$('#joinMode').bind("blur focusout change keyup paste", setTaskAttr);
+	$('#taskdsp').bind("blur focusout change keyup paste", setTaskAttr);
+
+  var setListAttr = function(){
+    current_selected.model.prop("expression",$("#expression").val());
+  };
+
+	$("#expression").bind("blur focusout change keyup paste", setListAttr);
 
 
 

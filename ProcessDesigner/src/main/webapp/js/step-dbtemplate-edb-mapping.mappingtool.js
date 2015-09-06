@@ -22,7 +22,7 @@ var mapping_tool = {
         .attr("id","svg_mapping_tool")
         .style("position","absolute")
         .style("top", 0)
-        .style("left", db1.getDom().find(".isMapped").position().left+24);
+        .style("left", Math.floor(db1.getDom().find(".isMapped").position().left+24)+"px");
       this.resize();
 
       //register events

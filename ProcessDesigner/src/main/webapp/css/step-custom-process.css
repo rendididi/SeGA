@@ -1,11 +1,6 @@
 .relative{
 	position:relative;
 }
-.paper-container{
-
-	overflow-x: auto;
-
-}
 
 .step-title {
     display: none;
@@ -85,8 +80,40 @@
 
 }
 
+body {
+    overflow: hidden;
+}
+
+.paper-container {
+    max-width: 100%;
+    overflow: scroll;
+}
+
+.paper-container::-webkit-scrollbar{
+   -webkit-appearance: none;
+   width: 10px;
+   height: 10px;
+}
+
+.paper-container::-webkit-scrollbar-thumb {
+    background-color: #BDC3C7;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+}
+
+.paper-container::-webkit-scrollbar-track {
+    background-color: #ECF0F1;
+    width: 8px;
+}
+
 .paper-container svg g.highlighted {
     outline: 0px solid #FF0000;
+}
+
+.paper-container svg g.sega.Task .label {
+    font-size: 16px;
+    font-family: "Open Sans", "Microsoft Yahei" , "Microsoft YaHei UI Light";
 }
 
 .paper-container svg g.sega.Task rect.body {
@@ -120,13 +147,33 @@
     stroke-opacity: .2;
 }
 
-.form-panel{
-	background: #f7f7f7;
-	margin-top:-30px;
+.form-panel {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 0px;
+    padding-top: 0;
+
+    height: 0px;
+    width: 100%;
+    width: -moz-calc(100% - 10px);
+    width: -webkit-calc(100% - 10px);
+    width: -o-calc(100% - 10px);
+    width: calc(100%-10px);
+
+    background-color: #ECF0F1; 
+    color: #000;
+    transition: all 0.6s ease;
+    opacity: 0;
 }
-.form-panel .col-md-4,.form-panel .col-md-3,.form-panel .col-md-2{
-    margin-top: 15px;
+
+.form-panel.active {
+    height: 80px;
+    opacity: 1;
+    margin-bottom: 10px;
+    padding-top: 10px;
 }
+
+
 
 #syncPoint{
 	margin:0;

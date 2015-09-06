@@ -1,5 +1,5 @@
-<form class="form-panel f-cb">
-	<div id="task-attrs">
+<form class="form-panel f-cb" id="task-attrs">
+	<div class="container">
 		<div class="col-md-2">
 			<div class="form-group">
         		<label for="taskName">name:</label>
@@ -9,12 +9,6 @@
         		<label for="taskid">id:</label>
         		<input type="text" id="taskid" class="form-control" readonly>
     		</div> -->
-		</div>
-		<div class="col-md-2">
-			<div class="form-group">
-				<label for="taskid">id:</label>
-				<input type="text" id="taskid" class="form-control" readonly>
-			</div>
 		</div>
 		<div class="col-md-2">
 			<div class="form-group">
@@ -48,14 +42,11 @@
     		</div>
 		</div>
 
-		<div class="col-md-2 syncPoint-block">
-			<label class="syncPoint">
-				<input type="checkbox" id="syncPoint" >Sync Point
-			</label>					
-
-		</div>
 	</div>
-	<div id="link-attrs">
+</form>
+
+<form class="form-panel f-cb" id="link-attrs">
+	<div class="container">
 		<div class="col-md-3">
 			<div class="form-group">
         		<label for="linkId">id:</label>

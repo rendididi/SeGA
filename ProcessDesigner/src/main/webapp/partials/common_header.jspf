@@ -10,7 +10,7 @@
     
     <!-- bootstrap & jquery -->
 	<link rel="stylesheet" href="<s:url value="js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" />">
-	<script src="<s:url value="js/lib/jquery/jquery-2.1.4.min.js" />"></script>
+	<script src="<s:url value="js/lib/jquery/jquery-2.1.0.min.js" />"></script>
 	<script src="<s:url value="js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js" />"></script>
 	<script src="<s:url value="js/lib/selectpicker/bootstrap-select.min.js" />"></script>
 	

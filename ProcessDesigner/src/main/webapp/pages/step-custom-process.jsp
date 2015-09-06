@@ -34,12 +34,12 @@
 	</header>
 
 
-	<section class=" relative">
+	<section class="relative">
 		
 		<div class="paper-container" id = "draw">
 
+				<%@include file="/pages/step-custom-process-partials/step-custom-process-attrsForm.jsp" %>
 		</div>
-		<%@include file="/pages/step-custom-process-partials/step-custom-process-attrsForm.jsp" %>
 	</section>
 
 	<div class="modal fade" id="modal_viewjson">
