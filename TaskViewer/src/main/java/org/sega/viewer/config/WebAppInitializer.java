@@ -34,9 +34,9 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new Filter[] {characterEncodingFilter, securityFilterChain};
     }
 
-    @Override
-    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
-        registration.setInitParameter("defaultHtmlEscape", "true");
-        registration.setInitParameter("spring.profiles.active", "default");
-    }
+//    @Override
+//    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+//        registration.setInitParameter("defaultHtmlEscape", "true");
+//        registration.setInitParameter("spring.profiles.active", "default");
+//    }
 }

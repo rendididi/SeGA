@@ -5,6 +5,7 @@ import static org.springframework.context.annotation.ComponentScan.Filter;
 import de.neuland.jade4j.JadeConfiguration;
 import de.neuland.jade4j.spring.template.SpringTemplateLoader;
 import de.neuland.jade4j.spring.view.JadeViewResolver;
+import org.sega.viewer.common.Constants;
 import org.sega.viewer.config.interceptors.RequestProcessingTimeInterceptor;
 import org.sega.viewer.config.resolvers.JsonViewResolver;
 import org.springframework.context.MessageSource;
@@ -45,17 +46,10 @@ import java.util.Locale;
 @ComponentScan(basePackageClasses = Application.class, includeFilters = @Filter(Controller.class), useDefaultFilters = false)
 class WebMvcConfig extends WebMvcConfigurationSupport {
 
-    private static final String MESSAGE_SOURCE = "/WEB-INF/i18n/messages";
-    private static final String VIEWS = "/WEB-INF/views/";
-
-    private static final String RESOURCES_LOCATION = "/resources/";
-    private static final String RESOURCES_HANDLER = RESOURCES_LOCATION + "**";
-
-
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename(MESSAGE_SOURCE);
+        messageSource.setBasename(Constants.MESSAGE_SOURCE);
         messageSource.setCacheSeconds(5);
         return messageSource;
     }
@@ -93,7 +87,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     @Bean
     public TemplateResolver htmlTemplateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
-        templateResolver.setPrefix(VIEWS);
+        templateResolver.setPrefix(Constants.VIEWS);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
         templateResolver.setCacheable(false);
@@ -119,7 +113,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     @Bean
     public SpringTemplateLoader jadeTemplateLoader() {
         SpringTemplateLoader templateLoader = new SpringTemplateLoader();
-        templateLoader.setBasePath(VIEWS);
+        templateLoader.setBasePath(Constants.VIEWS);
         templateLoader.setEncoding("UTF-8");
         templateLoader.setSuffix(".jade");
         return templateLoader;
@@ -163,8 +157,6 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
                     // add base path of application
                     view.addObject("basePath", request.getContextPath());
 
-                    // add authorization
-//                    view.addObject("authorization", "")
                 }
             }
         };
@@ -179,7 +171,9 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(RESOURCES_HANDLER).addResourceLocations(RESOURCES_LOCATION);
+        registry
+                .addResourceHandler(Constants.RESOURCES_HANDLER)
+                .addResourceLocations(Constants.RESOURCES_LOCATION);
     }
 
     @Override
