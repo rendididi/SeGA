@@ -2,14 +2,37 @@
     position:absolute;
     right:15px;
 }
-.paper-container{
 
-    overflow-x: auto;
-
-}
 
 .tab-pane{
     padding-top:30px;
     max-height:600px;
     overflow: auto;
+}
+
+body {
+    overflow: hidden;
+}
+
+.paper-container {
+    max-width: 100%;
+    overflow: scroll;
+}
+
+.paper-container::-webkit-scrollbar{
+   -webkit-appearance: none;
+   width: 10px;
+   height: 10px;
+}
+
+.paper-container::-webkit-scrollbar-thumb {
+    background-color: #BDC3C7;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+}
+
+.paper-container::-webkit-scrollbar-track {
+    background-color: #ECF0F1;
+    width: 8px;
 }

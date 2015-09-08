@@ -44,21 +44,25 @@
               <h3>Activities
                 <small class="totalNum">共<em> <s:property value="total" /> </em>个</small>
               </h3>
+              <s:set value="userType" name="userType"/>
+              <s:if test="#userType=='expert'">
               <div class="btn-create">
                   <a class="" href="<s:url action='step-process-select'/>">
                     <span class="glyphicon glyphicon-plus-sign addActivity" aria-hidden="true"></span>
                     Create </a>
               </div>
-
+              </s:if>
               <ul class="list-unstyled" id="activityList">
                 <li ng-repeat="activity in activities">
-                  <img class="activityImg" src="{{activity.step_image_url}}"/>
-                  <div class="info">
-                    <div class="btn-edit"><a class="btn btn-default btn-xs" href="{{activity.process_url}}"><span class="glyphicon glyphicon-edit"></span></a></div>
-                    <p class="header text-elli">{{activity.stepName}}</p>
-                    <p class="date">{{activity.date}}</p>
-                    <p class="decription">Process: {{activity.process.name}}</p>
-                  </div>
+                  <a class="btn-activity" href="{{activity.process_url}}">
+                    <img class="activityImg" src="{{activity.step_image_url}}"/>
+                    <div class="info">
+                      <div class="btn-edit"><span class="glyphicon glyphicon-edit"></span></div>
+                      <p class="header text-elli">{{activity.stepName}}</p>
+                      <p class="date">{{activity.date}}</p>
+                      <p class="decription">Process: {{activity.process.name}}</p>
+                    </div>
+                  </a>
                 </li>
 
               </ul>
@@ -162,11 +166,11 @@
       $scope.activities = [];
 
       $scope.init = function(){
-        var activities = [];
+        var activities = [], process_name, activity;
 
         <s:iterator value="activities">
-          var process_name = '<s:property value="process.name" />';
-          var activity = {
+          process_name = '<s:property value="process.template.name" />';
+          activity = {
             id: <s:property value="id"/>,
             step: '<s:property value="step"/>',
             stepName: '<s:property value="stepName"/>',
@@ -190,7 +194,7 @@
             date: '<s:date name="firstActivity.datetime" />',
             step_image_url: "images/step_detail/<s:property value="firstActivity.step" />.png",
             process: {
-                name: '<s:property value="firstActivity.process.name"/>'
+                name: '<s:property value="firstActivity.process.template.name"/>'
             }
         };
       }
