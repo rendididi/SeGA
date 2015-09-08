@@ -441,6 +441,7 @@ joint.shapes.sega.EndView = joint.dia.ElementView.extend(
     })
 );
 
+//扩展paper方法，去除不必要的interactive样式，用于生成svg图形， by zzs
 joint.dia.Paper.prototype.exportSvg=function(){
 	var newSvg = ($(this.svg).clone(true))[0];
 	var svgParent = document.createElement("div");

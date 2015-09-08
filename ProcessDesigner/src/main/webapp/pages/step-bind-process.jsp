@@ -8,7 +8,9 @@
 	<link href="<s:url value="css/theme.css" />" rel="stylesheet">
 	<link href="<s:url value="css/step-bind-process.css" />" rel="stylesheet">
 	<link href="<s:url value="css/icomoon-font.css" />" rel="stylesheet">
-
+	<link href="<s:url value="css/icomoon-font.css" />" rel="stylesheet">
+	<link rel="stylesheet"
+		  href="<s:url value="js/lib/jstree/themes/default/style.css" />" />
 
 </head>
 <body>
@@ -47,11 +49,14 @@
 	</div><!-- /.modal -->
 
   	<script type="text/javascript">
-	  	var process_json = <s:property value="process.processJSON" escape="false"/>;
+		var process_json = <s:property value="process.processJSON" escape="false"/>;
+		var entity_json = (<s:property value="process.entityJSON" escape="false"/>);
 	</script>
   	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.nojquery.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.sega_extension.js" />"></script>
   	<script type="text/javascript" src = "<s:url value="js/lib/angular/angular.js" />"></script>
+  	<script type="text/javascript" src = "<s:url value="js/lib/jstree/jstree.js" />"></script>
+  	<script type="text/javascript" src = "<s:url value="js/lib//jstree/jstree.sega.task_data.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/step-bind-process.js" />"></script>
  </body>
  </html>

@@ -58,6 +58,54 @@
 	});
 
 
+    $('#RW-tab').jstree({
+        "core" : {
+            "animation" : 200,
+            "check_callback" : true,
+            "themes" : {
+                "stripes" : true,
+                "dots" : false
+            },
+            'data' : entity_json
+        },
+        "types" : {
+            "#" : {
+                "max_children" : 1,
+                "valid_children" : [ "artifact" ]
+            },
+            "artifact" : {
+                "icon" : "images/tree_icons/artifact.svg",
+                "valid_children" : [ "artifact", "attribute", "artifact_n","group","key" ]
+            },
+            "artifact_n" : {
+                "icon" : "images/tree_icons/artifact_n.svg",
+                "valid_children" : [ "artifact", "attribute", "artifact_n","group","key" ]
+            },
+            "attribute" : {
+                "icon": "images/tree_icons/attribute.svg",
+                "valid_children" : []
+            },
+            "group" : {
+                "icon" : "images/tree_icons/group.svg",
+                "valid_children" : ["attribute"]
+            },
+            "key" : {
+                "icon": "images/tree_icons/key.svg",
+                "valid_children" : []
+            }
+        },
+        "plugins" : [  "dnd",  "types", "wholerow", "sega" ]
+
+    });
+
+    tree = $("#RW-tab").jstree(true);
+
+    $("#RW-tab").on("ready.jstree" ,function(){
+        tree.open_all();
+    });
+
+
+
 
 
 

@@ -16,7 +16,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="RW-tab">1</div>
+                    <div role="tabpanel" class="tab-pane active" id="RW-tab"></div>
                     <div role="tabpanel" class="tab-pane" id="service-tab" ng-controller="serviceController">
                         <%@include file="/pages/step-bind-process_partials/service-pane.jsp" %>
                     </div>
