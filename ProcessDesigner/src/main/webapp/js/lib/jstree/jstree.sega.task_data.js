@@ -49,11 +49,7 @@
         if(!current_selected)
             return;
         var task_id = current_selected.model.id;
-        var binding = {
-            task: task_id,
-            entity_attr: evt.data.node.id
-        };
-        bindingUtil.toggleRW(binding, binding_json[evt.data.mode]);
+        bindingUtil.toggleRW(task_id, evt.data.node.id, evt.data.mode);
     };
     var readIcon = $("<div/>")
         .addClass("sega-checkbox sega-checkbox-read")
@@ -128,14 +124,10 @@
                     
                     if(current_selected) {
                         var task_id = current_selected.model.id;
-                        var binding = {
-                            task: task_id,
-                            entity_attr: node.id
-                        };
-                        if(bindingUtil.indexOfRW(binding, binding_json.read)>-1){
+                        if(bindingUtil.indexOfRW(task_id, node.id, "read")){
                             new_read.addClass("active");
                         }
-                        if(bindingUtil.indexOfRW(binding, binding_json.write)>-1){
+                        if(bindingUtil.indexOfRW(task_id, node.id, "write")){
                             new_write.addClass("active");
                         }
                     }

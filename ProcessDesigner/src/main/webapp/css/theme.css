@@ -597,3 +597,46 @@ section {
 	
 	word-wrap:break-word;
 }
+
+.check {
+	cursor: pointer;
+}
+
+.check input[type="checkbox"] {
+	display: none;
+}
+
+.check .check-box {
+    color: #bdc3c7;
+    background: #bdc3c7;
+    border-radius: 4px;
+    padding: 2px 3px 2px 3px;
+    margin-right: 3px;
+    transition: all 0.2s linear;
+}
+
+.check .check-text {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    color: #34495E;
+    transition: all 0.2s linear;
+}
+
+.check:hover .check-box {
+    color: #ffffff;
+    background: #bdc3c7;
+}
+
+.check:hover .check-text {
+    color: #34495E;
+}
+
+.check.on .check-box {
+    color: #ffffff;
+    background: #1abc9c;
+}
+
+.check.on .check-text {
+    color: #1abc9c;
+}

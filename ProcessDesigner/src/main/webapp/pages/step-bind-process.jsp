@@ -36,9 +36,11 @@
 					<p></p>
 				</div>
 				<div class="modal-footer">
-					<s:hidden name="process.processJSON" id="processJSON"></s:hidden>
-					<s:hidden name="svg" id="svg"></s:hidden>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					<s:form action="step-bind-process-submit">
+						<s:hidden name="process.bindingJSON" id="bindingJSON"></s:hidden>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-success">Confirm</button>
+					</s:form>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -51,11 +53,7 @@
 		if(binding_json.length>0)
 			binding_json = binding_json[0];
 		else
-			binding_json = {
-				read:[],
-				write:[],
-				service:[]
-			};
+			binding_json = [];
 	</script>
   	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.nojquery.js" />"></script>
 	<script type="text/javascript" src="<s:url value="js/lib/joint/joint.sega_extension.js" />"></script>

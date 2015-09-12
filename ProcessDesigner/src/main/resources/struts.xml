@@ -165,10 +165,14 @@
     
     <!-- Step 6  -->
     
-    <action name="step-bind-process" class="org.sega.ProcessDesigner.actions.StepBindProcess">
+    <action name="step-bind-process" class="org.sega.ProcessDesigner.actions.StepBindProcessAction">
     	<interceptor-ref name="base64"/>
     </action>
     
+    <action name="step-bind-process-submit" method="submit" class="org.sega.ProcessDesigner.actions.StepBindProcessAction">
+    	<interceptor-ref name="base64"/>
+    	<result type="redirectAction">step-publish</result>
+    </action>
     <!-- Step 7  -->
     
     <action name="step-publish" class="org.sega.ProcessDesigner.actions.StepPublish">

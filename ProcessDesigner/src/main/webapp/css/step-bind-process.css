@@ -123,7 +123,7 @@ body {
     margin-top: 6px;
 }
 
-.tab-pane{
+#RW-tab {
     margin-top:30px;
     max-height: 85%;
     overflow-y: scroll;
@@ -132,3 +132,14 @@ body {
 .modal-bind #RW-tab #entity_tree {
     margin-right: 15px;
 }
+
+#service-tab {
+    overflow: hidden;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+#service-tab h2 {
+    margin-bottom: 20px;
+}
+

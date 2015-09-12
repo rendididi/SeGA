@@ -168,6 +168,8 @@
 	/*set attrs*/
 
   var setTaskAttr = function(){
+    if(!current_selected)
+      return;
     current_selected.model.setText($('#taskName').val());
     current_selected.model.attr("data").name=$('#taskName').val();
     //console.log(current_selected.model.attr("data/splitemode",$('#splitMode').val()));
