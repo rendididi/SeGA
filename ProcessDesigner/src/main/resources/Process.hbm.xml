@@ -26,6 +26,9 @@
         <property name="EDmappingJSON" type="java.lang.String">
             <column name="EDMAPPINGJSON"  sql-type="mediumtext"/>
         </property>
+        <property name="bindingJSON" type="java.lang.String">
+            <column name="BINDINGJSON"  sql-type="mediumtext"/>
+        </property>
         <property name="processImageUrl" type="java.lang.String">
             <column name="PROCESSIMAGEURL" />
         </property>

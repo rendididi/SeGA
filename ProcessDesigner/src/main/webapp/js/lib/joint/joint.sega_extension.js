@@ -1,7 +1,7 @@
 joint.shapes.sega = {};
 
 /*
- *  SeGA JointJs Component: Task
+ *  SeGA JointJs Component: Ports
  *  Code by: glp
  *
  */
@@ -70,7 +70,13 @@ joint.shapes.sega.PortsViewInterface=$.extend(true,new Object(),joint.shapes.bas
         });
 
     }
-})
+});
+
+/*
+ *  SeGA JointJs Component: Task
+ *  Code by: glp
+ *
+ */
 
 joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.shapes.sega.PortsModelInterface, {
 
@@ -106,7 +112,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
                 'pointer-events': 'none'
             },
             '.label': { 
-                text: 'Model', 
+                text: 'Task', 
                 'ref-x': .5, 
                 'ref-y': 0.4, 
                 ref: '.body', 
@@ -155,7 +161,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
     },
     setText: function(text) {
         
-        var new_width = text.length*10;
+        var new_width = text.length*15+30;
         if(new_width<150)
             new_width = 150;
         this.attributes.size = {width:new_width,height:this.attributes.size.height};
@@ -174,6 +180,144 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
 
 
 joint.shapes.sega.TaskView = joint.dia.ElementView.extend(
+    _.extend({},joint.shapes.sega.PortsViewInterface,{
+        initialize: function() {
+            joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+            this.listenTo(this.model, 'change:attrs', function(cell) {
+                
+                this.model.setPortType(this.model);
+                            
+                this.update();
+                this.resize();
+            });
+        }
+    })
+);
+
+/*
+ *  SeGA JointJs Component: Service
+ *  Code by: glp
+ *
+ */
+
+joint.shapes.sega.Service = joint.shapes.basic.Generic.extend(_.extend({}, joint.shapes.sega.PortsModelInterface, {
+
+    markup: '<g class="rotatable"><g><g class="body">\
+    <path class="border" fill="#5D8599" d="M70.402,4.197c15.623,0,28.332,12.707,28.332,28.332c0,0.086-0.01,0.176-0.016,0.262\
+    c-0.013,0.209-0.027,0.418-0.031,0.631l-0.106,4.283l4.29,0.016c10.382,0.029,18.828,8.501,18.828,18.883\
+    c0,10.354-8.43,18.827-18.789,18.88l-0.916,0.004H25.165C13.604,75.478,4.197,66.066,4.197,54.508\
+    c0-8.957,5.701-16.929,14.184-19.84l2.361-0.807l0.416-2.459c1.029-6.07,6.243-10.477,12.397-10.477\
+    c1.961,0,3.856,0.455,5.634,1.349l3.826,1.922l1.847-3.861C49.554,10.53,59.58,4.197,70.402,4.197 M70.402,0\
+    C57.458,0,46.313,7.579,41.077,18.523c-2.265-1.14-4.814-1.795-7.521-1.795c-8.308,0-15.19,6.046-16.535,13.973\
+    C7.126,34.095,0,43.457,0,54.508c0,13.899,11.266,25.167,25.161,25.179h77.771v-0.004c12.694-0.065,22.965-10.37,22.965-23.077\
+    c0-12.727-10.295-23.044-23.014-23.081c0.008-0.336,0.049-0.66,0.049-0.996C102.932,14.563,88.368,0,70.402,0L70.402,0z"/>\
+<path fill="#25B395" d="M71.185,104.208c0,1.656-1.344,3-3,3h-6.652c-1.657,0-3-1.344-3-3v-6.652c0-1.656,1.343-3,3-3h6.652\
+    c1.656,0,3,1.344,3,3V104.208z"/>\
+<rect x="62.921" y="84.603" fill="#37404D" width="4.134" height="5.5"/>\
+<rect x="78.787" y="99.007" fill="#37404D" width="21.25" height="3.909"/>\
+<rect x="29.538" y="99.007" fill="#37404D" width="21.25" height="3.909"/>\
+<path class="inner-body" fill="#FFFFFF" d="M70.375,4.197c15.623,0,28.332,12.707,28.332,28.332c0,0.086-0.01,0.176-0.016,0.262\
+    C98.68,33,98.664,33.209,98.66,33.423l-0.105,4.283l4.289,0.016c10.383,0.029,18.828,8.501,18.828,18.883\
+    c0,10.354-8.43,18.827-18.789,18.88l-0.916,0.004H25.138C13.577,75.478,4.17,66.067,4.17,54.508c0-8.957,5.701-16.929,14.184-19.84\
+    l2.361-0.807l0.416-2.459c1.029-6.07,6.243-10.477,12.397-10.477c1.961,0,3.856,0.455,5.634,1.349l3.826,1.922l1.847-3.861\
+    C49.527,10.53,59.552,4.197,70.375,4.197"/>\
+    </g></g><text class="label"></text><g class="inPorts"/><g class="outPorts"/></g>',
+    portMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
+    portXORMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
+    portANDMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
+    portORMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
+   
+    defaults: joint.util.deepSupplement({
+
+        type: 'sega.Service',
+        size: { width: 126*0.7, height: 107*0.7 },
+        
+        inPorts: ["in"],
+        outPorts: ["out"],
+
+        attrs: {
+            '.': { magnet: false },
+            '.body': {
+            },
+            '.port-body': {
+                r: 8,
+                magnet: true,
+                stroke: '#ffffff',
+                'stroke-width': 2,
+                fill: '#f4a915',
+            },
+            text: {
+                'pointer-events': 'none'
+            },
+            '.label': { 
+                text: 'Service', 
+                'ref-x': .5, 
+                'ref-y': 0.4, 
+                ref: '.body', 
+                'text-anchor': 'middle', 
+                fill: '#5D8599', 
+                "font-family": "Open Sans, Microsoft Yahei, Microsoft Yahei UI Light" ,
+                "font-size": "16px",
+                "font-weight": "300",
+                   
+            },
+            data:{
+                name:'name',
+                read:[],
+                write:[],
+                description:'',
+                jointmode:'XOR',
+                splitemode:'XOR',
+                isSyncPoint:false
+            }
+        },
+        
+
+    }, joint.shapes.basic.Generic.prototype.defaults),
+
+    getPortAttrs: function(portName, index, total, selector, type) {
+
+        var attrs = {};
+
+        var portClass = 'port' + index;
+        var portSelector = selector + '>.' + portClass;
+        var portLabelSelector = portSelector + '>.port-label';
+        var portBodySelector = portSelector + '>.port-body';
+
+        attrs[portLabelSelector] = { text: portName };
+        attrs[portBodySelector] = { port: { id: portName || _.uniqueId(type) , type: type } };
+        attrs[portSelector] = { ref: '.body', 'ref-x':0.15,'ref-y': (index + 0.93) * (1 / total) };
+
+        if (selector === '.outPorts') { 
+            attrs[portSelector]['ref-x'] = 0.88; 
+            attrs[portBodySelector]["port"]["splitemode"]="XOR";
+        }else{
+            attrs[portBodySelector]["port"]["jointmode"]="XOR";
+        }
+        //console.log(attrs);
+        return attrs;
+    },
+    setText: function(text) {
+        
+        var new_width = text.length*11+30;
+        if(new_width<126*0.7)
+            new_width = 126*0.7;
+        //this.attributes.size = {width:new_width,height:this.attributes.size.height};
+        
+        var label_attr = _.clone(this.attr(".label"));
+        label_attr.text = text;
+        
+        this.attr(".label", label_attr);
+
+    },
+    setPortType: function(model) {
+        model.ports.out.splitemode=model.attr("data").splitemode;
+        model.ports.in.jointmode=model.attr("data").jointmode;
+    }
+}));
+
+
+joint.shapes.sega.ServiceView = joint.dia.ElementView.extend(
     _.extend({},joint.shapes.sega.PortsViewInterface,{
         initialize: function() {
             joint.dia.ElementView.prototype.initialize.apply(this, arguments);

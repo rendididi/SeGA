@@ -19,7 +19,7 @@
 
     border-radius: 6px;
     background: #ECF0F1; 
-    width: 300px;
+    width: 350px;
     height: 50px;
     line-height: 0px;
     vertical-align: middle;
@@ -77,7 +77,11 @@
     background-position:-0px -150px;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-
+}
+.toolShape.serviceShape{
+    background: url("../images/tools-cloud.png") no-repeat;
+    background-size: 40px 37px;
+    background-position: 5px 5px;
 }
 
 body {
@@ -127,6 +131,42 @@ body {
 
 .paper-container svg g.sega.Task.highlighted rect.body {
     fill: #1ABC9C;
+}
+
+.paper-container svg g.sega.Service * {
+    transition:all 0.3s linear;
+}
+
+.paper-container svg g.sega.Service .inner-body {
+    fill: #FFFFFF;
+    stroke-width: 2px;
+    stroke: #5D8599;
+}
+
+.paper-container svg g.sega.Service .label {
+    font-size: 14px;
+}
+
+.paper-container svg g.sega.Service:hover .inner-body {
+    fill: #5D8599;
+    
+}
+
+.paper-container svg g.sega.Service:hover .label {
+    fill: #f7f7f7;
+}
+
+.paper-container svg g.sega.Service.highlighted .border {
+    fill: #1ABC9C;
+}
+
+.paper-container svg g.sega.Service.highlighted .inner-body {
+    fill: #1ABC9C;
+    stroke: #1ABC9C;
+}
+
+.paper-container svg g.sega.Service.highlighted .label {
+    fill: #f7f7f7;
 }
 
 .paper-container svg g.sega.Link path {

@@ -41,11 +41,13 @@
 	graph.on("change", resize);
 	
 	var taskTool=document.getElementById("taskShape");
+  var serviceTool=document.getElementById("serviceShape");
 	var startTool = document.getElementById("startShape");
 	var endTool = document.getElementById("endShape");
 	taskTool.ondragend=dragEvent;
 	startTool.ondragend=dragEvent;
 	endTool.ondragend=dragEvent;
+  serviceTool.ondragend=dragEvent;
 
 	function dragEvent(ev){
 
@@ -70,6 +72,11 @@
       			position : {x: x-75,y: y-30}
  				});
  				break;
+      case "serviceShape":
+        newCell= new joint.shapes.sega.Service({
+            position : {x: x-75,y: y-30}
+        });
+        break;
  			case "startShape":
  				if(startNum==0){
  					newCell= new joint.shapes.sega.Start({
@@ -117,7 +124,7 @@
         $('#targetId').val(evt.model.attributes.target.id);
 
 
-    }else if(evt.model.prop("type")=="sega.Task"){
+    }else if(evt.model.prop("type")=="sega.Task"||evt.model.prop("type")=="sega.Service"){
 
         $('#taskid').val(evt.model.id);
         $('#link-attrs').removeClass("active");
@@ -151,7 +158,7 @@
 			$('#task-attrs').removeClass("active");
 			$('#link-attrs').removeClass("active");
 		}
-	})
+	});
 
 
   $(".form-panel").bind("mousedown",function(event){

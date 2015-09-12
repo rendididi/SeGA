@@ -44,9 +44,33 @@
 
     var mapIcon = document.createElement("span");
     mapIcon.className = "sega-jstree-mapicon glyphicon glyphicon-ok";
-    var chk_read = document.createElement("input"),chk_write=document.createElement("input");
-    $(chk_read).attr("type","checkbox");
-    $(chk_read).attr("type","checkbox");
+    var attrHandler = function(evt){
+        $(this).toggleClass("active");
+        if(!current_selected)
+            return;
+        var task_id = current_selected.model.id;
+        var binding = {
+            task: task_id,
+            entity_attr: evt.data.node.id
+        };
+        bindingUtil.toggleRW(binding, binding_json[evt.data.mode]);
+    };
+    var readIcon = $("<div/>")
+        .addClass("sega-checkbox sega-checkbox-read")
+        .text("READ")
+        .prepend(
+            $("<span/>").addClass("glyphicon glyphicon-triangle-top")
+        );
+
+    var writeIcon = $("<div/>")
+        .addClass("sega-checkbox sega-checkbox-write")
+        .text("WRITE")
+        .prepend(
+            $("<span/>").addClass("glyphicon glyphicon-triangle-bottom")
+        );
+
+
+
 
     $.jstree.plugins.sega = function (options, parent) {
         this.get_sega_json = function (obj, options, flat) {
@@ -79,7 +103,7 @@
             obj = parent.redraw_node.call(this, obj, deep, callback, force_draw);
 
             if(obj) {
-                var i, j, tmp = null, chk = mapIcon.cloneNode(true),new_read = chk_read.cloneNode(true),new_write=chk_write.cloneNode(true);
+                var i, j, tmp = null, new_read = readIcon.clone(true),new_write=writeIcon.clone(true);
                 for(i = 0, j = obj.childNodes.length; i < j; i++) {
                     if(obj.childNodes[i] && obj.childNodes[i].className && obj.childNodes[i].className.indexOf("jstree-wholerow") !== -1) {
                         tmp = obj.childNodes[i];
@@ -95,11 +119,26 @@
                     }
                 }
 
-                if(tmp && tmp.tagName === "DIV" && this.get_node(obj.id).data && this.get_node(obj.id).data.isMapped) {
-
-                    tmp.appendChild(chk);
-                    tmp.appendChild(new_read);
-                    tmp.appendChild(new_write);
+                var node = this.get_node(obj);
+                if(tmp && tmp.tagName === "DIV" &&(node.type == "attribute"||node.type == "key")) {
+                    $(tmp).append(new_write);
+                    $(tmp).append(new_read);
+                    new_read.click({node:node, mode:"read"}, attrHandler);
+                    new_write.click({node:node, mode:"write"}, attrHandler);
+                    
+                    if(current_selected) {
+                        var task_id = current_selected.model.id;
+                        var binding = {
+                            task: task_id,
+                            entity_attr: node.id
+                        };
+                        if(bindingUtil.indexOfRW(binding, binding_json.read)>-1){
+                            new_read.addClass("active");
+                        }
+                        if(bindingUtil.indexOfRW(binding, binding_json.write)>-1){
+                            new_write.addClass("active");
+                        }
+                    }
                 }
             }
             return obj;

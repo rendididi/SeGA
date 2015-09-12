@@ -1,4 +1,4 @@
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="config-modal" aria-labelledby="myLargeModalLabel"  >
+<div class="modal modal-bind fade bs-example-modal-lg" tabindex="-1" role="dialog" id="config-modal" aria-labelledby="myLargeModalLabel"  >
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -16,7 +16,9 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="RW-tab"></div>
+                    <div role="tabpanel" class="tab-pane active" id="RW-tab">
+                        <div id="entity_tree"></div>
+                    </div>
                     <div role="tabpanel" class="tab-pane" id="service-tab" ng-controller="serviceController">
                         <%@include file="/pages/step-bind-process_partials/service-pane.jsp" %>
                     </div>
