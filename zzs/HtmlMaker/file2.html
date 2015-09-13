@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+ <head> 
+  <meta charset="UTF-8"> 
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css"> 
+  <title>Document</title> 
+  <script type="bootstrap.js"></script> 
+  <style>
+		 body{
+			background: #32aed2;
+			color: #666;
+			font-family: "微软雅黑"
+		} 
+		.container{
+			width:960px;
+			margin:0 auto;
+			
+		}
+		fieldset{
+			/* background: rgba(253,253,253,0.2); */
+			/* border:1px solid #aaaaaa; */
+			
+			padding:20px;
+			
+		}
+		.an_head>*{
+			display: inline-block;
+			vertical-align: middle;
+			line-height:inherit;
+			margin:0;
+		}
+		.delbtn{
+			line-height:inherit;
+			margin:0;
+			position: absolute;
+			right:10px;
+			top:10px;
+			z-index: 100;
+		}
+		.addbtn,.delbtn{
+			border-radius: 50%;
+		}
+		.addbtn{
+
+		}
+		.main-form{
+			box-shadow: 2px 2px 5px #888888;
+			padding:20px;
+			
+			padding-bottom: 70px;
+		}
+		legend{
+			padding-top:80px;
+		}
+		.group{
+			position: absolute;
+			width:890px;
+			text-align: center;
+			bottom: 17px;
+		}
+		.group>button{
+			width:210px;
+		}
+		fieldset,.main-form{
+			box-shadow: 2px 2px 10px #aaaaaa;
+			background: #FAFFF0;
+			margin:20px 0;
+			position: relative;
+			border-radius:20px;
+		}
+	</style> 
+ </head> 
+ <body id="body"> 
+  <!-- <nav class="navbar navbar-inverse"></nav> --> 
+  <div class="container"> 
+   <form id="main-form" class="main-form form-horizontal"> 
+    <div class="group"> 
+     <button class="btn btn-lg btn-primary">提交</button> 
+     <button class="btn btn-lg">重置</button> 
+    </div> 
+    <div class="an_head">
+     <h1>公租房申请表</h1>
+    </div>
+    <fieldset>
+     <div class="an_head">
+      <h2>申请人信息</h2>
+     </div>
+     <div class="form-group" path="\公租房申请表\申请人信息\姓名">
+      <label class="col-sm-3 control-label">姓名:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\申请人信息\身份证号码">
+      <label class="col-sm-3 control-label">身份证号码:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\申请人信息\民族">
+      <label class="col-sm-3 control-label">民族:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\申请人信息\婚姻状况">
+      <label class="col-sm-3 control-label">婚姻状况:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\申请人信息\上年度可支配收入">
+      <label class="col-sm-3 control-label">上年度可支配收入:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group">
+      <label class="col-sm-3 control-label">户口所在地址:</label>
+      <div class="col-xs-6">
+       <div class="form-group" path="\公租房申请表\申请人信息\户口所在地址\区">
+        <label class="col-sm-3 control-label">区:</label>
+        <div class="col-sm-9">
+         <select class="form-control"></select>
+        </div>
+       </div>
+       <div class="form-group" path="\公租房申请表\申请人信息\户口所在地址\街道">
+        <label class="col-sm-3 control-label">街道:</label>
+        <div class="col-sm-9">
+         <select class="form-control"></select>
+        </div>
+       </div>
+       <div class="form-group" path="\公租房申请表\申请人信息\户口所在地址\社区">
+        <label class="col-sm-3 control-label">社区:</label>
+        <div class="col-sm-9">
+         <select class="form-control"></select>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="form-group">
+      <label class="col-sm-3 control-label">入本市户籍时间:</label>
+      <div class="col-xs-6">
+       <div class="form-group" path="\公租房申请表\申请人信息\入本市户籍时间\年">
+        <label class="col-sm-3 control-label">年:</label>
+        <div class="col-sm-9">
+         <input class="form-control" type="text">
+        </div>
+       </div>
+       <div class="form-group" path="\公租房申请表\申请人信息\入本市户籍时间\月">
+        <label class="col-sm-3 control-label">月:</label>
+        <div class="col-sm-9">
+         <input class="form-control" type="text">
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\申请人信息\职业状况">
+      <label class="col-sm-3 control-label">职业状况:</label>
+      <div class="col-sm-6">
+       <select class="form-control"></select>
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\申请人信息\工作单位">
+      <label class="col-sm-3 control-label">工作单位:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group">
+      <label class="col-sm-3 control-label">首次缴纳（完税）时间:</label>
+      <div class="col-xs-6">
+       <div class="form-group" path="\公租房申请表\申请人信息\首次缴纳（完税）时间\年">
+        <label class="col-sm-3 control-label">年:</label>
+        <div class="col-sm-9">
+         <input class="form-control" type="text">
+        </div>
+       </div>
+       <div class="form-group" path="\公租房申请表\申请人信息\首次缴纳（完税）时间\月">
+        <label class="col-sm-3 control-label">月:</label>
+        <div class="col-sm-9">
+         <input class="form-control" type="text">
+        </div>
+       </div>
+      </div>
+     </div>
+    </fieldset>
+    <fieldset>
+     <div class="an_head">
+      <h2>配偶信息</h2>
+     </div>
+     <div class="form-group" path="\公租房申请表\配偶信息\姓名">
+      <label class="col-sm-3 control-label">姓名:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\配偶信息\民族">
+      <label class="col-sm-3 control-label">民族:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\配偶信息\身份证号码">
+      <label class="col-sm-3 control-label">身份证号码:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\配偶信息\工作单位">
+      <label class="col-sm-3 control-label">工作单位:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+     <div class="form-group" path="\公租房申请表\配偶信息\上年度可支配收入">
+      <label class="col-sm-3 control-label">上年度可支配收入:</label>
+      <div class="col-sm-6">
+       <input class="form-control" type="text">
+      </div>
+     </div>
+    </fieldset>
+    <fieldset>
+     <div class="an_head">
+      <h2>家庭成员信息</h2>
+      <button type="button" class="btn btn-primary addbtn" onclick="add家庭成员信息()">+</button>
+     </div>
+     <fieldset>
+      <button type="button" class="btn btn-danger delbtn" onclick="selfRemove()">-</button>
+      <div class="form-group" path="\公租房申请表\家庭成员信息\申请家庭成员姓名">
+       <label class="col-sm-3 control-label">申请家庭成员姓名:</label>
+       <div class="col-sm-6">
+        <input class="form-control" type="text">
+       </div>
+      </div>
+      <div class="form-group" path="\公租房申请表\家庭成员信息\与申请人关系">
+       <label class="col-sm-3 control-label">与申请人关系:</label>
+       <div class="col-sm-6">
+        <input class="form-control" type="text">
+       </div>
+      </div>
+      <div class="form-group" path="\公租房申请表\家庭成员信息\上年度可支配收入">
+       <label class="col-sm-3 control-label">上年度可支配收入:</label>
+       <div class="col-sm-6">
+        <input class="form-control" type="text">
+       </div>
+      </div>
+     </fieldset>
+    </fieldset>
+    <div class="form-group" path="\公租房申请表\核查状态">
+     <label class="col-sm-3 control-label">核查状态:</label>
+     <div class="col-sm-6">
+      <input class="form-control" type="text">
+     </div>
+    </div>
+    <div class="form-group" path="\公租房申请表\受理人">
+     <label class="col-sm-3 control-label">受理人:</label>
+     <div class="col-sm-6">
+      <input class="form-control" type="text">
+     </div>
+    </div>
+    <div class="form-group" path="\公租房申请表\受理时间">
+     <label class="col-sm-3 control-label">受理时间:</label>
+     <div class="col-sm-6">
+      <input class="form-control" type="text">
+     </div>
+    </div>
+    <div class="form-group" path="\公租房申请表\区局公示状态">
+     <label class="col-sm-3 control-label">区局公示状态:</label>
+     <div class="col-sm-6">
+      <input class="form-control" type="text">
+     </div>
+    </div>
+    <div class="form-group" path="\公租房申请表\市局公示状态">
+     <label class="col-sm-3 control-label">市局公示状态:</label>
+     <div class="col-sm-6">
+      <input class="form-control" type="text">
+     </div>
+    </div>
+    <div class="form-group" path="\公租房申请表\初审意见">
+     <label class="col-sm-3 control-label">初审意见:</label>
+     <div class="col-sm-6">
+      <input class="form-control" type="text">
+     </div>
+    </div>
+    <div class="form-group" path="\公租房申请表\复审意见">
+     <label class="col-sm-3 control-label">复审意见:</label>
+     <div class="col-sm-6">
+      <input class="form-control" type="text">
+     </div>
+    </div>
+    <div class="form-group" path="\公租房申请表\终审意见">
+     <label class="col-sm-3 control-label">终审意见:</label>
+     <div class="col-sm-6">
+      <input class="form-control" type="text">
+     </div>
+    </div>
+   </form> 
+  </div> 
+  <footer></footer> 
+  <script id="sc">
+	function add家庭成员信息(){ var insertText = '<fieldset> <button type="button" class="btn btn-danger delbtn" onclick="selfRemove()">-</button> <div class="form-group" path="\公租房申请表\家庭成员信息\申请家庭成员姓名"> <label class="col-sm-3 control-label">申请家庭成员姓名:</label> <div class="col-sm-6"> <input class="form-control" type="text"> </div> </div> <div class="form-group" path="\公租房申请表\家庭成员信息\与申请人关系"> <label class="col-sm-3 control-label">与申请人关系:</label> <div class="col-sm-6"> <input class="form-control" type="text"> </div> </div> <div class="form-group" path="\公租房申请表\家庭成员信息\上年度可支配收入"> <label class="col-sm-3 control-label">上年度可支配收入:</label> <div class="col-sm-6"> <input class="form-control" type="text"> </div> </div> </fieldset>'; var div = document.createElement("div"); div.innerHTML=insertText; event.target.parentNode.parentNode.appendChild(div.children[0]); }</script>  
+  <script>function selfRemove(){event.target.parentNode.parentNode.removeChild(event.target.parentNode)}</script>
+ </body>
+</html>

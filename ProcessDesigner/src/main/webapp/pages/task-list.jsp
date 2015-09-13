@@ -83,7 +83,7 @@
             <!-- 最近任务 -->
             <div class="latestTask">
               <h4 class="header">Latest Task</h4>
-              <div ng-show="firstActivity" class="list-unstyled" id="latestTaskList">
+              <div ng-show="firstActivity.id" class="list-unstyled" id="latestTaskList">
                 <img class="activityImg" src="{{firstActivity.step_image_url}}">
                 <div class="info">
                   <p class="info-header">
@@ -187,6 +187,7 @@
 
         $scope.activities = activities;
 
+        <s:if test="firstActivity">
         $scope.firstActivity = {
             id: '<s:property value="firstActivity.id"/>',
             step: '<s:property value="firstActivity.step" />',
@@ -197,6 +198,7 @@
                 name: '<s:property value="firstActivity.process.template.name"/>'
             }
         };
+        </s:if>
       }
     });
 
