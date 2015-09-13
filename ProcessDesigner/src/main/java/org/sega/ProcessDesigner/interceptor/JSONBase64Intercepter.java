@@ -41,6 +41,7 @@ public class JSONBase64Intercepter implements Interceptor {
 				process.setProcessJSON(Base64Util.encode(process
 						.getProcessJSON()));
 				process.setProcessXML(Base64Util.encode(process.getProcessXML()));
+				process.setBindingJSON(Base64Util.encode(process.getBindingJSON()));
 			}
 			actionInvocation.addPreResultListener(new PreResultListener() {
 
@@ -64,6 +65,7 @@ public class JSONBase64Intercepter implements Interceptor {
 									.getProcessJSON()));
 							process.setProcessXML(Base64Util.decode(process
 									.getProcessXML()));
+							process.setBindingJSON(Base64Util.decode(process.getBindingJSON()));
 						}
 					} catch (UnsupportedEncodingException ex) {
 						ex.printStackTrace();

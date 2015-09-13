@@ -52,6 +52,7 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 			process.setEDmappingJSON(process_t.getEDmappingJSON());
 			getSession().put("process", process);
 			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
