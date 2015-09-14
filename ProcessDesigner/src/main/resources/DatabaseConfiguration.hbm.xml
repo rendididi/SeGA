@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-8-31 10:45:26 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="org.sega.ProcessDesigner.models.DatabaseConfiguration" table="DATABASECONFIGURATION" optimistic-lock="version">
+    <class name="org.sega.ProcessDesigner.models.DatabaseConfiguration" table="databaseconfiguration" optimistic-lock="version">
         <id name="id" type="long">
             <column name="ID" />
             <generator class="identity" />
