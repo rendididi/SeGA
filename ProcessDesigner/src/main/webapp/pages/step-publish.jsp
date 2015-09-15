@@ -15,6 +15,8 @@
 		<%@include file="/partials/navbar.jspf"%>
 		<%@include file="/partials/step_detail.jspf"%>
 	</header>
-	Publish
+	
+	<section class="container">
+	</section>
 </body>
 </html>
