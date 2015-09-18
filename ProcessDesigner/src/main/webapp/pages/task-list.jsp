@@ -60,7 +60,8 @@
                       <div class="btn-edit"><span class="glyphicon glyphicon-edit"></span></div>
                       <p class="header text-elli">{{activity.stepName}}</p>
                       <p class="date">{{activity.date}}</p>
-                      <p class="decription">Process: {{activity.process.name}}</p>
+                      <p class="decription">Template: {{activity.process.template}}</p>
+                      <p class="name">Process: {{activity.process.name}}</p>
                     </div>
                   </a>
                 </li>
@@ -166,10 +167,11 @@
       $scope.activities = [];
 
       $scope.init = function(){
-        var activities = [], process_name, activity;
+        var activities = [], tepmplate_name, process_name, activity;
 
         <s:iterator value="activities">
-          process_name = '<s:property value="process.template.name" />';
+          tepmplate_name = '<s:property value="process.template.name" />';
+          process_name = '<s:property value="process.name" />';
           activity = {
             id: <s:property value="id"/>,
             step: '<s:property value="step"/>',
@@ -178,7 +180,8 @@
             step_image_url: "images/step_detail/<s:property value="step"/>.png",
             process_url: "<s:url action='select-task-process'/>?activityId=<s:property value='id'/>",
             process: {
-              name: process_name == '' ? 'unnamed' : process_name
+              template: tepmplate_name == '' ? 'unnamed' : tepmplate_name,
+              name: process_name == ''? 'unnamed': process_name
             }
           };
 
@@ -195,7 +198,8 @@
             date: '<s:date name="firstActivity.datetime" />',
             step_image_url: "images/step_detail/<s:property value="firstActivity.step" />.png",
             process: {
-                name: '<s:property value="firstActivity.process.template.name"/>'
+              template : '<s:property value="firstActivity.process.template.name"/>',
+              name: '<s:property value="firstActivity.process.name"/>'
             }
         };
         </s:if>

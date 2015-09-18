@@ -15,7 +15,7 @@
             <li><a href="#about">About</a></li>
 
           </ul>
-          <% if(step>1) { %>
+          <% if(step>1 &&step<7) { %>
           <form class="navbar-form navbar-left">
             <button type="button" class="btn btn-success" id="btn-navbar-submit">Submit</button>
           </form>

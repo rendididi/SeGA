@@ -497,6 +497,12 @@ section {
 	margin-bottom:0;
 }
 
+.step_line {
+	line-height: 64px;
+	height: 64px;
+	margin-bottom: 26px;
+}
+
 .step_line .dot{
 	display:inline-block;
 
