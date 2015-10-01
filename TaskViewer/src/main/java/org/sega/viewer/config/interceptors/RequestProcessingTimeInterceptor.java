@@ -30,7 +30,7 @@ public class RequestProcessingTimeInterceptor extends HandlerInterceptorAdapter 
         long startTime = System.currentTimeMillis();
         String url = request.getRequestURL().toString();
 
-        System.out.println("-----");
+        System.out.println();
         logger.info("Start Request:" + url + ": Time=" + new Date());
         request.setAttribute("startTime", startTime);
 
@@ -58,7 +58,7 @@ public class RequestProcessingTimeInterceptor extends HandlerInterceptorAdapter 
         String url = request.getRequestURL().toString();
 
         logger.info("Complete Request:" + url + ": Time=" + new Date());
-        logger.info("Request URL::" + url + ": Time Taken=" + time+"ms");
+        logger.info("Time Taken=" + time+"ms");
     }
 
 }

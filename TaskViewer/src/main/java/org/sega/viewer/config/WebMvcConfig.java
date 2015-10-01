@@ -140,7 +140,8 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addInterceptor(requestProcessTimeInterceptor());
     }
 
-    @Bean HandlerInterceptor requestProcessTimeInterceptor(){
+    @Bean
+    public HandlerInterceptor requestProcessTimeInterceptor(){
         return new RequestProcessingTimeInterceptor();
     }
 

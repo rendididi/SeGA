@@ -6,7 +6,7 @@ import org.sega.viewer.utils.HashMapBuilder;
 
 /**
  * @author: Raysmond
- * <p/>
+ *
  * A constant class
  */
 public final class Constants {

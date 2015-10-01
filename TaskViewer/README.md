@@ -21,14 +21,3 @@ Make sure Gradle is installed in your machine. Try `gradle -v` command. Otherwis
 
 View `http://localhost:8080/TaskViewer` on your browser.
 
-### Maven
-
-```
-mvn install -DskipTests
-
-mvn clean jetty:run
-```
-
-View `http://localhost:8080/` on your browser.
-
-

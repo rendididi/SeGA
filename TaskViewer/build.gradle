@@ -1,9 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'war'
-// apply plugin: 'spring-boot'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'org.akhikhl.gretty'
+// apply plugin: 'spring-boot'
 
 // JDK 8
 sourceCompatibility = 1.8
@@ -27,7 +27,7 @@ dependencies {
     compile 'org.springframework.security:spring-security-config:3.2.7.RELEASE'
     compile 'org.springframework.security:spring-security-web:3.2.7.RELEASE'
 
-    compile 'org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE'
+    compile 'org.thymeleaf:thymeleaf-spring4:+'
     compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity3:+'
 
     //persistence
@@ -65,7 +65,7 @@ dependencies {
     // Utilities
     compile 'com.google.guava:guava:+'
 
-    // static resources
+    // static resources, ref. http://www.webjars.org/
     compile 'org.webjars:jquery:2.1.4'
     compile 'org.webjars:bootstrap:3.3.5'
     compile 'org.webjars:font-awesome:4.3.0-3'
@@ -77,12 +77,12 @@ dependencies {
 
     // test
     testCompile 'junit:junit:+'
-    testCompile 'org.mockito:mockito-core:+'
-    testCompile 'org.assertj:assertj-core:+'
-    testCompile 'org.hamcrest:hamcrest-core:+'
-    testCompile 'org.hamcrest:hamcrest-library:+'
-    testCompile 'org.objenesis:objenesis:+'
-    testCompile 'org.springframework:spring-test:+'
+//    testCompile 'org.mockito:mockito-core:+'
+//    testCompile 'org.assertj:assertj-core:+'
+//    testCompile 'org.hamcrest:hamcrest-core:+'
+//    testCompile 'org.hamcrest:hamcrest-library:+'
+//    testCompile 'org.objenesis:objenesis:+'
+//    testCompile 'org.springframework:spring-test:+'
 
     compile 'javax.servlet:jstl:1.2'
 
