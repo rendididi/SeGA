@@ -1,4 +1,4 @@
-package org.sega.viewer.controllers;
+package org.sega.viewer.forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 

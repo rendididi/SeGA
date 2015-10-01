@@ -11,6 +11,9 @@ import org.sega.viewer.utils.HashMapBuilder;
  */
 public final class Constants {
 
+    public static final String ENV_PRODUCTION = "production";
+    public static final String ENV_DEVELOPMENT = "development";
+
     public final static Map<String, String> STEPS = new HashMapBuilder<String, String>()
             .put("step-process-select", "Select Process Template")
             .put("step-custom-entity", "Customize Entity")

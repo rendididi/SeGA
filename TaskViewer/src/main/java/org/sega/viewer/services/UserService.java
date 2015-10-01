@@ -3,62 +3,70 @@ package org.sega.viewer.services;
 import java.util.Collections;
 
 import javax.annotation.PostConstruct;
-
-import org.sega.viewer.models.Account;
+import javax.inject.Inject;
+import org.sega.viewer.models.User;
+import org.sega.viewer.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 public class UserService implements UserDetailsService {
-
     @Autowired
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
-    @Autowired
-    private IModel model;
+    @Inject
+    private PasswordEncoder passwordEncoder;
+
+    @Transactional
+    public User save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return user;
+    }
 
     @PostConstruct
     protected void initialize() {
-//        Account user = accountRepository.findByEmail("user");
-
-//        if (model.findAll(Account.class).isEmpty()) {
-//            accountRepository.save(new Account("user", "demo", "ROLE_OPERATOR"));
-//            accountRepository.save(new Account("admin", "admin", "ROLE_ADMIN"));
-//        }
+        if (userRepository.findByEmail("user") == null) {
+            userRepository.save(new User("user", "demo", User.ROLE_OPERATOR));
+            userRepository.save(new User("admin", "admin", User.ROLE_ADMIN));
+        }
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.findByEmail(username);
-        if (account == null) {
-            throw new UsernameNotFoundException("user not found");
+        User user = userRepository.findByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User with name " + username +" is not found.");
         }
-        return createUser(account);
+        return createUser(user);
     }
 
-    public void signin(Account account) {
-        System.out.println(account.getEmail());
-        System.out.println(account.getPassword());
-        System.out.println(account.getRole());
-        SecurityContextHolder.getContext().setAuthentication(authenticate(account));
+    public void signin(User user) {
+        SecurityContextHolder.getContext().setAuthentication(authenticate(user));
     }
 
-    private Authentication authenticate(Account account) {
-        System.out.println(account.getEmail());
-        System.out.println(account.getPassword());
-        System.out.println(account.getRole());
-        return new UsernamePasswordAuthenticationToken(createUser(account), null, Collections.singleton(createAuthority(account)));
+    private Authentication authenticate(User user) {
+        return new UsernamePasswordAuthenticationToken(
+                createUser(user),
+                null,
+                Collections.singleton(createAuthority(user)));
     }
 
-    private User createUser(Account account) {
-        return new User(account.getEmail(), account.getPassword(), Collections.singleton(createAuthority(account)));
+    private org.springframework.security.core.userdetails.User createUser(User user) {
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                Collections.singleton(createAuthority(user)));
     }
 
-    private GrantedAuthority createAuthority(Account account) {
-        return new SimpleGrantedAuthority(account.getRole());
+    private GrantedAuthority createAuthority(User user) {
+        return new SimpleGrantedAuthority(user.getRole());
     }
 
 }

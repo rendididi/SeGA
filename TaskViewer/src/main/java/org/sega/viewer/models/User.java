@@ -4,13 +4,11 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@SuppressWarnings("serial")
 @Entity
-@Table(name = "account")
-@NamedQuery(name = Account.FIND_BY_EMAIL, query = "select a from Account a where a.email = :email")
-public class Account extends BaseModel implements java.io.Serializable {
-
-    public static final String FIND_BY_EMAIL = "Account.findByEmail";
+@Table(name = "users")
+public class User extends BaseModel{
+    public static final String ROLE_OPERATOR = "ROLE_OPERATOR";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
     @Column(unique = true)
     private String email;
@@ -20,11 +18,11 @@ public class Account extends BaseModel implements java.io.Serializable {
 
     private String role = "ROLE_USER";
 
-    protected Account() {
+    protected User() {
 
     }
 
-    public Account(String email, String password, String role) {
+    public User(String email, String password, String role) {
         this.email = email;
         this.password = password;
         this.role = role;

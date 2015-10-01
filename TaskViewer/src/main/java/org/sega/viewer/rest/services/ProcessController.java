@@ -1,6 +1,6 @@
 package org.sega.viewer.rest.services;
 
-import org.sega.viewer.services.IModel;
+import org.sega.viewer.repositories.ProcessRepository;
 import org.sega.viewer.models.Process;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,18 +14,17 @@ import java.util.List;
  */
 @RestController
 public class ProcessController {
-
     @Autowired
-    private IModel model;
+    private ProcessRepository processRepository;
 
     @RequestMapping(value = "/processes")
     public List<Process> all() {
-        return model.findAll(Process.class);
+        return processRepository.findAll();
     }
 
-    @RequestMapping("/processes/{id}")
-    public Process getMessage(@PathVariable Long id) {
-        return model.get(Process.class, id);
+    @RequestMapping("/processes/{processId:\\d+}")
+    public Process getMessage(@PathVariable Long processId) {
+        return processRepository.findOne(processId);
     }
 
 }

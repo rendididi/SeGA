@@ -2,10 +2,8 @@ package org.sega.viewer.models;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -15,7 +13,7 @@ import java.io.Serializable;
 public abstract class BaseModel implements Comparable<BaseModel>, Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
