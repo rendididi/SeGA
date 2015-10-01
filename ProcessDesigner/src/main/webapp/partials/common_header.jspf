@@ -6,7 +6,6 @@
     <meta name="author" content="SeGA Group.">
     <title>SeGA Workflow System Demo</title>
 
-    <base href="<s:url forceAddSchemeHostAndPort="true" includeContext="true" value="/" namespace="/" />">
     
     <!-- bootstrap & jquery -->
 	<link rel="stylesheet" href="<s:url value="js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" />">

@@ -37,10 +37,10 @@ $(function() {
   edb = new DBTable($("#edb"));
   dbt = new DBTable($("#db_template"));
 
-  if(dbtJSON){
+  if(dbtJSON&&!$.isEmptyObject(dbtJSON)){
     dbt.populateDBTable(dbtJSON, {mapbox:"right"});
   }
-  if(edbJSON){
+  if(edbJSON&&!$.isEmptyObject(edbJSON)){
     edb.populateDBTable(edbJSON, {mapbox:"left"});
   }
 

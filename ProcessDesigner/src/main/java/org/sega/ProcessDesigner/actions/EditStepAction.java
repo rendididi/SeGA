@@ -26,7 +26,7 @@ public class EditStepAction extends ProcessDesignerSupport {
 		} catch (Exception e) {
 			return ERROR;
 		}
-
+		
 		return SUCCESS;
 	}
 	
@@ -66,6 +66,8 @@ public class EditStepAction extends ProcessDesignerSupport {
 			hb_session.beginTransaction();
 			hb_session.saveOrUpdate(edit);
 			hb_session.getTransaction().commit();
+			
+			getSession().put("edit", edit);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

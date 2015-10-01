@@ -45,3 +45,15 @@
 	margin:auto 15px;
 	margin-bottom: 30px;
 }
+
+.modal h2 {
+	margin-bottom: 30px;
+}
+
+.modal .modal-body {
+	padding-bottom: 30px;
+}
+
+.modal .modal-body textarea {
+
+}

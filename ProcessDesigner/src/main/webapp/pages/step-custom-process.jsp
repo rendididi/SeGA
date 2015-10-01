@@ -27,6 +27,7 @@
 				<div class="toolShape startShape" id="startShape" draggable="true"></div>
 				<div class="toolShape endShape" id="endShape" draggable="true"></div>
 				<div class="toolShape taskShape" id="taskShape" draggable="true"></div>
+				<div class="toolShape serviceShape" id="serviceShape" draggable="true"></div>
 				<div class="toolShape linkShape" id="linkShape" draggable="true"></div>
 				<!-- <img  src="<s:url value="images/task.png" />" draggble/> -->
 			</div>

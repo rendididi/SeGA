@@ -25,6 +25,7 @@ public class StepCustomProcessAction extends EditStepAction {
 		FileUtils.writeStringToFile(file, svg,"utf-8");
 		
 		sp.setProcessImageUrl(random_name);
+		sp.setProcessJSON(getProcess().getProcessJSON());
 	}
 	
 	private String svg;

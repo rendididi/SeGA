@@ -44,21 +44,26 @@
               <h3>Activities
                 <small class="totalNum">共<em> <s:property value="total" /> </em>个</small>
               </h3>
+              <s:set value="userType" name="userType"/>
+              <s:if test="#userType=='expert'">
               <div class="btn-create">
                   <a class="" href="<s:url action='step-process-select'/>">
                     <span class="glyphicon glyphicon-plus-sign addActivity" aria-hidden="true"></span>
                     Create </a>
               </div>
-
+              </s:if>
               <ul class="list-unstyled" id="activityList">
                 <li ng-repeat="activity in activities">
-                  <img class="activityImg" src="{{activity.step_image_url}}"/>
-                  <div class="info">
-                    <div class="btn-edit"><a class="btn btn-default btn-xs" href="{{activity.process_url}}"><span class="glyphicon glyphicon-edit"></span></a></div>
-                    <p class="header text-elli">{{activity.stepName}}</p>
-                    <p class="date">{{activity.date}}</p>
-                    <p class="decription">Process: {{activity.process.name}}</p>
-                  </div>
+                  <a class="btn-activity" href="{{activity.process_url}}">
+                    <img class="activityImg" src="{{activity.step_image_url}}"/>
+                    <div class="info">
+                      <div class="btn-edit"><span class="glyphicon glyphicon-edit"></span></div>
+                      <p class="header text-elli">{{activity.stepName}}</p>
+                      <p class="date">{{activity.date}}</p>
+                      <p class="decription">Template: {{activity.process.template}}</p>
+                      <p class="name">Process: {{activity.process.name}}</p>
+                    </div>
+                  </a>
                 </li>
 
               </ul>
@@ -79,7 +84,7 @@
             <!-- 最近任务 -->
             <div class="latestTask">
               <h4 class="header">Latest Task</h4>
-              <div ng-show="firstActivity" class="list-unstyled" id="latestTaskList">
+              <div ng-show="firstActivity.id" class="list-unstyled" id="latestTaskList">
                 <img class="activityImg" src="{{firstActivity.step_image_url}}">
                 <div class="info">
                   <p class="info-header">
@@ -162,11 +167,12 @@
       $scope.activities = [];
 
       $scope.init = function(){
-        var activities = [];
+        var activities = [], tepmplate_name, process_name, activity;
 
         <s:iterator value="activities">
-          var process_name = '<s:property value="process.name" />';
-          var activity = {
+          tepmplate_name = '<s:property value="process.template.name" />';
+          process_name = '<s:property value="process.name" />';
+          activity = {
             id: <s:property value="id"/>,
             step: '<s:property value="step"/>',
             stepName: '<s:property value="stepName"/>',
@@ -174,7 +180,8 @@
             step_image_url: "images/step_detail/<s:property value="step"/>.png",
             process_url: "<s:url action='select-task-process'/>?activityId=<s:property value='id'/>",
             process: {
-              name: process_name == '' ? 'unnamed' : process_name
+              template: tepmplate_name == '' ? 'unnamed' : tepmplate_name,
+              name: process_name == ''? 'unnamed': process_name
             }
           };
 
@@ -183,6 +190,7 @@
 
         $scope.activities = activities;
 
+        <s:if test="firstActivity">
         $scope.firstActivity = {
             id: '<s:property value="firstActivity.id"/>',
             step: '<s:property value="firstActivity.step" />',
@@ -190,9 +198,11 @@
             date: '<s:date name="firstActivity.datetime" />',
             step_image_url: "images/step_detail/<s:property value="firstActivity.step" />.png",
             process: {
-                name: '<s:property value="firstActivity.process.name"/>'
+              template : '<s:property value="firstActivity.process.template.name"/>',
+              name: '<s:property value="firstActivity.process.name"/>'
             }
         };
+        </s:if>
       }
     });
 

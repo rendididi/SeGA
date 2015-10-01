@@ -40,13 +40,7 @@ public class TaskListAction extends ProcessDesignerSupport {
         session.getTransaction().commit();
 
         getSession().put("process", activity.getProcess());
-
-        System.out.println("--------------");
-        System.out.println("process id: " + activity.getProcess().getId());
-        System.out.println("--------------");
-        System.out.println("process db json: " + activity.getProcess().getDatabaseJSON());
-        System.out.println("--------------");
-
+        getSession().put("edit", activity);
 
         // Dynamically redirect a certain step action based on the step name
         redirectAction = activity.getStep();
@@ -62,12 +56,13 @@ public class TaskListAction extends ProcessDesignerSupport {
 
         Criteria criteria = session
                 .createCriteria(ProcessEdit.class)
+                .add(Restrictions.not(Restrictions.eq("step", "published")))
                 .setFirstResult((page - 1) * pageSize)
                 .setMaxResults(pageSize)
                 .addOrder(Order.desc("datetime"));
 
         if (!userType.isEmpty()) {
-            criteria.add(Restrictions.eq("userType", userType));
+            //criteria.add(Restrictions.eq("userType", userType));
         }
 
         activities = (List<ProcessEdit>) criteria.list();

@@ -58,6 +58,7 @@ body label {
 
 #db_tables>table>thead>tr>th {
 	font-weight: 400!important;
+	border: 0;
 }
 
 #db_tables>table>thead>tr>th.mapping_status {

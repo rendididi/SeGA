@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-8-28 14:18:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="org.sega.ProcessDesigner.models.Process" table="PROCESS" optimistic-lock="version">
+    <class name="org.sega.ProcessDesigner.models.Process" table="process" optimistic-lock="version">
         <id name="id" type="long">
             <column name="ID" />
             <generator class="identity" />
@@ -25,6 +25,9 @@
         </property>
         <property name="EDmappingJSON" type="java.lang.String">
             <column name="EDMAPPINGJSON"  sql-type="mediumtext"/>
+        </property>
+        <property name="bindingJSON" type="java.lang.String">
+            <column name="BINDINGJSON"  sql-type="mediumtext"/>
         </property>
         <property name="processImageUrl" type="java.lang.String">
             <column name="PROCESSIMAGEURL" />
