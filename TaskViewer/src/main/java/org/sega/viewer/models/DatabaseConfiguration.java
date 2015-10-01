@@ -29,7 +29,7 @@ public class DatabaseConfiguration extends BaseModel {
     private String keys_json;
 
     @OneToMany(mappedBy = "dbconfig", cascade = {CascadeType.ALL})
-    private Collection<Process> processes = new ArrayList<>();
+    private Collection<Process> processes = new ArrayList<Process>();
 
     public String getType() {
         return type;

@@ -1,26 +1,33 @@
 package org.sega.viewer;
 
+import org.sega.viewer.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
 import org.sega.viewer.services.UserService;
 
+/**
+ * @author Raysmond<jiankunlei@gmail.com>.
+ */
 @Configuration
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private UserRepository userRepository;
 
-    @Bean
+    @Autowired
+    private SecurityProperties security;
+
+    // @Bean
     public UserService userService(){
-        return new UserService();
-    }
-
-    @Bean
-    public TokenBasedRememberMeServices rememberMeServices() {
-        return new TokenBasedRememberMeServices("remember-me-key", userService());
+        return new UserService(userRepository, passwordEncoder());
     }
 
     @Bean
@@ -52,10 +59,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .logoutUrl("/logout")
                 .permitAll()
-                .logoutSuccessUrl("/signin?logout")
-                .and()
-            .rememberMe()
-                .rememberMeServices(rememberMeServices())
-                .key("remember-me-key");
+                .logoutSuccessUrl("/signin?logout");
     }
 }

@@ -16,7 +16,7 @@ public class User extends BaseModel{
     @JsonIgnore
     private String password;
 
-    private String role = "ROLE_USER";
+    private String role = User.ROLE_OPERATOR;
 
     protected User() {
 

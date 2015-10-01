@@ -24,15 +24,4 @@ public final class Constants {
             .put("step-publish", "Publish")
             .build();
 
-    public static final String MESSAGE_SOURCE = "/i18n/messages";
-    public static final String VIEWS = "/views/";
-    public static final String RESOURCES_LOCATION = "/resources/";
-    public static final String RESOURCES_HANDLER = RESOURCES_LOCATION + "**";
-
-
-    public final static String KEY_USER_TYPE = "user_type";
-
-    public enum UserType {
-        EXPERT, DEVELOPER, OPERATOR
-    }
 }

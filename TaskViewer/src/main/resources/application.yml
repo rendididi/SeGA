@@ -1,6 +1,6 @@
 spring:
     profiles:
-        active: dev
+        active: development
 
     thymeleaf:
         cache: false
@@ -17,7 +17,7 @@ spring:
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
       hbm2ddl.auto: update
-      show_sql: false
+      show_sql: true
 
     redis:
       host: localhost
