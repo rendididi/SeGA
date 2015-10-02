@@ -587,9 +587,14 @@ joint.shapes.sega.EndView = joint.dia.ElementView.extend(
 
 //扩展paper方法，去除不必要的interactive样式，用于生成svg图形， by zzs
 joint.dia.Paper.prototype.exportSvg=function(){
+    this.setOrigin(this.options.origin.x-this.getContentBBox().x, -this.getContentBBox().y);
 	var newSvg = ($(this.svg).clone(true))[0];
 	var svgParent = document.createElement("div");
+    $(newSvg).attr("width", this.getContentBBox().width);
+    $(newSvg).attr("height", this.getContentBBox().height);
+    console.log(this.getContentBBox());
 	svgParent.appendChild(newSvg);
 	$(svgParent).find("*").remove(".connection-wrap, .link-tools,.marker-arrowheads");
+
 	return svgParent.innerHTML;
 }

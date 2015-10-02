@@ -188,7 +188,7 @@
     <action name="step-publish-template" method="publishTemplate" class="org.sega.ProcessDesigner.actions.StepPublish">
     	<result type="redirectAction">
     		<param name="actionName">step-publish-result</param> 
-			<param name="publishType">tepmplate</param>
+			<param name="publishType">template</param>
 		</result>
     </action>
     

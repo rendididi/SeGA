@@ -204,6 +204,7 @@
 		return current_selected;
 	}
 	return {
-		current_selected:getcc
+		current_selected:getcc,
+    paper: paper
 	}
 })();
