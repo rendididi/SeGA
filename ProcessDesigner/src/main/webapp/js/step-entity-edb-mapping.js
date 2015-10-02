@@ -61,6 +61,7 @@ $(function() {
   $("button#btn-navbar-submit").on("click",function(e){
     var rules_json = JSON.stringify(mapping_tool.mapping_rules);
     $("#hidden-ruleJSON").val(rules_json);
+    $("#hidden-entityJSON").val(JSON.stringify(tree.get_sega_json()));
     $("#form-submit").submit();
   });
 

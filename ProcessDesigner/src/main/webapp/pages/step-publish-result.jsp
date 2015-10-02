@@ -17,16 +17,16 @@
 	</header>
 	
 	<section class="container publish">
-		<div class="col-md-6 publish1 text-center">
-			<img src="images/launch.svg" width=284 heigh=282 ></img>
-			<s:form action="step-publish-submit">
-			<button class="btn btn-primary btn-lg">Publish As Process</button>
-			</s:form>
-		</div>
-		<div class="col-md-6 publish1 text-center">
-			<img src="images/publish2.svg" width=284 heigh=284 ></img>
-			<s:form action="step-publish-template">
-			<button class="btn btn-primary btn-lg">Publish As Template</button>
+		<div class="col-md-offset-3 col-md-6 publish1 text-center">
+			<s:set value="publishType" var="type"/>
+			<s:if test="%{#type=='process'}">
+			<img src="images/launch.svg" width=500 heigh=500 ></img>
+			</s:if>
+			<s:elseif test="%{#type=='template'}">
+			<img src="images/publish2.svg" width=500 heigh=500 ></img>
+			</s:elseif>
+			<s:form action="task-list">
+			<button class="btn btn-primary btn-lg">Success! Go Back</button>
 			</s:form>
 		</div>
 	</section>

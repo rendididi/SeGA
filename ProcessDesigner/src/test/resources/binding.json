@@ -1,0 +1,63 @@
+[
+    {
+    "task": "2497c211-c77c-4426-96b7-a1c9ebfa83c8",
+    "autoGenerate": true,
+    "syncPoint": true,
+    "read":     [
+      "j1_8",
+      "j1_10",
+      "j1_7",
+      "j1_39",
+      "j1_19",
+      "j1_20",
+      "j1_21",
+      "j1_4",
+      "j1_6"
+    ],
+    "write":     [
+      "j1_31",
+      "j1_32",
+      "j1_33",
+      "j1_34",
+      "j1_28",
+      "j1_48",
+      "j1_29",
+      "j1_35",
+      "j1_36",
+      "j1_37",
+      "j1_30"
+    ]
+  },
+    {
+    "task": "a3481adb-7c10-41f7-a369-bb072b187deb",
+    "autoGenerate": true,
+    "syncPoint": true
+  },
+    {
+    "task": "39217359-5894-44ed-86bc-01e70cd01f4d",
+    "autoGenerate": true,
+    "syncPoint": true
+  },
+    {
+    "task": "a5bd417d-51bc-4e3e-bbe6-0e3139066351",
+    "autoGenerate": true,
+    "syncPoint": true
+  },
+    {
+    "task": "de3e0e78-8697-49ec-8e61-6f5f8fbd0e19",
+    "autoGenerate": true,
+    "syncPoint": true
+  },
+    {
+    "task": "3ce86c67-b75a-487f-9517-bda8aa996e1b",
+    "autoGenerate": true,
+    "syncPoint": true
+  },
+    {
+    "task": "568c54d3-7c17-4d87-a254-04a6f13ed491",
+    "autoGenerate": true,
+    "syncPoint": true,
+    "read": ["j1_12"],
+    "write": ["j1_13"]
+  }
+]

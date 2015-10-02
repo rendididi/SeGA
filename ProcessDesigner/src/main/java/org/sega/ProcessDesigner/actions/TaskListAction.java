@@ -57,6 +57,7 @@ public class TaskListAction extends ProcessDesignerSupport {
         Criteria criteria = session
                 .createCriteria(ProcessEdit.class)
                 .add(Restrictions.not(Restrictions.eq("step", "published")))
+                .add(Restrictions.not(Restrictions.eq("step", "template")))
                 .setFirstResult((page - 1) * pageSize)
                 .setMaxResults(pageSize)
                 .addOrder(Order.desc("datetime"));

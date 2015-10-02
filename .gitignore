@@ -10,3 +10,4 @@ build/
 *.log
 *.iml
 ProcessDesigner/src/main/webapp/images/process/p_svg_*.*
+TaskViewer/src/main/resources/templates/fragments/humantask/

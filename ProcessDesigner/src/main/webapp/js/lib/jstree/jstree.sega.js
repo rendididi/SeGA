@@ -75,6 +75,9 @@
 		this.redraw_node = function(obj, deep, callback, force_draw) {
 			obj = parent.redraw_node.call(this, obj, deep, callback, force_draw);
 			
+			if(this.settings.sega.mapIconOff)
+				return obj;
+
 			if(obj) {
 				var i, j, tmp = null, chk = mapIcon.cloneNode(true);
 				for(i = 0, j = obj.childNodes.length; i < j; i++) {

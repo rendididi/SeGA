@@ -4,7 +4,7 @@ html, body {
 
 body {
 	/*padding-top: 70px;*/
-	font-family: Roboto;
+	font-family: Roboto, "Classic Grotesque W01", "STHeiti", "Microsoft YaHei", "Microsoft YaHei UI", "WenQuanYi Micro Hei", "Hiragino Sans GB";
 	-webkit-font-smoothing: antialiased;
 	/* background-color: #dae3e7; */
 	color: #434343;
