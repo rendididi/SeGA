@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by Raysmond on 9/4/15.
- */
+
 @Entity
 public class DatabaseConfiguration extends BaseModel {
 
