@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static org.sega.viewer.common.Constants.*;
+import static org.sega.viewer.Constants.*;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>.

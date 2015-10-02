@@ -46,6 +46,9 @@ public class Process extends BaseModel {
     @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL})
     private Collection<ProcessEdit> processEdits = new ArrayList<>();
 
+    @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL})
+    private Collection<ProcessEdit> processInstances = new ArrayList<>();
+
     public String getProcessJSON() {
         return processJSON;
     }
@@ -132,5 +135,21 @@ public class Process extends BaseModel {
 
     public void setDbconfig(DatabaseConfiguration dbconfig) {
         this.dbconfig = dbconfig;
+    }
+
+    public Collection<ProcessEdit> getProcessEdits() {
+        return processEdits;
+    }
+
+    public void setProcessEdits(Collection<ProcessEdit> processEdits) {
+        this.processEdits = processEdits;
+    }
+
+    public Collection<ProcessEdit> getProcessInstances() {
+        return processInstances;
+    }
+
+    public void setProcessInstances(Collection<ProcessEdit> processInstances) {
+        this.processInstances = processInstances;
     }
 }

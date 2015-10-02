@@ -2,9 +2,7 @@ package org.sega.viewer.forms;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-/**
- * Created by Raysmond on 9/4/15.
- */
+
 public class SigninForm {
 
     @NotBlank(message = "{notBlank.message}")
