@@ -38,7 +38,8 @@ $(function() {
         "valid_children" : []
       }
     },
-    "plugins" : [  "dnd",  "types", "wholerow", "sega" ]
+    "sega": {mapIconOff: true},
+    "plugins" : [  "dnd",  "types", "wholerow","sega" ]
 
   });
 

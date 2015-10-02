@@ -1,0 +1,319 @@
+{
+  "id": "j1_1",
+  "text": "公租房申请表",
+  "type": "artifact",
+  "data":   {
+    "value_type": "auto",
+    "isMapped": true,
+    "mapTo": "tpg_gzfsqspb"
+  },
+  "children":   [
+        {
+      "id": "j1_4",
+      "text": "id",
+      "type": "key",
+      "data":       {
+        "value_type": "auto",
+        "isMapped": true,
+        "mapped_type": "int(12)"
+      },
+      "children": []
+    },
+        {
+      "id": "j1_5",
+      "text": "申请人信息",
+      "type": "artifact",
+      "data":       {
+        "value_type": "auto",
+        "isMapped": true,
+        "mapTo": "tpg_ryxx"
+      },
+      "children":       [
+                {
+          "id": "j1_6",
+          "text": "id",
+          "type": "key",
+          "data":           {
+            "value_type": "auto",
+            "isMapped": true,
+            "mapped_type": "int(12)"
+          },
+          "children": []
+        },
+                {
+          "id": "j1_7",
+          "text": "姓名",
+          "type": "attribute",
+          "data":           {
+            "value_type": "auto",
+            "isMapped": true,
+            "mapped_type": "varchar(100)"
+          },
+          "children": []
+        },
+                {
+          "id": "j1_8",
+          "text": "身份证号码（阿斯顿和电视剧）",
+          "type": "attribute",
+          "data":           {
+            "value_type": "auto",
+            "isMapped": true,
+            "mapped_type": "varchar(50)"
+          },
+          "children": []
+        },
+                {
+          "id": "j1_10",
+          "text": "婚姻状况",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_11",
+          "text": "上年度可支配收入",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_12",
+          "text": "职业状况",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_13",
+          "text": "工作单位",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_48",
+          "text": "证件照片",
+          "type": "attribute",
+          "data": {"value_type": "file"},
+          "children": []
+        },
+                {
+          "id": "j1_16",
+          "text": "户口所在地址",
+          "type": "group",
+          "data": {"value_type": "auto"},
+          "children":           [
+                        {
+              "id": "j1_19",
+              "text": "区",
+              "type": "attribute",
+              "data": {"value_type": "auto"},
+              "children": []
+            },
+                        {
+              "id": "j1_20",
+              "text": "街道",
+              "type": "attribute",
+              "data": {"value_type": "auto"},
+              "children": []
+            },
+                        {
+              "id": "j1_21",
+              "text": "社区",
+              "type": "attribute",
+              "data": {"value_type": "auto"},
+              "children": []
+            }
+          ]
+        },
+                {
+          "id": "j1_17",
+          "text": "入本市户籍时间",
+          "type": "group",
+          "data": {"value_type": "auto"},
+          "children":           [
+                        {
+              "id": "j1_22",
+              "text": "年",
+              "type": "attribute",
+              "data": {"value_type": "auto"},
+              "children": []
+            },
+                        {
+              "id": "j1_23",
+              "text": "月",
+              "type": "attribute",
+              "data": {"value_type": "auto"},
+              "children": []
+            }
+          ]
+        },
+                {
+          "id": "j1_18",
+          "text": "首次缴纳（完税）时间",
+          "type": "group",
+          "data": {"value_type": "auto"},
+          "children":           [
+                        {
+              "id": "j1_24",
+              "text": "年",
+              "type": "attribute",
+              "data": {"value_type": "auto"},
+              "children": []
+            },
+                        {
+              "id": "j1_25",
+              "text": "月",
+              "type": "attribute",
+              "data": {"value_type": "auto"},
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+        {
+      "id": "j1_27",
+      "text": "配偶信息",
+      "type": "artifact",
+      "data": {"value_type": "auto"},
+      "children":       [
+                {
+          "id": "j1_28",
+          "text": "id",
+          "type": "key",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_31",
+          "text": "姓名",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_32",
+          "text": "身份证号",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_33",
+          "text": "工作单位",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_34",
+          "text": "上年度可支配收入",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        }
+      ]
+    },
+        {
+      "id": "j1_29",
+      "text": "家庭成员信息",
+      "type": "artifact_n",
+      "data": {"value_type": "auto"},
+      "children":       [
+                {
+          "id": "j1_30",
+          "text": "id",
+          "type": "key",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_35",
+          "text": "姓名",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_36",
+          "text": "与申请人关系",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        },
+                {
+          "id": "j1_37",
+          "text": "上年度可支配收入",
+          "type": "attribute",
+          "data": {"value_type": "auto"},
+          "children": []
+        }
+      ]
+    },
+        {
+      "id": "j1_38",
+      "text": "核查状态",
+      "type": "attribute",
+      "data": {"value_type": "auto"},
+      "children": []
+    },
+        {
+      "id": "j1_39",
+      "text": "受理人",
+      "type": "attribute",
+      "data": {"value_type": "auto"},
+      "children": []
+    },
+        {
+      "id": "j1_40",
+      "text": "受理时间",
+      "type": "attribute",
+      "data": {"value_type": "auto"},
+      "children": []
+    },
+        {
+      "id": "j1_41",
+      "text": "区局公示状态",
+      "type": "attribute",
+      "data": {"value_type": "auto"},
+      "children": []
+    },
+        {
+      "id": "j1_42",
+      "text": "市局公示状态",
+      "type": "attribute",
+      "data":       {
+        "value_type": "auto",
+        "isMapped": true,
+        "mapped_type": "int(8)"
+      },
+      "children": []
+    },
+        {
+      "id": "j1_43",
+      "text": "初审意见",
+      "type": "attribute",
+      "data":       {
+        "value_type": "string-textarea",
+        "isMapped": true,
+        "mapped_type": "varchar(500)"
+      },
+      "children": []
+    },
+        {
+      "id": "j1_44",
+      "text": "复审意见",
+      "type": "attribute",
+      "data": {"value_type": "string-textarea"},
+      "children": []
+    },
+        {
+      "id": "j1_45",
+      "text": "终审意见",
+      "type": "attribute",
+      "data": {"value_type": "string-textarea"},
+      "children": []
+    }
+  ]
+}

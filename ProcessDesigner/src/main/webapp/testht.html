@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="SeGA Workflow System Demo">
+    <meta name="author" content="SeGA Group.">
+    <title>SeGA Workflow System Demo</title>
+
+    
+    <!-- bootstrap & jquery -->
+	<link rel="stylesheet" href="js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+	<script src="js/lib/jquery/jquery-2.1.0.min.js"></script>
+	<script src="js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+	<script src="js/lib/selectpicker/bootstrap-select.min.js"></script>
+	
+	<link href="css/font.css" rel="stylesheet">
+	<link href="css/theme.css" rel="stylesheet">
+	<link href="css/humantask.css" rel="stylesheet">
+	<link href="js/lib/selectpicker/css/bootstrap-select.css" rel="stylesheet">
+</head>
+<body>
+<section class="container form-horizontal">
+	<fieldset class="artiform artifact" data-path="j1_1">
+	<h3>
+		公租房申请表
+	</h3>
+	<div class="form-group row" data-path="j1_1">
+	<label class="col-md-3 control-label">
+		id
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_4" class="form-control" disabled/>
+	</div>
+</div><fieldset class="artiform artifact" data-path="j1_1/j1_5">
+	<h3>
+		申请人信息
+	</h3>
+	<div class="form-group row" data-path="j1_1/j1_5">
+	<label class="col-md-3 control-label">
+		id
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_6" class="form-control" disabled/>
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_5">
+	<label class="col-md-3 control-label">
+		姓名
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_7" class="form-control" disabled />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_5">
+	<label class="col-md-3 control-label">
+		身份证号码（阿斯顿和电视剧）
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_8" class="form-control" disabled />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_5">
+	<label class="col-md-3 control-label">
+		婚姻状况
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_10" class="form-control" disabled />
+	</div>
+</div><div class="row" data-path="j1_1/j1_5/j1_16">
+	<label class="col-md-3 control-label">
+		户口所在地址
+	</label>
+	<div class="col-md-9">
+		<div class="form-group row" data-path="j1_1/j1_5/j1_16">
+	<label class="col-md-3 control-label">
+		区
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_19" class="form-control" disabled />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_5/j1_16">
+	<label class="col-md-3 control-label">
+		街道
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_20" class="form-control" disabled />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_5/j1_16">
+	<label class="col-md-3 control-label">
+		社区
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_21" class="form-control" disabled />
+	</div>
+</div>
+	</div>
+</div>
+</fieldset><fieldset class="artiform artifact" data-path="j1_1/j1_27">
+	<h3>
+		配偶信息
+	</h3>
+	<div class="form-group row" data-path="j1_1/j1_27">
+	<label class="col-md-3 control-label">
+		id
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_28" class="form-control" />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_27">
+	<label class="col-md-3 control-label">
+		姓名
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_31" class="form-control"  />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_27">
+	<label class="col-md-3 control-label">
+		身份证号
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_32" class="form-control"  />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_27">
+	<label class="col-md-3 control-label">
+		工作单位
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_33" class="form-control"  />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_27">
+	<label class="col-md-3 control-label">
+		上年度可支配收入
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_34" class="form-control"  />
+	</div>
+</div>
+</fieldset><fieldset class="artiform artifact_n" data-path="j1_1/j1_29">
+	<template>
+		<template></template>
+		<fieldset class="artiform artifact_n_instance" data-path="j1_1/j1_29/new">
+			<script>
+$(function(){
+	var scriptTag = document.scripts[document.scripts.length - 1];
+	var parentTag = scriptTag.parentNode;
+	var root = $(parentTag);
+	root.find(".btn-remove").on("click", function(){
+		root.remove();
+	});
+});
+			</script>
+			<h3>
+				<div class="text">
+					NEW 家庭成员信息
+				</div>
+				<div class="btn-legend btn-remove">
+					<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+				</div>
+			</h3>
+			<div class="form-group row" data-path="j1_1/j1_29">
+	<label class="col-md-3 control-label">
+		id
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_30" class="form-control" />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_29">
+	<label class="col-md-3 control-label">
+		姓名
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_35" class="form-control"  />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_29">
+	<label class="col-md-3 control-label">
+		与申请人关系
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_36" class="form-control"  />
+	</div>
+</div><div class="form-group row" data-path="j1_1/j1_29">
+	<label class="col-md-3 control-label">
+		上年度可支配收入
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_37" class="form-control"  />
+	</div>
+</div>
+		</fieldset>
+	</template>
+	<script>
+
+$(function(){
+	var scriptTag = document.scripts[document.scripts.length - 1];
+	var parentTag = scriptTag.parentNode;
+	var root = $(parentTag);
+	var template = root.children("template").html();
+	root.find(".btn-add").on("click", function(){
+		root.append(template);
+	});
+});
+	</script>
+	<h3>
+		<div class="text">
+			家庭成员信息
+		</div>
+		<div class="btn-legend btn-add">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		</div>
+	</h3>
+</fieldset><div class="form-group row" data-path="j1_1">
+	<label class="col-md-3 control-label">
+		受理人
+	</label>
+	<div class="col-md-9">
+		<input type="text" name="id-j1_39" class="form-control" disabled />
+	</div>
+</div>
+</fieldset>
+</section>
+</body>
+</html>

@@ -8,3 +8,8 @@
 	margin-left: auto;
 	margin-bottom: 50px;
 }
+
+.publish button.btn {
+	font-family: Open Sans;
+	font-weight: 300;
+}

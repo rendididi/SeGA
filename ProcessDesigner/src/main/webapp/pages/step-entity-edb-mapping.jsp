@@ -43,6 +43,7 @@
   <section>
     <s:form action="step-entity-edb-mapping-submit" id="form-submit">
       <s:hidden name="process.EDmappingJSON" id="hidden-ruleJSON"></s:hidden>
+      <s:hidden name="process.entityJSON" id="hidden-entityJSON"></s:hidden>
     </s:form>
   </section>
   

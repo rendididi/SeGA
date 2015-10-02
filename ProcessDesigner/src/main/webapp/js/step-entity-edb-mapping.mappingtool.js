@@ -155,7 +155,9 @@ var mapping_tool = {
     this.doMapEntity(e, d);
     mapTableRow(d);
     this.drawSuggestion();
-
+    if(tree.get_node(e).type=="attribute")
+      tree.get_node(e).data.mapped_type = d.children().last().text();
+    
     // handle checkbox event
     var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
     var chk2 = d.children("td.isMapped");
@@ -313,6 +315,10 @@ var mapping_tool = {
         if(entity.type == "key") { //handle main entity
           tree.get_node(entity.parent).data.isMapped = true;
           tree.get_node(entity.parent).data.mapTo = rules[i].db.table;
+        }
+
+        if(entity.type == "key" || entity.type == "attribute"){
+          entity.data.mapped_type = d.children().last().text();
         }
         var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
         var chk2 = d.children("td.isMapped");

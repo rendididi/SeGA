@@ -116,7 +116,7 @@
                 }
 
                 var node = this.get_node(obj);
-                if(tmp && tmp.tagName === "DIV" &&(node.type == "attribute"||node.type == "key")) {
+                if(tmp && tmp.tagName === "DIV" &&(node.type == "attribute"||node.type == "key"||node.type == "artifact_n")) {
                     $(tmp).append(new_write);
                     $(tmp).append(new_read);
                     new_read.click({node:node, mode:"read"}, attrHandler);

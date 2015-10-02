@@ -23,5 +23,6 @@ public class StepEntityEDBMappingAction extends EditStepAction {
 	@Override
 	public void updateProcess(Process sp) throws Exception {
 		sp.setEDmappingJSON(getProcess().getEDmappingJSON());
+		sp.setEntityJSON(getProcess().getEntityJSON());
 	}
 }
