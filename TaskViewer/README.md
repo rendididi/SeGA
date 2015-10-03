@@ -16,7 +16,7 @@ Make sure Gradle is installed in your machine. Try `gradle -v` command. Otherwis
 ./gradlew build
 
 # Start the web application
-./gradlew jettyRun
+./gradlew bootRun
 ```
 
 View `http://localhost:8080/TaskViewer` on your browser.
