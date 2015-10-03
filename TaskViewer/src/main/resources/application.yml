@@ -1,3 +1,5 @@
+server:
+  port: 9000
 spring:
     profiles:
         active: development
@@ -11,8 +13,8 @@ spring:
     dataSource:
       driverClassName: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1/uar
-      username: root
-      password:
+      username: sega
+      password: sega
 
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect

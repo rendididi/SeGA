@@ -14,4 +14,5 @@ public class ProcessInstance extends BaseModel{
     @ManyToOne
     private Process process;
 
+
 }

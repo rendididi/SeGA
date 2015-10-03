@@ -43,10 +43,10 @@ public class Process extends BaseModel {
     @JoinColumn(name = "dbconfig")
     private DatabaseConfiguration dbconfig;
 
-    @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL},  fetch = FetchType.LAZY)
     private Collection<ProcessEdit> processEdits = new ArrayList<>();
 
-    @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL},  fetch = FetchType.LAZY)
     private Collection<ProcessEdit> processInstances = new ArrayList<>();
 
     public String getProcessJSON() {
