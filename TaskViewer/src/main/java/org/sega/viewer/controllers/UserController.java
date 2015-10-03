@@ -8,7 +8,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
 @Controller
-public class UsersController {
+public class UserController {
     private static final String VIEW_SIGNIN = "users/signin";
 
     @RequestMapping(value = "signin", method = GET)

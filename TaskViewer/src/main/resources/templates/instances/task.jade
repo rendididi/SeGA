@@ -1,0 +1,15 @@
+extends ../layout/app_ng
+
+block content
+  
+  h2 Process Instance: #{instance.getMainArtifact().getEntityId()}
+  h2 Task ID: #{taskId}
+  
+  hr
+  
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title #{taskId}
+    .panel-body 
+      #task-template
+        !{templateHtml}

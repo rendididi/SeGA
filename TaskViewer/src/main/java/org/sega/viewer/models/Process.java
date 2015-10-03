@@ -29,6 +29,8 @@ public class Process extends BaseModel {
     @Basic(fetch = FetchType.LAZY)
     private String EDmappingJSON;
 
+    private String bindingJson;
+
     private String processImageUrl;
 
     private String description;
@@ -151,5 +153,13 @@ public class Process extends BaseModel {
 
     public void setProcessInstances(Collection<ProcessEdit> processInstances) {
         this.processInstances = processInstances;
+    }
+
+    public String getBindingJson() {
+        return bindingJson;
+    }
+
+    public void setBindingJson(String bindingJson) {
+        this.bindingJson = bindingJson;
     }
 }

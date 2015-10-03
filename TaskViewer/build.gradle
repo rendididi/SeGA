@@ -98,6 +98,7 @@ dependencies {
     compile 'com.google.guava:guava:+'
     compile 'org.modelmapper:modelmapper:0.7.5'
     compile 'org.projectlombok:lombok:1.16.6'
+    compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
 
     // static resources, ref. http://www.webjars.org/
     compile 'org.webjars:jquery:2.1.4'
