@@ -38,6 +38,7 @@ public class ArtifactService {
 
         EntityJsonService entityJsonService = new EntityJsonService(processInstance.getProcess().getEntityJSON());
         artifact.setName(entityJsonService.getEntityName());
+        artifact.setEntityKey(entityJsonService.getEntityId());
         artifact.setEntityId(generateEntityId());
 
         artifact = artifactRepository.save(artifact);

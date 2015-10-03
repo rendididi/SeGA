@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -44,14 +45,20 @@ public class ProcessesController {
         Process process = processService.getProcess(processId);
         ProcessInstance instance = processInstanceService.createProcessInstance(process);
 
-        return "redirect:" + instance.getId();
+        return "redirect:instances/" + instance.getId();
     }
 
-    @RequestMapping(value = "{instanceId:\\d+}", method = GET)
+    @RequestMapping(value = "instances/{instanceId:\\d+}", method = GET)
     public String showProcessInstance(@PathVariable Long instanceId, Model model){
         ProcessInstance processInstance = processInstanceRepository.findOne(instanceId);
         model.addAttribute("instance", processInstance);
 
         return "processes/show";
+    }
+
+    @RequestMapping(value = "{processId:\\d+}/templates/{taskId}", method = GET)
+    public ModelAndView getTaskTemplate(@PathVariable Long processId, @PathVariable String taskId){
+        ModelAndView template = new ModelAndView("fragments/humantask/"+processId+"/"+taskId);
+        return template;
     }
 }

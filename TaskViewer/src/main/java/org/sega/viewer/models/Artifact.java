@@ -21,6 +21,9 @@ public class Artifact extends BaseModel {
     @ManyToOne
     private ArtifactList artifactList;
 
+    @Column(name = "entity_key", nullable = false)
+    private String entityKey;
+
     // machine id like 'j1_1'
     @Column(name = "entity_id", nullable = false, unique = true)
     private Long entityId;
@@ -74,6 +77,14 @@ public class Artifact extends BaseModel {
 
     public void setEntityId(Long entityId) {
         this.entityId = entityId;
+    }
+
+    public String getEntityKey() {
+        return entityKey;
+    }
+
+    public void setEntityKey(String entityKey) {
+        this.entityKey = entityKey;
     }
 
     public List<Artifact> getArtifacts() {

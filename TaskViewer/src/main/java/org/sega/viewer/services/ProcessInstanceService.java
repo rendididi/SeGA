@@ -20,10 +20,8 @@ public class ProcessInstanceService {
 
     public ProcessInstance createProcessInstance(Process process){
         ProcessInstance instance = new ProcessInstance(process);
+        artifactService.createMainArtifact(instance);
 
-        Artifact mainArtifact = artifactService.createMainArtifact(instance);
-        instance.setMainArtifact(mainArtifact);
-
-        return instanceRepository.save(instance);
+        return instance;
     }
 }
