@@ -1,0 +1,16 @@
+extends ../layout/app_ng
+
+.process-instance
+  .row
+    .col-sm-3
+      span ID:
+    .col-sm-9
+      span #{instance.getId()}
+  
+  hr
+  
+  .row
+    .col-sm-3
+      span Name:
+    .col-sm-9
+      span #{instance.getName()}

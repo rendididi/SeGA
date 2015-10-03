@@ -11,14 +11,32 @@ import java.util.List;
 @Entity
 @Table(name = "artifacts")
 public class Artifact extends BaseModel {
-    @Column(nullable = false)
-    private String artifactId;
+    @OneToOne
+    @JoinColumn(name = "process_instance_id")
+    private ProcessInstance processInstance;
 
+    @ManyToOne
+    private Artifact parent;
+
+    @ManyToOne
+    private ArtifactList artifactList;
+
+    // machine id like 'j1_1'
+    @Column(name = "entity_id", nullable = false, unique = true)
+    private Long entityId;
+
+    // friendly artifact name
     @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "artifact", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Attribute> attributes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Artifact> artifacts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ArtifactList> artifactLists = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)
     private Date createdAt;
@@ -34,12 +52,36 @@ public class Artifact extends BaseModel {
         updatedAt = new Date();
     }
 
-    public String getArtifactId() {
-        return artifactId;
+    public ProcessInstance getProcessInstance() {
+        return processInstance;
     }
 
-    public void setArtifactId(String artifactId) {
-        this.artifactId = artifactId;
+    public void setProcessInstance(ProcessInstance processInstance) {
+        this.processInstance = processInstance;
+    }
+
+    public Artifact getParent() {
+        return parent;
+    }
+
+    public void setParent(Artifact parent) {
+        this.parent = parent;
+    }
+
+    public Long getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(Long entityId) {
+        this.entityId = entityId;
+    }
+
+    public List<Artifact> getArtifacts() {
+        return artifacts;
+    }
+
+    public void setArtifacts(List<Artifact> artifacts) {
+        this.artifacts = artifacts;
     }
 
     public String getName() {
@@ -72,5 +114,13 @@ public class Artifact extends BaseModel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<ArtifactList> getArtifactLists() {
+        return artifactLists;
+    }
+
+    public void setArtifactLists(List<ArtifactList> artifactLists) {
+        this.artifactLists = artifactLists;
     }
 }

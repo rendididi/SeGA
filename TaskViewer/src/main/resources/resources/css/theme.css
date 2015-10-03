@@ -35,6 +35,10 @@ header {
 	transition: padding 0.2s linear;
 }
 
+.content-container{
+	padding-top: 50px;
+}
+
 h3 {
 	margin-top: 4px;
 	margin-bottom: 4px;
@@ -548,7 +552,7 @@ section {
 }
 
 #navbar {
-	
+
 }
 
 .navbar-user {
@@ -592,6 +596,6 @@ section {
 	overflow-x:hidden;
 }
 .json-modal-body>p{
-	
+
 	word-wrap:break-word;
 }

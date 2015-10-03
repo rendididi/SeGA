@@ -1,4 +1,4 @@
-package org.sega.viewer.rest.services;
+package org.sega.viewer.api;
 
 import org.sega.viewer.repositories.ProcessRepository;
 import org.sega.viewer.models.Process;
@@ -10,19 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Created by Raysmond on 9/5/15.
+ * @author Raysmond<jiankunlei@gmail.com>
  */
 @RestController
+@RequestMapping("api/processes")
 public class ProcessController {
     @Autowired
     private ProcessRepository processRepository;
 
-    @RequestMapping(value = "/processes")
+    @RequestMapping(value = "")
     public List<Process> all() {
         return processRepository.findAll();
     }
 
-    @RequestMapping("/processes/{processId:\\d+}")
+    @RequestMapping("{processId:\\d+}")
     public Process getMessage(@PathVariable Long processId) {
         return processRepository.findOne(processId);
     }
