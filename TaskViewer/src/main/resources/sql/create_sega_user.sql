@@ -1,0 +1,4 @@
+CREATE USER 'sega'@'localhost' IDENTIFIED BY 'sega';
+GRANT ALL PRIVILEGES ON *.* TO 'sega'@'localhost' WITH GRANT OPTION;
+CREATE USER 'sega'@'%' IDENTIFIED BY 'sega';
+GRANT ALL PRIVILEGES ON *.* TO 'sega'@'%' WITH GRANT OPTION;

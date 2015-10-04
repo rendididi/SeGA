@@ -93,7 +93,7 @@ header h1 {
 }
 
 .login-container:hover .login-panel {
-	height: 360px;
+	height: 280px;
 	padding-top: 120px;
 	opacity: 1;
 }
