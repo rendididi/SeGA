@@ -19,6 +19,7 @@ class ExceptionHandler {
 	public ModelAndView exception(Exception exception, WebRequest request) {
 		ModelAndView modelAndView = new ModelAndView("error/general");
 		modelAndView.addObject("errorMessage", Throwables.getRootCause(exception));
+		exception.printStackTrace();
 		return modelAndView;
 	}
 }
