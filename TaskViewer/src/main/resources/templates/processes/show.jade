@@ -1,10 +1,66 @@
-extends ../layout/app_ng
+extends ../layout/app
 
 block content 
-  .process-instance
-    span Entity ID: #{instance.getMainArtifact().getEntityId()}
+  .process
+    span Process ID: #{process.getId()}
     
     hr
     
-    // TODO 暂时直接链接到“受理”的任务测试
-    a.btn.btn-primary(href="/processes/instances/#{instance.getId()}/task/2497c211-c77c-4426-96b7-a1c9ebfa83c8") 受理
+    
+    .panel.panel-default 
+      .panel-heading 
+        h3.panel-title Process JSON 
+        
+      .panel-body 
+        pre !{processJson}
+    
+    .panel.panel-default 
+      .panel-heading
+        h3.panel-title Entity JSON 
+      
+      .panel-body 
+        pre !{entityJson}
+    
+    .panel.panel-default 
+      .panel-heading
+        h3.panel-title ED Mapping JSON 
+      
+      .panel-body 
+        pre !{edMappingJson}
+  
+    .panel.panel-default 
+      .panel-heading
+        h3.panel-title DD Mapping JSON 
+      
+      .panel-body 
+        pre !{ddMappingJson}
+    
+    .panel.panel-default 
+      .panel-heading
+        h3.panel-title Binding Result JSON  
+      
+      .panel-body 
+        pre !{bindingResultJson}
+
+    .panel.panel-default 
+      .panel-heading
+        h3.panel-title Database JSON   
+      
+      .panel-body 
+        pre !{databaseJson}
+  
+  script 
+    $(function(){
+        $("pre").hide();
+        $(".panel-title").click(function(){
+            $(this).parent().parent().find("pre").toggle();
+        });
+        
+        $("pre").each(function(){
+            if($(this).text() == "")
+              return;
+            var json = JSON.stringify(eval('(' + $(this).text() + ')'), null, '  ');
+            $(this).text(json);
+        });
+        
+    });

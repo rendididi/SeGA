@@ -34,6 +34,7 @@ public class InstanceController {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), taskId);
 
+
         logger.debug("Resolved task template file: " + path);
 
         model.addAttribute("instance", instance);

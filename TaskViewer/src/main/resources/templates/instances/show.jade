@@ -1,0 +1,10 @@
+extends ../layout/app_ng
+
+block content 
+  .process-instance
+    span Entity ID: #{instance.getMainArtifact().getEntityId()}
+    
+    hr
+    
+    // TODO 暂时直接链接到“受理”的任务测试
+    a.btn.btn-primary(href="/processes/instances/#{instance.getId()}/task/2497c211-c77c-4426-96b7-a1c9ebfa83c8") 受理
