@@ -7,6 +7,7 @@ import org.sega.viewer.models.Process;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.support.TaskType;
 import org.sega.viewer.services.support.TasksResolver;
+import org.sega.viewer.utils.Base64Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,51 @@ public class ProcessInstanceService {
     @Autowired
     private ArtifactService artifactService;
 
+    // todo
+    public JSONObject readEntity(ProcessInstance processInstance, String taskId){
+        JSONObject entity = null;
+        TasksResolver tasksResolver = getTaskResolver(processInstance.getProcess().getBindingJson());
+
+        if (tasksResolver == null)
+            return null;
+
+        TaskType taskType = tasksResolver.getTask(taskId);
+
+        return entity;
+    }
+
+    // todo
+    public JSONObject writeEntity(ProcessInstance processInstance, String taskId){
+        JSONObject entity = null;
+        TasksResolver tasksResolver = getTaskResolver(processInstance.getProcess().getBindingJson());
+
+        if (tasksResolver == null)
+            return null;
+
+        TaskType taskType = tasksResolver.getTask(taskId);
+
+        return entity;
+    }
+
+
     public ProcessInstance createProcessInstance(Process process){
         ProcessInstance instance = new ProcessInstance(process);
-        artifactService.createMainArtifact(instance);
+//        artifactService.createMainArtifact(instance);
+
+        // TODO
+        instance.setEntity(createEntity(process));
 
         return instance;
+    }
+
+    private String createEntity(Process process) {
+        try {
+            return Base64Util.decode(process.getEntityJSON());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     private TasksResolver getTaskResolver(String bingResultJson){

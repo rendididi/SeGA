@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import java.io.IOException;
 
 /**
@@ -29,7 +31,7 @@ public class InstanceController {
 
     private static final Logger logger = LoggerFactory.getLogger(InstanceController.class);
 
-    @RequestMapping("{instanceId:\\d+}/task/{taskId}")
+    @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.GET)
     public String showTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model) {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), taskId);
@@ -43,6 +45,13 @@ public class InstanceController {
         model.addAttribute("templateHtml", readTemplateFile(path));
 
         return "instances/task";
+    }
+
+    @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.POST)
+    public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model){
+
+
+        return "redirect:/processes/instances/" + instanceId;
     }
 
     private String readTemplateFile(String fileName) {
