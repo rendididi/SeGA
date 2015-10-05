@@ -1,6 +1,7 @@
 package org.sega.viewer.controllers;
 
 import org.apache.commons.io.IOUtils;
+import org.json.JSONObject;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.ProcessInstanceService;
@@ -36,9 +37,16 @@ public class InstanceController {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), taskId);
 
-
         logger.debug("Resolved task template file: " + path);
 
+        // TODO
+        // JSONObject entity = processInstanceService.readEntity(instance, taskId);
+
+        JSONObject entity = new JSONObject()
+                .put("j1_4", 148245)
+                .put("j1_5", new JSONObject().put("j1_6", 1001).put("j1_7","Raysmond"));
+
+        model.addAttribute("entity", entity.toString());
         model.addAttribute("instance", instance);
         model.addAttribute("templatePath", path);
         model.addAttribute("taskId", taskId);
@@ -49,7 +57,9 @@ public class InstanceController {
 
     @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.POST)
     public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model){
+        ProcessInstance instance = processInstanceRepository.findOne(instanceId);
 
+        JSONObject entity = processInstanceService.writeEntity(instance, taskId);
 
         return "redirect:/processes/instances/" + instanceId;
     }
