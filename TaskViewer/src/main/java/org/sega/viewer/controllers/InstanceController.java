@@ -59,7 +59,7 @@ public class InstanceController {
     public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model){
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
 
-        JSONObject entity = processInstanceService.writeEntity(instance, taskId);
+        //JSONObject entity = processInstanceService.writeEntity(instance, taskId);
 
         return "redirect:/processes/instances/" + instanceId;
     }
