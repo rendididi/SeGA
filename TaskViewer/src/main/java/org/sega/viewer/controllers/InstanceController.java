@@ -10,12 +10,10 @@ import org.sega.viewer.services.support.ProcessJsonResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -37,18 +35,13 @@ public class InstanceController {
     private static final Logger logger = LoggerFactory.getLogger(InstanceController.class);
 
     @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.GET)
-    public String showTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model) {
+    public String showTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model) throws UnsupportedEncodingException {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), taskId);
 
         logger.debug("Resolved task template file: " + path);
 
-        // TODO
-        // JSONObject entity = processInstanceService.readEntity(instance, taskId);
-
-        JSONObject entity = new JSONObject()
-                .put("j1_4", 148245)
-                .put("j1_5", new JSONObject().put("j1_6", 1001).put("j1_7","Raysmond"));
+        JSONObject entity = processInstanceService.readEntity(instance, taskId);
 
         model.addAttribute("entity", entity.toString());
         model.addAttribute("instance", instance);
@@ -59,20 +52,17 @@ public class InstanceController {
         return "instances/task";
     }
 
-    @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.POST, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, @RequestBody String entity, Model model) throws UnsupportedEncodingException {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
 
-//        JSONObject input = new JSONObject(entity);
+        JSONObject input = new JSONObject(entity);
 
-        // TODO
-//        JSONObject entity = processInstanceService.writeEntity(instance, taskId);
+        processInstanceService.writeEntity(input, instance, taskId);
+        processInstanceService.updateInstance(instance);
 
-//        ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(instance.getProcess().getProcessJSON());
-//        Node nextTask = processJsonResolver.getNextTask(taskId);
-//        instance.setNextTask(nextTask.getId());
-
-        return "redirect:/processes/instances/" + instanceId;
+        return instance.getEntity();
     }
 
     private String readTemplateFile(String fileName) {

@@ -16,6 +16,7 @@ import org.sega.viewer.utils.Base64Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -80,8 +81,14 @@ public class ProcessInstanceService {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
 
+    @Transactional
+    public ProcessInstance updateInstance(ProcessInstance processInstance) throws UnsupportedEncodingException {
+        ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
+        processInstance.setNextTask(processJsonResolver.getNextTask(processInstance.getNextTask()).getId());
 
+        return instanceRepository.save(processInstance);
     }
 
     /*  Mark 'read'/'write' flag on schema json
@@ -183,6 +190,10 @@ public class ProcessInstanceService {
 
         // TODO
         instance.setEntity(createEntity(process));
+
+        ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(process.getProcessJSON());
+        instance.setNextTask(processJsonResolver.getNextTask(null).getId());
+
         instanceRepository.save(instance);
 
         return instance;
