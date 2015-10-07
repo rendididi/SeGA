@@ -2,6 +2,7 @@ package org.sega.viewer.models;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>.
@@ -15,8 +16,11 @@ public class ProcessInstance extends BaseModel{
     @Lob
     private String entity;
 
-    @Column(name = "last_task")
-    private String lastTask;
+    @Column(name = "next_task")
+    private String nextTask;
+
+    @Column(name = "created_at")
+    private Date createdAt;
 
     @OneToOne(mappedBy = "processInstance")
     private Artifact mainArtifact;
@@ -29,12 +33,25 @@ public class ProcessInstance extends BaseModel{
         this.process = process;
     }
 
-    public String getLastTask() {
-        return lastTask;
+    @PrePersist
+    public void onPrePersist(){
+        this.createdAt = new Date();
     }
 
-    public void setLastTask(String lastTask) {
-        this.lastTask = lastTask;
+    public String getNextTask() {
+        return nextTask;
+    }
+
+    public void setNextTask(String nextTask) {
+        this.nextTask = nextTask;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getEntity() {

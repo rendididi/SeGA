@@ -5,16 +5,20 @@ import org.json.JSONObject;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.ProcessInstanceService;
+import org.sega.viewer.services.support.Node;
+import org.sega.viewer.services.support.ProcessJsonResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>.
@@ -55,11 +59,18 @@ public class InstanceController {
         return "instances/task";
     }
 
-    @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.POST)
-    public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model){
+    @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.POST, headers = "Accept=application/json")
+    public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, @RequestBody String entity, Model model) throws UnsupportedEncodingException {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
 
-        //JSONObject entity = processInstanceService.writeEntity(instance, taskId);
+//        JSONObject input = new JSONObject(entity);
+
+        // TODO
+//        JSONObject entity = processInstanceService.writeEntity(instance, taskId);
+
+//        ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(instance.getProcess().getProcessJSON());
+//        Node nextTask = processJsonResolver.getNextTask(taskId);
+//        instance.setNextTask(nextTask.getId());
 
         return "redirect:/processes/instances/" + instanceId;
     }

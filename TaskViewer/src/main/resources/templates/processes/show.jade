@@ -3,7 +3,25 @@ extends ../layout/app
 block content 
   .process
     span Process ID: #{process.getId()}
+    br
+    span Process Name: #{process.getName()}
+    br 
+    br
+    span Intances
     
+    table.table.table-hover.table-bordered.table-stripped
+      thead
+        tr
+          th Link 
+          th Created At
+          th Next Task
+      tbody 
+        for instance in instances 
+          tr 
+            td 
+              a(href="/processes/instances/#{instance.getId()}") instance-#{instance.getId()}
+            td #{instance.getCreatedAt()}
+            td #{instance.getNextTask()}
     hr
     
     

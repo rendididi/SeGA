@@ -5,6 +5,7 @@ import org.sega.viewer.models.Process;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.sega.viewer.services.ProcessService;
+import org.sega.viewer.services.support.ProcessJsonResolver;
 import org.sega.viewer.utils.Base64Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,7 @@ public class ProcessesController {
         Process process = processService.getProcess(processId);
 
         model.addAttribute("process", process);
+        model.addAttribute("instances", processInstanceService.getProcessInstances(process));
         model.addAttribute("processJson", decodeJson(process.getProcessJSON()));
         model.addAttribute("entityJson", decodeJson(process.getEntityJSON()));
         model.addAttribute("bindingResultJson", decodeJson(process.getBindingJson()));
@@ -58,7 +60,7 @@ public class ProcessesController {
     }
 
     @RequestMapping(value = "{processId:\\d+}", method = POST)
-    public String createProcessInstance(@PathVariable Long processId){
+    public String createProcessInstance(@PathVariable Long processId) throws UnsupportedEncodingException {
         Process process = processService.getProcess(processId);
         ProcessInstance instance = processInstanceService.createProcessInstance(process);
 
@@ -66,9 +68,12 @@ public class ProcessesController {
     }
 
     @RequestMapping(value = "instances/{instanceId:\\d+}", method = GET)
-    public String showProcessInstance(@PathVariable Long instanceId, Model model){
+    public String showProcessInstance(@PathVariable Long instanceId, Model model) throws UnsupportedEncodingException {
         ProcessInstance processInstance = processInstanceRepository.findOne(instanceId);
         model.addAttribute("instance", processInstance);
+
+        ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
+        model.addAttribute("nextTask", processJsonResolver.findNode(processInstance.getNextTask()));
 
         return "instances/show";
     }

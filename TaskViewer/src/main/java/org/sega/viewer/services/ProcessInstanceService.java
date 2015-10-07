@@ -4,13 +4,17 @@ import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.sega.viewer.models.Process;
+import org.sega.viewer.models.Artifact;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.models.Process;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
+import org.sega.viewer.services.support.ProcessJsonResolver;
 import org.sega.viewer.services.support.TaskType;
 import org.sega.viewer.services.support.TasksResolver;
 import org.sega.viewer.utils.Base64Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -28,6 +32,10 @@ public class ProcessInstanceService {
 
     @Autowired
     private ArtifactService artifactService;
+
+    public List<ProcessInstance> getProcessInstances(Process process){
+        return instanceRepository.findAllByProcess(process, new Sort(Sort.Direction.DESC, "createdAt"));
+    }
 
     // todo
     public JSONObject readEntity(ProcessInstance processInstance, String taskId) throws UnsupportedEncodingException {
@@ -169,13 +177,14 @@ public class ProcessInstanceService {
     }
 
 
-    public ProcessInstance createProcessInstance(Process process){
+    public ProcessInstance createProcessInstance(Process process) throws UnsupportedEncodingException {
         ProcessInstance instance = new ProcessInstance(process);
 //        artifactService.createMainArtifact(instance);
 
         // TODO
         instance.setEntity(createEntity(process));
         instanceRepository.save(instance);
+
         return instance;
     }
 
