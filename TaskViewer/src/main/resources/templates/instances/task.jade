@@ -12,10 +12,17 @@ block content
         form(method="post", action="/processes/instances/#{instance.getId()}/task/#{taskId}")
           input(type="hidden", name='_csrf', value='#{_csrf.token}')
           !{templateHtml}
-          button.btn.btn-default.btn-block(type="submit") Commit
+          //- button.btn.btn-default.btn-block(type="submit") Commit
+          a.btn.btn-default(ng-click="commitTask('/processes/instances/#{instance.getId()}/task/#{taskId}')") Commit
           
   
   script
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    
     var entity = '!{entity}';
     entity = eval('(' + entity + ')');
     
@@ -23,4 +30,20 @@ block content
       .controller('TaskController', function($scope){
         $scope.entity = entity;
         
+        $scope.commitTask = function(task_url){
+          console.log($scope.entity);
+          $.ajax({
+            type: 'post',
+            url: task_url,
+            data: JSON.stringify($scope.entity),
+            dataType   : 'json',
+            contentType: 'application/json; charset=UTF-8',
+            sucesss: function(res){
+              window.location.reload();
+            },
+            error: function(res){
+              alert("Error");
+            }
+            });
+        };
       });
