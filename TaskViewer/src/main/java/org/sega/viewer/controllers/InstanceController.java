@@ -7,6 +7,7 @@ import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.sega.viewer.services.support.Node;
 import org.sega.viewer.services.support.ProcessJsonResolver;
+import org.sega.viewer.utils.Base64Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class InstanceController {
         JSONObject entity = processInstanceService.readEntity(instance, taskId);
 
         model.addAttribute("entity", entity.toString());
+        model.addAttribute("schema", Base64Util.decode(instance.getProcess().getEntityJSON()));
         model.addAttribute("instance", instance);
         model.addAttribute("templatePath", path);
         model.addAttribute("taskId", taskId);

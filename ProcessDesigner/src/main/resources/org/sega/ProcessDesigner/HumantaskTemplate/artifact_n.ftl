@@ -3,9 +3,7 @@
 		<fieldset class="artiform artifact_n_instance" data-path="${path}">
 			<script>
 $(function(){
-	var scriptTag = document.scripts[document.scripts.length - 1];
-	var parentTag = scriptTag.parentNode;
-	var root = $(parentTag);
+	var root = $("fieldset.artifact_n_instance[data-path='${path}']");
 	root.find(".btn-remove").on("click", function(){
 		root.remove();
 	});
@@ -25,19 +23,20 @@ $(function(){
 	<script>
 
 $(function(){
-	var scriptTag = document.scripts[document.scripts.length - 1];
-	var parentTag = scriptTag.parentNode;
-	var root = $(parentTag);
+	var root = $("fieldset.artifact_n[data-path='${path}']");
 	var template = root.children("template").html();
 	root.find(".btn-add").on("click", function(){
-		root.append(template);
+		var t = template.slice();
+		var index = root.children("fieldset.artifact_n_instance").length;
+		t = t.replace(/index_${id}/g, ""+index);
+		root.append(t);
 	});
 	if(sega.FormInit){
 		sega.FormInit.push(
 			{	path:"${path}",
 				addFunc: function(index){
 					var t = template.slice();
-					t.replace("index_${id}", ""+index);
+					t.replace(/index_${id}/g, ""+index);
 					root.append(t);
 				}
 			});
