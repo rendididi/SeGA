@@ -63,8 +63,6 @@ public class InstanceController {
     public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, @RequestBody String entity, Model model) throws UnsupportedEncodingException {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
 
-        System.out.println(entity);
-
 //        JSONObject input = new JSONObject(entity);
 
         // TODO

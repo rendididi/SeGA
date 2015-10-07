@@ -24,7 +24,7 @@ public class TasksResolver {
     }
 
     public List<TaskType> getTasks(){
-        List<TaskType> tasks = new ArrayList<>();
+        this.tasks = new ArrayList<>();
 
         for (int i=0;i<this.tasksJson.length();++i){
             JSONObject taskJson = this.tasksJson.getJSONObject(i);
@@ -34,19 +34,23 @@ public class TasksResolver {
             task.setSyncPoint(taskJson.getBoolean("syncPoint"));
 
             List<String> reads = new ArrayList<>();
-            JSONArray readsJson = taskJson.getJSONArray("read");
-            for (int j=0;j<readsJson.length();++j){
-                reads.add(readsJson.getString(j));
+            if(taskJson.has("read")) {
+                JSONArray readsJson = taskJson.getJSONArray("read");
+                for (int j=0;j<readsJson.length();++j){
+                    reads.add(readsJson.getString(j));
+                }
             }
             task.setReads(reads);
 
             List<String> writes = new ArrayList<>();
-            JSONArray writesJson = taskJson.getJSONArray("write");
-            for (int j=0;j<writesJson.length();++j){
-                writes.add(writesJson.getString(j));
+            if(taskJson.has("write")) {
+                JSONArray writesJson = taskJson.getJSONArray("write");
+                for (int j = 0; j < writesJson.length(); ++j) {
+                    writes.add(writesJson.getString(j));
+                }
             }
             task.setWrites(writes);
-
+            tasks.add(task);
         }
 
         return tasks;

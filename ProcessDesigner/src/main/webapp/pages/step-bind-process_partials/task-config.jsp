@@ -25,7 +25,10 @@
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">http://</span>
                                 <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
-                            </div>                            
+                            </div>
+                            <h2>Restful Service Parameters</h2>
+                            <div class=input-group ws-params">
+                            </div>              
                         </div>
                         <div class="human-task">
                             <h2>Application Interface</h2>
