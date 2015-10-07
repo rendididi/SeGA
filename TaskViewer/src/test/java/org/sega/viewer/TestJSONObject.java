@@ -42,7 +42,7 @@ public class TestJSONObject {
         instance.setProcess(process);
         System.out.println(service.readEntity(instance, "t1").toString());
 
-        process.setBindingJson(Base64Util.encode("[{task:'t1',autoGenerate:'true',syncPoint:'true',read:['d']}]"));
+        process.setBindingJson(Base64Util.encode("[{task:'t1',autoGenerate:'true',syncPoint:'true',read:['c','d']}]"));
         System.out.println(service.readEntity(instance, "t1").toString());
 
     }

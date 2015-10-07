@@ -18,6 +18,8 @@ block content
   script
     var entity = '!{entity}';
     entity = eval('(' + entity + ')');
+    var schema = '!{schema}';
+    schema = eval('(' + schema + ')');
     
     angular.module('app', [])
       .controller('TaskController', function($scope){

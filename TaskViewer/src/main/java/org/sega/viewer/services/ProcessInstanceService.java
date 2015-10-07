@@ -175,18 +175,13 @@ public class ProcessInstanceService {
 
         // TODO
         instance.setEntity(createEntity(process));
-
+        instanceRepository.save(instance);
         return instance;
     }
 
     private String createEntity(Process process) {
-        try {
-            return Base64Util.decode(process.getEntityJSON());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
 
-        return null;
+        return "{}";
     }
 
     private TasksResolver getTaskResolver(String bingResultJson){

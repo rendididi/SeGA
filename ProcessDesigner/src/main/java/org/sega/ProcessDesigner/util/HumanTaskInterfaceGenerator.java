@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -40,7 +41,7 @@ public class HumanTaskInterfaceGenerator {
 		JSONObject e = JSONObject.fromObject(root);
 		markUpdateStat(e, read, "read");
 		markUpdateStat(e, write, "write");
-		result = generateElement(e, new ArrayList<String>());
+		result = generateElement(e, new ArrayList<Pair<String,String>>());
 		/*
 		Map<String, Object> tpl_model = new HashMap<String, Object>();
 		tpl_model.put("content", result);
@@ -50,7 +51,7 @@ public class HumanTaskInterfaceGenerator {
 	}
 
 
-	public String generateElement(JSONObject root, final List<String> path) throws Exception {
+	public String generateElement(JSONObject root, final List<Pair<String,String>> path) throws Exception {
 		String result = "";
 		boolean read = root.optBoolean("read"),
 				write = root.optBoolean("write");
@@ -68,8 +69,8 @@ public class HumanTaskInterfaceGenerator {
 		if(	"artifact".equals(root.getString("type")) || 
 			"artifact_n".equals(root.getString("type")) ||
 			"group".equals(root.getString("type")) ){
-			ArrayList<String> currentPath = new ArrayList<String>(path);
-			currentPath.add(root.getString("id"));
+			ArrayList<Pair<String,String>> currentPath = new ArrayList<Pair<String,String>>(path);
+			currentPath.add(Pair.of(root.getString("id"),root.getString("type")));
 			tpl_model.put("path", getPathString(currentPath));
 			StringBuilder sb = new StringBuilder();
 			for(int i=0,len=root.getJSONArray("children").size(); i<len;i++){
@@ -97,8 +98,20 @@ public class HumanTaskInterfaceGenerator {
 		return result;
 	}
 	
-	private String getPathString(List<String> path){
-		return StringUtils.join(path, "/");
+	private String getPathString(List<Pair<String,String>> path){
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<path.size();i++){
+			if(i==0){
+				sb.append(path.get(i).getLeft());
+			}else{
+				if("artifact_n".equals(path.get(i).getRight())){
+					sb.append("["+path.get(i).getLeft()+"][index_"+path.get(i).getLeft()+"]");
+				}else{
+					sb.append("["+path.get(i).getLeft()+"]");
+				}
+			}
+		}
+		return sb.toString();
 	}
 	
 	private String getProcessedHtml(Map<String, Object> model, String tpl_name) throws Exception{
@@ -136,4 +149,5 @@ public class HumanTaskInterfaceGenerator {
 	public static class UnexpectedEntityFormat extends Exception{
 		
 	}
+
 }

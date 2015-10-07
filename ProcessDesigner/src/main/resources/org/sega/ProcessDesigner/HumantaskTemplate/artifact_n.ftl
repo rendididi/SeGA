@@ -1,6 +1,6 @@
 <fieldset class="artiform artifact_n" data-path="${path}">
 	<template>
-		<fieldset class="artiform artifact_n_instance" data-path="${path}/new">
+		<fieldset class="artiform artifact_n_instance" data-path="${path}">
 			<script>
 $(function(){
 	var scriptTag = document.scripts[document.scripts.length - 1];
@@ -32,6 +32,16 @@ $(function(){
 	root.find(".btn-add").on("click", function(){
 		root.append(template);
 	});
+	if(sega.FormInit){
+		sega.FormInit.push(
+			{	path:"${path}",
+				addFunc: function(index){
+					var t = template.slice();
+					t.replace("index_${id}", ""+index);
+					root.append(t);
+				}
+			});
+	}
 });
 	</script>
 	<h3>

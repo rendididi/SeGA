@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="http://jta.org/flow" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://jta.org/flow">
+	<xs:complexType name="Summary">
+		<xs:sequence>
+			<xs:element form="qualified" name="Name" type="xs:string"/>
+			<xs:element form="qualified" name="Description" type="xs:string"/>
+			<xs:element form="qualified" name="Author" type="xs:string"/>
+			<xs:element form="qualified" name="Modifier" type="xs:string"/>
+			<xs:element form="qualified" name="Version" type="xs:string"/>
+			<xs:element form="qualified" name="CreatedTime" type="xs:dateTime"/>
+			<xs:element form="qualified" name="ModifiedTime" type="xs:dateTime"/>
+			<xs:element form="qualified" name="StartTaskID" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Attributes">
+		<xs:sequence>
+			<xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="Attribute" type="Attribute"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Attribute">
+		<xs:sequence>
+			<xs:element form="qualified" name="Name" type="xs:string"/>
+			<xs:element form="qualified" name="Type" type="xs:string"/>
+			<xs:element form="qualified" name="DefaultValue" type="xs:string"/>
+			<xs:element form="qualified" name="Description" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute form="qualified" name="ID" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="RouteMode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AND"/>
+			<xs:enumeration value="OR"/>
+			<xs:enumeration value="XOR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Read">
+		<xs:choice>
+			<xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="AttributeID" type="xs:string"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="Write">
+		<xs:choice>
+			<xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="AttributeID" type="xs:string"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="Task">
+		<xs:choice>
+			<xs:element form="qualified" name="Read" type="Read"/>
+			<xs:element form="qualified" name="Write" type="Write"/>
+			<xs:element form="qualified" name="JoinMode" type="RouteMode"/>
+			<xs:element form="qualified" name="SplitMode" type="RouteMode"/>
+		</xs:choice>
+		<xs:attribute form="qualified" name="ID" type="xs:string" use="required"/>
+		<xs:attribute form="qualified" name="Name" type="xs:string" use="required"/>
+		<xs:attribute form="qualified" name="Description" type="xs:string" use="required"/>
+		<xs:attribute form="qualified" name="PositionX" type="xs:int" use="required"/>
+		<xs:attribute form="qualified" name="PositionY" type="xs:int" use="required"/>
+		<xs:attribute form="qualified" name="Width" type="xs:int" use="required"/>
+		<xs:attribute form="qualified" name="Height" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="Tasks">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="Task" type="Task"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Connections">
+		<xs:choice>
+			<xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="Connection" type="Connection"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="Connection">
+		<xs:sequence>
+			<xs:element form="qualified" name="FromNodeID" type="xs:string"/>
+			<xs:element form="qualified" name="ToNodeID" type="xs:string"/>
+			<xs:element form="qualified" name="Expression" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute form="qualified" name="ID" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="JTAFlow">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element form="qualified" maxOccurs="1" minOccurs="0" name="Summary" type="Summary"/>
+				<xs:element form="qualified" maxOccurs="1" minOccurs="0" name="Attributes" type="Attributes"/>
+				<xs:element form="qualified" maxOccurs="1" minOccurs="0" name="Tasks" type="Tasks"/>
+				<xs:element form="qualified" maxOccurs="1" minOccurs="0" name="Connections" type="Connections"/>
+			</xs:sequence>
+			<xs:attribute form="qualified" name="ID" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
