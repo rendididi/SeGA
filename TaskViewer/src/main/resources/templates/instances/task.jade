@@ -4,16 +4,12 @@ block content
   h2 Task ID: #{taskId}
   hr
   
-  .panel.panel-default
-    .panel-heading
-      h3.panel-title #{taskId}
-    .panel-body 
-      #task-template(ng-controller="TaskController")
-        form(method="post", action="/processes/instances/#{instance.getId()}/task/#{taskId}")
-          input(type="hidden", name='_csrf', value='#{_csrf.token}')
-          !{templateHtml}
-          //- button.btn.btn-default.btn-block(type="submit") Commit
-          a.btn.btn-default(ng-click="commitTask('/processes/instances/#{instance.getId()}/task/#{taskId}')") Commit
+  #task-template(ng-controller="TaskController")
+    form(method="post", action="/processes/instances/#{instance.getId()}/task/#{taskId}")
+      input(type="hidden", name='_csrf', value='#{_csrf.token}')
+      !{templateHtml}
+      //- button.btn.btn-default.btn-block(type="submit") Commit
+      a.btn.btn-default(ng-click="commitTask('/processes/instances/#{instance.getId()}/task/#{taskId}')") Commit
           
   
   script
@@ -23,19 +19,13 @@ block content
       }
     });
     
-    var entity = '!{entity}';
-    entity = eval('(' + entity + ')');
-    var schema = '!{schema}';
-    schema = eval('(' + schema + ')');
-    var sega = {FormInit:[]};
-
+    var values = JSON.parse('!{entity}');
 
     angular.module('app', [])
       .controller('TaskController', function($scope){
-        $scope.entity = entity;
-                
+        $scope.entity = values;
+
         $scope.commitTask = function(task_url){
-          console.log($scope.entity);
           $.ajax({
             type: 'post',
             url: task_url,
@@ -43,7 +33,7 @@ block content
             dataType   : 'json',
             contentType: 'application/json; charset=UTF-8',
             sucesss: function(res){
-              window.location.reload();
+              window.location.href = "/";
             },
             error: function(res){
               alert("Error");

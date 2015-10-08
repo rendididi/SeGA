@@ -43,7 +43,6 @@ public class InstanceController {
         logger.debug("Resolved task template file: " + path);
 
         JSONObject entity = processInstanceService.readEntity(instance, taskId);
-
         model.addAttribute("entity", entity.toString());
         model.addAttribute("schema", Base64Util.decode(instance.getProcess().getEntityJSON()));
         model.addAttribute("instance", instance);

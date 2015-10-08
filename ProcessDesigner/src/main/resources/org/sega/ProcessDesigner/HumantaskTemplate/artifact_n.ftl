@@ -1,4 +1,4 @@
-<fieldset class="artiform artifact_n" data-path="${path}.${id}" ng-init="entity.${path}.${id}=[]" >
+<fieldset class="artiform artifact_n" data-path="${path}.${id}" <#if !read>ng-init="entity.${path}.${id}=[]"</#if> >
 	
 	<h3>
 		<div class="text">
@@ -11,7 +11,7 @@
 		</#if>
 	</h3>
 
-	<fieldset class="artiform artifact_n_instance" data-path="${path}.${id}" ng-repeat="instance_${id} in entity.${path}.${id}">
+	<fieldset class="artiform artifact_n_instance" data-path="${path}.${id}" ng-repeat="instance_${id} in entity.${path}.${id} track by $index">
 			<h3>
 				<div class="text">
 					NEW ${text}
