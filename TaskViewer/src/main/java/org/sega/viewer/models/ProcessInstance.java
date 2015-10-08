@@ -10,6 +10,8 @@ import java.util.Date;
 @Entity
 @Table(name = "process_instances")
 public class ProcessInstance extends BaseModel{
+    public static final String STATE_COMPLETED = "completed";
+
     @ManyToOne
     private Process process;
 

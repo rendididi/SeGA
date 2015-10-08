@@ -1,4 +1,4 @@
-extends ../layout/app_ng 
+extends ../layout/app 
 
 block content
   .row#user-area 
@@ -19,20 +19,34 @@ block content
               span Create 
           
           ul.list-unstyled#activityList
-            li(ng-repeat="activity in activities")
-              img.activityImg(src="{{activity.step_image_url}}")
-              
-              .info 
-                .btn-edit 
-                  a.btn.btn-default.btn-xs(href="{{activity.process_url}}")
-                    span.glyphicon.glyphicon-edit
+            for instance in instances 
+              li
+                img.activityImg(src="")
                 
-                p.header.text-elli {{activity.stepName}}
-                p.date {{activity.date}}
-                p.description Process: {{activity.process.name}}
-          
+                .info 
+                  .btn-edit 
+                    a.btn.btn-default.btn-xs(href="/processes/instances/#{instance.getId()}")
+                      span.glyphicon.glyphicon-edit 
+                  
+                  p.header.text-elli #{instance.getNextTask()}
+                  p.date 
+                  p.description Process: #{instance.getProcess().getName()}
+                
+            
           div#my-pagination
-                
+    
+    script 
+      $(function(){
+          var options = {
+            currentPage: #{page},
+            totalPages: #{totalPages},
+            pageUrl: function(type, page, current){
+                return document.location.pathname+'?page='+page;
+            }
+          };
+          
+          $('#my-pagination').bootstrapPaginator(options);
+      });
       
     // sidebar
     .col-sm-4
