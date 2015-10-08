@@ -5,7 +5,7 @@
 			${text}
 		</div>
 		<#if write>
-		<div class="btn-legend btn-add" data-path="${path}.${id}" ng-click="addEntity('${pathForClick}.${id}')">
+		<div class="btn-legend btn-add" data-path="${path}.${id}" ng-click="entity.${path}.${id}.push({})">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		</div>
 		</#if>
@@ -16,7 +16,7 @@
 				<div class="text">
 					NEW ${text}
 				</div>
-				<div class="btn-legend btn-remove">
+				<div class="btn-legend btn-remove" ng-click="entity.${currentPathWithoutLastIndex}.splice($index,1)">
 					<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 				</div>
 			</h3>
