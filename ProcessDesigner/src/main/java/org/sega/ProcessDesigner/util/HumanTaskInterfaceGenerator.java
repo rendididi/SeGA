@@ -69,9 +69,13 @@ public class HumanTaskInterfaceGenerator {
 		if(	"artifact".equals(root.getString("type")) || 
 			"artifact_n".equals(root.getString("type")) ||
 			"group".equals(root.getString("type")) ){
+			tpl_model.put("path", getPathString(path));
+			tpl_model.put("pathForClick", getPathStringForClick(path));
+			
 			ArrayList<Pair<String,String>> currentPath = new ArrayList<Pair<String,String>>(path);
 			currentPath.add(Pair.of(root.getString("id"),root.getString("type")));
-			tpl_model.put("path", getPathString(currentPath));
+			tpl_model.put("currentPath", getPathString(currentPath));
+			
 			StringBuilder sb = new StringBuilder();
 			for(int i=0,len=root.getJSONArray("children").size(); i<len;i++){
 				JSONObject child = root.getJSONArray("children").getJSONObject(i);
@@ -100,19 +104,50 @@ public class HumanTaskInterfaceGenerator {
 	
 	private String getPathString(List<Pair<String,String>> path){
 		StringBuilder sb = new StringBuilder();
+		int numOfArtifactN = 0;
+		for(int i=0;i<path.size();i++){
+			if("artifact_n".equals(path.get(i).getRight())){
+				numOfArtifactN++;
+			}
+		}
 		for(int i=0;i<path.size();i++){
 			if(i==0){
 				sb.append(path.get(i).getLeft());
 			}else{
 				if("artifact_n".equals(path.get(i).getRight())){
-					sb.append("["+path.get(i).getLeft()+"][index_"+path.get(i).getLeft()+"]");
+					numOfArtifactN--;
+					sb.append("."+path.get(i).getLeft()+"["+StringUtils.repeat("$parent.", numOfArtifactN)+"$index]");
 				}else{
-					sb.append("["+path.get(i).getLeft()+"]");
+					sb.append("."+path.get(i).getLeft());
 				}
 			}
 		}
 		return sb.toString();
 	}
+
+	private String getPathStringForClick(List<Pair<String,String>> path){
+		StringBuilder sb = new StringBuilder();
+		int numOfArtifactN = 0;
+		for(int i=0;i<path.size();i++){
+			if("artifact_n".equals(path.get(i).getRight())){
+				numOfArtifactN++;
+			}
+		}
+		for(int i=0;i<path.size();i++){
+			if(i==0){
+				sb.append(path.get(i).getLeft());
+			}else{
+				if("artifact_n".equals(path.get(i).getRight())){
+					numOfArtifactN--;
+					sb.append("."+path.get(i).getLeft()+"['+"+StringUtils.repeat("$parent.", numOfArtifactN)+"$index+']");
+				}else{
+					sb.append("."+path.get(i).getLeft());
+				}
+			}
+		}
+		return sb.toString();
+	}
+
 	
 	private String getProcessedHtml(Map<String, Object> model, String tpl_name) throws Exception{
 		Template tpl = fm_cfg.getTemplate(tpl_name);

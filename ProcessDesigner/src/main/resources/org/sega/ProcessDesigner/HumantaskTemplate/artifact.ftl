@@ -1,4 +1,4 @@
-<fieldset class="artiform artifact" data-path="${path}">
+<fieldset class="artiform artifact" data-path="${currentPath}" ng-init="entity.${currentPath}={}">
 	<h3>
 		${text}
 	</h3>

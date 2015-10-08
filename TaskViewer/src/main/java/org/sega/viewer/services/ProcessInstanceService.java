@@ -46,12 +46,15 @@ public class ProcessInstanceService {
             return null;
         TaskType taskType = tasksResolver.getTask(taskId);
         List<String> reads = taskType.getReads();
+        List<String> writes = taskType.getWrites();
+
         Process process = processInstance.getProcess();
         JSONObject entitySchema = (new JSONArray(Base64Util.decode(process.getEntityJSON()))).getJSONObject(0);
 
         markUpdateStat(entitySchema, reads, "read");
         values = new JSONObject(processInstance.getEntity());
         extractValues(values, entitySchema);
+
 
         return values;
     }

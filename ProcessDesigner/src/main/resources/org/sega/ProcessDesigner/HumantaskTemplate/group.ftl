@@ -1,4 +1,4 @@
-<div class="row" data-path="${path}">
+<div class="row" data-path="${currentPath}" ng-init="entity.${currentPath}={}">
 	<label class="col-md-3 control-label">
 		${text}
 	</label>

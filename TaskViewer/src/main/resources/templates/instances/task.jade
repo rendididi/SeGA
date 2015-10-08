@@ -28,10 +28,17 @@ block content
     var schema = '!{schema}';
     schema = eval('(' + schema + ')');
     var sega = {FormInit:[]};
-    
+
+
     angular.module('app', [])
       .controller('TaskController', function($scope){
         $scope.entity = entity;
+        //$scope.entity.j1_1 = {j1_6:[]};
+
+        $scope.addEntity = function(path_str){
+          var path = eval("$scope.entity."+path_str);
+          path.push({});
+        }
         
         $scope.commitTask = function(task_url){
           console.log($scope.entity);
