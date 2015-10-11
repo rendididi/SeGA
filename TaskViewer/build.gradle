@@ -23,6 +23,10 @@ repositories {
 
     maven { url 'http://repo.spring.io/libs-release' }
     maven { url "http://repo.springsource.org/repo" } // for springloaded
+
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 bootRun {
@@ -107,6 +111,11 @@ dependencies {
     compile 'org.webjars:font-awesome:4.3.0-3'
     compile 'org.webjars:angularjs:1.4.4'
     compile 'org.webjars:bootstrap-select:1.7.3-1'
+
+    // local jar
+    compile name: 'hessian-3.0.20'
+    compile name: 'sega'
+    compile name: 'jtangflow_interface_model_20130717'
 
 
     // test

@@ -3,6 +3,7 @@ package org.sega.viewer.controllers;
 import org.sega.viewer.models.*;
 import org.sega.viewer.models.Process;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
+import org.sega.viewer.services.JtangEngineService;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.sega.viewer.services.ProcessService;
 import org.sega.viewer.services.support.ProcessJsonResolver;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -34,6 +36,9 @@ public class ProcessesController {
 
     @Autowired
     private ProcessInstanceRepository processInstanceRepository;
+
+    @Autowired
+    private JtangEngineService jtangEngineService;
 
     @RequestMapping(value = "", method = GET)
     public String processes(Model model){
@@ -62,9 +67,11 @@ public class ProcessesController {
     }
 
     @RequestMapping(value = "{processId:\\d+}", method = POST)
-    public String createProcessInstance(@PathVariable Long processId) throws UnsupportedEncodingException {
+    public String createProcessInstance(@PathVariable Long processId) throws UnsupportedEncodingException, MalformedURLException {
         Process process = processService.getProcess(processId);
         ProcessInstance instance = processInstanceService.createProcessInstance(process);
+
+        jtangEngineService.publishProcess(instance);
 
         return "redirect:instances/" + instance.getId();
     }

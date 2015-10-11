@@ -4,6 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
+import org.sega.viewer.services.JtangEngineService;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.sega.viewer.services.support.Node;
 import org.sega.viewer.services.support.ProcessJsonResolver;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>.
@@ -30,6 +32,9 @@ public class InstanceController {
 
     @Autowired
     private ProcessInstanceRepository processInstanceRepository;
+
+    @Autowired
+    private JtangEngineService jtangEngineService;
 
     private static final String TASK_TEMPLATE = "templates/fragments/humantask/%s/%s.html";
 
@@ -55,12 +60,16 @@ public class InstanceController {
 
     @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.POST, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, @RequestBody String entity, Model model) throws UnsupportedEncodingException {
+    public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, @RequestBody String entity) throws UnsupportedEncodingException, MalformedURLException {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
 
         JSONObject input = new JSONObject(entity);
 
         processInstanceService.writeEntity(input, instance, taskId);
+
+        // TODO
+        String nextTask = jtangEngineService.commitTask(instance);
+        instance.setNextTask(nextTask);
         processInstanceService.updateInstance(instance);
 
         return instance.getEntity();

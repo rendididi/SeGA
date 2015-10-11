@@ -68,8 +68,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
             @Override
             public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView view) {
-                CsrfToken token = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-                if (token != null) {
+                if (view != null) {
+                    CsrfToken token = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
                     view.addObject(token.getParameterName(), token);
                 }
             }

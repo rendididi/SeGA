@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +34,9 @@ public class ProcessInstanceService {
 
     @Autowired
     private ArtifactService artifactService;
+
+    @Autowired
+    private JtangEngineService jtangEngineService;
 
     public List<ProcessInstance> getProcessInstances(Process process){
         return instanceRepository.findAllByProcess(process, new Sort(Sort.Direction.DESC, "createdAt"));
@@ -60,12 +64,12 @@ public class ProcessInstanceService {
 
     public void writeEntity(JSONObject entity, ProcessInstance processInstance, String taskId){
         /*
-        TasksResolver tasksResolver = getTaskResolver(processInstance.getProcess().getBindingJson());
+        TasksResolver tasksResolver = getTaskResolver(processInstance.getJtangProcess().getBindingJson());
         if (tasksResolver == null)
             return;
         TaskType taskType = tasksResolver.getTask(taskId);
         List<String> writes = taskType.getWrites();
-        Process process = processInstance.getProcess();
+        Process process = processInstance.getJtangProcess();
         JSONObject entitySchema = (new JSONArray(process.getEntityJSON())).getJSONObject(0);
 
         markUpdateStat(entitySchema, writes, "write");
@@ -84,8 +88,8 @@ public class ProcessInstanceService {
 
     @Transactional
     public ProcessInstance updateInstance(ProcessInstance processInstance) throws UnsupportedEncodingException {
-        ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
-        processInstance.setNextTask(processJsonResolver.getNextTask(processInstance.getNextTask()).getId());
+//        ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
+//        processInstance.setNextTask(processJsonResolver.getNextTask(processInstance.getNextTask()).getId());
 
         return instanceRepository.save(processInstance);
     }
