@@ -38,7 +38,6 @@ public class ProcessInstanceService {
         return instanceRepository.findAllByProcess(process, new Sort(Sort.Direction.DESC, "createdAt"));
     }
 
-    // todo
     public JSONObject readEntity(ProcessInstance processInstance, String taskId) throws UnsupportedEncodingException {
         JSONObject values = new JSONObject();
         TasksResolver tasksResolver = getTaskResolver(processInstance.getProcess().getBindingJson());
@@ -59,9 +58,6 @@ public class ProcessInstanceService {
         return values;
     }
 
-
-
-    // todo
     public void writeEntity(JSONObject entity, ProcessInstance processInstance, String taskId){
         /*
         TasksResolver tasksResolver = getTaskResolver(processInstance.getProcess().getBindingJson());
@@ -200,6 +196,28 @@ public class ProcessInstanceService {
         instanceRepository.save(instance);
 
         return instance;
+    }
+
+    public String getNextTaskName(ProcessInstance instance) {
+        JSONObject task=null;
+        try {
+            JSONObject processSchema = new JSONObject(Base64Util.decode(instance.getProcess().getProcessJSON()));
+            JSONArray tasks = processSchema.getJSONArray("cells");
+            for(int i=0, len=tasks.length(); i<len; i++){
+                task= tasks.getJSONObject(i);
+                if(task.getString("id").equals(instance.getNextTask())){
+                    if(task.getString("type").equals("sega.End"))
+                        return "Completed";
+                    else if(task.getString("type").equals("sega.Task"))
+                        return task.getJSONObject("attrs").getJSONObject("data").getString("name");
+                }
+            }
+        } catch (UnsupportedEncodingException e) {
+            return instance.getNextTask();
+        } catch (org.json.JSONException e) {
+            System.out.println(task);
+        }
+        return instance.getNextTask();
     }
 
     private String createEntity(Process process) {

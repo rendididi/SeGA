@@ -39,6 +39,7 @@ public class ProcessesController {
     public String processes(Model model){
         List<Process> processes = processService.getAllProcesses();
         model.addAttribute("processes", processes);
+        model.addAttribute("totalProcesses", processes.size());
 
         return "processes/index";
     }

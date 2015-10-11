@@ -14,7 +14,7 @@ public class main {
 		
 		
 		//测试方法，xml生成目录是根目录
-		SegaConvert.JSONtoXML(entityJSON, processJSON, bindJSON, "");
+		SegaConvert.JSONtoXML(entityJSON, processJSON, bindJSON, "process.xml");
 	}
 	
 	public static String getStr(String file) throws FileNotFoundException{

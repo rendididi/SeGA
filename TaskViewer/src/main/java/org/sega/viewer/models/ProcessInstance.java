@@ -2,7 +2,9 @@ package org.sega.viewer.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Raysmond<jiankunlei@gmail.com>.
@@ -27,9 +29,11 @@ public class ProcessInstance extends BaseModel{
     @OneToOne(mappedBy = "processInstance")
     private Artifact mainArtifact;
 
-    public ProcessInstance() {
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "processInstance")
+    private List<ProcessInstanceLog> logs = new ArrayList<>();
 
-    }
+    @OneToOne(mappedBy = "processInstance")
+    private ProcessInstanceJTangInfo jTangInfo;
 
     public ProcessInstance(Process process) {
         this.process = process;
@@ -78,5 +82,21 @@ public class ProcessInstance extends BaseModel{
 
     public void setMainArtifact(Artifact mainArtifact) {
         this.mainArtifact = mainArtifact;
+    }
+
+    public List<ProcessInstanceLog> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<ProcessInstanceLog> logs) {
+        this.logs = logs;
+    }
+
+    public ProcessInstanceJTangInfo getjTangInfo() {
+        return jTangInfo;
+    }
+
+    public void setjTangInfo(ProcessInstanceJTangInfo jTangInfo) {
+        this.jTangInfo = jTangInfo;
     }
 }

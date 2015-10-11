@@ -1,18 +1,40 @@
 extends ../layout/app
 
+block head
+  link(rel="stylesheet", type='text/css', href="#{basePath}/css/create-process.css")
 
-block content 
+block content
+  .row#user-area
+    .avatar.col-sm-12
+      img.userImg(src="/images/user/operator.png", style="height:90px;width:90px;")
+    ul.task-menu.list-unstyled.nav.navbar-nav
+      li
+        a(href="/")
+          img(src="/images/ongoing.png")
+          span On-Going
+      li
+        a(href="/completed_processes")
+          img(src="/images/completed.png")
+          span Completed
+      li.active
+        a
+          img(src="/images/create.png")
+          span Create New
 
-  h1 Process 
-  hr 
 
-  .row.processes
-    for process in processes 
-      .col-sm-12.process 
-        h2 #{process.getName()}
-        a.btn.btn-default(href="/processes/#{process.getId()}",style="margin-right:10px;") Process detail
-        a.btn.btn-primary(href="javascript:$('#form-#{process.getId()}').submit()") Create instance
-        form(method="post",action="/processes/#{process.getId()}",id="form-#{process.getId()}")
-          input(type="hidden", name='_csrf', value='#{_csrf.token}')
-        hr
-        
+  .container
+    .g-content
+      .m-activity
+        h3
+          span Processes
+          span.badge  #{totalProcesses}
+
+        .col-md-10.col-md-offset-1
+          ul.list-unstyled#activityList
+            for process in processes
+              li
+                a(href="/processes/#{process.getId()}")
+                  img.activityImg(src="/images/folder.png")
+                  h2.processName #{process.getName()}
+                  img.check(src="/images/check.png")
+

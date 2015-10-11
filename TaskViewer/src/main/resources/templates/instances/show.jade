@@ -1,11 +1,46 @@
 extends ../layout/app_ng
 
+block header
+  link(rel="stylesheet", type='text/css', href="#{basePath}/js/joint/joint.all.css")
+  script(src="#{basePath}/js/joint/joint.nojquery.js")
+  script(src="#{basePath}/js/joint/joint.sega_extension.js")
+
 block content 
   .process-instance
     span Entity: 
     pre !{instance.getEntity()}
     
     hr
+
+    svg#processViewer
+
+    hr
     
     // TODO 暂时直接链接到“受理”的任务测试
     a.btn.btn-primary(href="/processes/instances/#{instance.getId()}/task/#{nextTask.getId()}") #{nextTask.getName()}
+
+    script
+      var graph = new joint.dia.Graph;
+
+      paper = new joint.dia.Paper({
+        el:$('#draw'),
+        width:"100%",
+        height:600,
+        model:graph,
+        gridSize:1,
+//    	elementView: glpElementView,
+        defaultLink: new joint.shapes.sega.Link({
+            attrs:{
+                '.connection-wrap':{display:"none"},
+                '.link-tools':{display:'none'},
+            }
+        }),
+        linkView: joint.shapes.sega.LinkView,
+        interactive: false,
+        validateConnection: function(cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
+            return false;
+        },
+        validateMagnet: function(cellView, magnet) {
+            return false;
+        }
+      })

@@ -2,14 +2,68 @@
   margin-top: 70px;
 }
 
+/* header */
 #user-area{
   margin-top: 100px;
   border-top: 1px #ccc solid;
+  position: relative
 }
 
-#user-area > div{
+#user-area > .avatar{
   margin-top: -50px;
   padding-left: 30px;
+}
+
+/* header - menu: OnGoing, Completed, Create*/
+
+#user-area .task-menu {
+  position: absolute;
+  right: 0;
+  top: -25px;
+}
+
+#user-area .task-menu li {
+  margin-right: 30px;
+  width: 150px;
+  height: 25px;
+
+  border-bottom: 1px #ccc solid;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#user-area .task-menu li a {
+  padding: 0;
+}
+
+#user-area .task-menu li img {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 32px;
+  width: 32px;
+}
+
+#user-area .task-menu li span {
+  color: #cdcdcd;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+#user-area .task-menu li:hover {
+border-bottom: 1px #16A085 solid;
+}
+
+#user-area .task-menu li:hover a {
+  background-color: transparent;
+}
+
+#user-area .task-menu li.active {
+  border-bottom: 1px #1abc9c solid;
+}
+
+#user-area .task-menu li.active span {
+  color: #1abc9c;
+  font-weight: 400;
 }
 
 .g-header{
@@ -58,6 +112,11 @@
   line-height: 40px;
 }
 
+.m-activity > h3 > span.badge{
+  margin-left: 5px;
+  background: #1abc9c;
+}
+
 .m-activity .btn-create{
   position: absolute;
   top: 26px;
@@ -82,6 +141,7 @@
 
 .m-activity .btn-create > a .glyphicon {
   top: 3px;
+  margin-right: 5px;
 }
 
 .m-activity .btn-create > a:hover ,
@@ -129,6 +189,13 @@
   font-weight:700;
   color:#51c1b1;
 }
+
+.m-activity #activityList li .info .emph {
+  font-weight:300;
+  color:#51c1b1;
+  margin-left: 5px;
+}
+
 .m-activity #activityList li .info p.date{
   position: absolute;
   top:0;

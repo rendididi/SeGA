@@ -49,7 +49,8 @@
               <div class="btn-create">
                   <a class="" href="<s:url action='step-process-select'/>">
                     <span class="glyphicon glyphicon-plus-sign addActivity" aria-hidden="true"></span>
-                    Create </a>
+                    <span>Create</span>
+                  </a>
               </div>
               </s:if>
               <ul class="list-unstyled" id="activityList">

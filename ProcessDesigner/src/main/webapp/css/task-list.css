@@ -170,6 +170,7 @@
 .m-sidebar .latestTask #latestTaskList{
   position: relative;
   padding:10px 10px 5px 0;
+  margin-bottom: 10px;
   cursor:pointer;
 }
 

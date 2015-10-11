@@ -1,13 +1,26 @@
 extends ../layout/app
 
-block content 
-  .process
-    span Process ID: #{process.getId()}
-    br
-    span Process Name: #{process.getName()}
-    br 
-    br
-    span Intances
+block head
+  link(rel="stylesheet", type='text/css', href="#{basePath}/css/create-process.css")
+
+block content
+  .row#user-area
+    .avatar.col-sm-12
+      img.userImg(src="/images/check.png", style="height:90px;width:90px;")
+    ul.task-menu.list-unstyled.nav.navbar-nav
+      li
+        a(href="/processes")
+          img(src="/images/goback.png")
+          span Back
+
+  .process.container
+    h2 Process ID:
+      span #{process.getId()}
+
+    h2 Process Name:
+      span #{process.getName()}
+
+    h2 Intances
     
     table.table.table-hover.table-bordered.table-stripped
       thead
@@ -66,6 +79,13 @@ block content
       
       .panel-body 
         pre !{databaseJson}
+
+    a.btn-sg(href="javascript:$('#form-#{process.getId()}').submit()")
+      img(src="/images/create.png")
+      span Create
+
+    form(method="post",action="/processes/#{process.getId()}",id="form-#{process.getId()}")
+      input(type="hidden", name='_csrf', value='#{_csrf.token}')
   
   script 
     $(function(){

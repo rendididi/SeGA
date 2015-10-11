@@ -121,9 +121,9 @@ public class Tasks {
         					
         					
         					if(bindTask.get("read")!=null){
-        						System.out.println(bindTask.get("read"));
+        						
         						List<String> readJson = (List<String>) bindTask.get("read");
-        						System.out.println(readJson.size());
+        						
         						for(int k = 0 ;k<readJson.size();k++){
             						read.getAttributeID().add(readJson.get(k));
             					}
@@ -143,6 +143,7 @@ public class Tasks {
     			
     			
     			Task tempTask = new Task();
+    			tempTask.setName(name);
     			tempTask.setID(id);
     			tempTask.setDescription(description);
     			tempTask.setWidth(Integer.parseInt(width));

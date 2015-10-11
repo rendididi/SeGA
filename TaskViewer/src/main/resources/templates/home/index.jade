@@ -2,37 +2,49 @@ extends ../layout/app
 
 block content
   .row#user-area 
-    .col-sm-12
-      img.userImg(src="/images/user/expert.png", style="height:90px;width:90px;")
+    .avatar.col-sm-12
+      img.userImg(src="/images/user/operator.png", style="height:90px;width:90px;")
+    ul.task-menu.list-unstyled.nav.navbar-nav
+      li.active
+        img(src="/images/ongoing.png")
+        span On-Going
+      li
+        a(href="/completed_processes")
+          img(src="/images/completed.png")
+          span Completed
+      li
+        a(href="/processes")
+          img(src="/images/create.png")
+          span Create New
+
   
-  .row
-    .col-sm-8
-      .g-content 
-        .m-activity
-          h3 
-            span Activities
-            small.totalNum 共 0 个
-          
-          .btn-create
-            a(href="/processes")
-              span.glyphicon.glyphicon-plus-sign.addActivity(aria-hidden="true")
-              span Create 
-          
+  .container
+    .g-content
+      .m-activity
+        h3
+          span Activities
+          span.badge  #{totalInstances}
+
+        .col-md-10.col-md-offset-1
           ul.list-unstyled#activityList
-            for instance in instances 
+            for instance in instances
               li
-                img.activityImg(src="")
-                
-                .info 
-                  .btn-edit 
-                    a.btn.btn-default.btn-xs(href="/processes/instances/#{instance.getId()}")
-                      span.glyphicon.glyphicon-edit 
-                  
-                  p.header.text-elli #{instance.getNextTask()}
-                  p.date 
-                  p.description Process: #{instance.getProcess().getName()}
-                
-            
+                a.btn-activity(href="/processes/instances/#{instance.getId()}")
+                  img.activityImg(src="/images/list.png")
+
+                  .info
+                    .btn-edit
+                        span.glyphicon.glyphicon-edit
+
+                    p.date #{instance.getCreatedAt()}
+                    p.task
+                      |Task:
+                      span.emph #{taskNames.get(instance.getNextTask())}
+                    p.description
+                      |Process:
+                      span.emph #{instance.getProcess().getName()}
+
+
           div#my-pagination
     
     script 
@@ -41,69 +53,14 @@ block content
             currentPage: #{page},
             totalPages: #{totalPages},
             pageUrl: function(type, page, current){
-                return document.location.pathname+'?page='+page;
+                return document.location.pathname+'?page='+(page-1);
             }
           };
           
           $('#my-pagination').bootstrapPaginator(options);
       });
       
-    // sidebar
-    .col-sm-4
-      .m-sidebar 
-        .latestTask
-          h4.header Lastest Task 
-          
-          .list-unstyled#latestTaskList(ng-show="firstActivity")
-            img.activityImg(src="{{firstActivity.step_image_url}}")
-            .info 
-              p.info-header {{firstActivity.stepName}}
-              p.date {{firstActivity.date}}
-              p.description Process: {{firstActivity.process.name}}
-          
-        .search 
-          h4
-            span.glyphicon.glyphicon-search(aria-hidden="true")
-            span.header Search 
-          
-          .row 
-            .col-lg-3
-              .input-group
-                input.form-control(type="text",placeholder="Search for...")
-                span.input-group-btn
-                  button.btn.btn-default(type="button") Go!
-        
-        // 按图标筛选栏
-        .select 
-          ul.list-unstyled#taskList
-            li
-              img.activityImg(src="/images/step_detail/step-process-select.png")
-              p Select Process Template 
-            
-            li
-              img.activityImg(src="/images/step_detail/step-custom-entity.png")
-              p Customize Entity
-            
-            li
-              img.activityImg(src="/images/step_detail/step-dbtemplate-edb-mapping.png")
-              p Template DB-EDB Mapping
-            
-            li
-              img.activityImg(src="/images/step_detail/step-entity-edb-mapping.png")
-              p Entity-EDB Mapping
 
-            .clearfix
-            
-            li
-              img.activityImg(src="/images/step_detail/step-custom-process.png")
-              p Customize Process
-            
-            li
-              img.activityImg(src="/images/step_detail/step-bind-process.png")
-              p Service Binding
-            
-            
-            li
-              img.activityImg(src="/images/step_detail/step-publish.png")
-              p Publish 
+        
+
           

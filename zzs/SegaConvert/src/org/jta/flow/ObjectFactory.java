@@ -67,8 +67,8 @@ public class ObjectFactory {
     	String startID=new String();
     	Summary summary = new Summary();
     	summary.setAuthor("user");
-    	summary.setCreatedTime(null);
-    	summary.setModifiedTime(null);
+    	summary.setCreatedTime(TimeUtil.TimeUtil.getTime());
+    	summary.setModifiedTime(TimeUtil.TimeUtil.getTime());
     	summary.setDescription("");
     	summary.setModifier("user");
     	summary.setVersion("1.0");

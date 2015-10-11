@@ -1,0 +1,72 @@
+#activityList .processName {
+    display: inline-block;
+    margin: 0;
+    line-height: 60px;
+    font-weight: 300;
+    font-family: Open Sans;
+    font-size: 23px;
+    color: #888;
+}
+
+#activityList li {
+    position: relative;
+}
+
+#activityList li > a{
+    display: block;
+    transition: 0.25s;
+}
+
+#activityList li .check {
+    position:   absolute;
+    top: 50%;
+    right:20px;
+
+    margin-top: -12px;
+    width:24px;
+    height: 24px;
+
+    opacity: 0;
+    transition: 0.25s;
+}
+
+#activityList li:hover .check {
+    opacity: 1;
+}
+
+.process h2 span {
+    margin-left: 20px;
+    font-weight: 300;
+    color: #888;
+}
+
+.process .table {
+    margin-top 10px;
+}
+
+.process .btn-sg {
+    display: block;
+    width: 200px;
+    margin: 20px auto 20px auto;
+    text-decoration: none;
+}
+
+.process .btn-sg img {
+    width: 64px;
+    height: 64px;
+
+    margin-right: 10px;
+}
+
+.process .btn-sg span {
+    color: #888;
+    font-size: 32px;
+    line-height: 64px;
+    vertical-align: middle;
+    text-decoration: none;
+    transition :0.25s;
+}
+
+.process .btn-sg:hover span {
+    color: #1ABC9C;
+}
