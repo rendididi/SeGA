@@ -14,6 +14,7 @@ import org.sega.ProcessDesigner.models.ProcessTemplate;
 import org.sega.ProcessDesigner.util.Base64Util;
 import org.sega.ProcessDesigner.util.HibernateUtil;
 import org.sega.ProcessDesigner.util.HumanTaskInterfaceGenerator;
+import org.sega.ProcessDesigner.util.ProcessSchemaConvertUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -32,6 +33,11 @@ public class StepPublish extends EditStepAction {
 
 			generateHumantask(sp);
 			
+			String entityJSON = Base64Util.decode(sp.getEntityJSON());
+			String processJSON = Base64Util.decode(sp.getProcessJSON());
+			String bindJSON = Base64Util.decode(sp.getBindingJSON());
+			sp.setProcessXML(Base64Util.encode(ProcessSchemaConvertUtil.JSONtoXML(entityJSON, processJSON, bindJSON)));
+			
 			//update process edit item
 			ProcessEdit edit;
 			if(!getSession().containsKey("edit")){
@@ -49,6 +55,7 @@ public class StepPublish extends EditStepAction {
 			Session hb_session = HibernateUtil.getSessionFactory().getCurrentSession();
 			hb_session.beginTransaction();
 			hb_session.saveOrUpdate(edit);
+			hb_session.saveOrUpdate(sp);
 			hb_session.getTransaction().commit();
 			
 			getSession().put("edit", edit);

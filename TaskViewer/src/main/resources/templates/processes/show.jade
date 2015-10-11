@@ -44,6 +44,12 @@ block content
         
       .panel-body 
         pre !{processJson}
+
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Process XML
+      .panel-body
+        pre #{processXML}
     
     .panel.panel-default 
       .panel-heading
@@ -79,6 +85,8 @@ block content
       
       .panel-body 
         pre !{databaseJson}
+
+    hr
 
     a.btn-sg(href="javascript:$('#form-#{process.getId()}').submit()")
       img(src="/images/create.png")

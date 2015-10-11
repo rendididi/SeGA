@@ -1,0 +1,8 @@
+.process-instance .element {
+    cursor: default;
+}
+
+
+.process-instance [magnet=true]:not(.element) {
+    cursor: default;
+}

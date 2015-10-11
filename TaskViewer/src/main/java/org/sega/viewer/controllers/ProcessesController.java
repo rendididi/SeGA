@@ -51,6 +51,7 @@ public class ProcessesController {
         model.addAttribute("process", process);
         model.addAttribute("instances", processInstanceService.getProcessInstances(process));
         model.addAttribute("processJson", decodeJson(process.getProcessJSON()));
+        model.addAttribute("processXML", decodeJson(process.getProcessXML()));
         model.addAttribute("entityJson", decodeJson(process.getEntityJSON()));
         model.addAttribute("bindingResultJson", decodeJson(process.getBindingJson()));
         model.addAttribute("edMappingJson", decodeJson(process.getEDmappingJSON()));
@@ -72,6 +73,7 @@ public class ProcessesController {
     public String showProcessInstance(@PathVariable Long instanceId, Model model) throws UnsupportedEncodingException {
         ProcessInstance processInstance = processInstanceRepository.findOne(instanceId);
         model.addAttribute("instance", processInstance);
+        model.addAttribute("processJSON", Base64Util.decode(processInstance.getProcess().getProcessJSON()));
 
         ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
         model.addAttribute("nextTask", processJsonResolver.findNode(processInstance.getNextTask()));
