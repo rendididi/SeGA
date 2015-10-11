@@ -6,3 +6,30 @@
 .process-instance [magnet=true]:not(.element) {
     cursor: default;
 }
+
+.process-instance pre {
+    margin-top :20px;
+}
+
+#processViewer .port-body,
+#processViewer .inner {
+    fill: #BDC3C7;
+}
+
+#processViewer .connection,
+#processViewer .outter{
+    stroke: #ECF0F1;
+}
+
+#processViewer .marker-target {
+    fill: #BDC3C7;
+    stroke: #BDC3C7;
+}
+
+#processViewer .body {
+    fill: #ECF0F1;
+}
+
+#processViewer .label {
+    fill: #BDC3C7;
+}
