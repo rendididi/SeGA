@@ -41,12 +41,12 @@
 }
 
 .process .table {
-    margin-top 10px;
+    margin-top: 10px;
 }
 
 .process .btn-sg {
     display: block;
-    width: 200px;
+    width: 230px;
     margin: 20px auto 20px auto;
     text-decoration: none;
 }
@@ -55,12 +55,13 @@
     width: 64px;
     height: 64px;
 
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .process .btn-sg span {
     color: #888;
-    font-size: 32px;
+    font-size: 48px;
+    font-weight: 300;
     line-height: 64px;
     vertical-align: middle;
     text-decoration: none;

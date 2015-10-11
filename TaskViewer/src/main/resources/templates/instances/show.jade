@@ -8,10 +8,10 @@ block head
 
 block content 
   .process-instance
-    span Entity: 
+    h2 Entity
     pre !{instance.getEntity()}
-    
-    hr
+
+    h2 Process
 
     div#processViewer
 
@@ -20,5 +20,7 @@ block content
     // TODO 暂时直接链接到“受理”的任务测试
     a.btn.btn-primary(href="/processes/instances/#{instance.getId()}/task/#{nextTask.getId()}") #{nextTask.getName()}
 
-    script process_json=!{processJSON}
+    script
+      process_json=!{processJSON}
+
     script(src="/js/instances/show.js")

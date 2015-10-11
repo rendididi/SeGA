@@ -456,7 +456,7 @@ joint.shapes.sega.LinkView = joint.dia.LinkView.extend({
 
 joint.shapes.sega.Start = joint.shapes.basic.Generic.extend(_.extend({}, joint.shapes.basic.PortsModelInterface, {
 
-    markup: '<g class="body"><circle class="outter"/><circle class="inner"/><g class="outPorts"/></g>',
+    markup: '<g class="body"><circle class="outter"/><g class="outPorts"/></g>',
     portMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
 
     defaults: joint.util.deepSupplement({
@@ -472,13 +472,8 @@ joint.shapes.sega.Start = joint.shapes.basic.Generic.extend(_.extend({}, joint.s
             '.outter': {
                 r: 15,
                 stroke: '#F4A915',
-                "stroke-width": 2,
+                "stroke-width": 4,
                 "fill": "#ffffff",
-                transform: 'translate(10, 10)'
-            },
-            '.inner': {
-                r: 10,
-                fill: '#F4A915',
                 transform: 'translate(10, 10)'
             },
             '.port-body': {
@@ -527,7 +522,7 @@ joint.shapes.sega.StartView = joint.dia.ElementView.extend(
 
 joint.shapes.sega.End = joint.shapes.basic.Generic.extend(_.extend({}, joint.shapes.basic.PortsModelInterface, {
 
-    markup: '<g class="body"><circle class="outter"/><g class="inPorts"/></g>',
+    markup: '<g class="body"><circle class="outter"/><circle class="inner"/><g class="inPorts"/></g>',
     portMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
 
     defaults: joint.util.deepSupplement({
@@ -543,8 +538,13 @@ joint.shapes.sega.End = joint.shapes.basic.Generic.extend(_.extend({}, joint.sha
             '.outter': {
                 r: 15,
                 stroke: '#F4A915',
-                "stroke-width": 4,
+                "stroke-width": 2,
                 "fill": "#ffffff",
+                transform: 'translate(10, 10)'
+            },
+            '.inner': {
+                r: 10,
+                fill: '#F4A915',
                 transform: 'translate(10, 10)'
             },
             '.port-body': {
