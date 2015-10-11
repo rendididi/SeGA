@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by Raysmond on 9/4/15.
+ * @author Raysmond<i@raysmond.com>
  */
 @Entity
 public class ProcessEdit extends BaseModel {

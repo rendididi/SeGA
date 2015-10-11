@@ -16,4 +16,11 @@ public class ProcessInstanceJTangInfo extends BaseModel {
     private ProcessInstance processInstance;
 
 
+    public ProcessInstance getProcessInstance() {
+        return processInstance;
+    }
+
+    public void setProcessInstance(ProcessInstance processInstance) {
+        this.processInstance = processInstance;
+    }
 }

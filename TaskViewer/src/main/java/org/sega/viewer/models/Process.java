@@ -1,12 +1,11 @@
 package org.sega.viewer.models;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by Raysmond on 9/4/15.
+ * @author Raysmond<i@raysmond.com>
  */
 @Entity
 public class Process extends BaseModel {

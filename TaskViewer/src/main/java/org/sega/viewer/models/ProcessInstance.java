@@ -35,6 +35,10 @@ public class ProcessInstance extends BaseModel{
     @OneToOne(mappedBy = "processInstance")
     private ProcessInstanceJTangInfo jTangInfo;
 
+    public ProcessInstance(){
+
+    }
+
     public ProcessInstance(Process process) {
         this.process = process;
     }
