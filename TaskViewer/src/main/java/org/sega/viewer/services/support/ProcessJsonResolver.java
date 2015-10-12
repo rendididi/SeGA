@@ -7,7 +7,7 @@ import org.sega.viewer.utils.Base64Util;
 import java.io.UnsupportedEncodingException;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 public class ProcessJsonResolver {
 

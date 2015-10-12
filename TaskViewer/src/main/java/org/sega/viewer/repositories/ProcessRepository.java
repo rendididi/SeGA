@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.sega.viewer.models.Process;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Repository
 @Transactional

@@ -1,7 +1,7 @@
 package org.sega.viewer.services;
 
 import org.sega.viewer.models.ProcessEdit;
-import org.sega.viewer.repositories.PorcessEditRepository;
+import org.sega.viewer.repositories.ProcessEditRepository;
 import org.sega.viewer.repositories.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Service
 public class ProcessService {
@@ -21,7 +21,7 @@ public class ProcessService {
     private ProcessRepository processRepository;
 
     @Autowired
-    private PorcessEditRepository processEditRepository;
+    private ProcessEditRepository processEditRepository;
 
     public Process getProcess(Long processId) {
         return processRepository.findOne(processId);

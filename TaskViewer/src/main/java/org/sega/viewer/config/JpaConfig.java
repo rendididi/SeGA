@@ -1,4 +1,4 @@
-package org.sega.viewer;
+package org.sega.viewer.config;
 
 import java.util.Properties;
 

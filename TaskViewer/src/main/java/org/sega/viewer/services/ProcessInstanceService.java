@@ -25,25 +25,18 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Service
 public class ProcessInstanceService {
     @Autowired
     private ProcessInstanceRepository instanceRepository;
 
-    @Autowired
-    private ArtifactService artifactService;
-
-    @Autowired
-    private JtangEngineService jtangEngineService;
-
     public List<ProcessInstance> getProcessInstances(Process process){
         return instanceRepository.findAllByProcess(process, new Sort(Sort.Direction.DESC, "createdAt"));
     }
 
     public JSONObject readEntity(ProcessInstance processInstance, String taskId) throws UnsupportedEncodingException {
-        JSONObject values = new JSONObject();
         TasksResolver tasksResolver = getTaskResolver(processInstance.getProcess().getBindingJson());
         if (tasksResolver == null)
             return null;
@@ -55,9 +48,8 @@ public class ProcessInstanceService {
         JSONObject entitySchema = (new JSONArray(Base64Util.decode(process.getEntityJSON()))).getJSONObject(0);
 
         markUpdateStat(entitySchema, reads, "read");
-        values = new JSONObject(processInstance.getEntity());
+        JSONObject values = new JSONObject(processInstance.getEntity());
         extractValues(values, entitySchema);
-
 
         return values;
     }

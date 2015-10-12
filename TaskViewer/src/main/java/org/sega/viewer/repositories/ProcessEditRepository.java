@@ -11,9 +11,8 @@ import java.util.List;
 /**
  * Created by glp on 2015/10/4.
  */
-
 @Repository
 @Transactional
-public interface PorcessEditRepository extends JpaRepository<ProcessEdit, Long> {
+public interface ProcessEditRepository extends JpaRepository<ProcessEdit, Long> {
     List<ProcessEdit> findByStep(String step, Sort sort);
 }

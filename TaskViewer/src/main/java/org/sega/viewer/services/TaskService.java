@@ -5,7 +5,7 @@ import org.sega.viewer.models.Process;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Service
 public class TaskService {

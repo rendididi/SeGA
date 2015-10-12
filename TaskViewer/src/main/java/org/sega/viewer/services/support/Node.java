@@ -1,7 +1,7 @@
 package org.sega.viewer.services.support;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 public class Node {
     private String id;
