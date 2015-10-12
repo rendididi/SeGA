@@ -6,7 +6,16 @@ block head
   script(src="#{basePath}/js/joint/joint.nojquery.js")
   script(src="#{basePath}/js/joint/joint.sega_extension.js")
 
-block content 
+block content
+  .row#user-area
+    .avatar.col-sm-12
+      img.userImg(src="/images/check.png", style="height:90px;width:90px;")
+    ul.task-menu.list-unstyled.nav.navbar-nav
+      li
+        a(href="/")
+          img(src="/images/goback.png")
+          span Home
+
   .process-instance
     h2 Entity
     pre !{instance.getEntity()}
@@ -21,6 +30,7 @@ block content
     a.btn.btn-primary(href="/processes/instances/#{instance.getId()}/task/#{nextTask.getId()}") #{nextTask.getName()}
 
     script
-      process_json=!{processJSON}
+      var process_json= !{processJSON};
+      var nextTask = "#{nextTask.getId()}";
 
     script(src="/js/instances/show.js")

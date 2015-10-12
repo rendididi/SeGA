@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:JTAFlow ns1:ID="JTA-0e0a1a3e-5a39-4283-8eb7-a889637f3137.xml" xmlns:ns1="http://jta.org/flow">
+    <ns1:Summary>
+        <ns1:Name>DEMO</ns1:Name>
+        <ns1:Description></ns1:Description>
+        <ns1:Author>user</ns1:Author>
+        <ns1:Modifier>user</ns1:Modifier>
+        <ns1:Version>1.0</ns1:Version>
+        <ns1:CreatedTime>2015-10-12T14:09:46.212+08:00</ns1:CreatedTime>
+        <ns1:ModifiedTime>2015-10-12T14:09:46.213+08:00</ns1:ModifiedTime>
+        <ns1:StartTaskID>0e0a1a3e-5a39-4283-8eb7-a889637f3137</ns1:StartTaskID>
+    </ns1:Summary>
+    <ns1:Attributes>
+        <ns1:Attribute ns1:ID="j1_1">
+            <ns1:Name>公租房申请表</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_4">
+            <ns1:Name>id</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_5">
+            <ns1:Name>申请人信息</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_6">
+            <ns1:Name>id</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_7">
+            <ns1:Name>姓名</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_8">
+            <ns1:Name>身份证号码</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_10">
+            <ns1:Name>婚姻状况</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_11">
+            <ns1:Name>上年度可支配收入</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_12">
+            <ns1:Name>职业状况</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_13">
+            <ns1:Name>工作单位</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_16">
+            <ns1:Name>户口所在地址</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_19">
+            <ns1:Name>区</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_20">
+            <ns1:Name>街道</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_21">
+            <ns1:Name>社区</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_17">
+            <ns1:Name>入本市户籍时间</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_22">
+            <ns1:Name>年</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_23">
+            <ns1:Name>月</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_18">
+            <ns1:Name>首次缴纳（完税）时间</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_24">
+            <ns1:Name>年</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_25">
+            <ns1:Name>月</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_27">
+            <ns1:Name>配偶信息</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_28">
+            <ns1:Name>id</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_31">
+            <ns1:Name>姓名</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_32">
+            <ns1:Name>身份证号</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_33">
+            <ns1:Name>工作单位</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_34">
+            <ns1:Name>上年度可支配收入</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_29">
+            <ns1:Name>家庭成员信息</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_30">
+            <ns1:Name>id</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_35">
+            <ns1:Name>姓名</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_36">
+            <ns1:Name>与申请人关系</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_37">
+            <ns1:Name>上年度可支配收入</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_38">
+            <ns1:Name>核查状态</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_39">
+            <ns1:Name>受理人</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_40">
+            <ns1:Name>受理时间</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_41">
+            <ns1:Name>区局公示状态</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_42">
+            <ns1:Name>市局公示状态</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_43">
+            <ns1:Name>初审意见</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_44">
+            <ns1:Name>复审意见</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+        <ns1:Attribute ns1:ID="j1_45">
+            <ns1:Name>终审意见</ns1:Name>
+            <ns1:Type>String</ns1:Type>
+            <ns1:DefaultValue></ns1:DefaultValue>
+            <ns1:Description></ns1:Description>
+        </ns1:Attribute>
+    </ns1:Attributes>
+    <ns1:Tasks>
+        <ns1:Task ns1:ID="2497c211-c77c-4426-96b7-a1c9ebfa83c8" ns1:Name="2497c211-c77c-4426-96b7-a1c9ebfa83c8" ns1:Description="" ns1:PositionX="117" ns1:PositionY="163" ns1:Width="150" ns1:Height="60">
+            <ns1:Read/>
+            <ns1:Write>
+                <ns1:AttributeID>j1_4</ns1:AttributeID>
+                <ns1:AttributeID>j1_7</ns1:AttributeID>
+                <ns1:AttributeID>j1_6</ns1:AttributeID>
+            </ns1:Write>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+        <ns1:Task ns1:ID="0e0a1a3e-5a39-4283-8eb7-a889637f3137" ns1:Name="0e0a1a3e-5a39-4283-8eb7-a889637f3137" ns1:Description="start node" ns1:PositionX="16" ns1:PositionY="181" ns1:Width="20" ns1:Height="20">
+            <ns1:Read/>
+            <ns1:Write/>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+        <ns1:Task ns1:ID="b23783cc-3acf-4fbd-b112-4218270a4d0b" ns1:Name="b23783cc-3acf-4fbd-b112-4218270a4d0b" ns1:Description="end node" ns1:PositionX="571" ns1:PositionY="353" ns1:Width="20" ns1:Height="20">
+            <ns1:Read/>
+            <ns1:Write/>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+        <ns1:Task ns1:ID="a3481adb-7c10-41f7-a369-bb072b187deb" ns1:Name="a3481adb-7c10-41f7-a369-bb072b187deb" ns1:Description="" ns1:PositionX="325" ns1:PositionY="81" ns1:Width="150" ns1:Height="60">
+            <ns1:Read>
+                <ns1:AttributeID>j1_4</ns1:AttributeID>
+                <ns1:AttributeID>j1_6</ns1:AttributeID>
+                <ns1:AttributeID>j1_7</ns1:AttributeID>
+            </ns1:Read>
+            <ns1:Write>
+                <ns1:AttributeID>j1_8</ns1:AttributeID>
+                <ns1:AttributeID>j1_10</ns1:AttributeID>
+                <ns1:AttributeID>j1_11</ns1:AttributeID>
+            </ns1:Write>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+        <ns1:Task ns1:ID="39217359-5894-44ed-86bc-01e70cd01f4d" ns1:Name="39217359-5894-44ed-86bc-01e70cd01f4d" ns1:Description="" ns1:PositionX="541" ns1:PositionY="158" ns1:Width="150" ns1:Height="60">
+            <ns1:Read/>
+            <ns1:Write/>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+        <ns1:Task ns1:ID="a5bd417d-51bc-4e3e-bbe6-0e3139066351" ns1:Name="a5bd417d-51bc-4e3e-bbe6-0e3139066351" ns1:Description="" ns1:PositionX="744" ns1:PositionY="159" ns1:Width="150" ns1:Height="60">
+            <ns1:Read/>
+            <ns1:Write/>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+        <ns1:Task ns1:ID="de3e0e78-8697-49ec-8e61-6f5f8fbd0e19" ns1:Name="de3e0e78-8697-49ec-8e61-6f5f8fbd0e19" ns1:Description="" ns1:PositionX="951" ns1:PositionY="162" ns1:Width="150" ns1:Height="60">
+            <ns1:Read/>
+            <ns1:Write/>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+        <ns1:Task ns1:ID="3ce86c67-b75a-487f-9517-bda8aa996e1b" ns1:Name="3ce86c67-b75a-487f-9517-bda8aa996e1b" ns1:Description="" ns1:PositionX="95" ns1:PositionY="334" ns1:Width="150" ns1:Height="60">
+            <ns1:Read/>
+            <ns1:Write/>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+        <ns1:Task ns1:ID="568c54d3-7c17-4d87-a254-04a6f13ed491" ns1:Name="568c54d3-7c17-4d87-a254-04a6f13ed491" ns1:Description="" ns1:PositionX="361" ns1:PositionY="414" ns1:Width="150" ns1:Height="60">
+            <ns1:Read/>
+            <ns1:Write/>
+            <ns1:JoinMode>XOR</ns1:JoinMode>
+            <ns1:SplitMode>XOR</ns1:SplitMode>
+        </ns1:Task>
+    </ns1:Tasks>
+    <ns1:Connections>
+        <ns1:Connection ns1:ID="6e5cce6d-cc83-4365-a6ef-087315bec6a8">
+            <ns1:FromNodeID>0e0a1a3e-5a39-4283-8eb7-a889637f3137</ns1:FromNodeID>
+            <ns1:ToNodeID>2497c211-c77c-4426-96b7-a1c9ebfa83c8</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+        <ns1:Connection ns1:ID="cfe08318-f682-4fe2-ba9b-e8b0e75cd655">
+            <ns1:FromNodeID>2497c211-c77c-4426-96b7-a1c9ebfa83c8</ns1:FromNodeID>
+            <ns1:ToNodeID>a3481adb-7c10-41f7-a369-bb072b187deb</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+        <ns1:Connection ns1:ID="57050b38-734e-4f61-ad0d-5be63ccefa6e">
+            <ns1:FromNodeID>a3481adb-7c10-41f7-a369-bb072b187deb</ns1:FromNodeID>
+            <ns1:ToNodeID>39217359-5894-44ed-86bc-01e70cd01f4d</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+        <ns1:Connection ns1:ID="66d59c18-ad6f-4518-a100-b9d730e4b302">
+            <ns1:FromNodeID>39217359-5894-44ed-86bc-01e70cd01f4d</ns1:FromNodeID>
+            <ns1:ToNodeID>a5bd417d-51bc-4e3e-bbe6-0e3139066351</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+        <ns1:Connection ns1:ID="8c5d9f83-c0ca-4d34-8b4a-52365b67f836">
+            <ns1:FromNodeID>a5bd417d-51bc-4e3e-bbe6-0e3139066351</ns1:FromNodeID>
+            <ns1:ToNodeID>de3e0e78-8697-49ec-8e61-6f5f8fbd0e19</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+        <ns1:Connection ns1:ID="793f3f74-345c-4cb3-b083-c73506eb170d">
+            <ns1:FromNodeID>de3e0e78-8697-49ec-8e61-6f5f8fbd0e19</ns1:FromNodeID>
+            <ns1:ToNodeID>3ce86c67-b75a-487f-9517-bda8aa996e1b</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+        <ns1:Connection ns1:ID="c28afe57-2e5f-413d-bb77-6d8529398d9f">
+            <ns1:FromNodeID>3ce86c67-b75a-487f-9517-bda8aa996e1b</ns1:FromNodeID>
+            <ns1:ToNodeID>568c54d3-7c17-4d87-a254-04a6f13ed491</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+        <ns1:Connection ns1:ID="12d2872e-ee9b-444d-a2b2-fdfe55a8e8b7">
+            <ns1:FromNodeID>3ce86c67-b75a-487f-9517-bda8aa996e1b</ns1:FromNodeID>
+            <ns1:ToNodeID>b23783cc-3acf-4fbd-b112-4218270a4d0b</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+        <ns1:Connection ns1:ID="7a04db92-4488-4503-b190-ae04af5dc84a">
+            <ns1:FromNodeID>568c54d3-7c17-4d87-a254-04a6f13ed491</ns1:FromNodeID>
+            <ns1:ToNodeID>b23783cc-3acf-4fbd-b112-4218270a4d0b</ns1:ToNodeID>
+            <ns1:Expression></ns1:Expression>
+        </ns1:Connection>
+    </ns1:Connections>
+</ns1:JTAFlow>
