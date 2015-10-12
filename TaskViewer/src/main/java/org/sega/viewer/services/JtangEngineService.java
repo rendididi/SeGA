@@ -6,6 +6,7 @@ import org.SeGA.api.instance.WorkitemAPI;
 import org.SeGA.api.schema.ProcessAPI;
 import org.SeGA.model.EngineType;
 import org.SeGA.model.JTangProcIns;
+import org.SeGA.model.JTangProcess;
 import org.SeGA.model.SchemaType;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.models.ProcessInstanceJTangInfo;
@@ -59,7 +60,7 @@ public class JtangEngineService {
         processInstanceJTangInfo.setJtangInstance(segaInstance);
         processInstanceJTangInfoRepository.save(processInstanceJTangInfo);
 
-        String nextTask = segaInstance.getActWorkitems().get(0).getName();
+        String nextTask = ((JTangProcess)segaProces).getActDescByActId(segaInstance.getActWorkitems().get(0).getActID());
 
         // TODO log?
 

@@ -6,8 +6,8 @@
         <ns1:Author>user</ns1:Author>
         <ns1:Modifier>user</ns1:Modifier>
         <ns1:Version>1.0</ns1:Version>
-        <ns1:CreatedTime>2015-10-12T14:09:46.212+08:00</ns1:CreatedTime>
-        <ns1:ModifiedTime>2015-10-12T14:09:46.213+08:00</ns1:ModifiedTime>
+        <ns1:CreatedTime>2015-10-12T15:42:59.005+08:00</ns1:CreatedTime>
+        <ns1:ModifiedTime>2015-10-12T15:42:59.006+08:00</ns1:ModifiedTime>
         <ns1:StartTaskID>0e0a1a3e-5a39-4283-8eb7-a889637f3137</ns1:StartTaskID>
     </ns1:Summary>
     <ns1:Attributes>
@@ -247,29 +247,29 @@
         </ns1:Attribute>
     </ns1:Attributes>
     <ns1:Tasks>
-        <ns1:Task ns1:ID="2497c211-c77c-4426-96b7-a1c9ebfa83c8" ns1:Name="2497c211-c77c-4426-96b7-a1c9ebfa83c8" ns1:Description="" ns1:PositionX="117" ns1:PositionY="163" ns1:Width="150" ns1:Height="60">
+        <ns1:Task ns1:ID="2497c211-c77c-4426-96b7-a1c9ebfa83c8" ns1:Name="受理" ns1:Description="2497c211-c77c-4426-96b7-a1c9ebfa83c8" ns1:PositionX="117" ns1:PositionY="163" ns1:Width="150" ns1:Height="60">
             <ns1:Read/>
             <ns1:Write>
                 <ns1:AttributeID>j1_4</ns1:AttributeID>
-                <ns1:AttributeID>j1_7</ns1:AttributeID>
                 <ns1:AttributeID>j1_6</ns1:AttributeID>
+                <ns1:AttributeID>j1_7</ns1:AttributeID>
             </ns1:Write>
             <ns1:JoinMode>XOR</ns1:JoinMode>
             <ns1:SplitMode>XOR</ns1:SplitMode>
         </ns1:Task>
-        <ns1:Task ns1:ID="0e0a1a3e-5a39-4283-8eb7-a889637f3137" ns1:Name="0e0a1a3e-5a39-4283-8eb7-a889637f3137" ns1:Description="start node" ns1:PositionX="16" ns1:PositionY="181" ns1:Width="20" ns1:Height="20">
+        <ns1:Task ns1:ID="0e0a1a3e-5a39-4283-8eb7-a889637f3137" ns1:Name="start" ns1:Description="0e0a1a3e-5a39-4283-8eb7-a889637f3137" ns1:PositionX="16" ns1:PositionY="181" ns1:Width="20" ns1:Height="20">
             <ns1:Read/>
             <ns1:Write/>
             <ns1:JoinMode>XOR</ns1:JoinMode>
             <ns1:SplitMode>XOR</ns1:SplitMode>
         </ns1:Task>
-        <ns1:Task ns1:ID="b23783cc-3acf-4fbd-b112-4218270a4d0b" ns1:Name="b23783cc-3acf-4fbd-b112-4218270a4d0b" ns1:Description="end node" ns1:PositionX="571" ns1:PositionY="353" ns1:Width="20" ns1:Height="20">
+        <ns1:Task ns1:ID="b23783cc-3acf-4fbd-b112-4218270a4d0b" ns1:Name="end" ns1:Description="b23783cc-3acf-4fbd-b112-4218270a4d0b" ns1:PositionX="571" ns1:PositionY="353" ns1:Width="20" ns1:Height="20">
             <ns1:Read/>
             <ns1:Write/>
             <ns1:JoinMode>XOR</ns1:JoinMode>
             <ns1:SplitMode>XOR</ns1:SplitMode>
         </ns1:Task>
-        <ns1:Task ns1:ID="a3481adb-7c10-41f7-a369-bb072b187deb" ns1:Name="a3481adb-7c10-41f7-a369-bb072b187deb" ns1:Description="" ns1:PositionX="325" ns1:PositionY="81" ns1:Width="150" ns1:Height="60">
+        <ns1:Task ns1:ID="a3481adb-7c10-41f7-a369-bb072b187deb" ns1:Name="区局公示" ns1:Description="a3481adb-7c10-41f7-a369-bb072b187deb" ns1:PositionX="325" ns1:PositionY="81" ns1:Width="150" ns1:Height="60">
             <ns1:Read>
                 <ns1:AttributeID>j1_4</ns1:AttributeID>
                 <ns1:AttributeID>j1_6</ns1:AttributeID>
@@ -283,31 +283,31 @@
             <ns1:JoinMode>XOR</ns1:JoinMode>
             <ns1:SplitMode>XOR</ns1:SplitMode>
         </ns1:Task>
-        <ns1:Task ns1:ID="39217359-5894-44ed-86bc-01e70cd01f4d" ns1:Name="39217359-5894-44ed-86bc-01e70cd01f4d" ns1:Description="" ns1:PositionX="541" ns1:PositionY="158" ns1:Width="150" ns1:Height="60">
+        <ns1:Task ns1:ID="39217359-5894-44ed-86bc-01e70cd01f4d" ns1:Name="初审" ns1:Description="39217359-5894-44ed-86bc-01e70cd01f4d" ns1:PositionX="541" ns1:PositionY="158" ns1:Width="150" ns1:Height="60">
             <ns1:Read/>
             <ns1:Write/>
             <ns1:JoinMode>XOR</ns1:JoinMode>
             <ns1:SplitMode>XOR</ns1:SplitMode>
         </ns1:Task>
-        <ns1:Task ns1:ID="a5bd417d-51bc-4e3e-bbe6-0e3139066351" ns1:Name="a5bd417d-51bc-4e3e-bbe6-0e3139066351" ns1:Description="" ns1:PositionX="744" ns1:PositionY="159" ns1:Width="150" ns1:Height="60">
+        <ns1:Task ns1:ID="a5bd417d-51bc-4e3e-bbe6-0e3139066351" ns1:Name="复审" ns1:Description="a5bd417d-51bc-4e3e-bbe6-0e3139066351" ns1:PositionX="744" ns1:PositionY="159" ns1:Width="150" ns1:Height="60">
             <ns1:Read/>
             <ns1:Write/>
             <ns1:JoinMode>XOR</ns1:JoinMode>
             <ns1:SplitMode>XOR</ns1:SplitMode>
         </ns1:Task>
-        <ns1:Task ns1:ID="de3e0e78-8697-49ec-8e61-6f5f8fbd0e19" ns1:Name="de3e0e78-8697-49ec-8e61-6f5f8fbd0e19" ns1:Description="" ns1:PositionX="951" ns1:PositionY="162" ns1:Width="150" ns1:Height="60">
+        <ns1:Task ns1:ID="de3e0e78-8697-49ec-8e61-6f5f8fbd0e19" ns1:Name="终审" ns1:Description="de3e0e78-8697-49ec-8e61-6f5f8fbd0e19" ns1:PositionX="951" ns1:PositionY="162" ns1:Width="150" ns1:Height="60">
             <ns1:Read/>
             <ns1:Write/>
             <ns1:JoinMode>XOR</ns1:JoinMode>
             <ns1:SplitMode>XOR</ns1:SplitMode>
         </ns1:Task>
-        <ns1:Task ns1:ID="3ce86c67-b75a-487f-9517-bda8aa996e1b" ns1:Name="3ce86c67-b75a-487f-9517-bda8aa996e1b" ns1:Description="" ns1:PositionX="95" ns1:PositionY="334" ns1:Width="150" ns1:Height="60">
+        <ns1:Task ns1:ID="3ce86c67-b75a-487f-9517-bda8aa996e1b" ns1:Name="市局公示" ns1:Description="3ce86c67-b75a-487f-9517-bda8aa996e1b" ns1:PositionX="95" ns1:PositionY="334" ns1:Width="150" ns1:Height="60">
             <ns1:Read/>
             <ns1:Write/>
             <ns1:JoinMode>XOR</ns1:JoinMode>
             <ns1:SplitMode>XOR</ns1:SplitMode>
         </ns1:Task>
-        <ns1:Task ns1:ID="568c54d3-7c17-4d87-a254-04a6f13ed491" ns1:Name="568c54d3-7c17-4d87-a254-04a6f13ed491" ns1:Description="" ns1:PositionX="361" ns1:PositionY="414" ns1:Width="150" ns1:Height="60">
+        <ns1:Task ns1:ID="568c54d3-7c17-4d87-a254-04a6f13ed491" ns1:Name="修改" ns1:Description="568c54d3-7c17-4d87-a254-04a6f13ed491" ns1:PositionX="361" ns1:PositionY="414" ns1:Width="150" ns1:Height="60">
             <ns1:Read/>
             <ns1:Write/>
             <ns1:JoinMode>XOR</ns1:JoinMode>

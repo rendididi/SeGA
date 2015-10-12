@@ -16,6 +16,7 @@ import org.SeGA.api.instance.WorkitemAPI;
 import org.SeGA.api.schema.ProcessAPI;
 import org.SeGA.model.EngineType;
 import org.SeGA.model.JTangProcIns;
+import org.SeGA.model.JTangProcess;
 import org.SeGA.model.ProcessInstance;
 import org.SeGA.model.Process;
 import org.SeGA.model.SchemaType;
@@ -46,7 +47,7 @@ public class Test1 {
 		String instanceName = "testIns";
 		
 		URL location = Test1.class.getProtectionDomain().getCodeSource().getLocation();
-		File xmlfile = new File(location.getPath()+"../xml/process.xml");
+		File xmlfile = new File(location.getPath()+"../xml/process2.xml");
 
 
 //		File xmlfile = new File("C://Users/Administrator/Desktop/simplest.xml");
@@ -72,21 +73,23 @@ public class Test1 {
 		processSchema = send;
 
 		Process process = processAPI.publishProcess(schemaType, engineType, processSchema, processName);
-		System.out.println(process);
+		JTangProcess JtangP = (JTangProcess) process;
+		
 		ProcessInstance processInstance = procInsAPI.createInstance(engineType, process, instanceName);
-//		ProcessInstance processInstance = processInsAPI.createInstance(schemaType, processSchema, processName, instanceName);
-		System.out.println(processInstance);
+
 		Map <String, Object> map = new HashMap<String, Object>();
 		map.put("datainput", 3);
 		
 		JTangProcIns JtangPI = (JTangProcIns) processInstance;
-//		WorkItem workitem = JtangPI.getActWorkitems().get(0);
-//		processInstance = workitemAPI.commitWorkitemWithMap(engineType, process, processInstance, map, "14", processInstance.getWorkitems().get(0).getId());
+		System.out.println(JtangP.getActDescByActId(JtangPI.getActWorkitems().get(0).getActID()));
+
 		processInstance = workitemAPI.commitWorkitem(engineType, process, processInstance, "14", JtangPI.getActWorkitems().get(0).getId());
-//		workitemAPI.commitWorkitem(schemaType, processSchema, processName, processInstance, "14", processInstance.getWorkitems().get(0).getId());
+		System.out.println(JtangP.getActDescByActId(JtangPI.getActWorkitems().get(0).getActID()));
+		
 		JtangPI = (JTangProcIns) processInstance;
 		processInstance = workitemAPI.commitWorkitem(engineType, process, processInstance, "14", JtangPI.getActWorkitems().get(0).getId());
-		System.out.println(processInstance);
+		System.out.println(JtangP.getActDescByActId(JtangPI.getActWorkitems().get(0).getActID()));
+		
 	}
 	
 	
