@@ -63,12 +63,6 @@ public class JtangEngineService {
 
         // TODO log?
 
-        System.out.println(segaInstance.getActWorkitems().get(0).getWorkitemDetail());
-        System.out.println(segaInstance.getActWorkitems().get(0).getName());
-        System.out.println(segaInstance.getActWorkitems().get(0).getProcInsName());
-        System.out.println(segaInstance.getActWorkitems().get(0).getProcName());
-        System.out.println(segaInstance.getActWorkitems().get(0).getResult());
-        System.out.println(segaInstance.getActWorkitems().get(0).getExecutor());
 
         return nextTask;
     }

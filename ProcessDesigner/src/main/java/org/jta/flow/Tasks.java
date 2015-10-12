@@ -143,7 +143,7 @@ public class Tasks {
     			
     			
     			Task tempTask = new Task();
-    			tempTask.setName(name);
+    			tempTask.setName(id);
     			tempTask.setID(id);
     			tempTask.setDescription(description);
     			tempTask.setWidth(Integer.parseInt(width));

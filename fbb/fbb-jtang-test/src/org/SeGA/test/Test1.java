@@ -1,16 +1,13 @@
-package Test;
+package org.SeGA.test;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,17 +15,21 @@ import org.SeGA.api.instance.ProcessInsAPI;
 import org.SeGA.api.instance.WorkitemAPI;
 import org.SeGA.api.schema.ProcessAPI;
 import org.SeGA.model.EngineType;
-import org.SeGA.model.Process;
+import org.SeGA.model.JTangProcIns;
 import org.SeGA.model.ProcessInstance;
+import org.SeGA.model.Process;
 import org.SeGA.model.SchemaType;
+
 
 import com.caucho.hessian.client.HessianProxyFactory;
 
-public class TestforSeGA {
-	public static void main(String[] args) throws Exception {
+
+public class Test1 {
+	
+	public static void main(String[] args) throws MalformedURLException {
 		testforapi();		
 	}	
-	public static void testforapi () throws Exception {
+	public static void testforapi () throws MalformedURLException {
 		String localUrl = "http://localhost:8080/SeGA/";
 		String pubUrl = "http://120.24.49.253:8080/SeGA/";
 		String procUrl = pubUrl + "ProcessAPI";
@@ -43,9 +44,12 @@ public class TestforSeGA {
 		String processSchema = "";
 		String processName = "test";
 		String instanceName = "testIns";
-		URL location = TestforSeGA.class.getProtectionDomain().getCodeSource().getLocation();
+		
+		URL location = Test1.class.getProtectionDomain().getCodeSource().getLocation();
 		File xmlfile = new File(location.getPath()+"../xml/process.xml");
 
+
+//		File xmlfile = new File("C://Users/Administrator/Desktop/simplest.xml");
 		String send="";
 		InputStream input;
 		try {
@@ -66,34 +70,24 @@ public class TestforSeGA {
 		}		
 					
 		processSchema = send;
-		
+
 		Process process = processAPI.publishProcess(schemaType, engineType, processSchema, processName);
-		
+		System.out.println(process);
 		ProcessInstance processInstance = procInsAPI.createInstance(engineType, process, instanceName);
 //		ProcessInstance processInstance = processInsAPI.createInstance(schemaType, processSchema, processName, instanceName);
-		
+		System.out.println(processInstance);
 		Map <String, Object> map = new HashMap<String, Object>();
 		map.put("datainput", 3);
+		
+		JTangProcIns JtangPI = (JTangProcIns) processInstance;
+//		WorkItem workitem = JtangPI.getActWorkitems().get(0);
 //		processInstance = workitemAPI.commitWorkitemWithMap(engineType, process, processInstance, map, "14", processInstance.getWorkitems().get(0).getId());
-		
-		System.out.println(processInstance.getWorkitems().get(0).getName());
-		System.out.println(processInstance.getWorkitems().size());
-		
-		processInstance = workitemAPI.commitWorkitem(engineType, process, processInstance, "14", processInstance.getWorkitems().get(0).getId());
-		System.out.println(processInstance.getWorkitems().size());
-		
-		processInstance = workitemAPI.commitWorkitem(engineType, process, processInstance, "14", processInstance.getWorkitems().get(1).getId());
-		System.out.println(processInstance.getWorkitems().size());
-		
+		processInstance = workitemAPI.commitWorkitem(engineType, process, processInstance, "14", JtangPI.getActWorkitems().get(0).getId());
 //		workitemAPI.commitWorkitem(schemaType, processSchema, processName, processInstance, "14", processInstance.getWorkitems().get(0).getId());
-		processInstance = workitemAPI.commitWorkitem(engineType, process, processInstance, "14", processInstance.getWorkitems().get(2).getId());
-
-//		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//		ObjectOutputStream oos = new ObjectOutputStream(baos);
-//		oos.writeObject(process);
-//		oos.close();
-//		String b64 = Base64.getEncoder().encodeToString(baos.toByteArray());
-//		System.out.println(b64);
+		JtangPI = (JTangProcIns) processInstance;
+		processInstance = workitemAPI.commitWorkitem(engineType, process, processInstance, "14", JtangPI.getActWorkitems().get(0).getId());
+		System.out.println(processInstance);
 	}
+	
 	
 }
