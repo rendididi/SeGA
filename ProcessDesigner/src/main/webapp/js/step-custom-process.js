@@ -41,17 +41,17 @@
 	graph.on("change", resize);
 	
 	var taskTool=document.getElementById("taskShape");
-  var serviceTool=document.getElementById("serviceShape");
+	var serviceTool=document.getElementById("serviceShape");
 	var startTool = document.getElementById("startShape");
 	var endTool = document.getElementById("endShape");
 	taskTool.ondragend=dragEvent;
 	startTool.ondragend=dragEvent;
 	endTool.ondragend=dragEvent;
-  serviceTool.ondragend=dragEvent;
+	serviceTool.ondragend=dragEvent;
 
 	function dragEvent(ev){
 
-		var x=ev.pageX-$("#draw").offset().left- paper.options.origin.x + $("#draw").scrollLeft();
+	var x=ev.pageX-$("#draw").offset().left- paper.options.origin.x + $("#draw").scrollLeft();
   	var y=ev.pageY-$("#draw").offset().top-paper.options.origin.y + $("#draw").scrollTop();
   	var newCell='';
   	var elements = graph.getElements();
