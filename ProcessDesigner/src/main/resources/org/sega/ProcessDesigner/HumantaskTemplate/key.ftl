@@ -3,6 +3,6 @@
 		${text}
 	</label>
 	<div class="col-md-9">
-		<input type="text" class="form-control" <#if !write>disabled</#if> <#if write&&!read>value="new"<#if> ng-model="entity.${path}.${id}"/>
+		<input type="text" class="form-control" <#if !write>disabled</#if> <#if write&&!read>value="new"</#if> ng-model="entity.${path}.${id}"/>
 	</div>
 </div>

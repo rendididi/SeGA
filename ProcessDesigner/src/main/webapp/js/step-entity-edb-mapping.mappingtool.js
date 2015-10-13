@@ -107,7 +107,7 @@ var mapping_tool = {
     this._doMap(this.entity_node, this.db_node);
   },
 
-  _doMap: function(e, d) {
+  _doMap: function(e, d, opt) {
     var tree = $("#entity_tree").jstree(true);
     var column = d.attr("data-column-name"),
       table = d.parent().parent().attr("data-table-name");
@@ -125,8 +125,10 @@ var mapping_tool = {
 
     // validate rule
 
-    if(!this.canMap(e, d))
-      return false;
+    if(opt&&!opt.nocheck){
+    	if(!this.canMap(e, d))
+    		return false;
+  	}
   
     // clear related rules
     var filtered_rules = [];
@@ -159,21 +161,25 @@ var mapping_tool = {
       tree.get_node(e).data.mapped_type = d.children().last().text();
     
     // handle checkbox event
-    var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
-    var chk2 = d.children("td.isMapped");
-    var handler = $.proxy(function(evt){
-      selectTableRow(this.db_node);
-      tree.deselect_all();
-      tree.select_node(this.entity_node);
-      evt.stopImmediatePropagation();
-      return false;
-    },{
-      db_node: d,
-      entity_node: e
-    });
-    chk1.on("click mousedown focus click.jstree", handler);
-    chk2.click(handler);
-    
+
+    this.updateCheckboxHandler(e,d);
+  },
+  
+  updateCheckboxHandler: function(e, d){
+	var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
+	var chk2 = d.children("td.isMapped");
+	var handler = $.proxy(function(evt){
+	  selectTableRow(this.db_node);
+	  tree.deselect_all();
+	  tree.select_node(this.entity_node);
+	  evt.stopImmediatePropagation();
+	  return false;
+	},{
+	  db_node: d,
+	  entity_node: e
+	});
+	chk1.on("click mousedown focus click.jstree", handler);
+	chk2.click(handler);	  
   },
 
   onSelectChange:  function(){
@@ -273,7 +279,7 @@ var mapping_tool = {
     var entity = tree.get_node(e);
     var column = d.attr("data-column-name"),
       table = d.parent().parent().attr("data-table-name");
-    if(entity.type=="key") { //handle main entity
+    if(entity.type=="key"&&entity.parent&&entity.parent.parent==$.jstree.root) { //handle main entity
       tree.sega_map_node(entity.parent);
       tree.get_node(entity.parent).data.mapTo = table;
     }else if(entity.type=="artifact"){ //auto map key
@@ -286,7 +292,8 @@ var mapping_tool = {
       //find key
       var key = tree.get_key_child(entity.id);
       if(key){
-        this._doMap(key.id, d.siblings("tr[ispk=true]"));
+    	entity.data.mapTo = table;
+        this._doMap(key.id, d.siblings("tr[ispk=true]"), {nocheck: true});
       }
     }
 
