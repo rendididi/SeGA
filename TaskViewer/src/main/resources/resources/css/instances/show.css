@@ -32,4 +32,24 @@
 
 #processViewer .label {
     fill: #BDC3C7;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+#processViewer .active .body {
+    fill: #34495E;
+}
+
+#processViewer .active .label {
+    fill: #fff;
+}
+
+#processViewer .active .inPorts .port-body {
+    fill: #2C3E50;
+}
+
+.btn-task {
+    display: block;
+    margin : 10px auto 10px auto;
+    width: 25%;
 }

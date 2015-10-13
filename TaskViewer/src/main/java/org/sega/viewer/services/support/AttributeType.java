@@ -3,7 +3,7 @@ package org.sega.viewer.services.support;
 import org.sega.viewer.models.support.ValueType;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 public class AttributeType {
     private String id;

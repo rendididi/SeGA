@@ -50,4 +50,24 @@ public class HomeController {
 		return principal != null ? "home/index" : "users/signin";
 	}
 
+	@RequestMapping(value = "/completed", method = GET)
+	public String indexCompleted(Principal principal, @RequestParam(defaultValue = "0") int page, Model model) {
+		page = page < 0 ? 0 : page;
+		Page<ProcessInstance> instances = processInstanceRepository.findByNextTask(
+				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
+
+		Map<String, String> taskNameMap = new HashMap<String, String>();
+
+		for(ProcessInstance instance: instances){
+			taskNameMap.put(instance.getNextTask(), processInstanceService.getNextTaskName(instance));
+		}
+
+		model.addAttribute("instances", instances);
+		model.addAttribute("taskNames", taskNameMap);
+		model.addAttribute("totalInstances", instances.getTotalElements());
+		model.addAttribute("page", page+1);
+		model.addAttribute("totalPages", instances.getTotalPages());
+		return principal != null ? "home/completed" : "users/signin";
+	}
+
 }

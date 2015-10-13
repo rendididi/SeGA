@@ -13,11 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Repository
 @Transactional
 public interface ProcessInstanceRepository extends JpaRepository<ProcessInstance, Long>{
     List<ProcessInstance> findAllByProcess(Process process, Sort sort);
     Page<ProcessInstance> findByNextTaskNot(String nextTask, Pageable pageable);
+    Page<ProcessInstance> findByNextTask(String nextTask, Pageable pageable);
+
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Entity
 @Table(name = "process_instances")

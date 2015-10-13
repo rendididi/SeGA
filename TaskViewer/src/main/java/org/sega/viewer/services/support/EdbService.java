@@ -3,7 +3,7 @@ package org.sega.viewer.services.support;
 import org.json.JSONObject;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 public class EdbService {
 

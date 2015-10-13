@@ -1,21 +1,15 @@
 package org.sega.viewer.services;
 
-import com.caucho.hessian.client.HessianProxyFactory;
-import org.SeGA.api.instance.ProcessInsAPI;
-import org.SeGA.api.instance.WorkitemAPI;
-import org.SeGA.api.schema.ProcessAPI;
 import org.SeGA.model.EngineType;
 import org.SeGA.model.JTangProcIns;
 import org.SeGA.model.JTangProcess;
 import org.SeGA.model.SchemaType;
+import org.sega.viewer.config.JTangApi;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.models.ProcessInstanceJTangInfo;
 import org.sega.viewer.repositories.ProcessInstanceJTangInfoRepository;
-import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.utils.Base64Util;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -27,77 +21,54 @@ import java.net.MalformedURLException;
 @Service
 public class JtangEngineService {
     @Autowired
-    private ProcessInstanceRepository processInstanceRepository;
-
-    @Autowired
     private ProcessInstanceJTangInfoRepository processInstanceJTangInfoRepository;
 
     @Autowired
-    private JTangEngineConfig jTangEngineConfig;
+    private JTangApi jTangApi;
 
-    public String commitTask(ProcessInstance processInstance) throws MalformedURLException {
-        String pubUrl = jTangEngineConfig.getUrl();
-        String procUrl = pubUrl + "/ProcessAPI";
-        String procInsUrl = pubUrl + "/ProcessInsAPI";
-        String workitemUrl = pubUrl + "/WorkitemAPI";
-
-        HessianProxyFactory factory = new HessianProxyFactory();
-        ProcessInsAPI procInsAPI = (ProcessInsAPI) factory.create(ProcessInsAPI.class, procInsUrl);
-        WorkitemAPI workitemAPI = (WorkitemAPI) factory.create(WorkitemAPI.class, workitemUrl);
-        ProcessAPI processAPI = (ProcessAPI) factory.create(ProcessAPI.class, procUrl);
-
-        String schemaType = SchemaType.SimpleJTang;
-        String engineType = EngineType.JTang;
-
-        ProcessInstanceJTangInfo processInstanceJTangInfo = processInstance.getjTangInfo();
-
-        org.SeGA.model.Process segaProces = processInstanceJTangInfo.getJtangProcess();
-        org.SeGA.model.JTangProcIns segaInstance = processInstanceJTangInfo.getJtangInstance();
+    public String commitTask(ProcessInstance instance) throws MalformedURLException {
+        ProcessInstanceJTangInfo processInstanceJTangInfo = instance.getjTangInfo();
+        JTangProcIns jTangInstance = processInstanceJTangInfo.getJtangInstance();
 
         // TODO build input map from read entity
-        segaInstance = (JTangProcIns) workitemAPI.commitWorkitem(engineType, segaProces, segaInstance, "14", segaInstance.getActWorkitems().get(0).getId());
+        jTangInstance = (JTangProcIns) jTangApi.getTaskApi().commitWorkitem(
+                EngineType.JTang,
+                processInstanceJTangInfo.getJtangProcess(),
+                jTangInstance,
+                "14",
+                jTangInstance.getActWorkitems().get(0).getId());
 
-        processInstanceJTangInfo.setJtangInstance(segaInstance);
+        processInstanceJTangInfo.setJtangInstance(jTangInstance);
         processInstanceJTangInfoRepository.save(processInstanceJTangInfo);
-
-        String nextTask = ((JTangProcess)segaProces).getActDescByActId(segaInstance.getActWorkitems().get(0).getActID());
 
         // TODO log?
 
-
+        String nextTask = "";
+        if(jTangInstance.getWorkitems() == null || jTangInstance.getWorkitems().isEmpty()) {
+            nextTask = "completed";
+        }else {
+            nextTask = ((JTangProcess) processInstanceJTangInfo.getJtangProcess()).getActDescByActId(jTangInstance.getActWorkitems().get(0).getActID());
+        }
         return nextTask;
     }
 
-    public void publishProcess(ProcessInstance processInstance) throws MalformedURLException, UnsupportedEncodingException {
-        String url = jTangEngineConfig.getUrl();
+    public void publishProcess(ProcessInstance instance)
+            throws MalformedURLException, UnsupportedEncodingException {
 
-        HessianProxyFactory factory = new HessianProxyFactory();
-        ProcessInsAPI procInsAPI = (ProcessInsAPI) factory.create(ProcessInsAPI.class,  url + "/ProcessInsAPI");
-        WorkitemAPI workitemAPI = (WorkitemAPI) factory.create(WorkitemAPI.class, url + "/WorkitemAPI");
-        ProcessAPI processAPI = (ProcessAPI) factory.create(ProcessAPI.class, url + "/ProcessAPI");
+        org.SeGA.model.Process jTangProcess = jTangApi.getProcessAPI().publishProcess(
+                SchemaType.SimpleJTang,
+                EngineType.JTang,
+                Base64Util.decode(instance.getProcess().getProcessXML()),
+                instance.getProcess().getName());
 
-        String processXml = Base64Util.decode(processInstance.getProcess().getProcessXML());
+        JTangProcIns jTangInstance = (JTangProcIns) jTangApi.getInstanceApi().createInstance(
+                EngineType.JTang,
+                jTangProcess,
+                instance.getProcess().getName() + "_" + instance.getId());
 
-        org.SeGA.model.Process segaProcess = processAPI.publishProcess(SchemaType.SimpleJTang, EngineType.JTang, processXml, processInstance.getProcess().getName());
-        org.SeGA.model.JTangProcIns segaInstance = (JTangProcIns) procInsAPI.createInstance(EngineType.JTang, segaProcess, processInstance.getProcess().getName() + "_" + processInstance.getId());
+        ProcessInstanceJTangInfo info = new ProcessInstanceJTangInfo(instance, jTangProcess, jTangInstance);
 
-        ProcessInstanceJTangInfo processInstanceJTangInfo = new ProcessInstanceJTangInfo(processInstance, segaProcess, segaInstance);
-
-        processInstanceJTangInfoRepository.save(processInstanceJTangInfo);
+        processInstanceJTangInfoRepository.save(info);
     }
 
-}
-
-@Configuration
-class JTangEngineConfig {
-    @Value("${jtang.url}")
-    private String url;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 }

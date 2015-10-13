@@ -1,4 +1,4 @@
-package org.sega.viewer;
+package org.sega.viewer.config;
 
 import org.sega.viewer.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.sega.viewer.services.UserService;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)

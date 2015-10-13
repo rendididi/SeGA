@@ -1,4 +1,4 @@
-package org.sega.viewer;
+package org.sega.viewer.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -22,10 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 import static org.sega.viewer.Constants.*;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+class WebConfig extends WebMvcConfigurerAdapter {
     @Autowired
     private ViewHelper viewHelper;
 

@@ -5,11 +5,12 @@ block content
     .avatar.col-sm-12
       img.userImg(src="/images/user/operator.png", style="height:90px;width:90px;")
     ul.task-menu.list-unstyled.nav.navbar-nav
-      li.active
-        img(src="/images/ongoing.png")
-        span On-Going
       li
-        a(href="/completed")
+        a(href="/")
+          img(src="/images/ongoing.png")
+          span On-Going
+      li.active
+        a(href="/completed_processes")
           img(src="/images/completed.png")
           span Completed
       li
@@ -22,7 +23,7 @@ block content
     .g-content
       .m-activity
         h3
-          span Activities
+          span Completed Activities
           span.badge  #{totalInstances}
 
         .col-md-10.col-md-offset-1

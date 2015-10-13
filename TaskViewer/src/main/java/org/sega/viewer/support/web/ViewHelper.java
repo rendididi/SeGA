@@ -3,7 +3,7 @@ package org.sega.viewer.support.web;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Raysmond<jiankunlei@gmail.com>.
+ * @author Raysmond<i@raysmond.com>.
  */
 @Service
 public class ViewHelper {
