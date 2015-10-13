@@ -4,6 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
+import org.sega.viewer.services.EdbService;
 import org.sega.viewer.services.JtangEngineService;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.sega.viewer.utils.Base64Util;
@@ -33,6 +34,9 @@ public class InstanceController {
 
     @Autowired
     private JtangEngineService jtangEngineService;
+
+    @Autowired
+    private EdbService edbService;
 
     private static final String TASK_TEMPLATE = "templates/fragments/humantask/%s/%s.html";
 
@@ -76,6 +80,9 @@ public class InstanceController {
 
         instance.setNextTask(nextTask);
         processInstanceService.updateInstance(instance);
+
+        // sync test
+        edbService.sync(instance);
 
         return instance.getEntity();
     }

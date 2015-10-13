@@ -13,6 +13,9 @@ import java.util.List;
 public class EntityJsonService {
     private JSONObject entityJson;
 
+    public EntityJsonService() {
+    }
+
     public EntityJsonService(String entityJson) {
         try {
             String json = Base64Util.decode(entityJson);
@@ -32,11 +35,11 @@ public class EntityJsonService {
                 case "artifact":
                     break;
                 case "key":
-                    break;
                 case "attribute":
                     AttributeType attributeType = new AttributeType(
                             child.getString("id"),
                             child.getString("text"),
+                            child.getString("type"),
                             child.getString("value_type"),
                             child.getBoolean("isMapped"),
                             child.getString("mapped_type")

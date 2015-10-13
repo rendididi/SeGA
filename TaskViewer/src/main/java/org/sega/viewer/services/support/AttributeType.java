@@ -8,17 +8,27 @@ import org.sega.viewer.models.support.ValueType;
 public class AttributeType {
     private String id;
     private String text;
+    private String type;
     private ValueType valueType;
     private boolean isMapped;
     private String mappedType;
 
-    public AttributeType(String id, String text, String valueType, boolean isMapped, String mappedType) {
+    public AttributeType(String id, String text, String type, String valueType, boolean isMapped, String mappedType) {
         this.id = id;
         this.text = text;
         this.isMapped = isMapped;
         this.mappedType = mappedType;
+        this.type = type;
 
         this.setStringValueType(valueType);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getId() {

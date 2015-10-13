@@ -78,6 +78,7 @@ public class ProcessInstanceService {
         }
     }
 
+
     @Transactional
     public ProcessInstance updateInstance(ProcessInstance processInstance) throws UnsupportedEncodingException {
 //        ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
