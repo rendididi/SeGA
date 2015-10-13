@@ -98,11 +98,12 @@ public class InstanceController {
         ClassLoader classLoader = getClass().getClassLoader();
 
         try {
-            result = IOUtils.toString(classLoader.getResourceAsStream(file));
+            result = IOUtils.toString(classLoader.getResourceAsStream(file), "UTF-8");
         } catch (IOException e) {
             logger.error("Failed to read task template file " + file + ", got exception: " + e);
         }
-
         return result;
     }
+
+
 }

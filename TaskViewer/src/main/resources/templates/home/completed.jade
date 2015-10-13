@@ -1,0 +1,67 @@
+extends ../layout/app 
+
+block content
+  .row#user-area 
+    .avatar.col-sm-12
+      img.userImg(src="/images/user/operator.png", style="height:90px;width:90px;")
+    ul.task-menu.list-unstyled.nav.navbar-nav
+      li
+        a(href="/")
+          img(src="/images/ongoing.png")
+          span On-Going
+      li.active
+        a(href="/completed_processes")
+          img(src="/images/completed.png")
+          span Completed
+      li
+        a(href="/processes")
+          img(src="/images/create.png")
+          span Create New
+
+  
+  .container
+    .g-content
+      .m-activity
+        h3
+          span Completed Activities
+          span.badge  #{totalInstances}
+
+        .col-md-10.col-md-offset-1
+          ul.list-unstyled#activityList
+            for instance in instances
+              li
+                a.btn-activity(href="/processes/instances/#{instance.getId()}")
+                  img.activityImg(src="/images/list.png")
+
+                  .info
+                    .btn-edit
+                        span.glyphicon.glyphicon-edit
+
+                    p.date #{instance.getCreatedAt()}
+                    p.task
+                      |Task:
+                      span.emph #{taskNames.get(instance.getNextTask())}
+                    p.description
+                      |Process:
+                      span.emph #{instance.getProcess().getName()}
+
+
+          div#my-pagination
+    
+    script 
+      $(function(){
+          var options = {
+            currentPage: #{page},
+            totalPages: #{totalPages},
+            pageUrl: function(type, page, current){
+                return document.location.pathname+'?page='+(page-1);
+            }
+          };
+          
+          $('#my-pagination').bootstrapPaginator(options);
+      });
+      
+
+        
+
+          

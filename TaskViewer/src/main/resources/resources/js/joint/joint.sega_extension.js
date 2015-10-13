@@ -119,7 +119,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
                 'text-anchor': 'middle', 
                 fill: '#ffffff', 
                 "font-family": "Open Sans, Microsoft Yahei, Microsoft Yahei UI Light" ,
-                "font-size": "16px",
+                "font-size": "20px",
                 "font-weight": "300",
                    
             },
@@ -257,7 +257,7 @@ joint.shapes.sega.Service = joint.shapes.basic.Generic.extend(_.extend({}, joint
                 'text-anchor': 'middle', 
                 fill: '#5D8599', 
                 "font-family": "Open Sans, Microsoft Yahei, Microsoft Yahei UI Light" ,
-                "font-size": "16px",
+                "font-size": "20px",
                 "font-weight": "300",
                    
             },

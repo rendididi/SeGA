@@ -25,9 +25,9 @@ block content
     div#processViewer
 
     hr
-    
-    // TODO 暂时直接链接到“受理”的任务测试
-    a.btn.btn-primary(href="/processes/instances/#{instance.getId()}/task/#{nextTask.getId()}") #{nextTask.getName()}
+
+    if !nextTask.getId().isEmpty() && nextTask.getId()!="completed"
+      a.btn-task.btn.btn-primary.btn-lg(href="/processes/instances/#{instance.getId()}/task/#{nextTask.getId()}") #{nextTask.getName()}
 
     script
       var process_json= !{processJSON};

@@ -2,6 +2,7 @@ package org.sega.viewer.services;
 
 import org.SeGA.model.EngineType;
 import org.SeGA.model.JTangProcIns;
+import org.SeGA.model.JTangProcess;
 import org.SeGA.model.SchemaType;
 import org.sega.viewer.config.JTangApi;
 import org.sega.viewer.models.ProcessInstance;
@@ -42,8 +43,12 @@ public class JtangEngineService {
 
         // TODO log?
 
-        String nextTask = jTangInstance.getActWorkitems().get(0).getName();
-
+        String nextTask = "";
+        if(jTangInstance.getWorkitems() == null || jTangInstance.getWorkitems().isEmpty()) {
+            nextTask = "completed";
+        }else {
+            nextTask = ((JTangProcess) processInstanceJTangInfo.getJtangProcess()).getActDescByActId(jTangInstance.getActWorkitems().get(0).getActID());
+        }
         return nextTask;
     }
 

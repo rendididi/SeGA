@@ -35,6 +35,8 @@ var resize = function(){
 $(function(){
     graph.fromJSON(process_json);
 
+    paper.findViewByModel(nextTask).el.classList.add("active");
+
     $(window).resize(resize);
     resize();
 });

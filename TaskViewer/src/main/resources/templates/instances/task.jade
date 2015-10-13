@@ -1,6 +1,20 @@
 extends ../layout/app_ng
 
+block head
+  link(rel="stylesheet", type='text/css', href="#{basePath}/css/humantask.css")
+  link(rel="stylesheet", type='text/css', href="#{basePath}/css/instances/task.css")
+
+
 block content
+  .row#user-area
+    .avatar.col-sm-12
+      img.userImg(src="/images/list.png", style="height:90px;width:90px;")
+    ul.task-menu.list-unstyled.nav.navbar-nav
+      li
+        a(href="/")
+          img(src="/images/goback.png")
+          span Home
+
   h2 Task ID: #{taskId}
   hr
   
@@ -9,7 +23,7 @@ block content
       input(type="hidden", name='_csrf', value='#{_csrf.token}')
       !{templateHtml}
       //- button.btn.btn-default.btn-block(type="submit") Commit
-      a.btn.btn-default(ng-click="commitTask('/processes/instances/#{instance.getId()}/task/#{taskId}')") Commit
+      a.btn.btn-primary.btn-lg.btn-commit(ng-click="commitTask('/processes/instances/#{instance.getId()}/task/#{taskId}')") Commit
           
   
   script
