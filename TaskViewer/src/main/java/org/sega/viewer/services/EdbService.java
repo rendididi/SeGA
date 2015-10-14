@@ -2,6 +2,7 @@ package org.sega.viewer.services;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.sega.viewer.models.DatabaseConfiguration;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.services.support.AttributeType;
 import org.sega.viewer.utils.Base64Util;
@@ -24,20 +25,17 @@ import java.util.Map;
 @Service
 public class EdbService {
 
-    // TODO read edb connection info from database
-    private static String DRIVER = "com.mysql.jdbc.Driver";
-    private String DB_URL = "jdbc:mysql://127.0.0.1:3306/edb";
-    private String USER = "root";
-    private String PASSWORD = "";
-    private Connection connection;
-
     private Map<String, List<AttributeType>> mapping = new HashMap<>();
     private Map<String, String> tableMap = new HashMap<>();
+    private Connection connection;
+
+    private static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String MYSQL_CONNECTION_URL = "jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=UTF-8";
 
     /**
-     * Synchronize entity to edb
+     * Synchronize SeGA process instance to edb
      */
-    public void sync(ProcessInstance instance) {
+    public void sync(ProcessInstance instance) throws SQLException, ClassNotFoundException, UnSupportEdbException {
         mapping = new HashMap<>();
         tableMap = new HashMap<>();
 
@@ -46,10 +44,19 @@ public class EdbService {
 
         getEntityInfo(entitySchema);
 
-        // travel entity
+        connection = createEdbConnection(instance.getProcess().getDbconfig());
+
+        // travel and sync entity
         syncEntity(entity, getMainArtifactId(entitySchema));
+
+        closeEdbConnection();
     }
 
+    /**
+     * Synchronize an artifact entity recursively to edb
+     * @param entity
+     * @param artifactId
+     */
     private void syncEntity(JSONObject entity, String artifactId) {
         if (!entity.has(artifactId))
             return;
@@ -116,7 +123,7 @@ public class EdbService {
         }
 
         // save entity to edb
-        Table table = new Table(getEdbConnection(), tableMap.get(artifactId), key, keyValue, columns);
+        Table table = new Table(connection, tableMap.get(artifactId), key, keyValue, columns);
         table.save();
     }
 
@@ -164,20 +171,29 @@ public class EdbService {
         return entitySchema.getString("id");
     }
 
-    private Connection getEdbConnection() {
-        if (connection == null) {
-            try {
-                Class.forName(DRIVER);
-                connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+
+    private Connection createEdbConnection(DatabaseConfiguration edb) throws ClassNotFoundException, SQLException, UnSupportEdbException {
+        // only support mysql temporarily
+        if (edb == null || !edb.getType().equals("mysql")) {
+            throw new UnSupportEdbException();
         }
 
-        return connection;
+        String dbUrl = String.format(MYSQL_CONNECTION_URL, edb.getHost(), edb.getPort(), edb.getDatabase_name());
+        String user = edb.getUsername();
+        String password = edb.getPassword();
+
+        Class.forName(MYSQL_DRIVER);
+        return DriverManager.getConnection(dbUrl, user, password);
     }
+
+    private void closeEdbConnection() throws SQLException {
+        connection.close();
+        connection = null;
+    }
+}
+
+class UnSupportEdbException extends Exception {
+
 }
 
 
@@ -250,7 +266,7 @@ class Table {
     }
 
     private boolean exists() {
-        return columns.containsKey(key);
+        return keyValue != null;
     }
 
     private String getColumnsSql() {
