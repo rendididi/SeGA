@@ -3,6 +3,7 @@ package org.sega.viewer.services;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.sega.viewer.models.ProcessInstance;
+import org.sega.viewer.models.support.ValueType;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.support.*;
 import org.sega.viewer.utils.Base64Util;
@@ -10,9 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import java.util.*;
+
+import static org.sega.viewer.services.support.EDMappingService.MappingItem;
 
 
 /**
@@ -112,17 +116,11 @@ public class EdbService {
 
         for (AttributeType attribute : mapping.get(artifactId)) {
             String id = attribute.getId();
+            String type = attribute.getType();
 
-            if (attribute.getType().equals("key")) {
+            if (type.equals("key")) {
                 key = id;
-                String val = artifact.optString(id);
-                if (val != null && !val.equalsIgnoreCase(ProcessInstance.EMPTY_KEY_VALUE)) {
-                    try {
-                        keyValue = Long.valueOf(val);
-                    } catch (NumberFormatException e) {
-                        keyValue = null;
-                    }
-                }
+                keyValue = getKeyValue(key, artifact);
             }
 
             if (!artifact.has(id)) {
@@ -130,58 +128,42 @@ public class EdbService {
             }
 
             // one-to-one
-            if (attribute.getType().equals("artifact") && artifact.optJSONObject(id) != null) {
+            if (type.equals("artifact") && artifact.has(id)) {
                 EntityTable et = preSyncEntity(artifact.getJSONObject(id), id);
                 entityTable.addHasOneChild(et);
 
                 // add foreign key to current entity table
-                EDMappingService.MappingItem fkMappingItem = getEdMappingItem(id);
-                if (fkMappingItem != null) {
-                    entityTable.foreignKey = fkMappingItem.getEntityId();
-                    entityTable.table.setForeignKey(fkMappingItem.getColumn());
+                MappingItem fk = getEdMappingItem(id);
+                if (fk != null) {
+                    entityTable.foreignKey = fk.getEntityId();
+                    entityTable.table.setForeignKey(fk.getColumn());
                 }
             }
 
             // one-to-many
-            if (attribute.getType().equals("artifact_n") && artifact.optJSONArray(id) != null) {
+            if (type.equals("artifact_n") && artifact.has(id)) {
                 JSONArray entities = artifact.getJSONArray(id);
                 for (int i = 0; i < entities.length(); ++i) {
                     EntityTable et = preSyncEntity(entities.getJSONObject(i), id);
                     et.isGroupChild = true;
 
                     // add foreign key to children's entity table
-                    EDMappingService.MappingItem fkMappingItem = getEdMappingItem(id);
-                    et.foreignKey = fkMappingItem.getEntityId();
-                    et.table.setForeignKey(fkMappingItem.getColumn());
+                    MappingItem fk = getEdMappingItem(id);
+                    et.foreignKey = fk.getEntityId();
+                    et.table.setForeignKey(fk.getColumn());
 
                     entityTable.addHasManyChild(et);
                 }
             }
 
             // normal attribute
-            // TODO
-            if (attribute.getType().equals("attribute")) {
-                String dbColumn = getEdMappingItem(id).getColumn();
-
-                switch (attribute.getValueType()) {
-                    case LONG:
-                        columns.put(dbColumn, artifact.getLong(id));
-                        break;
-                    case INTEGER:
-                        columns.put(dbColumn, artifact.getInt(id));
-                        break;
-                    case TEXT:
-                    case STRING:
-                        columns.put(dbColumn, artifact.getString(id));
-                        break;
-                    default:
-                        columns.put(dbColumn, artifact.getString(id));
-                }
+            if (type.equals("attribute")) {
+                columns.put(getEdMappingItem(id).getColumn(), getColumnValue(artifact, attribute.getValueType(), id));
             }
 
             // group
-            if (attribute.getType().equals("group")) {
-                // TODO
+            if (type.equals("group")) {
+                // do nothing
             }
         }
 
@@ -191,6 +173,35 @@ public class EdbService {
         entityTable.key = key;
 
         return entityTable;
+    }
+
+    private Object getColumnValue(JSONObject entity, ValueType valueType, String id) {
+        switch (valueType) {
+            case LONG:
+                return entity.getLong(id);
+            case INTEGER:
+                return entity.getInt(id);
+            case TEXT:
+            case STRING:
+                return entity.getString(id);
+            default:
+                return entity.getString(id);
+        }
+    }
+
+    private Long getKeyValue(String key, JSONObject entity) {
+        String val = entity.optString(key);
+        Long keyValue = null;
+
+        if (val != null && !val.equalsIgnoreCase(ProcessInstance.EMPTY_KEY_VALUE)) {
+            try {
+                keyValue = Long.valueOf(val);
+            } catch (NumberFormatException e) {
+                keyValue = null;
+            }
+        }
+
+        return keyValue;
     }
 
     private void parseEntityInfo(JSONObject entitySchema) {
@@ -241,7 +252,7 @@ public class EdbService {
         this.edMappingInfo = edMappingService.getMappingInfo();
     }
 
-    private EDMappingService.MappingItem getEdMappingItem(String entityId) {
+    private MappingItem getEdMappingItem(String entityId) {
         return edMappingInfo.get(entityId);
     }
 
