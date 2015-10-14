@@ -6,6 +6,8 @@ import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.support.*;
 import org.sega.viewer.utils.Base64Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.UnsupportedEncodingException;
@@ -27,6 +29,8 @@ public class EdbService {
     private Map<String, EDMappingService.MappingItem> edMappingInfo;
     private EntityTable entityTableRoot;
     private Connection connection;
+
+    private static final Logger logger = LoggerFactory.getLogger(EdbService.class);
 
     /**
      * Synchronize SeGA process instance to edb
@@ -223,7 +227,7 @@ public class EdbService {
                     parseEntityInfo(child);
                     break;
                 default:
-                    System.out.println("Unrecognized entityJson child: " + child.toString());
+                    logger.error("Unrecognized entityJson child: " + child.toString());
             }
         }
     }

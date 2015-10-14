@@ -1,5 +1,8 @@
 package org.sega.viewer.services.support;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +21,11 @@ public class Table {
     private String foreignKey;
     private Map<String, Object> columns = new HashMap<>();
 
+    private static final String INSERT_SQL = "INSERT INTO %s (%s) VALUES (%s)";
+    private static final String UPDATE_SQL = "UPDATE %s SET %s WHERE %s=?";
+
+    private static final Logger logger = LoggerFactory.getLogger(Table.class);
+
     public Table(Connection connection, String name) {
         this.connection = connection;
         this.name = name;
@@ -27,22 +35,38 @@ public class Table {
      * Insert or update a table record
      */
     public void save() throws SQLException {
-        PreparedStatement statement;
-        String sql;
+        String sql = prepareSql();
 
-        if (!this.exists()) {
-            sql = "INSERT INTO " + name + " (" + getColumnsSql() + ") VALUES (" + getValuesPlaceholder() + ")";
-        } else {
-            if (columns.isEmpty())
-                return;
-
-            sql = "UPDATE " + name + " SET " + getUpdateColumnsSql() + " WHERE " + key + "=?";
+        if (sql == null) {
+            return;
         }
 
-        if (!this.exists())
+        PreparedStatement statement = preparedStatement(sql);
+
+        logger.debug("execute edb SQL " + statement.toString());
+
+        // execute sync SQL
+        int affectedRows = statement.executeUpdate();
+        if (affectedRows == 0) {
+            throw new SQLException("Save entity record to table " + name + " failed.");
+        }
+
+        if (!this.exists()) {
+            // get generated key value
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                this.keyValue = generatedKeys.getLong(1);
+            }
+        }
+    }
+
+    private PreparedStatement preparedStatement(String sql) throws SQLException {
+        PreparedStatement statement;
+        if (!this.exists()) {
             statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-        else
+        } else {
             statement = connection.prepareStatement(sql);
+        }
 
         // set statement parameters
         int count = 1;
@@ -61,26 +85,23 @@ public class Table {
             }
         }
 
-        // UPDATE SQL
         if (this.exists()) {
             statement.setLong(count, keyValue);
         }
 
-        System.out.println("SQL : " + statement.toString());
+        return statement;
+    }
 
-        // execute sync SQL
-        int affectedRows = statement.executeUpdate();
-        if (affectedRows == 0) {
-            throw new SQLException("Save entity record to table " + name + " failed.");
+    private String prepareSql() {
+        String sql = null;
+
+        if (this.exists() && !columns.isEmpty()) {
+            sql = String.format(UPDATE_SQL, name, getUpdateColumnsSql(), key);
+        } else {
+            sql = String.format(INSERT_SQL, name, getColumnsSql(), getValuesPlaceholder());
         }
 
-        if (!this.exists()) {
-            // get generated key value
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                this.keyValue = generatedKeys.getLong(1);
-            }
-        }
+        return sql;
     }
 
     private boolean exists() {
