@@ -7,6 +7,7 @@ import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.EdbService;
 import org.sega.viewer.services.JtangEngineService;
 import org.sega.viewer.services.ProcessInstanceService;
+import org.sega.viewer.services.support.UnSupportEdbException;
 import org.sega.viewer.utils.Base64Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.sql.SQLException;
 
 /**
  * @author Raysmond<i@raysmond.com>
@@ -63,6 +65,18 @@ public class InstanceController {
         return "instances/task";
     }
 
+
+    // edb sync test
+    @RequestMapping(value = "{instanceId:\\d+}/sync_edb", method = RequestMethod.GET)
+    @ResponseBody
+    public String syncTest(@PathVariable Long instanceId) throws ClassNotFoundException, SQLException, UnSupportEdbException, UnsupportedEncodingException {
+        ProcessInstance instance = processInstanceRepository.findOne(instanceId);
+
+        edbService.sync(instance);
+
+        return "";
+    }
+
     @RequestMapping(
             value = "{instanceId:\\d+}/task/{taskId}",
             method = RequestMethod.POST,
@@ -80,9 +94,6 @@ public class InstanceController {
 
         instance.setNextTask(nextTask);
         processInstanceService.updateInstance(instance);
-
-        // sync test
-        edbService.sync(instance);
 
         return instance.getEntity();
     }

@@ -1,5 +1,6 @@
 package org.sega.viewer.services.support;
 
+import org.json.JSONObject;
 import org.sega.viewer.models.support.ValueType;
 
 /**
@@ -12,6 +13,23 @@ public class AttributeType {
     private ValueType valueType;
     private boolean isMapped;
     private String mappedType;
+
+    public AttributeType() {
+
+    }
+
+    public AttributeType(JSONObject attributeJson) {
+        this.setId(attributeJson.getString("id"));
+        this.setText(attributeJson.getString("text"));
+        this.setType(attributeJson.getString("type"));
+
+        JSONObject data = attributeJson.getJSONObject("data");
+        if (data != null) {
+            this.setStringValueType(data.optString("value_type"));
+            this.setIsMapped(data.optBoolean("isMapped"));
+            this.setMappedType(data.optString("mapped_type"));
+        }
+    }
 
     public AttributeType(String id, String text, String type, String valueType, boolean isMapped, String mappedType) {
         this.id = id;
@@ -55,18 +73,22 @@ public class AttributeType {
         this.valueType = valueType;
     }
 
-    public void setStringValueType(String valueType){
-        switch (valueType){
+    public void setStringValueType(String valueType) {
+        if (valueType == null || valueType.isEmpty()) {
+            this.valueType = ValueType.STRING;
+            return;
+        }
+        switch (valueType) {
             case "auto":
                 // 默认auto的类型为String
                 this.valueType = ValueType.STRING;
 
-                if (isMapped){
-                    if (mappedType.startsWith("int")){
+                if (isMapped) {
+                    if (mappedType.startsWith("int")) {
                         this.valueType = ValueType.LONG;
                     }
 
-                    if (mappedType.startsWith("varchar")){
+                    if (mappedType.startsWith("varchar")) {
                         this.valueType = ValueType.STRING;
                     }
                 }
