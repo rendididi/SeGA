@@ -1,5 +1,7 @@
 package org.sega.viewer.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,6 +10,7 @@ import java.util.Collection;
  * @author Raysmond<i@raysmond.com>
  */
 @Entity
+@Data
 public class Process extends BaseModel {
 
     private String processJSON;
@@ -50,115 +53,4 @@ public class Process extends BaseModel {
     @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL},  fetch = FetchType.LAZY)
     private Collection<ProcessEdit> processInstances = new ArrayList<>();
 
-    public String getProcessJSON() {
-        return processJSON;
-    }
-
-    public void setProcessJSON(String processJSON) {
-        this.processJSON = processJSON;
-    }
-
-    public String getProcessXML() {
-        return processXML;
-    }
-
-    public void setProcessXML(String processXML) {
-        this.processXML = processXML;
-    }
-
-    public String getEntityJSON() {
-        return entityJSON;
-    }
-
-    public void setEntityJSON(String entityJSON) {
-        this.entityJSON = entityJSON;
-    }
-
-    public String getDatabaseJSON() {
-        return databaseJSON;
-    }
-
-    public void setDatabaseJSON(String databaseJSON) {
-        this.databaseJSON = databaseJSON;
-    }
-
-    public String getEDmappingJSON() {
-        return EDmappingJSON;
-    }
-
-    public void setEDmappingJSON(String eDmappingJSON) {
-        EDmappingJSON = eDmappingJSON;
-    }
-
-    public String getProcessImageUrl() {
-        return processImageUrl;
-    }
-
-    public void setProcessImageUrl(String processImageUrl) {
-        this.processImageUrl = processImageUrl;
-    }
-
-    public ProcessTemplate getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(ProcessTemplate template) {
-        this.template = template;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDDmappingJSON() {
-        return DDmappingJSON;
-    }
-
-    public void setDDmappingJSON(String dDmappingJSON) {
-        DDmappingJSON = dDmappingJSON;
-    }
-
-    public DatabaseConfiguration getDbconfig() {
-        return dbconfig;
-    }
-
-    public void setDbconfig(DatabaseConfiguration dbconfig) {
-        this.dbconfig = dbconfig;
-    }
-
-    public Collection<ProcessEdit> getProcessEdits() {
-        return processEdits;
-    }
-
-    public void setProcessEdits(Collection<ProcessEdit> processEdits) {
-        this.processEdits = processEdits;
-    }
-
-    public Collection<ProcessEdit> getProcessInstances() {
-        return processInstances;
-    }
-
-    public void setProcessInstances(Collection<ProcessEdit> processInstances) {
-        this.processInstances = processInstances;
-    }
-
-    public String getBindingJson() {
-        return bindingJson;
-    }
-
-    public void setBindingJson(String bindingJson) {
-        this.bindingJson = bindingJson;
-    }
 }

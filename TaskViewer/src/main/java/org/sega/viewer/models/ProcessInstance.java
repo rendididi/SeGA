@@ -1,6 +1,8 @@
 package org.sega.viewer.models;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "process_instances")
+@Data
 public class ProcessInstance extends BaseModel{
     public static final String STATE_COMPLETED = "completed";
     public static final String EMPTY_KEY_VALUE = "NEW";
@@ -36,6 +39,9 @@ public class ProcessInstance extends BaseModel{
     @OneToOne(mappedBy = "processInstance")
     private ProcessInstanceJTangInfo jTangInfo;
 
+    @Column(name = "sync_edb_at")
+    private Date syncEdbAt;
+
     public ProcessInstance(){
 
     }
@@ -49,59 +55,4 @@ public class ProcessInstance extends BaseModel{
         this.createdAt = new Date();
     }
 
-    public String getNextTask() {
-        return nextTask;
-    }
-
-    public void setNextTask(String nextTask) {
-        this.nextTask = nextTask;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getEntity() {
-        return entity;
-    }
-
-    public void setEntity(String entity) {
-        this.entity = entity;
-    }
-
-    public Process getProcess() {
-        return process;
-    }
-
-    public void setProcess(Process process) {
-        this.process = process;
-    }
-
-    public Artifact getMainArtifact() {
-        return mainArtifact;
-    }
-
-    public void setMainArtifact(Artifact mainArtifact) {
-        this.mainArtifact = mainArtifact;
-    }
-
-    public List<ProcessInstanceLog> getLogs() {
-        return logs;
-    }
-
-    public void setLogs(List<ProcessInstanceLog> logs) {
-        this.logs = logs;
-    }
-
-    public ProcessInstanceJTangInfo getjTangInfo() {
-        return jTangInfo;
-    }
-
-    public void setjTangInfo(ProcessInstanceJTangInfo jTangInfo) {
-        this.jTangInfo = jTangInfo;
-    }
 }

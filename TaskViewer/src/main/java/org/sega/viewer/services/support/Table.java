@@ -42,7 +42,7 @@ public class Table {
 
         PreparedStatement statement = preparedStatement(sql);
 
-        logger.debug("execute edb SQL " + statement.toString());
+        logger.debug("Execute EDB SQL " + statement.toString());
 
         // execute sync SQL
         int affectedRows = statement.executeUpdate();
@@ -166,7 +166,7 @@ public class Table {
         return keyValue;
     }
 
-    public void setColumns(Map<String, Object> columns) {
-        this.columns = columns;
+    public void addColumn(String name, Object value){
+        this.columns.put(name, value);
     }
 }
