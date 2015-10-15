@@ -112,58 +112,48 @@ public class EdbService {
      */
     private EntityTable preSyncEntity(JSONObject entity, String artifactId) throws SQLException {
         Map<String, Object> columns = new HashMap<>();
-        String key = null;
-        Long keyValue = null;
 
         EntityTable entityTable = new EntityTable(entity);
         entityTable.table = new Table(connection, tableMap.get(artifactId));
 
         for (AttributeType attribute : mapping.get(artifactId)) {
             String id = attribute.getId();
-            String type = attribute.getType();
             MappingItem mappingItem = getEdMappingItem(id);
 
-            if (type.equals("key")) {
-                key = id;
-                keyValue = getKeyValue(key, entity);
+            if (attribute.getType().equals("key")) {
+                entityTable.setKeyAndValue(mappingItem, getKeyValue(id, entity));
             }
 
             if (!entity.has(id)) {
                 continue;
             }
 
-            // one-to-one
-            if (type.equals("artifact") && entity.has(id)) {
-                EntityTable child = preSyncEntity(entity.getJSONObject(id), id);
-                entityTable.addHasOneChild(child, mappingItem);
-            }
+            switch (attribute.getType()) {
+                case "artifact": // has-one
+                    EntityTable child = preSyncEntity(entity.getJSONObject(id), id);
+                    entityTable.addHasOneChild(child, mappingItem);
+                    break;
 
-            // one-to-many
-            if (type.equals("artifact_n") && entity.has(id)) {
-                JSONArray entities = entity.getJSONArray(id);
+                case "artifact_n": // has-many
+                    JSONArray entities = entity.getJSONArray(id);
 
-                for (int i = 0; i < entities.length(); ++i) {
-                    EntityTable child = preSyncEntity(entities.getJSONObject(i), id);
-                    entityTable.addHasManyChild(child, mappingItem);
-                }
-            }
+                    for (int i = 0; i < entities.length(); ++i) {
+                        EntityTable _child = preSyncEntity(entities.getJSONObject(i), id);
+                        entityTable.addHasManyChild(_child, mappingItem);
+                    }
+                    break;
 
-            // normal attribute
-            if (type.equals("attribute")) {
-                columns.put(mappingItem.getColumn(), getColumnValue(entity, attribute.getValueType(), id));
-            }
+                case "attribute":
+                    columns.put(mappingItem.getColumn(), getColumnValue(entity, attribute.getValueType(), id));
+                    break;
 
-            // group
-            if (type.equals("group")) {
-                // do nothing
+                case "group":
+                    break;
+                default:
             }
         }
 
-        entityTable.table.setKey(getEdMappingItem(key).getColumn());
-        entityTable.table.setKeyValue(keyValue);
         entityTable.table.setColumns(columns);
-        entityTable.key = key;
-
         return entityTable;
     }
 

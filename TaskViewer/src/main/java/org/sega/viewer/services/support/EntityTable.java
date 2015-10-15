@@ -32,6 +32,13 @@ public class EntityTable {
         this.entity = entity;
     }
 
+    public void setKeyAndValue(EDMappingService.MappingItem mappingItem, Long value){
+        this.key = mappingItem.getEntityId();
+
+        this.table.setKey(mappingItem.getColumn());
+        this.table.setKeyValue(value);
+    }
+
     public void addHasOneChild(EntityTable child, EDMappingService.MappingItem fk) {
         this.hasOneList.add(child);
         child.parent = this;
