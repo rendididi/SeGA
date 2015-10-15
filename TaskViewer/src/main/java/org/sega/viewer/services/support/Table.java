@@ -18,7 +18,6 @@ public class Table {
     private String name;
     private String key;
     private Long keyValue;
-    private String foreignKey;
     private Map<String, Object> columns = new HashMap<>();
 
     private static final String INSERT_SQL = "INSERT INTO %s (%s) VALUES (%s)";
@@ -145,7 +144,7 @@ public class Table {
         return sql.toString();
     }
 
-    public void setForeignKeyValue(Long value) {
+    public void setForeignKeyValue(String foreignKey, Long value) {
         if (foreignKey != null && !foreignKey.isEmpty()) {
             this.columns.put(foreignKey, value);
         }
@@ -165,10 +164,6 @@ public class Table {
 
     public Long getKeyValue() {
         return keyValue;
-    }
-
-    public void setForeignKey(String foreignKey) {
-        this.foreignKey = foreignKey;
     }
 
     public void setColumns(Map<String, Object> columns) {

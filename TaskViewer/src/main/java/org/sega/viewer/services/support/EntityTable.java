@@ -13,7 +13,7 @@ public class EntityTable {
     public JSONObject entity;
     public Table table;
     public String key;
-    public String foreignKey;
+    public EDMappingService.MappingItem foreignKey;
 
     // If it's one-to-many relationship,then isGroupChild is true,
     // otherwise isGroupChild is false
@@ -22,35 +22,41 @@ public class EntityTable {
     public EntityTable parent = null;
 
     // has one
-    public EntityTable child = null;
+    public List<EntityTable> hasOneList = new ArrayList<>();
 
     // has many
-    public List<EntityTable> children = new ArrayList<>();
+    public List<EntityTable> hasManyList = new ArrayList<>();
 
 
     public EntityTable(JSONObject entity) {
         this.entity = entity;
     }
 
-    public void addHasOneChild(EntityTable child) {
-        this.child = child;
-        this.child.parent = this;
+    public void addHasOneChild(EntityTable child, EDMappingService.MappingItem fk) {
+        this.hasOneList.add(child);
+        child.parent = this;
+        child.foreignKey = fk;
     }
 
-    public void addHasManyChild(EntityTable child) {
-        this.children.add(child);
+    public void addHasManyChild(EntityTable child, EDMappingService.MappingItem fk) {
+        this.hasManyList.add(child);
         child.parent = this;
+        child.isGroupChild = true;
+        child.foreignKey = fk;
     }
 
     public void save() throws SQLException {
         // has-many
         if (isGroupChild && foreignKey != null) {
-            this.table.setForeignKeyValue(parent.table.getKeyValue());
+            this.table.setForeignKeyValue(foreignKey.getColumn(), parent.table.getKeyValue());
         }
 
         // has-one
-        if (!isGroupChild && child != null && foreignKey != null) {
-            this.table.setForeignKeyValue(child.table.getKeyValue());
+        if (!isGroupChild && !hasOneList.isEmpty()) {
+            hasOneList.forEach(child -> {
+                this.table.setForeignKeyValue(child.foreignKey.getColumn(), child.table.getKeyValue());
+            });
+
         }
 
         // save entity table

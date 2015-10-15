@@ -79,15 +79,19 @@ public class EdbService {
     private void executeSync(EntityTable entityTable) throws SQLException {
         // has-one relationship
         // save the child first and then add child key to current entity
-        if (entityTable.child != null) {
-            executeSync(entityTable.child);
+        if (!entityTable.hasOneList.isEmpty()) {
+            for (EntityTable child : entityTable.hasOneList) {
+                executeSync(child);
+            }
+
             entityTable.save();
         }
         // has-many relationship
         // save the current entity first, and then set children's foreign key
-        else if (!entityTable.children.isEmpty()) {
+        else if (!entityTable.hasManyList.isEmpty()) {
             entityTable.save();
-            for (EntityTable et : entityTable.children) {
+
+            for (EntityTable et : entityTable.hasManyList) {
                 executeSync(et);
             }
         } else {
@@ -106,53 +110,47 @@ public class EdbService {
     /**
      * Synchronize an artifact entity recursively to edb
      */
-    private EntityTable preSyncEntity(JSONObject artifact, String artifactId) throws SQLException {
+    private EntityTable preSyncEntity(JSONObject entity, String artifactId) throws SQLException {
         Map<String, Object> columns = new HashMap<>();
         String key = null;
         Long keyValue = null;
 
-        EntityTable entityTable = new EntityTable(artifact);
+        EntityTable entityTable = new EntityTable(entity);
         entityTable.table = new Table(connection, tableMap.get(artifactId));
 
         for (AttributeType attribute : mapping.get(artifactId)) {
             String id = attribute.getId();
             String type = attribute.getType();
+            MappingItem mappingItem = getEdMappingItem(id);
 
             if (type.equals("key")) {
                 key = id;
-                keyValue = getKeyValue(key, artifact);
+                keyValue = getKeyValue(key, entity);
             }
 
-            if (!artifact.has(id)) {
+            if (!entity.has(id)) {
                 continue;
             }
 
             // one-to-one
-            if (type.equals("artifact") && artifact.has(id)) {
-                EntityTable et = preSyncEntity(artifact.getJSONObject(id), id);
-                entityTable.addHasOneChild(et);
-
-                // add foreign key to current entity table
-                addForeignKey(entityTable, getEdMappingItem(id));
+            if (type.equals("artifact") && entity.has(id)) {
+                EntityTable child = preSyncEntity(entity.getJSONObject(id), id);
+                entityTable.addHasOneChild(child, mappingItem);
             }
 
             // one-to-many
-            if (type.equals("artifact_n") && artifact.has(id)) {
-                JSONArray entities = artifact.getJSONArray(id);
+            if (type.equals("artifact_n") && entity.has(id)) {
+                JSONArray entities = entity.getJSONArray(id);
+
                 for (int i = 0; i < entities.length(); ++i) {
-                    EntityTable et = preSyncEntity(entities.getJSONObject(i), id);
-                    et.isGroupChild = true;
-
-                    // add foreign key to children's entity table
-                    addForeignKey(et, getEdMappingItem(id));
-
-                    entityTable.addHasManyChild(et);
+                    EntityTable child = preSyncEntity(entities.getJSONObject(i), id);
+                    entityTable.addHasManyChild(child, mappingItem);
                 }
             }
 
             // normal attribute
             if (type.equals("attribute")) {
-                columns.put(getEdMappingItem(id).getColumn(), getColumnValue(artifact, attribute.getValueType(), id));
+                columns.put(mappingItem.getColumn(), getColumnValue(entity, attribute.getValueType(), id));
             }
 
             // group
@@ -167,13 +165,6 @@ public class EdbService {
         entityTable.key = key;
 
         return entityTable;
-    }
-
-    private void addForeignKey(EntityTable entityTable, MappingItem fk) {
-        if (fk != null) {
-            entityTable.foreignKey = fk.getEntityId();
-            entityTable.table.setForeignKey(fk.getColumn());
-        }
     }
 
     private Object getColumnValue(JSONObject entity, ValueType valueType, String id) {
