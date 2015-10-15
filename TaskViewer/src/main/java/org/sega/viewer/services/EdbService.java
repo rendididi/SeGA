@@ -133,11 +133,7 @@ public class EdbService {
                 entityTable.addHasOneChild(et);
 
                 // add foreign key to current entity table
-                MappingItem fk = getEdMappingItem(id);
-                if (fk != null) {
-                    entityTable.foreignKey = fk.getEntityId();
-                    entityTable.table.setForeignKey(fk.getColumn());
-                }
+                addForeignKey(entityTable, getEdMappingItem(id));
             }
 
             // one-to-many
@@ -148,9 +144,7 @@ public class EdbService {
                     et.isGroupChild = true;
 
                     // add foreign key to children's entity table
-                    MappingItem fk = getEdMappingItem(id);
-                    et.foreignKey = fk.getEntityId();
-                    et.table.setForeignKey(fk.getColumn());
+                    addForeignKey(et, getEdMappingItem(id));
 
                     entityTable.addHasManyChild(et);
                 }
@@ -173,6 +167,13 @@ public class EdbService {
         entityTable.key = key;
 
         return entityTable;
+    }
+
+    private void addForeignKey(EntityTable entityTable, MappingItem fk) {
+        if (fk != null) {
+            entityTable.foreignKey = fk.getEntityId();
+            entityTable.table.setForeignKey(fk.getColumn());
+        }
     }
 
     private Object getColumnValue(JSONObject entity, ValueType valueType, String id) {
