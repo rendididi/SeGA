@@ -274,7 +274,7 @@ var loadActionBinding = function(action) {
 };
 
 var defaultActionBinding = function() {
-        console.log(process_json.cells);
+       
         for(var i=0,len=process_json.cells.length; i<len; i++){
         var type = process_json.cells[i].type;
         var id= process_json.cells[i].id;

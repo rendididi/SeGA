@@ -28,6 +28,7 @@
                             </div>
                             <h2>Restful Service Parameters</h2>
                             <div class=input-group ws-params">
+                            	<pre>Inputs and Outputs are organized as json format defined by entity schema.</pre>
                             </div>              
                         </div>
                         <div class="human-task">

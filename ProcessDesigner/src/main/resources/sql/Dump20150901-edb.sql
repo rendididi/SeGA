@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `tpg_gzfsqspb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tpg_gzfsqspb` (
-  `ID` int(12) NOT NULL DEFAULT '0' COMMENT 'ID',
+  `ID` int(12) NOT NULL COMMENT 'ID' AUTO_INCREMENT,
   `CODE` int(12) DEFAULT NULL COMMENT 'CODE',
   `YWSLID` int(12) DEFAULT NULL COMMENT '业务实例ID',
   `YWLB` varchar(20) DEFAULT NULL COMMENT '廉租房申请、变更、年审',
@@ -150,7 +150,7 @@ CREATE TABLE `tpg_gzfsqspb` (
   CONSTRAINT `tpg_gzfsqspb_ibfk_1` FOREIGN KEY (`SQRID`) REFERENCES `tpg_ryxx` (`ID`),
   CONSTRAINT `tpg_gzfsqspb_ibfk_2` FOREIGN KEY (`POID`) REFERENCES `tpg_ryxx` (`ID`),
   CONSTRAINT `tpg_gzfsqspb_ibfk_3` FOREIGN KEY (`JTID`) REFERENCES `tpg_jtxx` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='公租房申请审批表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='公租房申请审批表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ DROP TABLE IF EXISTS `tpg_jtxx`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tpg_jtxx` (
-  `ID` int(12) NOT NULL DEFAULT '0' COMMENT 'ID',
+  `ID` int(12) NOT NULL COMMENT 'ID' AUTO_INCREMENT,
   `CODE` int(12) DEFAULT NULL COMMENT 'CODE',
   `CJRCODE` int(12) DEFAULT NULL COMMENT '家庭创建人CODE',
   `JTRS` int(2) DEFAULT NULL COMMENT '家庭人数',
@@ -184,7 +184,7 @@ CREATE TABLE `tpg_jtxx` (
   `BBBS` varchar(32) DEFAULT NULL COMMENT '版本标识',
   `KNZJMC` int(8) DEFAULT NULL COMMENT '困难证件名称（是困难证件的子类别）',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='家庭信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='家庭信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,7 +204,7 @@ DROP TABLE IF EXISTS `tpg_rygx`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tpg_rygx` (
-  `ID` int(12) NOT NULL DEFAULT '0' COMMENT 'ID',
+  `ID` int(12) NOT NULL COMMENT 'ID' AUTO_INCREMENT,
   `CJRID` int(12) DEFAULT NULL COMMENT '创建人ID',
   `CJRCODE` int(12) DEFAULT NULL COMMENT '创建人CODE',
   `CJRXM` varchar(100) DEFAULT NULL COMMENT '创建人姓名',
@@ -224,7 +224,7 @@ CREATE TABLE `tpg_rygx` (
   CONSTRAINT `tpg_rygx_ibfk_1` FOREIGN KEY (`CJRID`) REFERENCES `tpg_ryxx` (`ID`),
   CONSTRAINT `tpg_rygx_ibfk_2` FOREIGN KEY (`GXRID`) REFERENCES `tpg_ryxx` (`ID`),
   CONSTRAINT `tpg_rygx_ibfk_3` FOREIGN KEY (`JTID`) REFERENCES `tpg_jtxx` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='人员关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='人员关系表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +244,7 @@ DROP TABLE IF EXISTS `tpg_ryxx`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tpg_ryxx` (
-  `ID` int(12) NOT NULL DEFAULT '0' COMMENT 'ID',
+  `ID` int(12) NOT NULL COMMENT 'ID' AUTO_INCREMENT,
   `CODE` int(12) DEFAULT NULL COMMENT 'CODE',
   `BZCODE` int(12) DEFAULT NULL COMMENT '标准CODE',
   `XM` varchar(100) DEFAULT NULL COMMENT '姓名',
@@ -310,7 +310,7 @@ CREATE TABLE `tpg_ryxx` (
   `LRHCFW` int(1) DEFAULT NULL COMMENT '列入核查范围（廉租房）',
   `SFXZ` int(1) DEFAULT NULL COMMENT '是否限制购房',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='人员信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='人员信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
