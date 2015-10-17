@@ -8,6 +8,7 @@
   <constant name="struts.devMode" value="true"/>
   <constant name="struts.convention.default.parent.package" value="angularstruts"/>
   <constant name="struts.convention.result.path" value="/pages/"/>  
+  <constant name="struts.custom.i18n.resources" value="global" /> 	
   
   <package name="angularstruts" extends="json-default"></package>
   <package name="data" extends="angularstruts" namespace="/data"></package>

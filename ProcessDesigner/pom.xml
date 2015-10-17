@@ -153,9 +153,14 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>8.1.16.v20140903</version>
                 <configuration>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+						<port>9100</port>
+						</connector>
+					</connectors>
                 	
                     <stopKey>CTRL+C</stopKey>
-                    <stopPort>8999</stopPort>
+                    <stopPort>9199</stopPort>
                     <systemProperties>
                         <systemProperty>
                             <name>xwork.loggerFactory</name>
