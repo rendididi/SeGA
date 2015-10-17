@@ -8,6 +8,7 @@ import java.util.Date;
  * @author Raysmond<i@raysmond.com>
  */
 @Entity
+@Table(name = "processedit")
 public class ProcessEdit extends BaseModel {
 
     private String userType;

@@ -6,6 +6,7 @@ import java.util.Collection;
 
 
 @Entity
+@Table(name = "databaseconfiguration")
 public class DatabaseConfiguration extends BaseModel {
 
     private String type;

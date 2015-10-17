@@ -79,4 +79,11 @@ class WebConfig extends WebMvcConfigurerAdapter {
     public String getApplicationEnv() {
         return this.env.acceptsProfiles(ENV_PRODUCTION) ? ENV_PRODUCTION : ENV_DEVELOPMENT;
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/")
+                .setCachePeriod(31556926);
+    }
 }

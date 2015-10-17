@@ -11,6 +11,7 @@ import java.util.Collection;
  */
 @Entity
 @Data
+@Table(name = "process")
 public class Process extends BaseModel {
 
     private String processJSON;

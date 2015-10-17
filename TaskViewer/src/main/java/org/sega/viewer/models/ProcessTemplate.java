@@ -3,6 +3,7 @@ package org.sega.viewer.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -10,6 +11,7 @@ import java.util.Collection;
  * Created by Raysmond on 9/4/15.
  */
 @Entity
+@Table(name = "processtemplate")
 public class ProcessTemplate extends BaseModel {
 
     private String processJSON;
