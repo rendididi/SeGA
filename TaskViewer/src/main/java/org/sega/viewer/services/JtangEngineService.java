@@ -27,7 +27,7 @@ public class JtangEngineService {
     private JTangApi jTangApi;
 
     public String commitTask(ProcessInstance instance) throws MalformedURLException {
-        ProcessInstanceJTangInfo processInstanceJTangInfo = instance.getjTangInfo();
+        ProcessInstanceJTangInfo processInstanceJTangInfo = instance.getJTangInfo();
         JTangProcIns jTangInstance = processInstanceJTangInfo.getJtangInstance();
 
         // TODO build input map from read entity
