@@ -6,6 +6,7 @@ import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.JtangEngineService;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.sega.viewer.services.ProcessService;
+import org.sega.viewer.services.support.Node;
 import org.sega.viewer.services.support.ProcessJsonResolver;
 import org.sega.viewer.utils.Base64Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,9 +84,15 @@ public class ProcessesController {
         model.addAttribute("processJSON", Base64Util.decode(processInstance.getProcess().getProcessJSON()));
 
         ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
-        model.addAttribute("nextTask", processJsonResolver.findNode(processInstance.getNextTask()));
-
-        return "instances/show";
+        Node node = processJsonResolver.findNode(processInstance.getNextTask());
+        model.addAttribute("nextTask", node);
+        String page = "";
+        if(node.getType().equals("sega.Task")){
+            page = "instances/show";
+        }else if(node.getType().equals("sega.Service")){
+            page = "instances/show_service";
+        }
+        return page;
     }
 
     @RequestMapping(value = "{processId:\\d+}/templates/{taskId}", method = GET)

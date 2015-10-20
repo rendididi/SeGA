@@ -62,15 +62,14 @@ public class ProcessJsonResolver {
 
     public Node findNode(String id){
         Node result = new Node();
-        result.setId(id);
         JSONArray nodes = process.getJSONArray("cells");
 
         for (int i=0;i<nodes.length();i++){
             JSONObject node = nodes.getJSONObject(i);
             if (node.getString("id").equals(id)){
+                result.setId(id);
                 result.setType(node.getString("type"));
-
-                if (result.getType().equals("sega.Task")){
+                if (node.getString("type").equals("sega.Task")||node.getString("type").equals("sega.Service")){
                     JSONObject data = node.getJSONObject("attrs").getJSONObject("data");
                     result.setName(data.getString("name"));
                     result.setDescription(data.getString("description"));

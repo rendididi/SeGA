@@ -3,12 +3,10 @@ package org.sega.viewer.services.support;
 import lombok.Data;
 
 /**
- * @author Raysmond<i@raysmond.com>.
+ * Created by glp on 2015/10/19.
  */
 @Data
-public class Node {
-    private String id;
-    private String type;
+public class TaskNode extends Node {
     private String name;
     private String description;
     private String splitMode;

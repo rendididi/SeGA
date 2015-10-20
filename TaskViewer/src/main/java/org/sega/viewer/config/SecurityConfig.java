@@ -47,7 +47,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/favicon.ico", "/resources/**", "/webjars/**" , "/signup").permitAll()
+                .antMatchers("/", "/favicon.ico", "/resources/**", "/webjars/**" , "/signup", "/error/**", "/signin").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -59,7 +59,10 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .logoutUrl("/logout")
                 .permitAll()
-                .logoutSuccessUrl("/signin?logout");
+                .logoutSuccessUrl("/signin?logout")
+                .and()
+            .exceptionHandling()
+                .accessDeniedPage("/signin");
 
     }
 }

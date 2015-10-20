@@ -1,0 +1,9 @@
+!!! 5
+html
+    head
+    title Error page
+    link(rel='stylesheet', type='text/css', href='#{basePath}/webjars/bootstrap/3.3.5/css/bootstrap.min.css')
+body
+    .container
+        <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})">Error: Error</div>
+        |#{errorMessage}

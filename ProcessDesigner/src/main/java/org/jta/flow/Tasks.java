@@ -146,10 +146,10 @@ public class Tasks {
     			tempTask.setName(name);
     			tempTask.setID(id);
     			tempTask.setDescription(id);
-    			tempTask.setWidth(Integer.parseInt(width));
-    			tempTask.setHeight(Integer.parseInt(height));
-    			tempTask.setPositionX(Integer.parseInt(positionX));
-    			tempTask.setPositionY(Integer.parseInt(positionY));
+    			tempTask.setWidth((int)Float.parseFloat(width));
+    			tempTask.setHeight((int)Float.parseFloat(height));
+    			tempTask.setPositionX((int)Float.parseFloat(positionX));
+    			tempTask.setPositionY((int)Float.parseFloat(positionY));
     			tempTask.setJoinMode(RouteMode.fromValue(joinMode));
     			tempTask.setSplitMode(RouteMode.fromValue(splitMode));
     			tempTask.setRead(read);
