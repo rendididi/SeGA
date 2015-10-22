@@ -36,6 +36,16 @@
     font-size: 18px;
 }
 
+#processViewer .Service path,
+#processViewer .Service rect {
+    fill: #ECF0F1;
+}
+
+#processViewer .Service path.inner-body {
+    fill: #fff;
+}
+
+
 #processViewer .active .body {
     fill: #34495E;
 }
@@ -43,6 +53,11 @@
 #processViewer .active .label {
     fill: #fff;
 }
+
+#processViewer .Service.active .label {
+    fill: #5D8599;
+}
+
 
 #processViewer .active .inPorts .port-body {
     fill: #2C3E50;

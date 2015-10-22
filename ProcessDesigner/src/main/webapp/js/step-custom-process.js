@@ -1,8 +1,10 @@
+var graph;
+
 ;var step4=(function(){
 	// init
 	var globleData="";
 
-	var graph = new joint.dia.Graph;
+	graph = new joint.dia.Graph;
 	var current_selected='';//current selected cell
 
 	var paper = new joint.dia.Paper({
@@ -193,9 +195,9 @@
 
 
 	$("button#btn_viewjson,button#btn-navbar-submit").on("click",function(e){
-		var json = JSON.stringify(graph.toJSON());
+		var json = JSON.stringify(graph.toJSON(), null, 2);
 		var svg = paper.exportSvg();
-		$("#modal_viewjson .modal-body p").html(json);
+		$("#modal_viewjson .modal-body pre").html(json);
 		$("#modal_viewjson input#processJSON").val(json);
 		$("#modal_viewjson input#input-svg").val(svg);
 		$("#modal_viewjson").modal();

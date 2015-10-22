@@ -54,6 +54,9 @@ public class EdbService {
         // entity-edb mapping
         parseEdMappingInfo(instance.getProcess().getEDmappingJSON());
 
+        //get artifact/artifact_n table names
+        getTableMap(entitySchema, new JSONArray(Base64Util.decode(instance.getProcess().getEDmappingJSON())));
+
         // create edb connection
         MysqlConnection mysql = new MysqlConnection(instance.getProcess().getDbconfig());
         connection = mysql.open();
@@ -72,6 +75,40 @@ public class EdbService {
 
         mysql.close();
         clearSyncInfo();
+    }
+
+    private void getTableMap(JSONObject entitySchema, JSONArray edmapping) {
+        String artifactId = entitySchema.getString("id");
+
+        JSONArray children = entitySchema.getJSONArray("children");
+
+        for (int i = 0; i < children.length(); ++i) {
+            JSONObject child = children.getJSONObject(i);
+
+            switch (child.getString("type")) {
+                case "artifact":
+                    getTableMap(child, edmapping);
+                    break;
+                case "key":
+                    tableMap.put(artifactId, findMappedTable(child.getString("id"), edmapping));
+                    break;
+                case "artifact_n":
+                    getTableMap(child, edmapping);
+                    break;
+                default:
+
+            }
+        }
+    }
+
+    private String findMappedTable(String id, JSONArray edmapping) {
+        for (int i = 0; i < edmapping.length(); ++i) {
+            JSONObject rule = edmapping.getJSONObject(i);
+            if(id.equals(rule.getJSONObject("entity").getString("id"))){
+                return rule.getJSONObject("db").getString("table");
+            }
+        }
+        return null;
     }
 
 
@@ -195,11 +232,6 @@ public class EdbService {
     private void parseEntityInfo(JSONObject entitySchema) {
         String artifactId = entitySchema.getString("id");
 
-        if (!entitySchema.getJSONObject("data").has("mapTo")) {
-            return;
-        }
-
-        tableMap.put(artifactId, entitySchema.getJSONObject("data").getString("mapTo"));
         mapping.put(artifactId, new ArrayList<>());
 
         JSONArray children = entitySchema.getJSONArray("children");

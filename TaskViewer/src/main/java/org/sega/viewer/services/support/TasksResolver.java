@@ -14,9 +14,12 @@ import java.util.List;
 public class TasksResolver {
     private JSONArray tasksJson;
     private List<TaskType> tasks = null;
+    private List<ServiceType> services = null;
+    private ProcessJsonResolver process;
 
-    public TasksResolver(String bindingResult) throws UnsupportedEncodingException {
+    public TasksResolver(String bindingResult, String processJSON) throws UnsupportedEncodingException {
         this.setTasks(bindingResult);
+        this.process = new ProcessJsonResolver(processJSON);
     }
 
     public void setTasks(String json) throws UnsupportedEncodingException {
@@ -28,29 +31,32 @@ public class TasksResolver {
 
         for (int i=0;i<this.tasksJson.length();++i){
             JSONObject taskJson = this.tasksJson.getJSONObject(i);
-            TaskType task = new TaskType();
-            task.setId(taskJson.getString("task"));
-            task.setAutoGenerate(taskJson.getBoolean("autoGenerate"));
-            task.setSyncPoint(taskJson.getBoolean("syncPoint"));
+            String id = taskJson.getString("task");
+            if(process.findNode(id).getType().equals("sega.Task")) {
+                TaskType task = new TaskType();
+                task.setId(taskJson.getString("task"));
+                task.setAutoGenerate(taskJson.getBoolean("autoGenerate"));
+                task.setSyncPoint(taskJson.getBoolean("syncPoint"));
 
-            List<String> reads = new ArrayList<>();
-            if(taskJson.has("read")) {
-                JSONArray readsJson = taskJson.getJSONArray("read");
-                for (int j=0;j<readsJson.length();++j){
-                    reads.add(readsJson.getString(j));
+                List<String> reads = new ArrayList<>();
+                if (taskJson.has("read")) {
+                    JSONArray readsJson = taskJson.getJSONArray("read");
+                    for (int j = 0; j < readsJson.length(); ++j) {
+                        reads.add(readsJson.getString(j));
+                    }
                 }
-            }
-            task.setReads(reads);
+                task.setReads(reads);
 
-            List<String> writes = new ArrayList<>();
-            if(taskJson.has("write")) {
-                JSONArray writesJson = taskJson.getJSONArray("write");
-                for (int j = 0; j < writesJson.length(); ++j) {
-                    writes.add(writesJson.getString(j));
+                List<String> writes = new ArrayList<>();
+                if (taskJson.has("write")) {
+                    JSONArray writesJson = taskJson.getJSONArray("write");
+                    for (int j = 0; j < writesJson.length(); ++j) {
+                        writes.add(writesJson.getString(j));
+                    }
                 }
+                task.setWrites(writes);
+                tasks.add(task);
             }
-            task.setWrites(writes);
-            tasks.add(task);
         }
 
         return tasks;
@@ -68,4 +74,55 @@ public class TasksResolver {
 
         return null;
     }
+
+    public List<ServiceType> getServices(){
+        this.services = new ArrayList<>();
+
+        for (int i=0;i<this.tasksJson.length();++i){
+            JSONObject taskJson = this.tasksJson.getJSONObject(i);
+            String id = taskJson.getString("task");
+            if(process.findNode(id).getType().equals("sega.Task")) {
+                ServiceType service = new ServiceType();
+                service.setId(taskJson.getString("task"));
+                service.setServiceUrl(taskJson.getBoolean("serviceUrl"));
+                service.setSyncPoint(taskJson.getBoolean("syncPoint"));
+
+                List<String> reads = new ArrayList<>();
+                if (taskJson.has("read")) {
+                    JSONArray readsJson = taskJson.getJSONArray("read");
+                    for (int j = 0; j < readsJson.length(); ++j) {
+                        reads.add(readsJson.getString(j));
+                    }
+                }
+                service.setReads(reads);
+
+                List<String> writes = new ArrayList<>();
+                if (taskJson.has("write")) {
+                    JSONArray writesJson = taskJson.getJSONArray("write");
+                    for (int j = 0; j < writesJson.length(); ++j) {
+                        writes.add(writesJson.getString(j));
+                    }
+                }
+                service.setWrites(writes);
+                services.add(service);
+            }
+        }
+
+        return services;
+    }
+
+    public ServiceType getService(String serviceId){
+        if (services == null){
+            this.getServices();
+        }
+
+        for (ServiceType service : services){
+            if (service.getId().equals(serviceId))
+                return service;
+        }
+
+        return null;
+    }
+
+
 }

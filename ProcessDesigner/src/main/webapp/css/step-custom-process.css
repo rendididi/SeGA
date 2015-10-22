@@ -240,3 +240,16 @@ body {
 
 .f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
 .f-cb,.f-cbli li{zoom:1;}
+
+.modal-dialog,
+.modal-content {
+    /* 80% of window height */
+    height: 90%;
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    height: 100%;
+    overflow-y: scroll;
+}

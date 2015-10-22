@@ -228,8 +228,10 @@ var setActionBinding = function(action){
 
     if(action.model.prop("type")=="sega.Task"){
         props.autoGenerate = autoGenerate;
+        props.type = "task";
     }else{
         props.serviceUrl = serviceUrl;
+        props.type = "service";
     }
 
 
@@ -283,7 +285,8 @@ var defaultActionBinding = function() {
             var taskDefaults = {
                 task: id,
                 autoGenerate: true,
-                syncPoint: true
+                syncPoint: true,
+                type: "task"
             }
             if(indexTask<0){
                 binding_json.push(taskDefaults);
@@ -296,7 +299,8 @@ var defaultActionBinding = function() {
             var serviceDefaults = {
                 task: id,
                 serviceUrl: "",
-                syncPoint: true
+                syncPoint: true,
+                type: "service"
             }
             if(indexTask<0){
                 binding_json.push(serviceDefaults);

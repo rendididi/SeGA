@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Raysmond<i@raysmond.com>.
+ * Created by glp on 2015/10/21.
  */
+
 @Data
-public class TaskType {
+public class ServiceType {
     private String id;
-    private boolean autoGenerate;
+    private boolean serviceUrl;
     private boolean syncPoint;
 
     private List<String> reads = new ArrayList<>();
     private List<String> writes = new ArrayList<>();
-
 }

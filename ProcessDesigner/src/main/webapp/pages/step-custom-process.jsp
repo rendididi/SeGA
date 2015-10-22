@@ -51,7 +51,7 @@
 					<h4 class="modal-title">Process JSON</h4>
 				</div>
 				<div class="modal-body json-modal-body">
-					<p></p>
+					<pre></pre>
 				</div>
 				<div class="modal-footer">
 					<s:form action="step-custom-process-submit">

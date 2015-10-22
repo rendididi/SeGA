@@ -95,7 +95,7 @@ public class Tasks {
     			Read read = new Read();
     			Write write = new Write();
     			
-    			if(!cell.getString("type").equals("sega.Task")){
+    			if(!(cell.getString("type").equals("sega.Task")||cell.getString("type").equals("sega.Service"))){
     				if(cell.getString("type").equals("sega.Start")){
     					name = "start";
     					description = "start node";

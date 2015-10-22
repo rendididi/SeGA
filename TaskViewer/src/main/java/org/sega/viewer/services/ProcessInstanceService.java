@@ -37,7 +37,7 @@ public class ProcessInstanceService {
     }
 
     public JSONObject readEntity(ProcessInstance processInstance, String taskId) throws UnsupportedEncodingException {
-        TasksResolver tasksResolver = getTaskResolver(processInstance.getProcess().getBindingJson());
+        TasksResolver tasksResolver = getTaskResolver(processInstance.getProcess().getBindingJson(), processInstance.getProcess().getProcessJSON());
         if (tasksResolver == null)
             return null;
         TaskType taskType = tasksResolver.getTask(taskId);
@@ -222,9 +222,9 @@ public class ProcessInstanceService {
         return "{}";
     }
 
-    private TasksResolver getTaskResolver(String bingResultJson){
+    private TasksResolver getTaskResolver(String bingResultJson, String processJSON){
         try {
-            return new TasksResolver(bingResultJson);
+            return new TasksResolver(bingResultJson, processJSON);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

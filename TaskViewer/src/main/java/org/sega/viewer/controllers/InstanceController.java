@@ -7,6 +7,7 @@ import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.EdbService;
 import org.sega.viewer.services.JtangEngineService;
 import org.sega.viewer.services.ProcessInstanceService;
+import org.sega.viewer.services.support.TasksResolver;
 import org.sega.viewer.services.support.UnSupportEdbException;
 import org.sega.viewer.utils.Base64Util;
 import org.slf4j.Logger;
@@ -89,13 +90,25 @@ public class InstanceController {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         processInstanceService.writeEntity(new JSONObject(entity), instance, taskId);
 
-        // TODO
-        String nextTask = jtangEngineService.commitTask(instance);
+        try {
+            //Commit to JTang Server
+            String nextTask = jtangEngineService.commitTask(instance);
 
-        instance.setNextTask(nextTask);
-        processInstanceService.updateInstance(instance);
+            //persist instance
+            instance.setNextTask(nextTask);
+            processInstanceService.updateInstance(instance);
 
-        return instance.getEntity();
+            //Sync to EDB
+            TasksResolver tasksResolver = new TasksResolver(instance.getProcess().getBindingJson(), instance.getProcess().getProcessJSON());
+            if (tasksResolver.getTask(taskId).isSyncPoint()) {
+                edbService.sync(instance);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "{\"success\": false}";
+        }
+
+        return "{\"success\": true}";
     }
 
     /**
