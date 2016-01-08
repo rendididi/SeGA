@@ -1,3 +1,4 @@
+var lj =123;
 var dbt, edb;
 
 $(function() {
