@@ -1,4 +1,4 @@
 # SeGA
 Self-Guide Artifact Workflow Management System
 
-Project page: [http://fudanglp.github.io/SeGA/](http://fudanglp.github.io/SeGA/)
+Project page: [http://ZScholes18.github.io/SeGA/](http://ZScholes18.github.io/SeGA/)
