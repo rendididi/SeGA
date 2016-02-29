@@ -1,3 +1,9 @@
+/** Fix Chrome48 svg api bug **/
+SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(toElement) {
+    return toElement.getScreenCTM().inverse().multiply(this.getScreenCTM());
+};
+
+
 joint.shapes.sega = {};
 
 /*
