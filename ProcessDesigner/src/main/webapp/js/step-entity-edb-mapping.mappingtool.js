@@ -308,15 +308,15 @@ var mapping_tool = {
     if(!rules)
       return;
 
-    this.mapping_rules = rules.slice();
+    var valid_rules = [];
     for(var i=0, len=rules.length;i<len;i++){
       var tree = $("#entity_tree").jstree(true);
       var e = rules[i].entity.id;
       var entity = tree.get_node(e);
       var d = findRow(rules[i].db.table, rules[i].db.column);
-      
-      if(e && d) {
-        
+
+      if(e && d && entity) {
+        valid_rules.push(rules[i]);
         tree.sega_map_node(e);
         mapTableRow(d);
         if(entity.type == "key") { //handle main entity
@@ -343,6 +343,8 @@ var mapping_tool = {
         chk2.click(handler);
       }
     }
+
+    this.mapping_rules = valid_rules;
   }
 
 };
