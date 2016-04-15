@@ -2,6 +2,8 @@ var tree = null;
 
 
 $(function() {
+  if(entity_json&&entity_json.length>0)
+    clearEntityJsonMapMark(entity_json[0]);
 
   $('#entity_tree').jstree({
     "core" : {
@@ -44,7 +46,6 @@ $(function() {
   });
 
   tree = $("#entity_tree").jstree(true);
-  
 
   populateDBTable(
     database_json.tables,
@@ -68,8 +69,22 @@ $(function() {
 });
 
 
-
 //TODO: wrap db component
+
+function clearEntityJsonMapMark(node) {
+  if(node){
+    if(node.data){
+      if(node.data.isMapped){
+        delete node.data["isMapped"];
+      }
+    }
+    if(node.children){
+      for(var i=0;i<node.children.length;i++){
+        clearEntityJsonMapMark(node.children[i]);
+      }
+    }
+  }
+}
 
 function populateDBTable(tables, columns, keys){
   $("#db_tables").empty();

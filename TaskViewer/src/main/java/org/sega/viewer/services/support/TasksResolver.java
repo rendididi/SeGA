@@ -75,6 +75,11 @@ public class TasksResolver {
         return null;
     }
 
+    public String getNextTask(String taskId){
+        
+        return process.getNextTask(taskId).getId();
+    }
+
     public List<ServiceType> getServices(){
         this.services = new ArrayList<>();
 

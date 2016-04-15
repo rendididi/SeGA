@@ -91,17 +91,19 @@ public class InstanceController {
         processInstanceService.writeEntity(new JSONObject(entity), instance, taskId);
 
         try {
+            TasksResolver tasksResolver = new TasksResolver(instance.getProcess().getBindingJson(), instance.getProcess().getProcessJSON());
+            
             //Commit to JTang Server
-            String nextTask = jtangEngineService.commitTask(instance);
+            //DEMO:String nextTask = jtangEngineService.commitTask(instance);
+            String nextTask = tasksResolver.getNextTask(taskId);
 
             //persist instance
             instance.setNextTask(nextTask);
             processInstanceService.updateInstance(instance);
 
             //Sync to EDB
-            TasksResolver tasksResolver = new TasksResolver(instance.getProcess().getBindingJson(), instance.getProcess().getProcessJSON());
             if (tasksResolver.getTask(taskId).isSyncPoint()) {
-                edbService.sync(instance);
+                //DEMO:edbService.sync(instance);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
