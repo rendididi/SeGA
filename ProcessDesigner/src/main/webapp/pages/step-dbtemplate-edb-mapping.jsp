@@ -85,7 +85,7 @@
 							<label>Host</label>
 							<div>
 								<input type="text" class="form-control" id="input-edb-host"
-									value="fudanglp.mysql.rds.aliyuncs.com" />
+									value="rm-m5e828m38n7p9vv81.mysql.rds.aliyuncs.com" />
 							</div>
 						</div>
 						<div class="form-group col-md-4">
