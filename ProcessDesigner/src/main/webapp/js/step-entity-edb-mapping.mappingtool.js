@@ -7,6 +7,7 @@ var mapping_tool = {
     .projection(function(d) { return [d.y, d.x]; }),
 
   entity_node: null,
+  entity_nodes: null,
   db_node: null,
   mapping_rules: [],
 
@@ -31,7 +32,6 @@ var mapping_tool = {
       //$("#svg_mapping_tool").on("sega.mapping.svg.link.refresh", $.proxy(this.onSelectChange, this));
 
       $("#mapping_panel #btn-confirm").click($.proxy(this.doMap, this));
-
 
 
     return this;
@@ -96,6 +96,58 @@ var mapping_tool = {
     }
     return true;
   },
+  
+  drawSuggestion2: function(ee,d) {
+    
+    var tree = $("#entity_tree").jstree(true);
+    var tree_node_dom = $(tree.get_node(ee, true));
+    console.log(ee);
+    var db_row_dom = d;
+
+    //this.clear();
+    
+
+    var src = {
+      x: 0,
+      y: tree_node_dom.position().top+16
+    };
+    var tgt = {
+      x: this._svg.attr("width"),
+      y: db_row_dom.offset().top - $("#db_tables").offset().top + db_row_dom.height()/2
+    };
+    var path_data = [{
+      source: src,
+      target: tgt
+    }];
+    
+    function onMouseOver(e){
+      d3.select(this).classed("active", true);
+    }
+
+    function onMouseOut(e){
+      d3.select(this).classed("active", false);
+    }
+
+    var isRule = true;
+    var _suggest_line = this._svg
+      .append("g")
+      .classed(isRule?"rule":"candidate", true);
+    _suggest_line
+      .append("path")
+      .data(path_data)
+      .attr("d", this._diagonal)
+      .attr("stroke", "#a80085")
+      .attr("stroke-width", 4)
+      .attr("stroke-dasharray", "")
+      .attr("fill", "none")
+      .classed("suggest_line", true);
+    console.log(2);
+    if(isRule){
+      tree_node_dom.children("div.jstree-wholerow").children("span.sega-jstree-mapicon").addClass("linked");
+      db_row_dom.find("td.isMapped span.sega-jstree-mapicon").addClass("linked");
+    }
+    return true;
+  },
 
   clear: function(){
     this._svg.select("*").remove();
@@ -104,7 +156,14 @@ var mapping_tool = {
   },
   
   doMap: function(){
-    this._doMap(this.entity_node, this.db_node);
+    //For Demo
+    if(this.entity_nodes.length>1){
+        this._doMap2(this.entity_nodes, this.db_node);
+      
+    }else{
+      this._doMap(this.entity_node, this.db_node);  
+    }
+    
   },
 
   _doMap: function(e, d, opt) {
@@ -165,6 +224,33 @@ var mapping_tool = {
     this.updateCheckboxHandler(e,d);
   },
   
+  _doMap2: function(ee, d, opt) {
+    var tree = $("#entity_tree").jstree(true);
+    var column = d.attr("data-column-name"),
+      table = d.parent().parent().attr("data-table-name");
+    
+
+    // validate rule
+
+    if(opt&&!opt.nocheck){
+        if(!this.canMap(e, d))
+            return false;
+    }
+  
+    
+
+    
+    // save the rule and update components
+    
+    
+    mapTableRow(d);
+    
+    for(var i=0;i<ee.length;i++){
+      this.drawSuggestion2(ee[i],d);
+    }
+    
+  },
+  
   updateCheckboxHandler: function(e, d){
 	var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
 	var chk2 = d.children("td.isMapped");
@@ -184,6 +270,8 @@ var mapping_tool = {
 
   onSelectChange:  function(){
     this.entity_node = $("#entity_tree").jstree(true).get_selected()[0];
+    this.entity_nodes = $("#entity_tree").jstree(true).get_selected();
+    
     this.db_node = $("#db_tables>table>tbody>tr.active");
     
     this.clear();
