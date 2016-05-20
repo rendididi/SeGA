@@ -150,7 +150,7 @@ var mapping_tool = {
   },
 
   clear: function(){
-    this._svg.select("*").remove();
+    this._svg.selectAll("*").remove();
     this._suggest_line = null;
     $("span.sega-jstree-mapicon").removeClass("linked");
   },
