@@ -96,14 +96,10 @@ function populateDBTable(tables, columns, keys){
       .addClass("table")
       .addClass("table-condensed")
       .addClass("table-striped")
-      .addClass("closed")
       .appendTo("#db_tables");
 
     var cap_dom = $("<caption/>")
       .text(tables[i].TABLE_COMMENT?tables[i].TABLE_COMMENT:tables[i].TABLE_NAME)
-      .click(function(){
-        toggleTable($(this).parent().attr("data-table-name"));
-      })
       .appendTo(table_dom);
 
     table_dom.append($("<thead><tr><th class='mapping_status'></th><th>Key</th><th>Name</th><th>Type</th></tr></thead>"));

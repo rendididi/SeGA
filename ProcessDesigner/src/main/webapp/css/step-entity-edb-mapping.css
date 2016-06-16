@@ -135,9 +135,9 @@ body label {
 }
 
 .sega-jstree-mapicon {
-	border-radius: 20px;
-	width:20px;
-	line-height: 20px;
+	border-radius: 16px;
+	width:36px;
+	line-height: 22px!important;
 	text-align: center;
 	background-color: transparent;
 	color: #00a885;
@@ -148,7 +148,7 @@ body label {
 	display: block;
 	float: right;
 	margin-right: 5px;
-	margin-top: 6px;
+	margin-top: 4px;
 }
 
 .sega-jstree-mapicon:hover, .sega-jstree-mapicon.linked {

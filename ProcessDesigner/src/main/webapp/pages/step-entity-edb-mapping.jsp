@@ -6,6 +6,7 @@
 	<%@include file="/partials/common_header.jspf" %>
 	<link href="<s:url value="css/step-entity-edb-mapping.css" />" rel="stylesheet">
 	<link href="<s:url value="css/icomoon-font.css" />" rel="stylesheet">
+	<link href="<s:url value="css/icomoon-font2.css" />" rel="stylesheet">
 	<link rel="stylesheet" href="<s:url value="js/lib/jstree/themes/default/style.css" />" />
 
 </head>
@@ -19,10 +20,10 @@
 
 
   <section class="container" id="mappingbox">
-  	<div id="entity_tree" class="col-lg-6">
+  	<div id="entity_tree" class="col-md-4">
   		
   	</div>
-  	<div id="db_tables" class="col-lg-5 col-lg-offset-1">
+  	<div id="db_tables" class="col-md-4 col-md-offset-4">
   	</div>
   </section>
 

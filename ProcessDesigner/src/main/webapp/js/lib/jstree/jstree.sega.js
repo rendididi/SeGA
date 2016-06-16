@@ -43,7 +43,7 @@
 	};
 
 	var mapIcon = document.createElement("span");
-	mapIcon.className = "sega-jstree-mapicon glyphicon glyphicon-ok";
+	mapIcon.className = "sega-jstree-mapicon icon2-rounded-plus";
 
 	$.jstree.plugins.sega = function (options, parent) {
 		this.get_sega_json = function (obj, options, flat) {
@@ -72,6 +72,10 @@
 			return this.get_path(this.get_selected()).join("/");
 		};
 
+		this.toggle_node = function (obj) {
+			return false;
+		};
+		
 		this.redraw_node = function(obj, deep, callback, force_draw) {
 			obj = parent.redraw_node.call(this, obj, deep, callback, force_draw);
 			
