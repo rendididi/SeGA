@@ -11,6 +11,7 @@ var mapping_tool = {
     .projection(function(d) { return [d.y, d.x]; }),
 
   entity_node: null,
+  entity_nodes: null,
   db_node: null,
   mapping_rules: [],
   _link_icon: null,
@@ -40,7 +41,6 @@ var mapping_tool = {
       //$("#svg_mapping_tool").on("sega.mapping.svg.link.refresh", $.proxy(this.onSelectChange, this));
 
       $("#mapping_panel #btn-confirm").click($.proxy(this.doMap, this));
-
 
 
     return this;
@@ -147,9 +147,16 @@ var mapping_tool = {
     }
     return true;
   },
-  
+
   doMap: function(){
-    this._doMap(this.entity_node, this.db_node);
+    //For Demo
+    if(this.entity_nodes.length>1){
+        this._doMap2(this.entity_nodes, this.db_node);
+      
+    }else{
+      this._doMap(this.entity_node, this.db_node);  
+    }
+    
   },
 
   _doMap: function(e, d, opt) {
@@ -210,6 +217,33 @@ var mapping_tool = {
     this.updateCheckboxHandler(e,d);
   },
   
+  _doMap2: function(ee, d, opt) {
+    var tree = $("#entity_tree").jstree(true);
+    var column = d.attr("data-column-name"),
+      table = d.parent().parent().attr("data-table-name");
+    
+
+    // validate rule
+
+    if(opt&&!opt.nocheck){
+        if(!this.canMap(e, d))
+            return false;
+    }
+  
+    
+
+    
+    // save the rule and update components
+    
+    
+    mapTableRow(d);
+    
+    for(var i=0;i<ee.length;i++){
+      this.drawSuggestion2(ee[i],d);
+    }
+    
+  },
+  
   updateCheckboxHandler: function(e, d){
 	var chk1 = tree.get_node(e, true).children(".jstree-wholerow").children("span.sega-jstree-mapicon");
 	var chk2 = d.children("td.isMapped");
@@ -229,6 +263,8 @@ var mapping_tool = {
 
   onSelectChange:  function(){
     this.entity_node = $("#entity_tree").jstree(true).get_selected()[0];
+    this.entity_nodes = $("#entity_tree").jstree(true).get_selected();
+    
     this.db_node = $("#db_tables>table>tbody>tr.active");
     
     this.clear();
