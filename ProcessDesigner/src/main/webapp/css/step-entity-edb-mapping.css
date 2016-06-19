@@ -116,12 +116,18 @@ body label {
 	font-size: 18px;
 }
 
-#mappingbox #svg_mapping_tool path.suggest_line {
-	transition: all 0.5s;
+#mappingbox #svg_mapping_tool g#layer_line path.line {
+	transition: stroke 0.5s;
 }
 
-#mappingbox #svg_mapping_tool g.candidate path.suggest_line {
+#mappingbox #svg_mapping_tool g#layer_line path.line.selection {
+	stroke: #beebff;
+	stroke-width: 2;
+	fill: none;
+
+	stroke-dasharray: 12 8;
 	animation: dashing 0.8s linear infinite;
+
 }
 
 @keyframes dashing {
@@ -129,29 +135,138 @@ body label {
 	100% {stroke-dashoffset: -20;}
 }
 
+#mappingbox #svg_mapping_tool g#layer_line path.line.rule {
+	stroke: #337ab7;
+	stroke-width: 2;
+	fill: none;
+}
+
 
 #mappingbox #svg_mapping_tool path.suggest_line.active{
 	stroke-opacity: 0.4;
 }
 
-.sega-jstree-mapicon {
-	border-radius: 16px;
-	width:36px;
-	line-height: 22px!important;
+
+#entity_tree .jstree-wholerow.jstree-wholerow-clicked {
+	background: transparent;
+}
+
+.sega-checkbox {
+	width: 24px;
+
+	display: block;
+	vertical-align: middle;
 	text-align: center;
+
+	cursor: pointer;
 	background-color: transparent;
 	color: #00a885;
-	transition: all 0.2s linear;
 }
 
-#entity_tree .sega-jstree-mapicon {
-	display: block;
+.sega-jstree-checkbox {
 	float: right;
 	margin-right: 5px;
-	margin-top: 4px;
+	height: 32px;
+	line-height: 32px;
 }
 
-.sega-jstree-mapicon:hover, .sega-jstree-mapicon.linked {
-	background-color: #00a885;
-	color: #f8f8f8;
+.sega-checkbox, .sega-checkbox span {
+	transition: all 0.2s ease;
+	font-size: 8px;
+}
+
+.sega-checkbox span{
+	width: 16px;
+	height: 16px;
+	line-height: 16px;
+	border-radius: 5px;
+	vertical-align: middle;
+
+	background: #e8e8e8;
+	color: transparent;
+}
+
+.sega-checkbox span:hover {
+
+	color: #ffffff;
+}
+
+.sega-checkbox.checked span {
+	color: #ffffff;
+	background-color: #beebff;
+}
+
+#layer_icon {
+	cursor: pointer;
+}
+
+#layer_icon path{
+	transition: all 0.2s ease;
+}
+
+#layer_icon.selection:hover path.outline{
+	fill: #a8e4ff;
+}
+
+#layer_icon.selection path.outline{
+	fill: #beebff;
+}
+
+#layer_icon.selection path.inner{
+	fill: #ffffff;
+}
+
+#layer_icon.rule path.outline{
+	fill: #ffffff;
+}
+
+#layer_icon.rule path.inner{
+	fill: #337ab7;
+}
+
+#layer_icon.rule path.frame{
+	fill: transparent;
+}
+
+
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.sega-badge {
+	float: right;
+	margin-right: 5px;
+
+}
+
+.sega-badge span {
+	cursor: pointer;
+	display: inline-block;
+    min-width: 10px;
+    padding: 3px 6px;
+    font-size: 6px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #337ab7;
+    border-radius: 16px;
 }

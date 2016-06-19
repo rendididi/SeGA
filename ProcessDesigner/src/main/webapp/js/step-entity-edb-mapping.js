@@ -112,14 +112,23 @@ function populateDBTable(tables, columns, keys){
 
         var tr_dom = $("<tr/>")
           .attr("data-column-name", columns[j].COLUMN_NAME)
-          .click(function(){
-            selectTableRow($(this));
-          })
+          // .click(function(){
+          //   selectTableRow($(this));
+          // })
           .appendTo(tbody_dom);
 
-        $("<td/>")
+        var map_td_dom = $("<td/>")
           .addClass("isMapped")
           .appendTo(tr_dom);
+
+        var checkbox_dom = $("<div class='sega-checkbox sega-db-checkbox'><span class='glyphicon glyphicon-ok'></span></div>")
+          .attr("data-unique-id", tables[i].TABLE_NAME+" "+columns[j].COLUMN_NAME)
+          .click(function(){
+            $(this).toggleClass("checked");
+            $(this).trigger("sega.db.selected");
+          })
+          .appendTo(map_td_dom);
+
 
         var key_dom = $("<td/>").appendTo(tr_dom);
         var isKey = lookUpKey(columns[j], keys);
