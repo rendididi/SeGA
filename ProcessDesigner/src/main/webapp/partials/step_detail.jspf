@@ -1,13 +1,13 @@
-<%
+﻿<%
 
 	String[] step_names = {
-		"Select Process Template",
-		"Customize Entity",
-		"DB Template-EDB Mapping",
-		"Entity-EDB Mapping",
-		"Customize Process",
-		"Service Binding",
-		"Publish"
+		"选择流程模板",
+		"自定义实体",
+		"DB Template-EDB 映射",
+		"EDB实体 映射",
+		"自定义流程",
+		"服务绑定",
+		"发布"
 	};
 
 	String[] action_names = {
