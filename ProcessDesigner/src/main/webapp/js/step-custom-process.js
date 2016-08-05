@@ -59,7 +59,7 @@ var graph;
   	var elements = graph.getElements();
   	var startNum=0;
   	var endNum=0;
-
+/*判断图上是否有开始结束节点*/
   	for(var i=0;i<elements.length;i++){
   		if(elements[i].prop("type")=="sega.Start"){
   			startNum++
@@ -75,7 +75,7 @@ var graph;
  				});
  				break;
       case "serviceShape":
-        newCell= new joint.shapes.sega.Service({
+    	  	newCell= new joint.shapes.sega.Service({
             position : {x: x-75,y: y-30}
         });
         break;
@@ -100,7 +100,7 @@ var graph;
   	}
   	graph.addCell(newCell);
 	}
-
+/*delete删除*/
 	$(document).keyup(function(e){
   	if(e.keyCode==46&&current_selected!=''){
   		current_selected.model.remove();
@@ -202,11 +202,12 @@ var graph;
 		$("#modal_viewjson input#input-svg").val(svg);
 		$("#modal_viewjson").modal();
 	});
+	/*获得当前选中的元素*/
 	function getcc(){
 		return current_selected;
 	}
 	return {
 		current_selected:getcc,
-    paper: paper
+		paper: paper
 	}
 })();

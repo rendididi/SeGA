@@ -24,38 +24,38 @@
 			<div class="toolbox" data-spy="affix" data-offset-top="400"
 				data-offset-bottom="0">
 				<div class="form-group">
-					<label>Name</label>
+					<label><!-- Name -->名称</label>
 					<div>
 						<input type="text" class="form-control node-name" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label>Node</label>
+					<label><!-- Node -->结点属性</label>
 					<div>
 						<select class="selectpicker form-control node-type"
 							data-dropup-auto="false" data-hide-disabled="true">
 							<option
-								data-content="<span class='node_artifact node_icon'>Entity</span>"
-								value="artifact">Entity</option>
+								data-content="<span class='node_artifact node_icon'><!-- Entity -->实体</span>"
+								value="artifact"><!-- Entity -->实体</option>
 							<option
-								data-content="<span class='node_artifact_n node_icon'>Entity 1-n</span>"
-								value="artifact_n">Entity 1-n</option>
+								data-content="<span class='node_artifact_n node_icon'><!-- Entity 1-n -->一对多实体</span>"
+								value="artifact_n"><!-- Entity 1-n -->一对多实体</option>
 							<option
-								data-content="<span class='node_attribute node_icon'>Attribute</span>"
-								value="attribute">Attribute</option>
+								data-content="<span class='node_attribute node_icon'><!-- Attribute -->属性</span>"
+								value="attribute"><!-- Attribute -->属性</option>
 							<option
-								data-content="<span class='node_group node_icon'>Group</span>"
-								value="group">Attribute Group</option>
+								data-content="<span class='node_group node_icon'><!-- Group -->属性组</span>"
+								value="group"><!-- Attribute Group -->属性组</option>
 							<option
-								data-content="<span class='node_key node_icon'>Key</span>"
-								value="key">Key</option>
+								data-content="<span class='node_key node_icon'><!-- Key -->主键</span>"
+								value="key"><!-- Key -->主键</option>
 						</select>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label>Type</label>
+					<label><!-- Type -->类型</label>
 					<div>
 						<select class="selectpicker form-control value-type"
 							data-dropup-auto="false">
@@ -71,7 +71,7 @@
 				</div>
 
 				<div class="form-group create">
-					<label>Create <span class="glyphicon glyphicon-plus"
+					<label><!-- Create -->新建 <span class="glyphicon glyphicon-plus"
 						aria-hidden="true"></span>
 					</label>
 					<button type="button" class="btn btn-primary btn-md btn-block"
@@ -104,20 +104,20 @@
 				</div>
 
 				<div class="form-group">
-					<label>Delete <span class="glyphicon glyphicon-minus"
+					<label><!-- Delete -->删除 <span class="glyphicon glyphicon-minus"
 						aria-hidden="true"></span>
 					</label>
 					<button type="button"
 						class="btn btn-danger btn-md btn-block remove-btn">
-						Delete</button>
+						删除</button>
 				</div>
 
 				<div class="form-group">
-					<label>Submit <span class="glyphicon glyphicon-ok"
+					<label><!-- Submit -->提交 <span class="glyphicon glyphicon-ok"
 						aria-hidden="true"></span>
 					</label>
 					<button type="button" class="btn btn-success btn-md btn-block"
-						id="btn_viewjson">Submit</button>
+						id="btn_viewjson"><!-- Submit -->提交</button>
 				</div>
 			</div>
 		</div>

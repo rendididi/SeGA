@@ -12,9 +12,9 @@ spring:
 
     dataSource:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1/uar
-      username: sega
-      password: sega
+      url: jdbc:mysql://rm-m5e828m38n7p9vv81.mysql.rds.aliyuncs.com/uar
+      username: sega_tester
+      password: sega_tester
 
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
@@ -27,4 +27,4 @@ spring:
       default_expire_time: 86400
 
 jtang:
-    url: http://120.24.49.253:8080/SeGA
+    url: http://120.27.7.132:8080/SeGA

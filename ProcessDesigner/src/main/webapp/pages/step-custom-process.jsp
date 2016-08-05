@@ -23,7 +23,7 @@
 			<%=step_names[step-1] %>
 			</h1>
 			<div class="toolbox" >
-				<span>Create</span>
+				<span><!-- Create -->新建</span>
 				<div class="toolShape startShape" id="startShape" draggable="true"></div>
 				<div class="toolShape endShape" id="endShape" draggable="true"></div>
 				<div class="toolShape taskShape" id="taskShape" draggable="true"></div>
@@ -58,7 +58,7 @@
 						<s:hidden name="process.processJSON" id="processJSON"></s:hidden>
 						<s:hidden name="svg" id="input-svg"></s:hidden>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-success">Confirm</button>
+						<button type="submit" class="btn btn-success">确定</button>
 					</s:form>
 				</div>
 			</div><!-- /.modal-content -->

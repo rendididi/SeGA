@@ -6,9 +6,9 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">sega</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost/uar</property>
-  <property name="hibernate.connection.username">sega</property>
+  <property name="hibernate.connection.password">sega_tester123</property>
+  <property name="hibernate.connection.url">jdbc:mysql://rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com/uar</property>
+  <property name="hibernate.connection.username">sega_tester</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.connection.pool_size">100</property>
   <property name="hibernate.show_sql">true</property>

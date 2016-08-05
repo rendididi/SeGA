@@ -1,5 +1,6 @@
 /**
  * Created by Administrator on 2015/8/26.
+ * C:\Users\wxfei\AppData\Roaming\Sublime Text 3\Packages\User
  */
 var current_selected='';//current selected cell
 var paper;
@@ -96,6 +97,7 @@ var bindingUtil = {
         gridSize:1,
 //    	elementView: glpElementView,
         defaultLink: new joint.shapes.sega.Link({
+        	/*去掉连线上的设置的样式，连线不能修改*/
             attrs:{
                 '.connection-wrap':{display:"none"},
                 '.link-tools':{display:'none'},

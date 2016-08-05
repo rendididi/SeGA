@@ -1,6 +1,5 @@
 var tree = null;
 
-
 $(function() {
   if(entity_json&&entity_json.length>0)
     clearEntityJsonMapMark(entity_json[0]);

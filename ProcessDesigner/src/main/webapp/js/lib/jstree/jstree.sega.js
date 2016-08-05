@@ -42,8 +42,11 @@
 		}
 	};
 
-	var mapIcon = document.createElement("span");
-	mapIcon.className = "sega-jstree-mapicon glyphicon glyphicon-ok";
+	var checkbox = document.createElement("div");
+	checkbox.className = "sega-checkbox sega-jstree-checkbox";
+	var checkbox_span = document.createElement("span");
+	checkbox_span.className = "glyphicon glyphicon-ok";
+	checkbox.appendChild(checkbox_span);
 
 	$.jstree.plugins.sega = function (options, parent) {
 		this.get_sega_json = function (obj, options, flat) {
@@ -72,6 +75,10 @@
 			return this.get_path(this.get_selected()).join("/");
 		};
 
+		this.toggle_node = function (obj) {
+			return false;
+		};
+		
 		this.redraw_node = function(obj, deep, callback, force_draw) {
 			obj = parent.redraw_node.call(this, obj, deep, callback, force_draw);
 			
@@ -79,7 +86,7 @@
 				return obj;
 
 			if(obj) {
-				var i, j, tmp = null, chk = mapIcon.cloneNode(true);
+				var i, j, tmp = null, chk = checkbox.cloneNode(true);
 				for(i = 0, j = obj.childNodes.length; i < j; i++) {
 					if(obj.childNodes[i] && obj.childNodes[i].className && obj.childNodes[i].className.indexOf("jstree-wholerow") !== -1) {
 						tmp = obj.childNodes[i];
@@ -95,8 +102,14 @@
 					}
 				}
 				
-				if(tmp && tmp.tagName === "DIV" && this.get_node(obj.id).data && this.get_node(obj.id).data.isMapped) {
+				if(tmp && tmp.tagName === "DIV" /*&& this.get_node(obj.id).data && this.get_node(obj.id).data.isMapped*/) {
 					
+					var handler = $.proxy(function(){
+						this.toggleClass("checked");
+						this.trigger("sega.jstree.checked");
+					}, $(chk));
+
+					$(chk).on("click", handler);
 					tmp.appendChild(chk);
 				}
 			}

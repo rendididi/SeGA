@@ -84,7 +84,7 @@ joint.shapes.sega.PortsViewInterface=$.extend(true,new Object(),joint.shapes.bas
  */
 
 joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.shapes.sega.PortsModelInterface, {
-
+/*定义task的样式*/
     markup: '<g class="rotatable"><g class="scalable"><rect class="body"/></g><text class="label"/><g class="inPorts"/><g class="outPorts"/></g>',
     portMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
     portXORMarkup: '<g class="port port<%= id %>"><circle class="port-body"/></g>',
@@ -106,6 +106,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
                 fill: '#3C4C53',
                 rx: 4, ry: 6
             },
+            /*点的样式*/
             '.port-body': {
                 r: 10,
                 magnet: true,
@@ -116,6 +117,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
             text: {
                 'pointer-events': 'none'
             },
+           /* 文字的样式*/
             '.label': { 
                 text: 'Task', 
                 'ref-x': .5, 
@@ -128,6 +130,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
                 "font-weight": "300",
                    
             },
+            /*自定义*/
             data:{
                 name:'name',
                 read:[],
@@ -164,6 +167,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
         //console.log(attrs);
         return attrs;
     },
+    /*自己改的，用于设置label的文字*/
     setText: function(text) {
         
         var new_width = text.length*15+30;
@@ -177,6 +181,7 @@ joint.shapes.sega.Task = joint.shapes.basic.Generic.extend(_.extend({}, joint.sh
         this.attr(".label", label_attr);
 
     },
+    /*设置端口类类型，是进来的还是出去的*/
     setPortType: function(model) {
         model.ports.out.splitemode=model.attr("data").splitemode;
         model.ports.in.jointmode=model.attr("data").jointmode;
@@ -350,7 +355,9 @@ joint.shapes.sega.Link = joint.dia.Link.extend({
             '.connection' : { stroke:"#F4A915", 'stroke-width' :  2,fill:'none' },
             '.marker-target': { stroke: '#F4A915', fill: '#F4A915', d: 'M 10 0 L 0 5 L 10 10 z'}
         },
+        /*流程节点判断条件，问彬彬*/
         expression:"",
+        
         router: { name: 'manhattan' },
         connector: { name: 'rounded' }
     }

@@ -12,12 +12,18 @@
 		<%int step=1; %>
 		<%@include file="/partials/navbar.jspf" %>
 		<%@include file="/partials/step_detail.jspf" %>
+		<select class="form-control" style="width:15%;position:absolute;top:204px;left:340px">
+	        	<option>房源申请</option>
+	        	<option>房源配租</option>
+	        	<option>房源缴交</option>
+	        	<option>房源管理</option>
+	    </select>
 	</header>
 	<section class="filter container">
 		 <div class="input-group">
-            <input type="text" class="form-control" placeholder="input process name..." value="" ng-model="search">
-	            <div class="input-group-btn">
-            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+            <input type="text" class="form-control seacrhProcess" placeholder="输入流程名称" value="" ng-model="search">
+	        <div class="input-group-btn">
+            	<button type="submit" class="btn btn-info btn-process-select"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
 	</section>
@@ -34,8 +40,8 @@
 					<s:form action="step-process-select-submit">
 						<input type="hidden" name="process_id" value="{{node.id}}"/>
 						<div class="btn-group">
-							<button class="btn btn-primary btn-custom-process" type="button">Custom</button>
-							<button class="btn btn-success" type="button">Deploy</button>
+							<button class="btn btn-primary btn-custom-process" type="button"><!-- Custom -->自定义</button>
+							<button class="btn btn-success" type="button"><!-- Deploy -->部署</button>
 						</div>
 					</s:form>
 				</div>

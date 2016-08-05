@@ -252,3 +252,10 @@
   color: #4e5562;
   text-decoration: none;
 }
+
+.list-time{padding-left:6%;overflow:hidden}
+.next{background-img:url();height:29px;width:30px}
+.activityImg-small{height:25px !important;width:25px !important}
+@media screen and (max-width: 1199px){
+	.list-time{padding-left:0%}
+}

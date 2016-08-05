@@ -26,7 +26,7 @@
 			<img src="images/publish2.svg" width=500 heigh=500 ></img>
 			</s:elseif>
 			<s:form action="task-list">
-			<button class="btn btn-primary btn-lg">Success! Go Back</button>
+			<button class="btn btn-primary btn-lg"><!-- Success! Go Back -->成功！点此返回</button>
 			</s:form>
 		</div>
 	</section>

@@ -20,13 +20,13 @@
 		<div class="col-md-6 publish1 text-center">
 			<img src="images/launch.svg" width=284 heigh=282 ></img>
 			<s:form action="step-publish-submit">
-			<button class="btn btn-primary btn-lg">Publish As Process</button>
+			<button class="btn btn-primary btn-lg"><!-- Publish As Process -->发布为一个流程</button>
 			</s:form>
 		</div>
 		<div class="col-md-6 publish1 text-center">
 			<img src="images/publish2.svg" width=284 heigh=284 ></img>
 			<s:form action="step-publish-template">
-			<button class="btn btn-primary btn-lg">Publish As Template</button>
+			<button class="btn btn-primary btn-lg"><!-- Publish As Template -->发布为一个模板</button>
 			</s:form>
 		</div>
 	</section>

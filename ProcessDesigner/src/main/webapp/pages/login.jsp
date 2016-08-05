@@ -22,7 +22,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Process Designer</a></li>
             <li><a href="<s:text name="taskviewer.url"/>">Task Viewer</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#about">关于</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -35,49 +35,65 @@
     <section class="container login">
     	<div class="col-md-4 col-md-offset-1 login-container">
     		<img src="/images/user/expert.png" width="128px" height="128px"/>
-        <div class="title"><h2>Business Expert</h2></div>  
+        <div class="title"><h2>业务专家</h2></div>  
     		<div class="login-panel">
           <ul>
             <li>
               <img src="/images/step_detail/step-process-select.png" width="28px" height="28px"/>
-              Process Select
+              流程选择
             </li>
             <li>
               <img src="/images/step_detail/step-custom-entity.png" width="28px" height="28px"/>
-              Customize Entity
+              自定义实体
             </li>
             <li>
               <img src="/images/step_detail/step-custom-process.png" width="28px" height="28px"/>
-              Customize Process
+              自定义流程
             </li>
           </ul>
           <s:form action="dologin">
           <s:hidden name="userType" value="expert"></s:hidden>
-          <button class="btn btn-default btn-block" type="submit">Login</button>
+          <div class="login-city-box">
+          	<img src="/images/mark.png" style="width:28px;height:28px;" />
+          	<select class="form-control changeSelectBg">
+          		<option>杭州</option>
+          		<option>衢州</option>
+          		<option>新疆</option>
+          	</select>
+          </div>
+          <button class="btn btn-default btn-block btn-bussiiness" type="submit">登录</button>
           </s:form>
         </div>
     	</div>
       <div class="col-md-4 col-md-offset-2 login-container">
         <img src="/images/user/developer.png" width="128px" height="128px"/>
-        <div class="title"><h2>Developer</h2></div>  
+        <div class="title"><h2>开发工程师</h2></div>  
         <div class="login-panel">
           <ul>
             <li>
               <img src="/images/step_detail/step-dbtemplate-edb-mapping.png" width="28px" height="28px"/>
-              DB Template-EDB Mapping
+              DB Template-EDB 映射
             </li>
             <li>
               <img src="/images/step_detail/step-entity-edb-mapping.png" width="28px" height="28px"/>
-              Entity-EDB Mapping
+              EDB实体映射
             </li>
             <li>
               <img src="/images/step_detail/step-bind-process.png" width="28px" height="28px"/>
-              Service-Process Binding
+              服务进程绑定
             </li>
           </ul>
           <s:form action="dologin">
           <s:hidden name="userType" value="developer"></s:hidden>
-          <button class="btn btn-default btn-block">Login</button>
+          <div class="login-city-box">
+          	<img src="/images/mark.png" style="width:28px;height:28px;" />
+          	<select class="form-control changeSelectBg">
+          		<option>杭州</option>
+          		<option>衢州</option>
+          		<option>新疆</option>
+          	</select>
+          </div>
+          <button class="btn btn-default btn-block ">登录</button>
           </s:form>
         </div>
       </div>

@@ -38,8 +38,8 @@
 				<div class="modal-footer">
 					<s:form action="step-bind-process-submit">
 						<s:hidden name="process.bindingJSON" id="bindingJSON"></s:hidden>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-success">Confirm</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><!-- Close -->关闭</button>
+						<button type="submit" class="btn btn-success"><!-- Confirm -->确定</button>
 					</s:form>
 				</div>
 			</div><!-- /.modal-content -->

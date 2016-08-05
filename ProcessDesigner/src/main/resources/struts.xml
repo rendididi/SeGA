@@ -196,7 +196,11 @@
     <!-- Step Result  -->
     <action name="step-publish-result" class="org.sega.ProcessDesigner.actions.StepPublishResult">
     </action>
-
+    
+    <!-- Step Result  -->
+    <action name="show-log-console">
+    	<result>/pages/showConsole.jsp</result>
+    </action>
   </package>
 
 </struts>

@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html lang="zh-CN" ng-app="app">
 <head>
   <%@include file="/partials/common_header.jspf" %>
+  <meta charset="utf-8">
+  
   <link href="<s:url value="css/task-list.css" />" rel="stylesheet">
   <script src="<s:url value="js/lib/angular/angular.js" />"></script>
 </head>
@@ -49,7 +51,7 @@
               <div class="btn-create">
                   <a class="" href="<s:url action='step-process-select'/>">
                     <span class="glyphicon glyphicon-plus-sign addActivity" aria-hidden="true"></span>
-                    <span>Create</span>
+                    <span><!-- Create -->新建</span>
                   </a>
               </div>
               </s:if>
@@ -61,8 +63,8 @@
                       <div class="btn-edit"><span class="glyphicon glyphicon-edit"></span></div>
                       <p class="header text-elli">{{activity.stepName}}</p>
                       <p class="date">{{activity.date}}</p>
-                      <p class="decription">Template: {{activity.process.template}}</p>
-                      <p class="name">Process: {{activity.process.name}}</p>
+                      <p class="decription"><!-- Template -->模板: {{activity.process.template}}</p>
+                      <p class="name"><!-- Process -->流程: {{activity.process.name}}</p>
                     </div>
                   </a>
                 </li>
@@ -84,7 +86,7 @@
           <div class="m-sidebar">
             <!-- 最近任务 -->
             <div class="latestTask">
-              <h4 class="header">Latest Task</h4>
+              <h4 class="header"><!-- Latest Task -->最近任务</h4>
               <div ng-show="firstActivity.id" class="list-unstyled" id="latestTaskList">
                 <img class="activityImg" src="{{firstActivity.step_image_url}}">
                 <div class="info">
@@ -92,7 +94,7 @@
                    {{firstActivity.stepName}}
                   </p>
                   <p class="date">{{firstActivity.date}}</p>
-                  <p class="decription">Process: {{firstActivity.process.name}}</p>
+                  <p class="decription"><!-- Process -->流程: {{firstActivity.process.name}}</p>
                 </div>
               </div>
             </div>
@@ -101,14 +103,14 @@
             <div class="search">
                <h4>
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                <span class="header">Search</span>
+                <span class="header"><!-- Search -->搜索</span>
                </h4>
                <div class="row">
                 <div class="col-lg-3">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <input type="text" class="form-control" placeholder="输入关键字">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
+                      <button class="btn btn-default" type="button"><!-- Go! -->确定</button>
                     </span>
                   </div><!-- /input-group -->
                 </div><!-- /.col-lg-3 -->
@@ -120,34 +122,34 @@
                <ul class="list-unstyled" id="taskList">
                <li>
                  <img class="activityImg" src="images/step_detail/step-process-select.png">
-                 <p>Select Process Template</p>
+                 <p><!-- Select Process Template -->选择流程模板</p>
                </li>
                 <li>
                  <img class="activityImg" src="images/step_detail/step-custom-entity.png">
-                 <p>Customize Entity</p>
+                 <p><!-- Customize Entity -->自定义实体</p>
                </li>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-dbtemplate-edb-mapping.png">
-                  <p>Template DB-EDB Mapping</p>
+                  <p><!-- Template DB-EDB Mapping -->模板DB-EDB映射</p>
                 </li>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-entity-edb-mapping.png">
-                  <p>Entity-EDB Mapping</p>
+                  <p><!-- Entity-EDB Mapping -->实体EDB映射</p>
                 </li>
 
                 <div style="clear:both;"></div>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-custom-process.png">
-                  <p>Customize Process</p>
+                  <p>自定义实体</p>
                 </li>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-bind-process.png">
-                  <p>Service Binding</p>
+                  <p>服务绑定</p>
                 </li>
 
                 <li>
                   <img class="activityImg" src="images/step_detail/step-publish.png">
-                  <p>Publish</p>
+                  <p>发布</p>
                 </li>
 
 
@@ -229,3 +231,188 @@
   <script src="<s:url value="js/task-list.js" />"></script>
 </body>
 </html>
+
+
+ 
+ 
+<%-- <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<html lang="zh-CN" ng-app="">
+<head>
+  <%@include file="/partials/common_header.jspf" %>
+  <meta charset="utf-8">
+  <title>日志管理</title>
+  <link href="<s:url value="css/task-list.css" />" rel="stylesheet">
+  <link href="<s:url value="js/lib/bootstrap-3.3.5-dist/css/bootstrap-datetimepicker.css" />" rel="stylesheet">
+  <script src="<s:url value="js/lib/bootstrap-3.3.5-dist/js/bootstrap-datetimepicker.js" />"></script>
+  <script src="<s:url value="js/lib/angular/angular.js" />"></script>
+  <style>
+    .m-activity #activityList li{margin-top:0px;padding: 20px 20px 0px 15px; min-height: 70px;}
+    .info p {margin-bottom:3px}
+  </style>
+</head>
+<body>
+  <header>
+    <%int step=0; %>
+    <%@include file="/partials/navbar.jspf" %>
+  </header>
+  <div class="container">
+  <div class="row" id="user-area">
+    <div class="col-sm-12">
+      <img class="userImg" src="/images/user/<s:property value="userType"/>.png" height="90px" width="90px"/>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+      <div class="col-sm-3">
+          <!-- 右侧栏 -->
+          <div class="m-sidebar">
+            <!-- 时间选择器 -->
+            <div class="latestTask">
+              <h4 class="header"><!-- Latest Task -->时间筛选</h4>
+              <div class="list-time">
+                <div class="datepicker"></div>
+              </div>
+            </div>
+
+            <!-- 搜索栏 -->
+            <div class="search">
+               <h4>
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                <span class="header"><!-- Search -->搜索</span>
+               </h4>
+               <div class="row">
+                <div class="col-lg-3">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="输入关键字">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button"><!-- Go! -->确定</button>
+                    </span>
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-3 -->
+              </div>
+             </div>
+             
+
+          </div>
+        </div>
+        
+        <div class="col-sm-9">
+          <!-- 任务内容区 -->
+          <div class="g-content">
+            <!-- 内容栏 -->
+            <div class="m-activity">
+              <ul id="myTab" class="nav nav-tabs">
+  				<li class="active"><a href="#tab1" data-toggle="tab">业务流程日志</a></li>
+  				<li class=""><a href="#tab2" data-toggle="tab">系统日志</a></li>
+			  </ul>
+			  <div id="myTabContent" class="tab-content" >
+  				 <div class="tab-pane fade in active" id="tab1" >
+    			 	<!-- 业务流程日志 -->
+    			 	<ul class="list-unstyled list-unstyled-small" id="activityList">
+		                <li >
+		                  <a class="btn-activity" href="">
+		                    <img class="activityImg activityImg-small" src="/images/log-item.png"/>
+		                    <div class="info">
+		                      <p class="header text-elli">用户名:wxf</p>
+		                      <p class="date">五分钟前</p>
+		                      <p class="decription">操作内容:发布了一个模板 </p>
+		                    </div>
+		                  </a>
+		                </li>
+		                <li >
+		                  <a class="btn-activity" href="">
+		                    <img class="activityImg activityImg-small" src="/images/log-item.png"/>
+		                    <div class="info">
+		                      <p class="header text-elli">用户名:wxf</p>
+		                      <p class="date">五分钟前</p>
+		                      <p class="decription">操作内容:发布了一个模板 </p>
+		                    </div>
+		                  </a>
+		                </li>
+		            </ul>
+    			 </div>
+    			 <div class="tab-pane fade in " id="tab2" >
+    			 	<!-- 系统日志 -->
+    			 	<ul class="list-unstyled list-unstyled-small" id="activityList">
+		                <li >
+		                  <a class="btn-activity" href="">
+		                    <img class="activityImg activityImg-small" src="/images/log-item.png"/>
+		                    <div class="info">
+		                      <p class="header text-elli">管理员:wxf</p>
+		                      <p class="date">五分钟前</p>
+		                      <p class="decription">操作内容:发布了一个模板 </p>
+		                    </div>
+		                  </a>
+		                </li>
+		                <li >
+		                  <a class="btn-activity" href="">
+		                    <img class="activityImg activityImg-small" src="/images/log-item.png"/>
+		                    <div class="info">
+		                      <p class="header text-elli">管理员:wxf</p>
+		                      <p class="date">五分钟前</p>
+		                      <p class="decription">操作内容:发布了一个模板 </p>
+		                    </div>
+		                  </a>
+		                </li>
+		            </ul>
+    			 </div>
+    		  </div>
+            </div>
+
+            <!-- 分页 -->
+            <div id="my-pagination">
+            </div>
+          </div>
+      </div>
+    </div>
+  </div><!-- END of row  -->
+
+</div> <!-- END of container -->
+
+  <script>
+  	$(function() {
+	    $(".datepicker").datetimepicker({
+	    	language : 'fr',weekStart : 1,todayBtn : 1,autoclose : 1,
+	   	    todayHighlight : 1,startView : 2,minView : 2,forceParse : 0,
+	    });
+	});
+  </script>
+  <script>
+  	$(function(){
+  		setInterval("random()",1000);
+  	});
+  	function random(){
+  		/* $.ajax({
+  			type:"get",
+  			url:"test.do",
+  			success:function(text){
+  				
+  			}
+  		}); */
+  	}
+  </script>
+  <script>
+   $(function(){
+        var pageSize = <s:property value="pageSize"/>;
+        var pages = <s:property value="totalPages"/>;
+
+        if(pages>1){
+          var options = {
+              currentPage: <s:property value="page"/>,
+              totalPages: pages,
+              pageUrl: function(type, page, current){
+                  return document.location.pathname+'?page='+page + '&pageSize='+pageSize;
+              }
+          }
+          $('#my-pagination').bootstrapPaginator(options);
+        }
+    }); 
+  </script>
+
+  <script src="<s:url value="js/lib/bootstrap-paginator-1.0.2/build/bootstrap-paginator.min.js" />"></script>
+</body>
+</html> --%>
+
+ 
