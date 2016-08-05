@@ -10,15 +10,31 @@
           <a class="navbar-brand" href="/"><span style="color:#f9f9f9;font-weight:200;">SeGA</span> Workflow System</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Process Designer</a></li>
-            <li><a href="<s:text name="taskviewer.url"/>">Task Viewer</a></li>
-            <li><a href="#about">About</a></li>
-
+          <ul class="nav navbar-nav nav-parent">
+            <li class="active">
+            	<a href="#">Process Designer <img class="nav-bar-triangle" src="/images/triangle.png" /></a></a>
+				<ul class="nav nav-myself">
+					<li><a href="#">房源管理</a></li>
+					<li><a href="#">资格管理</a></li>
+					<li><a href="#">配租管理</a></li>
+					<li><a href="#">租金缴交</a></li>
+				</ul>
+            </li>
+            <li>
+            	<a href="<s:text name="taskviewer.url"/>">Task Viewer <img class="nav-bar-triangle" src="/images/triangle.png" /></a></a>
+            	<ul class="nav nav-myself">
+					<li><a href="#">房源管理1</a></li>
+					<li><a href="#">资格管理1</a></li>
+					<li><a href="#">配租管理1</a></li>
+					<li><a href="#">租金缴交1</a></li>
+				</ul>
+            </li>
+            <li><a href="#about">关于</a></li>
+			<li><a href="<s:url action="show-log-console" />">控制台</a></li>
           </ul>
           <% if(step>1 &&step<7) { %>
           <form class="navbar-form navbar-left">
-            <button type="button" class="btn btn-success" id="btn-navbar-submit">Submit</button>
+            <button type="button" class="btn btn-success" id="btn-navbar-submit">提交</button>
           </form>
           <% }
             if(step>=0) { %>
@@ -28,14 +44,14 @@
 	          <div class="dropdown">
 			  <span class="dropdown-toggle" data-toggle="dropdown">
 		          	<s:set value="userType" var="user"/>
-		          	<s:if test="%{#user=='expert'}">Business Expert</s:if>
-		          	<s:elseif test="%{#user=='developer'}">Developer</s:elseif>
+		          	<s:if test="%{#user=='expert'}">业务专家</s:if>
+		          	<s:elseif test="%{#user=='developer'}">开发工程师</s:elseif>
 		      </span>
 				<ul class="dropdown-menu">
-					<li>
+					<li> 
 						<s:form action="dologout">
 							<button class="input-logout btn-block" type="submit">
-							Logout
+							退出
 							</button>
 						</s:form>
 					</li>
