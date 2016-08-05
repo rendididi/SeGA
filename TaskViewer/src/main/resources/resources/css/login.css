@@ -104,7 +104,6 @@ header h1 {
 
 .login-panel ul li {
 	line-height: 40px;
-
 	color: #e8e8e8;
 	font-size: 16px;
 	font-weight: 300;
@@ -116,8 +115,8 @@ header h1 {
 }
 
 .login-panel button {
-	margin-top: 40px;
-	height: 80px;
+	margin-top: 2px;
+	height: 75px;
 
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
@@ -141,7 +140,7 @@ header h1 {
 .login-panel button:hover {
 	background-color: rgba(255,255,255,0.3);
 	color: #e8e8e8;
-	text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+	text-shadow: -1px 1px 1px #ffc, 1px -1px 3px #fff;
 }
 
 .login-panel button:active:focus {
@@ -150,3 +149,5 @@ header h1 {
 	color: #333;
 	text-shadow: none;
 }
+.login-city-box{margin-left:40px}
+.changeSelectBg{box-shadow:none;margin-left:-4px;background-color:transparent;width:48%;border:none;display:inline-block}

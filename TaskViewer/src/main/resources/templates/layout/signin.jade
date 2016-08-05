@@ -30,12 +30,21 @@ html
             span(style="color:#f9f9f9;font-weight:200;") SeGA
             span Workflow System
         .collapse.navbar-collapse#navbar
-          ul.nav.navbar-nav
+          ul.nav.navbar-nav.nav-parent
             li
               a(href="http://112.124.29.111:9100/") Process Designer
             li.active
               a(href="#") Task Viewer
+              ul.nav.nav-myself
+                li
+                  a(href="#") 房源管理
+                li
+                  a(href="#") 资格管理
+                li
+                  a(href="#") 配租管理
+                li
+                  a(href="#") 租金缴交
             li
-              a(href="#") About
+              a(href="#") 关于
     header.container
     block content

@@ -7,15 +7,15 @@ block content
     ul.task-menu.list-unstyled.nav.navbar-nav
       li.active
         img(src="/images/ongoing.png")
-        span On-Going
+        span 待办
       li
         a(href="/completed")
           img(src="/images/completed.png")
-          span Completed
+          span 已办结
       li
         a(href="/processes")
           img(src="/images/create.png")
-          span Create New
+          span 新建
 
   
   .container
@@ -29,7 +29,8 @@ block content
           ul.list-unstyled#activityList
             for instance in instances
               li
-                a.btn-activity(href="/processes/instances/#{instance.getId()}")
+                //-a.btn-activity(href="/processes/instances/#{instance.getId()}")
+                a.btn-activity(href="/processes/instances/#{instance.getId()}/task/#{nextTask.getId()}")
                   img.activityImg(src="/images/list.png")
 
                   .info
