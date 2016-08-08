@@ -58,18 +58,17 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title">Process Information</h4>
+						<h4 class="modal-title"><!-- Process Information -->流程信息</h4>
 					</div>
 					<div class="modal-body">
-						<h2>Name</h2>
+						<h2><!-- Name -->名称</h2>
 						<input type="text" name="process.name" class="form-control" placeholder="" aria-describedby="sizing-addon1"/>
-						<h2>Description</h2>
-						<textarea name="process.description" class="form-control" placeholder="" aria-describedby="sizing-addon1" rows=4></textarea>
+						<h2><!-- Description -->描述</h2>
+						<textarea disabled="disabled" name="process.description" class="form-control" placeholder="" aria-describedby="sizing-addon1" rows=4></textarea>
 					</div>
 					<div class="modal-footer">
-						
 							<input type="hidden" name="process_id" value=""/>
-							<button type="button" class="btn btn-success" id="btn-submit">Submit</button>
+							<button type="button" class="btn btn-success" id="btn-submit"><!-- Submit -->确定</button>
 
 					</div>
 				</div><!-- /.modal-content -->

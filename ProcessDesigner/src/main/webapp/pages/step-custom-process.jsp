@@ -57,7 +57,7 @@
 					<s:form action="step-custom-process-submit">
 						<s:hidden name="process.processJSON" id="processJSON"></s:hidden>
 						<s:hidden name="svg" id="input-svg"></s:hidden>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><!-- Close -->关闭</button>
 						<button type="submit" class="btn btn-success">确定</button>
 					</s:form>
 				</div>

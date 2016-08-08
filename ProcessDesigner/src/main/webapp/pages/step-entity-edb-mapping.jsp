@@ -51,23 +51,23 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <h4>Entity Mapping Function</h4>
+            <h4><!-- Entity Mapping Function -->实体映射功能</h4>
               <select class="selectpicker form-control function_entity"
                 data-dropup-auto="false" data-hide-disabled="true">
-                <option value="default">Default</option>
+                <option value="default"><!-- Default -->默认</option>
                 <option value="datetime_yy_mm_dd">日期(年-月-日)</option>
                 <option value="localtion_dist_rd">地址(区-街道)</option>
               </select>
-            <h4>Database Mapping Function</h4>
+            <h4><!-- Database Mapping Function -->数据库映射功能</h4>
               <select class="selectpicker form-control function_db"
                 data-dropup-auto="false" data-hide-disabled="true">
-                <option value="default">Default</option>
+                <option value="default"><!-- Default -->默认</option>
                 <option value="datetime_yy_mm_dd">日期(年-月-日)</option>
                 <option value="localtion_dist_rd">地址(区-街道)</option>
               </select>
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-block btn-success" id="btn-modal-submit">Add Rule</button>
+              <button type="button" class="btn btn-block btn-success" id="btn-modal-submit"><!-- Add Rule -->添加规则</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

@@ -132,7 +132,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Please Confirm Entity JSON to Submit</h4>
+					<h4 class="modal-title"><!-- Please Confirm Entity JSON to Submit -->确认实体后提交</h4>
 				</div>
 				<div class="modal-body json-modal-body">
 					<p></p>
@@ -141,8 +141,8 @@
 				<div class="modal-footer">
 					<s:form action="step-custom-entity-submit" id="form-submit">
 						<s:hidden name="process.entityJSON" id="entityJSON"></s:hidden>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-success">Confirm</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><!-- Close -->关闭</button>
+						<button type="submit" class="btn btn-success"><!-- Confirm -->确认</button>
 					</s:form>
 				</div>
 			</div>

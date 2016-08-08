@@ -140,21 +140,17 @@
   </script>
   <script>
   	$(function(){
-  		setInterval("random()",1000);
+  		setInterval("random()",10000);
   	});
-  	 function random(){
-  		$("#tab1").reload();
-  		
-  	}
-  	/* function random(){
+  	function random(){
   		$.ajax({
   			type:"get",
   			url:"test.do",
   			success:function(text){
-  				$("#tab1").reload();
+  				$("body").reload();
   			}
   		});
-  	} */
+  	}
   </script>
   <script>
    $(function(){

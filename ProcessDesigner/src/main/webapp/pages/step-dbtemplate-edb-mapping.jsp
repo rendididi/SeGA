@@ -23,8 +23,8 @@
 			</div>
 			<div class="btn-group" role="group" aria-label="...">
 				<button class="btn btn-primary" id="btn-db-config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><!-- Configure -->配置</button>
-				<button class="btn btn-primary" id="btn-db-import"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Import Schema</button>
-				<button class="btn btn-default">Toggle Mapping Lines</button>
+				<button class="btn btn-primary" id="btn-db-import"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span><!-- Import Schema -->导入模型</button>
+				<button class="btn btn-default"><!-- Toggle Mapping Lines -->变换映射线</button>
 			</div>
 		</div>
 	</section>
