@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,10 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.struts2.json.JSONUtil;
 import org.hibernate.Session;
 import org.sega.ProcessDesigner.models.DatabaseConfiguration;
+import org.sega.ProcessDesigner.models.Users;
+import org.sega.ProcessDesigner.util.Constant;
 import org.sega.ProcessDesigner.util.HibernateUtil;
+import org.sega.ProcessDesigner.util.SaveLog;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -38,6 +42,7 @@ public class EDBConnectionAction extends ProcessDesignerSupport {
 		if("mysql".equalsIgnoreCase(dbconfig.getType())){
 			testResult = testMysql();
 		}
+		SaveLog.saveLog(new Users((long)1),"11","数据库连接测试",new Date(),"数据库-企业数据库-模板映射—数据库连接测试",Constant.DATABASE_OPERATION,this.getClass().getName());
 
 		return SUCCESS;
 	}
@@ -67,6 +72,8 @@ public class EDBConnectionAction extends ProcessDesignerSupport {
 		getSession().put("process", sp);
 		
 		setSaveResult(true);
+		String logContent = "数据库-企业数据库-模板映射—数据库配置,配置信息如下:Host:"+dbconfig.getHost()+",port:"+dbconfig.getPort()+",Database Name:"+dbconfig.getDatabase_name()+",User name:"+dbconfig.getUsername()+",password:"+dbconfig.getPassword();
+		SaveLog.saveLog(new Users((long)1),"11","数据库配置",new Date(),logContent,Constant.DATABASE_OPERATION,this.getClass().getName());
 		return SUCCESS;
 	}
 	
@@ -101,6 +108,7 @@ public class EDBConnectionAction extends ProcessDesignerSupport {
 			return ERROR;
 		}
 		loadSchemaResult = true;
+		SaveLog.saveLog(new Users((long)1),"11","数据库映射",new Date(),"数据库-企业数据库-模板映射—导入数据库配置方案",Constant.DATABASE_OPERATION,this.getClass().getName());
 		return SUCCESS;
 	}
 	

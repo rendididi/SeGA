@@ -11,10 +11,13 @@ import org.apache.commons.io.FilenameUtils;
 import org.hibernate.Session;
 import org.sega.ProcessDesigner.models.ProcessEdit;
 import org.sega.ProcessDesigner.models.ProcessTemplate;
+import org.sega.ProcessDesigner.models.Users;
 import org.sega.ProcessDesigner.util.Base64Util;
+import org.sega.ProcessDesigner.util.Constant;
 import org.sega.ProcessDesigner.util.HibernateUtil;
 import org.sega.ProcessDesigner.util.HumanTaskInterfaceGenerator;
 import org.sega.ProcessDesigner.util.ProcessSchemaConvertUtil;
+import org.sega.ProcessDesigner.util.SaveLog;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -59,12 +62,14 @@ public class StepPublish extends EditStepAction {
 			hb_session.getTransaction().commit();
 			
 			getSession().put("edit", edit);
+			SaveLog.saveLog(new Users((long)1),"11","将活动发布为一个流程",new Date(),"发布——将活动发布为一个流程,流程ID为:"+sp.getId(),Constant.PULISH_OPERATION,this.getClass().getName());
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
 		}
-		
+
 		return SUCCESS;
 	}
 	
@@ -144,6 +149,8 @@ public class StepPublish extends EditStepAction {
 			hb_session.getTransaction().commit();
 			
 			getSession().put("edit", edit);
+			SaveLog.saveLog(new Users((long)1),"11","将活动发布为一个模板",new Date(),"将活动发布为一个模板,模板ID为:"+template.getId(),Constant.PULISH_OPERATION,this.getClass().getName());
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-8-28 14:18:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="org.sega.ProcessDesigner.models.Log" table="log" optimistic-lock="version">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="content" type="text">
+            <column name="content"  sql-type="text"/>
+        </property>
+        <property name="date" type="date">
+            <column name="date"  sql-type="date"/>
+        </property>
+        <property name="descriptions" type="string">
+            <column name="descriptions"  sql-type="string"/>
+        </property>
+        <property name="operationType" type="string">
+            <column name="operationType"  sql-type="string"/>
+        </property>
+        <property name="className" type="string">
+            <column name="className"  sql-type="string"/>
+        </property>
+        <property name="type" type="string">
+            <column name="type"  sql-type="string"/>
+        </property>
+        <many-to-one name="user" class="org.sega.ProcessDesigner.models.Users" fetch="join">
+            <column name="userId" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

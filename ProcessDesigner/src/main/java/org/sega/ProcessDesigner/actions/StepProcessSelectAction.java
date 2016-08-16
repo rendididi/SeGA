@@ -1,23 +1,21 @@
 package org.sega.ProcessDesigner.actions;
 
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.dispatcher.Dispatcher;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.sega.ProcessDesigner.models.ProcessTemplate;
-import org.sega.ProcessDesigner.util.Base64Util;
-import org.sega.ProcessDesigner.util.HibernateUtil;
 import org.sega.ProcessDesigner.models.Process;
 import org.sega.ProcessDesigner.models.ProcessEdit;
+import org.sega.ProcessDesigner.models.ProcessTemplate;
+import org.sega.ProcessDesigner.models.Users;
+import org.sega.ProcessDesigner.util.Constant;
+import org.sega.ProcessDesigner.util.ExceptionUtil;
+import org.sega.ProcessDesigner.util.HibernateUtil;
+import org.sega.ProcessDesigner.util.SaveLog;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.ActionConfig;
 import com.opensymphony.xwork2.config.entities.ResultConfig;
 
@@ -37,6 +35,11 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 		session.beginTransaction();
 		process_list = (List<ProcessTemplate>)session.createCriteria(ProcessTemplate.class).list();
 		session.getTransaction().commit();
+		
+		String logContent;
+		logContent = "模板选择——显示所有的流程模板信息";
+		SaveLog.saveLog(new Users((long)1),"11",Constant.SHOW_ALL,new Date(),logContent,Constant.SEARCH_OPERATION,this.getClass().getName());
+		
         return SUCCESS;
     }
 	
@@ -49,7 +52,6 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 			ProcessTemplate process_t = (ProcessTemplate)hb_session.get(
 					"org.sega.ProcessDesigner.models.ProcessTemplate", process_id);
 			hb_session.getTransaction().commit();
-
 			Process process = new Process();
 			process.setName(getProcess().getName());
 			process.setDescription(getProcess().getDescription());
@@ -87,6 +89,8 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 			hb_session.saveOrUpdate(edit);
 			hb_session.getTransaction().commit();
 			
+			SaveLog.saveLog(new Users((long)1),"11",Constant.SUBMIT_CONTENT,new Date(),"模板选择——选择并提交了一个流程模板,模板ID为:"+process_t.getId()+",流程ID为："+process_id+",更新的流程内容为:名称"+getProcess().getName()+",描述:"+getProcess().getDescription()+",EntityJson"+getProcess().getEntityJSON()+",ProcessJson:"+getProcess().getEntityJSON()+"DDMapping:"+getProcess().getDDmappingJSON()+"模板等",Constant.SUBMIT_OERATION,this.getClass().getName());
+			
 			getSession().put("edit", edit);
 			
 		} catch (Exception e) {
@@ -111,9 +115,4 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 	public void setProcess_id(long process_id) {
 		this.process_id = process_id;
 	}
-	
-
-	
-	
-
 }

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<html lang="zh-CN" ng-app="">
+<html lang="zh-CN" >
 <head>
   <%@include file="/partials/common_header.jspf" %>
   <meta charset="utf-8">
@@ -9,13 +9,13 @@
   <link href="<s:url value="css/task-list.css" />" rel="stylesheet">
   <link href="<s:url value="js/lib/bootstrap-3.3.5-dist/css/bootstrap-datetimepicker.css" />" rel="stylesheet">
   <script src="<s:url value="js/lib/bootstrap-3.3.5-dist/js/bootstrap-datetimepicker.js" />"></script>
-  <script src="<s:url value="js/lib/angular/angular.js" />"></script>
   <style>
     .m-activity #activityList li{margin-top:0px;padding: 20px 20px 0px 15px; min-height: 70px;}
-    .info p {margin-bottom:3px}
+    .info{height:69px}
+    .info p {margin-bottom:3px;}
   </style>
 </head>
-<body style="min-width:998px">
+<body style="min-width:998px" >
   <header>
     <%int step=0; %>
     <%@include file="/partials/navbar.jspf" %>
@@ -56,8 +56,6 @@
                 </div><!-- /.col-lg-3 -->
               </div>
              </div>
-             
-
           </div>
         </div>
         
@@ -75,46 +73,76 @@
   				 <div class="tab-pane fade in active" id="tab1" >
     			 	<!-- 业务操作日志 -->
     			 	<ul class="list-unstyled list-unstyled-small" id="activityList">
-		                <li >
+    			 	 <s:iterator value="logs">
+    			 	   <s:if test="type == '11'">
+		                <li>
 		                  <a class="btn-activity" href="">
 		                    <img class="activityImg activityImg-small" src="/images/log-item.png"/>
 		                    <div class="info">
-		                      <p class="header text-elli">用户名:wxf</p>
-		                      <p class="date">五分钟前</p>
-		                      <p class="decription">操作内容:发布了一个模板 </p>
+		                      <p class="header text-elli">操作者：<s:property value="user.id" /></p>
+		                      <p class="date">${date}</p>
+		                      <p class="">操作类型： ${operationType}</p>
+		                      <s:if test="content.length() > 60">
+		                      	<p class="content" title="<s:property value="content" />">操作内容： <s:property value="content.substring(0,60)+'…'" /> </p>
+		                      </s:if>
+		                      <s:else>
+		                      	<p class="content" title="<s:property value="content" />">操作内容： <s:property value="content" /> </p>
+		                      </s:else>
 		                    </div>
 		                  </a>
 		                </li>
+		               </s:if>
+		              </s:iterator>
 		            </ul>
     			 </div>
     			 <div class="tab-pane fade in " id="tab2" >
     			 	<!-- 数据处理日志 -->
     			 	<ul class="list-unstyled list-unstyled-small" id="activityList">
-		                <li >
+    			 	 <s:iterator value="logs">
+    			 	  <s:if test="type == '22'">
+		                <li>
 		                  <a class="btn-activity" href="">
 		                    <img class="activityImg activityImg-small" src="/images/log-item.png"/>
 		                    <div class="info">
-		                      <p class="header text-elli">管理员:wxf</p>
-		                      <p class="date">五分钟前</p>
-		                      <p class="decription">操作内容:发布了一个模板 </p>
+		                      <p class="header text-elli">操作者：<s:property value="user.id" /></p>
+		                      <p class="date">${date}</p>
+		                      <p class="">操作类型： ${operationType}</p>
+		                      <s:if test="content.length() > 60">
+		                      	<p class="content" title="<s:property value="content" />">操作内容： <s:property value="content.substring(0,60)+'…'" /> </p>
+		                      </s:if>
+		                      <s:else>
+		                      	<p class="content" title="<s:property value="content" />">操作内容： <s:property value="content" /> </p>
+		                      </s:else>
 		                    </div>
 		                  </a>
 		                </li>
+		               </s:if>
+		               </s:iterator>
 		            </ul>
     			 </div>
     			 <div class="tab-pane fade" id="tab3" >
     			 	<!-- 流程记录日志 -->
     			 	<ul class="list-unstyled list-unstyled-small" id="activityList">
-		                <li >
+		             <s:iterator value="logs">
+    			 	  <s:if test="type == '33'">
+		                <li>
 		                  <a class="btn-activity" href="">
 		                    <img class="activityImg activityImg-small" src="/images/log-item.png"/>
 		                    <div class="info">
-		                      <p class="header text-elli">用户名:wxf</p>
-		                      <p class="date">五分钟前</p>
-		                      <p class="decription">操作内容:发布了一个模板 </p>
+		                      <p class="header text-elli">操作者：<s:property value="user.id" /></p>
+		                      <p class="date">${date}</p>
+		                      <p class="">操作类型： ${operationType}</p>
+		                       <s:if test="content.length() > 60">
+		                      	<p class="content" title="<s:property value="content" />">操作内容： <s:property value="content.substring(0,60)+'…'" /> </p>
+		                      </s:if>
+		                      <s:else>
+		                      	<p class="content" title="<s:property value="content" />">操作内容： <s:property value="content" /> </p>
+		                      </s:else>
 		                    </div>
 		                  </a>
 		                </li>
+		               </s:if>
+		              </s:iterator>
 		            </ul>
     			 </div>
     		  </div>
@@ -140,14 +168,14 @@
   </script>
   <script>
   	$(function(){
-  		setInterval("random()",10000);
+  		setInterval("random()",100000);
   	});
   	function random(){
   		$.ajax({
   			type:"get",
-  			url:"test.do",
+  			url:"show-log-console.action",
   			success:function(text){
-  				$("body").reload();
+  				location.reload();
   			}
   		});
   	}
@@ -169,8 +197,30 @@
         }
     }); 
   </script>
+  <script>
+  	/* var ActivityApp = angular.module('app',[]);
+  	ActivityApp.controller("AppController",function($scope){
+  		$scope.logs = [];
+  		$scope.init = function(){
+  			var logs = [];
+  			<s:iterator value="logs">
+  				log = {
+  					id:<s:property value="id" />,
+  					userId:<s:property value="user.id" />,
+  					content:'<s:property value="content" />',
+  					date:'<s:date name="date" format="yyyy-MM-dd"/>',
+  					description:'<s:property value="description" />',
+  					operationType:'<s:property value="operationType" />',
+  					className:'<s:property value="className" />'
+  				};
+  				logs.push(log);
+  			</s:iterator>
+  			$scope.logs = logs;
+  		}
+  	}) */
+  </script>
 
-  <script src="<s:url value="js/lib/bootstrap-paginator-1.0.2/build/bootstrap-paginator.min.js" />"></script>
+ <script src="<s:url value="js/lib/bootstrap-paginator-1.0.2/build/bootstrap-paginator.min.js" />"></script>
 </body>
 </html>
 

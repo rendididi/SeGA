@@ -1,32 +1,13 @@
 package org.sega.ProcessDesigner.actions;
 
-import java.util.Base64;
 import java.util.Date;
-import java.util.Map;
 
-import org.apache.struts2.config_browser.ConfigurationHelper;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-import org.apache.struts2.dispatcher.Dispatcher;
-import org.apache.struts2.json.JSONUtil;
-import org.apache.struts2.json.JSONWriter;
-import org.apache.struts2.json.annotations.JSON;
-import org.hibernate.Session;
-import org.sega.ProcessDesigner.data.StepConstant;
-import org.sega.ProcessDesigner.models.Process;
-import org.sega.ProcessDesigner.models.ProcessEdit;
-import org.sega.ProcessDesigner.models.ProcessTemplate;
-import org.sega.ProcessDesigner.util.Base64Util;
-import org.sega.ProcessDesigner.util.HibernateUtil;
-
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.config.Configuration;
-import com.opensymphony.xwork2.config.ConfigurationManager;
-import com.opensymphony.xwork2.config.ConfigurationUtil;
-import com.opensymphony.xwork2.config.RuntimeConfiguration;
-import com.opensymphony.xwork2.config.entities.ActionConfig;
-import com.opensymphony.xwork2.config.entities.ResultConfig;
+import org.json.JSONObject;
+import org.sega.ProcessDesigner.models.Users;
+import org.sega.ProcessDesigner.util.Constant;
+import org.sega.ProcessDesigner.util.SaveLog;
 
 @Results({
 	@Result(name="error",type="redirectAction", location="step-process-select")
@@ -40,6 +21,7 @@ public class StepCustomEntityAction extends EditStepAction {
 	
 	@Override
 	public void updateProcess(org.sega.ProcessDesigner.models.Process sp) {
+		SaveLog.saveLog(new Users((long)1),"22",Constant.UPDATE_CONTENT,new Date(),"自定义实体——更新的流程ID为:"+sp.getId()+",更新的内容为:EntityJson,详细内容如下："+getProcess().getEntityJSON(),Constant.UPDATE_OPERATION,this.getClass().getName());
 		sp.setEntityJSON(getProcess().getEntityJSON());
 	}
 	

@@ -3,6 +3,7 @@ package org.sega.ProcessDesigner.actions;
 import java.util.*;
 
 import com.opensymphony.xwork2.ActionContext;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -10,7 +11,9 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.sega.ProcessDesigner.models.*;
 import org.sega.ProcessDesigner.models.Process;
+import org.sega.ProcessDesigner.util.Constant;
 import org.sega.ProcessDesigner.util.HibernateUtil;
+import org.sega.ProcessDesigner.util.SaveLog;
 
 public class TaskListAction extends ProcessDesignerSupport {
     public List<ProcessEdit> activities = new ArrayList<>();
@@ -36,7 +39,7 @@ public class TaskListAction extends ProcessDesignerSupport {
 
         ProcessEdit activity = (ProcessEdit) session
                 .get("org.sega.ProcessDesigner.models.ProcessEdit", activityId);
-
+//        session.createQuery("from ProcessEdit p where p.activityId = :activityId").setParameter(arg0, arg1);
         session.getTransaction().commit();
 
         getSession().put("process", activity.getProcess());
@@ -44,6 +47,9 @@ public class TaskListAction extends ProcessDesignerSupport {
 
         // Dynamically redirect a certain step action based on the step name
         redirectAction = activity.getStep();
+        
+		SaveLog.saveLog(new Users((long)1),"11","活动选择",new Date(),"选择了一项活动,活动ID为:"+activityId+"对应的流程为:"+activity.getProcess().getId(),Constant.OTHER_OPERATION,this.getClass().getName());
+
         return SUCCESS;
     }
 
@@ -80,6 +86,8 @@ public class TaskListAction extends ProcessDesignerSupport {
             ++totalPages;
 
         session.getTransaction().commit();
+		SaveLog.saveLog(new Users((long)1),"11",Constant.SHOW_ALL,new Date(),"显示所有的活动列表，共有"+total+"条记录",Constant.SEARCH_OPERATION,this.getClass().getName());
+
     }
 
     public void setPage(int page) {

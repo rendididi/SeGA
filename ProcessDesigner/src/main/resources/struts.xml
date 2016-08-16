@@ -198,7 +198,7 @@
     </action>
     
     <!-- Step Result  -->
-    <action name="show-log-console">
+    <action name="show-log-console" class="org.sega.ProcessDesigner.actions.ShowLogAction">
     	<result>/pages/showConsole.jsp</result>
     </action>
   </package>

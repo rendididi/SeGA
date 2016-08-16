@@ -1,11 +1,16 @@
 package org.sega.ProcessDesigner.actions;
 
+import java.util.Date;
+
 import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.sega.ProcessDesigner.models.Process;
+import org.sega.ProcessDesigner.models.Users;
 import org.sega.ProcessDesigner.util.Base64Util;
+import org.sega.ProcessDesigner.util.Constant;
+import org.sega.ProcessDesigner.util.SaveLog;
 
 public class StepDBTemplateEDBMapping extends EditStepAction {
 	
@@ -56,6 +61,8 @@ public class StepDBTemplateEDBMapping extends EditStepAction {
 				}
 			}
 		}
+		
+		SaveLog.saveLog(new Users((long)1),"22",Constant.UPDATE_CONTENT,new Date(),"数据库-企业数据库-模板映射——更新了一个流程，流程的ID为:"+sp.getId(),Constant.UPDATE_OPERATION,this.getClass().getName());
 		
 		sp.setEDmappingJSON(Base64Util.encode(ed2.toString()));
 	}

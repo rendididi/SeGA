@@ -3,9 +3,14 @@
  */
 package org.sega.ProcessDesigner.actions;
 
+import java.util.Date;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
+import org.hibernate.Session;
+import org.sega.ProcessDesigner.models.Log;
+import org.sega.ProcessDesigner.models.Users;
+import org.sega.ProcessDesigner.util.HibernateUtil;
+import org.sega.ProcessDesigner.util.SaveLog;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -31,6 +36,8 @@ public class LoginAction extends ActionSupport {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		session.clear();
 		session.put("userType", userType);
+		
+		SaveLog.saveLog(new Users((long)1),"11","用户登录",new Date(),"用户登录,登录用户类型为:"+userType,"登录操作",this.getClass().getName());
 		
 		return SUCCESS;
 	}

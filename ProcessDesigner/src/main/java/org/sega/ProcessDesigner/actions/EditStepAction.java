@@ -7,7 +7,10 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.apache.struts2.dispatcher.Dispatcher;
 import org.hibernate.Session;
 import org.sega.ProcessDesigner.models.ProcessEdit;
+import org.sega.ProcessDesigner.models.Users;
+import org.sega.ProcessDesigner.util.Constant;
 import org.sega.ProcessDesigner.util.HibernateUtil;
+import org.sega.ProcessDesigner.util.SaveLog;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.config.entities.ActionConfig;
@@ -67,6 +70,7 @@ public class EditStepAction extends ProcessDesignerSupport {
 			hb_session.saveOrUpdate(edit);
 			hb_session.getTransaction().commit();
 			
+			SaveLog.saveLog(new Users((long)1),"22",Constant.SUBMIT_OERATION,new Date(),"数据处理——更新并提交了一个流程信息,更新的相关信息为如下,流程ID为:"+sp.getId()+",更新时间:"+new Date()+",到达的步骤:"+result_config.getParams().get("actionName")+",更新的用户类型为:"+getUserType(),Constant.SUBMIT_OERATION,this.getClass().getName());
 			getSession().put("edit", edit);
 			
 		} catch (Exception e) {

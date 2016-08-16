@@ -29,5 +29,7 @@
   <mapping resource="Process.hbm.xml"/>
   <mapping resource="ProcessEdit.hbm.xml"/>
   <mapping resource="DatabaseConfiguration.hbm.xml"/>
+  <mapping resource="Log.hbm.xml" />
+  <mapping resource="Users.hbm.xml" />
  </session-factory>
 </hibernate-configuration>
