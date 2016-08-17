@@ -22,15 +22,14 @@ block content
     .g-content
       .m-activity
         h3
-          span Activities
+          span 活动
           span.badge  #{totalInstances}
 
         .col-md-10.col-md-offset-1
           ul.list-unstyled#activityList
             for instance in instances
               li
-                //-a.btn-activity(href="/processes/instances/#{instance.getId()}")
-                a.btn-activity(href="/processes/instances/#{instance.getId()}/task/#{nextTask.getId()}")
+                a.btn-activity(href="/processes/instances/#{instance.getId()}")
                   img.activityImg(src="/images/list.png")
 
                   .info
@@ -39,10 +38,10 @@ block content
 
                     p.date #{instance.getCreatedAt()}
                     p.task
-                      |Task:
+                      |任务:
                       span.emph #{taskNames.get(instance.getNextTask())}
                     p.description
-                      |Process:
+                      |进程:
                       span.emph #{instance.getProcess().getName()}
 
 

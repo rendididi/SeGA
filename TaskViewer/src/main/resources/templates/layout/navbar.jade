@@ -14,6 +14,7 @@ nav.navbar.navbar-fixed-top.navbar-bright
         li
           //-a(href="http://112.124.29.111:9100/") Process Designer
           a(href="localhost:9100/login.action") Process Designer
+            img(class="nav-bar-triangle",src="#{basePath}/images/triangle.png")
           ul.nav.nav-myself
             li
               a(href="#") 房源管理
@@ -25,8 +26,20 @@ nav.navbar.navbar-fixed-top.navbar-bright
               a(href="#") 租金缴交
         li.active
           a(href="/") Task Viewer
+            img(class="nav-bar-triangle",src="#{basePath}/images/triangle.png")
+          ul.nav.nav-myself
+            li
+              a(href="#") 房源管理
+            li
+              a(href="#") 资格管理
+            li
+              a(href="#") 配租管理
+            li
+              a(href="#") 租金缴交
         li
           a(href="#") 关于
+        li 
+          a(href="show-log-console") 控制台
       .navbar-right.navbar-user
         img(src="#{basePath}/images/user/operator.png", style="width:32px;height:32px;")
         .dropdown

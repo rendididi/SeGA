@@ -8,22 +8,23 @@ block content
       li
         a(href="/")
           img(src="/images/ongoing.png")
-          span On-Going
+          span 待办
       li.active
         a(href="/completed_processes")
           img(src="/images/completed.png")
-          span Completed
+          span 已办结
       li
         a(href="/processes")
           img(src="/images/create.png")
-          span Create New
+          span 新建
 
   
   .container
     .g-content
       .m-activity
         h3
-          span Completed Activities
+          //span Completed Activities
+          span 已办结活动
           span.badge  #{totalInstances}
 
         .col-md-10.col-md-offset-1
@@ -39,10 +40,10 @@ block content
 
                     p.date #{instance.getCreatedAt()}
                     p.task
-                      |Task:
+                      |任务:
                       span.emph #{taskNames.get(instance.getNextTask())}
                     p.description
-                      |Process:
+                      |流程:
                       span.emph #{instance.getProcess().getName()}
 
 
