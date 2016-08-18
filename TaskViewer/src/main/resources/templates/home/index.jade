@@ -36,14 +36,13 @@ block content
                   .info
                     .btn-edit
                         span.glyphicon.glyphicon-edit
-
-                    p.date #{instance.getCreatedAt()}
                     p.task
                       |任务:
                       span.emph #{taskNames.get(instance.getNextTask())}
                     p.description
                       |进程:
                       span.emph #{instance.getProcess().getName()}
+                    p.date1 #{instance.getCreatedAt()}
 
 
           div#my-pagination
