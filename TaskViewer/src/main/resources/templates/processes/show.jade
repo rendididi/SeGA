@@ -14,13 +14,13 @@ block content
           span 返回
 
   .process.container
-    h2 Process ID:
+    h2 流程 ID:
       span #{process.getId()}
 
-    h2 Process Name:
+    h2 流程名称:
       span #{process.getName()}
 
-    h2 Intances
+    h2 实例
     
     table.table.table-hover.table-bordered.table-stripped
       thead
@@ -90,7 +90,7 @@ block content
 
     a.btn-sg(href="javascript:$('#form-#{process.getId()}').submit()")
       img(src="/images/create.png")
-      span Create
+      span 新建
 
     form(method="post",action="/processes/#{process.getId()}",id="form-#{process.getId()}")
       input(type="hidden", name='_csrf', value='#{_csrf.token}')

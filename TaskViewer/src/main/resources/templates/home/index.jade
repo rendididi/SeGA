@@ -15,7 +15,7 @@ block content
       li
         a(href="/processes")
           img(src="/images/create.png")
-          span 新建
+          span 授理
 
   
   .container
@@ -29,6 +29,7 @@ block content
           ul.list-unstyled#activityList
             for instance in instances
               li
+                //-a.btn-activity(href="/processes/instances/#{instance.getId()}/task/#{nextTask.getId()}")
                 a.btn-activity(href="/processes/instances/#{instance.getId()}")
                   img.activityImg(src="/images/list.png")
 

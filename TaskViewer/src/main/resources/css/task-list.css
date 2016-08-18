@@ -1,0 +1,324 @@
+.main {
+  margin-top: 70px;
+}
+
+/* header */
+#user-area{
+  margin-top: 70px;
+  border-top: 1px #ccc solid;
+  position: relative
+}
+
+#user-area > .avatar{
+  margin-top: -50px;
+  padding-left: 30px;
+}
+
+/* header - menu: OnGoing, Completed, Create*/
+
+#user-area .task-menu {
+  position: absolute;
+  right: 0;
+  top: -25px;
+}
+
+#user-area .task-menu li {
+  margin-right: 30px;
+  width: 150px;
+  height: 25px;
+
+  border-bottom: 1px #ccc solid;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#user-area .task-menu li a {
+  padding: 0;
+}
+
+#user-area .task-menu li img {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 32px;
+  width: 32px;
+}
+
+#user-area .task-menu li span {
+  color: #cdcdcd;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+#user-area .task-menu li:hover {
+border-bottom: 1px #16A085 solid;
+}
+
+#user-area .task-menu li:hover a {
+  background-color: transparent;
+}
+
+#user-area .task-menu li.active {
+  border-bottom: 1px #1abc9c solid;
+}
+
+#user-area .task-menu li.active span {
+  color: #1abc9c;
+  font-weight: 400;
+}
+
+.g-header{
+  position:relative;
+  margin:0 auto;
+  width:100%;
+  height:200px;
+  overflow:hidden;
+
+  border-bottom: 1px solid #ccc;
+}
+.g-header .backImg{
+   /* margin-top:-70px;  */
+   margin-left:100px;
+   width:80%;
+   height:100%;
+   opacity:.4;
+}
+
+.g-content{
+  position:relative;
+  /*margin-top:140px;*/
+  /*border-top: 1px #ccc solid;*/
+}
+.g-content .userImg{
+  position:absolute;
+  top:-90px;
+  left:30px;
+  width:120px;
+  height:120px;
+}
+.m-activity{
+  position:relative;
+  margin-top:0;
+  float:left;
+  width: 100%;
+  color:#4e5562;
+  font-weight: 500;
+  /* outline:1px solid red; */
+}
+
+.m-activity > h3{
+  font-size: 30px;
+  font-weight: 400;
+  margin-top: 20px;
+  line-height: 40px;
+}
+
+.m-activity > h3 > span.badge{
+  margin-left: 5px;
+  background: #1abc9c;
+}
+
+.m-activity .btn-create{
+  position: absolute;
+  top: 26px;
+  left: 135px;
+}
+
+.m-activity .btn-create > a{
+  color: #1abc9c;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 4px;
+
+  transition: all 0.25s linear;
+}
+
+.m-activity .btn-create > a .glyphicon {
+  top: 3px;
+  margin-right: 5px;
+}
+
+.m-activity .btn-create > a:hover ,
+.m-activity .btn-create > a:focus {
+  color: #48c9b0;
+}
+.m-activity .btn-create > a:active,
+.m-activity .btn-create > a.active {
+  color: #16a085;
+}
+
+.m-activity .totalNum{
+  float:right;
+  margin-top:10px;
+  margin-right:10px;
+}
+.m-activity #activityList li{
+  margin-top:15px;
+  padding: 20px 20px 10px 15px;
+  width:100%;
+  border:0px solid #ccc;
+  border-radius: 6px;
+  min-height: 100px;
+
+  transition: 0.25s;
+}
+.m-activity #activityList li:hover{
+  /* box-shadow: inset 0 1px 1px rgba(51,255,204,.075),0 0 8px; */
+  background: #f7f7f7;
+  
+}
+
+.m-activity #activityList li img.activityImg{
+  float:left;
+  margin-right:15px;
+  width:60px;
+  height:60px;
+}
+.m-activity #activityList li .info{
+  position: relative;
+  overflow:hidden;
+}
+
+.m-activity #activityList li .info p.header{
+  font-weight:700;
+  color:#51c1b1;
+}
+
+.m-activity #activityList li .info .emph {
+  font-weight:300;
+  color:#51c1b1;
+  margin-left: 5px;
+}
+
+.m-activity #activityList li .info p.date{
+  position: absolute;
+  top:0;
+  right:0;
+}
+
+#activityList li .btn-edit{
+  margin-top: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: 0.25s;
+}
+
+#activityList li:hover .btn-edit{
+  opacity: 1;
+}
+
+.m-activity .flr{
+  float:right;
+  margin-right:5px;
+
+}
+.m-sidebar{
+  float:left;
+  /*margin-left:30px;*/
+  /*margin-top:20px;*/
+  /*width:300px;*/
+  /*height:100%;*/
+  color:#4e5562;
+}
+.m-sidebar .latestTask{
+  padding:10px 10px 0;
+  border:1px solid #ccc;
+  border-top: 2px solid #51c1b1;
+}
+.m-sidebar .latestTask .header{
+  padding:10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.m-sidebar .latestTask #latestTaskList{
+  position: relative;
+  padding:10px 10px 5px 0;
+  cursor:pointer;
+}
+
+.m-sidebar .latestTask #latestTaskList img.activityImg{
+  float:left;
+  margin-right:7px;
+  height:70px;
+  width:70px;
+}
+.m-sidebar .latestTask #latestTaskList div.info{
+  overflow:hidden;
+}
+.m-sidebar .latestTask #latestTaskList div.info .decription{
+  width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.m-sidebar .latestTask #latestTaskList div.info .unfold{
+  float:right;
+}
+
+.m-sidebar .search{
+  padding:10px 10px;
+  margin-top:20px;
+  border:1px solid #ccc;
+  border-top: 2px solid #51c1b1;
+}
+.m-sidebar .search .header{
+  margin-bottom: 10px;
+  font-weight: 700px;
+}
+.m-sidebar .search .row{
+  margin-top:10px;
+}
+.m-sidebar .search .row .col-lg-3{
+  width:100%;
+}
+
+.m-sidebar .select #taskList {
+  margin-top: 20px;
+  
+}
+.m-sidebar .select #taskList li{
+  position: relative;
+  float:left;
+  padding:10px 10px 5px;
+  cursor:pointer;
+  width: 25%;
+  text-align: center;
+  font-size: 14px;
+
+}
+.m-sidebar .select #taskList li:focus{
+  background-color: #ccc;
+}
+
+.m-sidebar .select #taskList li img.activityImg{
+  float:left;
+  height:70px;
+  width:70px;
+  margin-bottom: 5px;
+}
+
+
+#my-pagination{
+  float: right;
+}
+
+
+.btn-activity {
+  font-weight: 300;
+  color: #4e5562;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btn-activity:hover {
+  color: #4e5562;
+  text-decoration: none;
+}
