@@ -1,4 +1,4 @@
-﻿    <nav class="navbar navbar-fixed-top navbar-bright">
+    <nav class="navbar navbar-fixed-top navbar-bright">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -23,10 +23,10 @@
             <li>
             	<a href="<s:text name="taskviewer.url"/>">业务办理 <img class="nav-bar-triangle" src="/images/triangle.png" /></a>
             	<ul class="nav nav-myself">
-					<li><a href="#">房源管理1</a></li>
-					<li><a href="#">资格管理1</a></li>
-					<li><a href="#">配租管理1</a></li>
-					<li><a href="#">租金缴交1</a></li>
+					<li><a href="#">房源管理</a></li>
+					<li><a href="#">资格管理</a></li>
+					<li><a href="#">配租管理</a></li>
+					<li><a href="#">租金缴交</a></li>
 				</ul>
             </li>
             <li><a href="#about">关于</a></li>
