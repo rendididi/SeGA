@@ -34,7 +34,7 @@
         <span></span>
       </div>
       <div class="col-md-2 btn-group" id="btn-confirm">
-        <button class="btn btn-success btn-block"><!-- Confirm -->确认</button>
+        <button class="btn btn-success btn-block">Confirm 确认</button>
       </div>
       <div class="col-md-5" id="db_path">
         <span></span>

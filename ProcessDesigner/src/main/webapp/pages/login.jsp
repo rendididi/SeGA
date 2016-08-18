@@ -16,12 +16,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><span style="color:#f9f9f9;font-weight:200;">SeGA</span> Workflow System</a>
+          <a class="navbar-brand" href="#"><span style="color:#f9f9f9;font-weight:200;">住房保障公共服务平台</span></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Process Designer</a></li>
-            <li><a href="<s:text name="taskviewer.url"/>">Task Viewer</a></li>
+            <li class="active"><a href="#">流程设计</a></li>
+            <li><a href="<s:text name="taskviewer.url"/>">业务办理</a></li>
             <li><a href="#about">关于</a></li>
           </ul>
         </div><!-- /.nav-collapse -->

@@ -59,13 +59,13 @@
 					<div>
 						<select class="selectpicker form-control value-type"
 							data-dropup-auto="false">
-							<option value="auto">Auto</option>
-							<option value="number">Number</option>
+							<option value="auto">自动</option>
+							<option value="number">数值类型</option>
 							<optgroup label="String">
-								<option value="string-string">String - 1 line</option>
-								<option value="string-textarea">String - TextArea</option>
+								<option value="string-string">字符串 - 1 line</option>
+								<option value="string-textarea">字符串 - TextArea</option>
 							</optgroup>
-							<option value="file">File</option>
+							<option value="file">文件</option>
 						</select>
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 					</label>
 					<button type="button" class="btn btn-primary btn-md btn-block"
 						data-type="artifact">
-						<span class="icon-artifact"></span> Entity
+						<span class="icon-artifact"></span> 实体
 					</button>
 					<button type="button" class="btn btn-primary btn-md btn-block"
 						data-type="artifact_n">
@@ -87,19 +87,19 @@
 							class="path8"></span><span class="path9"></span><span
 							class="path10"></span><span class="path11"></span><span
 							class="path12"></span>
-						</span> Entity 1-n
+						</span> 实体 1-n
 					</button>
 					<button type="button" class="btn btn-primary btn-md btn-block"
 						data-type="attribute">
-						<span class="icon-attribute"></span> Attribute
+						<span class="icon-attribute"></span> 属性
 					</button>
 					<button type="button" class="btn btn-primary btn-md btn-block"
 						data-type="group">
-						<span class="icon-group"></span> Attribute Group
+						<span class="icon-group"></span> 属性组
 					</button>
 					<button type="button" class="btn btn-primary btn-md btn-block"
 						data-type="key">
-						<span class="icon-key"></span> Key
+						<span class="icon-key"></span> 主键
 					</button>
 				</div>
 

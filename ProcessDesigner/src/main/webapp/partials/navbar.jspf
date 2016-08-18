@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-fixed-top navbar-bright">
+﻿    <nav class="navbar navbar-fixed-top navbar-bright">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -7,12 +7,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><span style="color:#f9f9f9;font-weight:200;">SeGA</span> Workflow System</a>
+          <a class="navbar-brand" href="/"><span style="color:#f9f9f9;font-weight:200;">住房保障公共服务平台</span></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav nav-parent">
             <li class="active">
-            	<a href="#">Process Designer <img class="nav-bar-triangle" src="/images/triangle.png" /></a>
+            	<a href="#">流程设计 <img class="nav-bar-triangle" src="/images/triangle.png" /></a>
 				<ul class="nav nav-myself">
 					<li><a href="#">房源管理</a></li>
 					<li><a href="#">资格管理</a></li>
@@ -21,7 +21,7 @@
 				</ul>
             </li>
             <li>
-            	<a href="<s:text name="taskviewer.url"/>">Task Viewer <img class="nav-bar-triangle" src="/images/triangle.png" /></a>
+            	<a href="<s:text name="taskviewer.url"/>">业务办理 <img class="nav-bar-triangle" src="/images/triangle.png" /></a>
             	<ul class="nav nav-myself">
 					<li><a href="#">房源管理1</a></li>
 					<li><a href="#">资格管理1</a></li>

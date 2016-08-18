@@ -51,7 +51,7 @@
               <div class="btn-create">
                   <a class="" href="<s:url action='step-process-select'/>">
                     <span class="glyphicon glyphicon-plus-sign addActivity" aria-hidden="true"></span>
-                    <span><!-- Create -->新建</span>
+                    <span><!-- Create -->创建工程</span>
                   </a>
               </div>
               </s:if>

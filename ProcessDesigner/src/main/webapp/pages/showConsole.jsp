@@ -149,8 +149,8 @@
             </div>
 
             <!-- 分页 -->
-            <div id="my-pagination">
-            </div>
+            <!-- <div id="my-pagination">
+            </div> -->
           </div>
       </div>
     </div>
@@ -180,45 +180,7 @@
   		});
   	}
   </script>
-  <script>
-   $(function(){
-        var pageSize = <s:property value="pageSize"/>;
-        var pages = <s:property value="totalPages"/>;
-
-        if(pages>1){
-          var options = {
-              currentPage: <s:property value="page"/>,
-              totalPages: pages,
-              pageUrl: function(type, page, current){
-                  return document.location.pathname+'?page='+page + '&pageSize='+pageSize;
-              }
-          }
-          $('#my-pagination').bootstrapPaginator(options);
-        }
-    }); 
-  </script>
-  <script>
-  	/* var ActivityApp = angular.module('app',[]);
-  	ActivityApp.controller("AppController",function($scope){
-  		$scope.logs = [];
-  		$scope.init = function(){
-  			var logs = [];
-  			<s:iterator value="logs">
-  				log = {
-  					id:<s:property value="id" />,
-  					userId:<s:property value="user.id" />,
-  					content:'<s:property value="content" />',
-  					date:'<s:date name="date" format="yyyy-MM-dd"/>',
-  					description:'<s:property value="description" />',
-  					operationType:'<s:property value="operationType" />',
-  					className:'<s:property value="className" />'
-  				};
-  				logs.push(log);
-  			</s:iterator>
-  			$scope.logs = logs;
-  		}
-  	}) */
-  </script>
+  
 
  <script src="<s:url value="js/lib/bootstrap-paginator-1.0.2/build/bootstrap-paginator.min.js" />"></script>
 </body>

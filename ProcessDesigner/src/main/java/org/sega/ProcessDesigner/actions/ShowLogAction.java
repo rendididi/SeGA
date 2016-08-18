@@ -19,21 +19,20 @@ public class ShowLogAction extends ProcessDesignerSupport{
 	public long totalPages = 0L;
 	public long total = 0L;
 	private int page = 1;
-	private int pageSize = 5;
+	private int pageSize = 15;
 	
 	public String execute() throws Exception{
-		getLogs(page);
+		//getLogs(page);
+		getLogs();
 		return SUCCESS;
 	}
 
-	private void getLogs(int page) throws Exception{
+	private void getLogs() throws Exception{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
 		Criteria criteria = session
 				.createCriteria(Log.class)
-				.setFirstResult((page - 1) * pageSize)
-				.setMaxResults(pageSize)
 				.addOrder(Order.desc("date"));
 		
 		logs = (List<Log>) criteria.list();
@@ -45,10 +44,7 @@ public class ShowLogAction extends ProcessDesignerSupport{
 			if(logs.get(i).getType().equals("33"))
 				log3.add(logs.get(i));
 		}*/
-		total = (Long) session.createCriteria(Log.class).setProjection(Projections.rowCount()).uniqueResult();
-		totalPages = total / pageSize;
-		if(total % pageSize != 0)
-			++totalPages;
+	
 		session.getTransaction().commit();
 	}
 
