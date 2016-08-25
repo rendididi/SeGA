@@ -4,6 +4,7 @@ block content
   .row#user-area 
     .avatar.col-sm-12
       img.userImg(src="/images/user/operator.png", style="height:90px;width:90px;")
+    span.current_selected 全部
     ul.task-menu.list-unstyled.nav.navbar-nav
       li.active
         img(src="/images/ongoing.png")
@@ -59,6 +60,8 @@ block content
           
           $('#my-pagination').bootstrapPaginator(options);
       });
+      $('.nav-myself li a').click(function(){$('.current_selected').text($(this).text())})
+    
       
 
         
