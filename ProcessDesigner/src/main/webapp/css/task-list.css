@@ -259,3 +259,4 @@
 @media screen and (max-width: 1199px){
 	.list-time{padding-left:0%}
 }
+.current_selected{position: relative;top: -65px;left: 13%;font-size:16px;font-weight:400}

@@ -89,6 +89,11 @@ public class TaskListAction extends ProcessDesignerSupport {
 		SaveLog.saveLog(new Users((long)1),"11",Constant.SHOW_ALL,new Date(),"显示所有的活动列表，共有"+total+"条记录",Constant.SEARCH_OPERATION,this.getClass().getName());
 
     }
+    
+    //菜单刷选
+    /*public filterProcess(){
+    	
+    }*/
 
     public void setPage(int page) {
         this.page = page;

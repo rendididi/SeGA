@@ -35,6 +35,7 @@
     <div class="col-sm-12">
       <img class="userImg" src="/images/user/<s:property value="userType"/>.png" height="90px" width="90px"/>
     </div>
+    <span class="current_selected">全部</span>
   </div>
 
   <div class="row">
@@ -226,7 +227,13 @@
         }
     });
   </script>
-
+	
+  <script>
+  	$(".nav-myself li a").click(function(){
+  		$(".current_selected").text($(this).text());
+  		//$(this).parent().parent().css("display","none");
+  	})
+  </script>
   <script src="<s:url value="js/lib/bootstrap-paginator-1.0.2/build/bootstrap-paginator.min.js" />"></script>
   <script src="<s:url value="js/task-list.js" />"></script>
 </body>
