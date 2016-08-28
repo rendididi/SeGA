@@ -58,7 +58,7 @@
           	<select class="form-control changeSelectBg">
           		<option>杭州</option>
           		<option>衢州</option>
-          		<option>新疆</option>
+          		<option>乌鲁木齐</option>
           	</select>
           </div>
           <button class="btn btn-default btn-block btn-bussiiness" type="submit">登录</button>

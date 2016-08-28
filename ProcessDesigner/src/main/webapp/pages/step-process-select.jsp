@@ -13,10 +13,10 @@
 		<%@include file="/partials/navbar.jspf" %>
 		<%@include file="/partials/step_detail.jspf" %>
 		<select class="form-control" style="width:15%;position:absolute;top:204px;left:340px">
-	        	<option>房源申请</option>
-	        	<option>房源配租</option>
-	        	<option>房源缴交</option>
 	        	<option>房源管理</option>
+	        	<option>资格管理</option>
+	        	<option>配租管理</option>
+	        	<option>租金缴交</option>
 	    </select>
 	</header>
 	<section class="filter container">
