@@ -200,7 +200,8 @@ var graph;
 		$("#modal_viewjson .modal-body pre").html(json);
 		$("#modal_viewjson input#processJSON").val(json);
 		$("#modal_viewjson input#input-svg").val(svg);
-		$("#modal_viewjson").modal();
+		//$("#modal_viewjson").modal();
+		$("#modal_viewjson .modal-footer button[type='submit']").click();
 	});
 	/*获得当前选中的元素*/
 	function getcc(){

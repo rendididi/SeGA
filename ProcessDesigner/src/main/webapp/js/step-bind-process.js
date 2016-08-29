@@ -168,7 +168,8 @@ var bindingUtil = {
 		var json = JSON.stringify(binding_json);
 		$("#modal_viewjson .modal-body p").html(json);
 		$("#modal_viewjson input#bindingJSON").val(json);
-		$("#modal_viewjson").modal();
+		//$("#modal_viewjson").modal();
+		$("#modal_viewjson .modal-footer button[type='submit']").click();
 	});
 
 
