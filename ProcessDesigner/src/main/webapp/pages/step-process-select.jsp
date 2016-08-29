@@ -64,7 +64,7 @@
 						<h2><!-- Name -->名称</h2>
 						<input type="text" name="process.name" class="form-control" placeholder="" aria-describedby="sizing-addon1"/>
 						<h2><!-- Description -->描述</h2>
-						<textarea disabled="disabled" name="process.description" class="form-control" placeholder="" aria-describedby="sizing-addon1" rows=4></textarea>
+						<textarea readOnly name="process.description" class="form-control" placeholder="" aria-describedby="sizing-addon1" rows=4></textarea>
 					</div>
 					<div class="modal-footer">
 							<input type="hidden" name="process_id" value=""/>
