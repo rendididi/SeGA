@@ -27,6 +27,7 @@ public class TaskListAction extends ProcessDesignerSupport {
     public long activityId;
     public String redirectAction;
 
+    private String processType;
     public String execute() throws Exception {
         getActivities(page);
 
@@ -56,17 +57,21 @@ public class TaskListAction extends ProcessDesignerSupport {
     private void getActivities(int page) throws Exception {
         Map<String, Object> contextSession = ActionContext.getContext().getSession();
         String userType = (String) contextSession.get("userType");
-
+        String processCity = (String) contextSession.get("city");//流程对应的城市
+       // System.out.println(processCity+"--city");
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
-        Criteria criteria = session
-                .createCriteria(ProcessEdit.class)
-                .add(Restrictions.not(Restrictions.eq("step", "published")))
+        System.out.println(processType+"--type");
+        Criteria criteria = session.createCriteria(ProcessEdit.class)
+        		.add(Restrictions.not(Restrictions.eq("step", "published")))
                 .add(Restrictions.not(Restrictions.eq("step", "template")))
+                .add(Restrictions.eq("city", processCity))
                 .setFirstResult((page - 1) * pageSize)
                 .setMaxResults(pageSize)
                 .addOrder(Order.desc("datetime"));
+        if(processType != null){
+        	criteria.add(Restrictions.eq("type", processType));
+        }
 
         if (!userType.isEmpty()) {
             //criteria.add(Restrictions.eq("userType", userType));
@@ -80,7 +85,8 @@ public class TaskListAction extends ProcessDesignerSupport {
                 .setMaxResults(1)
                 .uniqueResult();
 
-        total = (Long) session.createCriteria(ProcessEdit.class).setProjection(Projections.rowCount()).uniqueResult();
+        total = activities.size();
+        //total = (Long) session.createCriteria(ProcessEdit.class).setProjection(Projections.rowCount()).uniqueResult();
         totalPages = total / pageSize;
         if (total % pageSize != 0)
             ++totalPages;
@@ -111,4 +117,11 @@ public class TaskListAction extends ProcessDesignerSupport {
         return pageSize;
     }
 
+	public String getProcessType() {
+		return processType;
+	}
+
+	public void setProcessType(String processType) {
+		this.processType = processType;
+	}
 }

@@ -53,6 +53,7 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 					"org.sega.ProcessDesigner.models.ProcessTemplate", process_id);
 			hb_session.getTransaction().commit();
 			Process process = new Process();
+			
 			process.setName(getProcess().getName());
 			process.setDescription(getProcess().getDescription());
 			process.setTemplate(process_t);
@@ -60,7 +61,6 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 			process.setProcessJSON(process.getTemplate().getProcessJSON());
 			process.setEDmappingJSON(process_t.getEDmappingJSON());
 			getSession().put("process", process);
-			
 			//persist process
 			hb_session = HibernateUtil.getSessionFactory().getCurrentSession();
 			hb_session.beginTransaction();
@@ -73,7 +73,20 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 			//update process edit item
 			ProcessEdit edit;
 			edit = new ProcessEdit();
+			edit.setCity((String) ActionContext.getContext().getSession().get("city"));
 			
+			if(process_t.getName().contains(Constant.FY)){
+				edit.setType("11");
+			}
+			if(process_t.getName().contains(Constant.SQ)){
+				edit.setType("22");
+			}
+			if(process_t.getName().contains(Constant.PZ)){
+				edit.setType("33");
+			}
+			if(process_t.getName().contains(Constant.JJ)){
+				edit.setType("44");
+			}
 			edit.setDatetime(new Date());
 			edit.setProcess(process);
 			//get next action in struts.xml

@@ -55,10 +55,10 @@
           <s:hidden name="userType" value="expert"></s:hidden>
           <div class="login-city-box">
           	<img src="/images/mark.png" style="width:28px;height:28px;" />
-          	<select class="form-control changeSelectBg">
-          		<option>杭州</option>
-          		<option>衢州</option>
-          		<option>乌鲁木齐</option>
+          	<select class="form-control changeSelectBg" name="processCity">
+          		<option value="hz">杭州</option>
+          		<option value="qz">衢州</option>
+          		<option value="wlmq">乌鲁木齐</option>
           	</select>
           </div>
           <button class="btn btn-default btn-block btn-bussiiness" type="submit">登录</button>
@@ -87,10 +87,10 @@
           <s:hidden name="userType" value="developer"></s:hidden>
           <div class="login-city-box">
           	<img src="/images/mark.png" style="width:28px;height:28px;" />
-          	<select class="form-control changeSelectBg">
-          		<option>杭州</option>
-          		<option>衢州</option>
-          		<option>新疆</option>
+          	<select class="form-control changeSelectBg" name="processCity">
+          		<option value="hz">杭州</option>
+          		<option value="qz">衢州</option>
+          		<option value="wlmq">乌鲁木齐</option>
           	</select>
           </div>
           <button class="btn btn-default btn-block ">登录</button>

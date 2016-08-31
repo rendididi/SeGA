@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="org.sega.ProcessDesigner.util.Constant"%>
 <html lang="zh-CN" ng-app="app">
 <head>
   <%@include file="/partials/common_header.jspf" %>
@@ -35,7 +36,23 @@
     <div class="col-sm-12">
       <img class="userImg" src="/images/user/<s:property value="userType"/>.png" height="90px" width="90px"/>
     </div>
-    <span class="current_selected">全部</span>
+    <span class="current_selected">
+      <s:if test="processType==11">
+      <%=Constant.FYGL%>
+      </s:if>
+      <s:elseif test="processType==22">
+      <%=Constant.ZGGL%>
+      </s:elseif>
+      <s:elseif test="processType==33">
+      <%=Constant.PZGL%>
+      </s:elseif>
+      <s:elseif test="processType==44">
+      <%=Constant.ZJJJ%>
+      </s:elseif>
+      <s:else>
+        全部
+      </s:else>
+    </span>
   </div>
 
   <div class="row">
@@ -230,6 +247,7 @@
 	
   <script>
   	$(".nav-myself li a").click(function(){
+  		
   		$(".current_selected").text($(this).text());
   		//$(this).parent().parent().css("display","none");
   	})

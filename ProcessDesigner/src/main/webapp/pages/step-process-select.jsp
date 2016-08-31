@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="org.sega.ProcessDesigner.util.Constant"%>
+
 <html lang="zh-CN" ng-app="step1">
 <head>
 	<%@include file="/partials/common_header.jspf" %>
@@ -13,10 +15,10 @@
 		<%@include file="/partials/navbar.jspf" %>
 		<%@include file="/partials/step_detail.jspf" %>
 		<select class="form-control" style="width:15%;position:absolute;top:204px;left:340px">
-	        	<option>房源管理</option>
-	        	<option>资格管理</option>
-	        	<option>配租管理</option>
-	        	<option>租金缴交</option>
+	        	<option><%= Constant.FYGL%></option>
+	        	<option><%= Constant.ZGGL%></option>
+	        	<option><%= Constant.PZGL%></option>
+	        	<option><%= Constant.ZJJJ%></option>
 	    </select>
 	</header>
 	<section class="filter container">
@@ -39,6 +41,7 @@
 				<div class="gallery-buttonGroup">
 					<s:form action="step-process-select-submit">
 						<input type="hidden" name="process_id" value="{{node.id}}"/>
+						
 						<div class="btn-group">
 							<button class="btn btn-primary btn-custom-process" type="button"><!-- Custom -->自定义</button>
 							<button class="btn btn-success" type="button"><!-- Deploy -->部署</button>

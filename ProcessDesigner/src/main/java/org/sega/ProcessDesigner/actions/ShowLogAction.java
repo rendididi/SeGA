@@ -36,15 +36,6 @@ public class ShowLogAction extends ProcessDesignerSupport{
 				.addOrder(Order.desc("date"));
 		
 		logs = (List<Log>) criteria.list();
-		/*for(int i =0;i<logs.size();i++){
-			if(logs.get(i).getType().equals("11"))
-				log1.add(logs.get(i));
-			if(logs.get(i).getType().equals("22"))
-				log2.add(logs.get(i));
-			if(logs.get(i).getType().equals("33"))
-				log3.add(logs.get(i));
-		}*/
-	
 		session.getTransaction().commit();
 	}
 

@@ -12,4 +12,12 @@ public class Constant {
 	public static String DATABASE_OPERATION = "数据库操作";
 	public static String PULISH_OPERATION = "发布操作";
 	public static String DATA_HANDLE = "数据处理";
+	public static String FY = "房源";
+	public static String PZ = "配租";
+	public static String JJ = "缴交";
+	public static String SQ = "申请";
+	public static String FYGL = "房源管理";
+	public static String PZGL = "配租管理";
+	public static String ZJJJ = "租金缴交";
+	public static String ZGGL = "资格管理";
 }
