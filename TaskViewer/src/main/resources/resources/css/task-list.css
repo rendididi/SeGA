@@ -161,11 +161,11 @@ border-bottom: 1px #16A085 solid;
 .m-activity #activityList li{
   margin-top:15px;
   padding: 20px 20px 10px 15px;
-  width:30%;
+  width:47%;
   border:0px solid #ccc;
   border-radius: 6px;
   min-height: 100px;
-  margin-right:3%;
+  margin-right:1%;
   display:inline-block;
   transition: 0.25s;
 }
