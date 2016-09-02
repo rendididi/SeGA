@@ -4,8 +4,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javassist.compiler.ProceedHandler;
+
 import org.apache.struts2.dispatcher.Dispatcher;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.sega.ProcessDesigner.models.Process;
 import org.sega.ProcessDesigner.models.ProcessEdit;
 import org.sega.ProcessDesigner.models.ProcessTemplate;
@@ -27,15 +30,22 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 	private List<ProcessTemplate> process_list;
 	
 	private long process_id;
-	
+	private String processType;
 	// view
 	@SuppressWarnings("unchecked")
 	public String execute() throws Exception {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		process_list = (List<ProcessTemplate>)session.createCriteria(ProcessTemplate.class).list();
+		if(processType != null){
+			System.out.println("bu null");
+			process_list = (List<ProcessTemplate>)session.createCriteria(ProcessTemplate.class).add(Restrictions.like("name", "%"+processType+"%")).list();
+
+		}else{
+			System.out.println("null");
+			process_list = (List<ProcessTemplate>)session.createCriteria(ProcessTemplate.class).list();
+		}
 		session.getTransaction().commit();
-		
+		System.out.println(processType+"--processType"+process_list.size());
 		String logContent;
 		logContent = "模板选择——显示所有的流程模板信息";
 		SaveLog.saveLog(new Users((long)1),"11",Constant.SHOW_ALL,new Date(),logContent,Constant.SEARCH_OPERATION,this.getClass().getName());
@@ -128,4 +138,13 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 	public void setProcess_id(long process_id) {
 		this.process_id = process_id;
 	}
+
+	public String getProcessType() {
+		return processType;
+	}
+
+	public void setProcessType(String processType) {
+		this.processType = processType;
+	}
+	
 }

@@ -14,11 +14,12 @@
 		<%int step=1; %>
 		<%@include file="/partials/navbar.jspf" %>
 		<%@include file="/partials/step_detail.jspf" %>
-		<select class="form-control" style="width:15%;position:absolute;top:204px;left:340px">
-	        	<option><%= Constant.FYGL%></option>
-	        	<option><%= Constant.ZGGL%></option>
-	        	<option><%= Constant.PZGL%></option>
-	        	<option><%= Constant.ZJJJ%></option>
+		<select class="form-control template-select" style="width:15%;position:absolute;top:204px;left:340px">
+	        	<option value="" <s:if test="processType==null">selected</s:if>>全部</option>
+	        	<option value="房源" <s:if test="processType.contains('房源')">selected</s:if>><%= Constant.FYGL%></option>
+	        	<option value="申请" <s:if test="processType.contains('申请')">selected</s:if>><%= Constant.ZGGL%></option>
+	        	<option value="配租" <s:if test="processType.contains('配租')">selected</s:if>><%= Constant.PZGL%></option>
+	        	<option value="缴交" <s:if test="processType.contains('缴交')">selected</s:if>><%= Constant.ZJJJ%></option>
 	    </select>
 	</header>
 	<section class="filter container">
@@ -37,7 +38,8 @@
 					<img src={{node.processImageUrl}} />
 				</div>
 				
-				<p class="gallery-item-title">{{node.name}}</p>
+				<p class
+				="gallery-item-title">{{node.name}}</p>
 				<div class="gallery-buttonGroup">
 					<s:form action="step-process-select-submit">
 						<input type="hidden" name="process_id" value="{{node.id}}"/>
@@ -80,7 +82,12 @@
 		</div><!-- /.modal -->
 
 	</section>
-
+	<script>
+		$(".template-select").change(function(){
+			location.href="step-process-select?processType="+$(".template-select option:selected").attr("value");
+			
+		})
+	</script>
 	<script>
 		var list = [];
 		var obj={};

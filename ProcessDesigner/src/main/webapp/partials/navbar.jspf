@@ -14,10 +14,10 @@
             <li class="active">
             	<a href="#">流程设计 <img class="nav-bar-triangle" src="/images/triangle.png" /></a>
 				<ul class="nav nav-myself">
-					<li><a href="task-list?processType=11"><%=Constant.FYGL%></a></li>
-					<li><a href="task-list?processType=22"><%=Constant.ZGGL%></a></li>
-					<li><a href="task-list?processType=33"><%=Constant.PZGL%></a></li>
-					<li><a href="task-list?processType=44"><%=Constant.ZJJJ%></a></li>
+					<li><a href="task-list?processType=11">房源管理</a></li>
+					<li><a href="task-list?processType=22">资格管理</a></li>
+					<li><a href="task-list?processType=33">配租管理</a></li>
+					<li><a href="task-list?processType=44">租金缴交</a></li>
 				</ul>
             </li>
             <li>
