@@ -14,7 +14,7 @@
 		<%int step=1; %>
 		<%@include file="/partials/navbar.jspf" %>
 		<%@include file="/partials/step_detail.jspf" %>
-		<select class="form-control template-select" style="width:15%;position:absolute;top:204px;left:340px">
+		<select class="form-control template-select" style="width:15%;position:absolute;top:204px;left:386px">
 	        	<option value="" <s:if test="processType==null">selected</s:if>>全部</option>
 	        	<option value="房源" <s:if test="processType.contains('房源')">selected</s:if>><%= Constant.FYGL%></option>
 	        	<option value="申请" <s:if test="processType.contains('申请')">selected</s:if>><%= Constant.ZGGL%></option>
