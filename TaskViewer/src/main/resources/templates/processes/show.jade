@@ -90,7 +90,7 @@ block content
 
     a.btn-sg(href="javascript:$('#form-#{process.getId()}').submit()")
       img(src="/images/create.png")
-      span 新建
+      span 受理
 
     form(method="post",action="/processes/#{process.getId()}",id="form-#{process.getId()}")
       input(type="hidden", name='_csrf', value='#{_csrf.token}')

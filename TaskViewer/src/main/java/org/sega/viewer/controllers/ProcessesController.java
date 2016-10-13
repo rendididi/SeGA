@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.springframework.data.domain.Page;
+
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.util.List;
+import java.util.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -41,13 +43,31 @@ public class ProcessesController {
     @Autowired
     private JtangEngineService jtangEngineService;
 
+    private static final int pageSize = 5;
+    
     @RequestMapping(value = "", method = GET)
     public String processes(Model model){
-        List<Process> processes = processService.getAllProcesses();
-        model.addAttribute("processes", processes);
-        model.addAttribute("totalProcesses", processes.size());
+    	try{
+    		List<Process> processes = processService.getAllProcesses();
+            List<ProcessInstance> instances = new ArrayList<ProcessInstance>();
+            for(Process process : processes){
+            	instances.add(processInstanceService.createProcessInstance(process));
+            }
+            Map<String, String> taskNameMap = new HashMap<String, String>();
+            for(ProcessInstance instance: instances){
+    			taskNameMap.put(instance.getNextTask(), processInstanceService.getNextTaskName(instance));
+    		}
+            model.addAttribute("instances", instances);
+            model.addAttribute("taskNames", taskNameMap);
+            model.addAttribute("processes", processes);
+            model.addAttribute("totalProcesses", processes.size());
 
-        return "processes/index";
+            
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	return "processes/index";
+        
     }
 
     @RequestMapping(value = "{processId:\\d+}", method = GET)

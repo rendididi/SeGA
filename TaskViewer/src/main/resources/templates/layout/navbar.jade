@@ -12,10 +12,10 @@ nav.navbar.navbar-fixed-top.navbar-bright
       ul.nav.navbar-nav.nav-parent
         li
           //-a(href="http://112.124.29.111:9100/") Process Designer
-          a(href="localhost:9100/login.action") 流程设计 
+          a(href="localhost:9100/login.action",target="_blank") 流程设计 
         li.active
           a(href="/") 业务办理  
-            img(class="nav-bar-triangle",src="#{basePath}/images/triangle.png")
+            img(class="nav-bar-triangle",src="/images/triangle.png")
           ul.nav.nav-myself
             li
               a(href="#") 房源管理
@@ -28,7 +28,7 @@ nav.navbar.navbar-fixed-top.navbar-bright
         li
           a(href="#") 关于
         li 
-          a(href="show-log-console") 控制台
+          a(href="localhost:9100/login.action",target="_blank") 控制台
       .navbar-right.navbar-user
         img(src="#{basePath}/images/user/operator.png", style="width:32px;height:32px;")
         .dropdown

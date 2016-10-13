@@ -19,22 +19,21 @@ block content
       li.active
         a
           img(src="/images/create.png")
-          span 新建
+          span 受理
 
 
   .container
     .g-content
       .m-activity
         h3
-          span Processes
+          span 流程
           span.badge  #{totalProcesses}
 
         .col-md-10.col-md-offset-1
           ul.list-unstyled#activityList
-            for process in processes
+            for instance in instances
               li
-                a(href="/processes/#{process.getId()}")
+                a(href="/processes/instances/#{instance.getId()}/task/#{instance.getNextTask()}")
                   img.activityImg(src="/images/folder.png")
-                  h2.processName #{process.getName()}
+                  h2.processName #{instance.getProcess().getName()}
                   img.check(src="/images/search.png")
-
