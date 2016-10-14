@@ -59,7 +59,13 @@ block content
           
           $('#my-pagination').bootstrapPaginator(options);
       });
-      $('.nav-myself li a').click(function(){$('.current_selected').text($(this).text())})
+      //$('.nav-myself li a').click(function(){$('.current_selected').text($(this).text())})
+      var processName;
+      if(#{processType} == 11) processName = "房源管理"
+      if(#{processType} == 22) processName = "资格管理"
+      if(#{processType} == 33) processName = "配租管理"
+      if(#{processType} == 44) processName = "租金缴交"
+      $('.current_selected').text(processName);
     
       
 

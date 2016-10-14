@@ -123,11 +123,11 @@ var bindingUtil = {
             loadActionBinding(current_selected);
 
             if(evt.model.prop("type")=="sega.Task"){
-                $("#action-title").text("Human Task");
+                $("#action-title").text("人工任务");
                 $(".web-service").hide();
                 $(".human-task").show();
             }else if(evt.model.prop("type")=="sega.Service"){
-                $("#action-title").text("Web Service");
+                $("#action-title").text("Web 服务");
                 $(".human-task").hide();
                 $(".web-service").show();
             }

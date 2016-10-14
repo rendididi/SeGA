@@ -61,11 +61,11 @@ public class InstanceController {
         model.addAttribute("instance", instance);
         model.addAttribute("templatePath", path);
         model.addAttribute("taskId", taskId);
+        model.addAttribute("taskName",processInstanceService.getNextTaskName(instance));
         model.addAttribute("templateHtml", readTaskTemplate(path));
 
         return "instances/task";
     }
-
 
     // edb sync test
     @RequestMapping(value = "{instanceId:\\d+}/sync_edb", method = RequestMethod.GET)

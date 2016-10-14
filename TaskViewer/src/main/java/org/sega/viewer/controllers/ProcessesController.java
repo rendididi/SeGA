@@ -43,7 +43,7 @@ public class ProcessesController {
     @Autowired
     private JtangEngineService jtangEngineService;
 
-    private static final int pageSize = 5;
+    private static final int pageSize = 6;
     
     @RequestMapping(value = "", method = GET)
     public String processes(Model model){

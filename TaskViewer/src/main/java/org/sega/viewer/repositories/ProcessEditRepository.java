@@ -3,6 +3,8 @@ package org.sega.viewer.repositories;
 import org.sega.viewer.models.ProcessEdit;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,4 +17,8 @@ import java.util.List;
 @Transactional
 public interface ProcessEditRepository extends JpaRepository<ProcessEdit, Long> {
     List<ProcessEdit> findByStep(String step, Sort sort);
+    
+    @Query("select p from ProcessEdit p where p.type = :type and p.city = :city")
+    List<ProcessEdit> findByTypeAndCity(@Param("type") String type, @Param("city") String city);
+
 }

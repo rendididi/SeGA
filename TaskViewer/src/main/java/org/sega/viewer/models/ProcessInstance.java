@@ -21,7 +21,15 @@ public class ProcessInstance extends BaseModel{
     @ManyToOne
     private Process process;
 
-    @Lob
+    public Process getProcess() {
+		return process;
+	}
+
+	public void setProcess(Process process) {
+		this.process = process;
+	}
+
+	@Lob
     private String entity;
 
     @Column(name = "next_task")
