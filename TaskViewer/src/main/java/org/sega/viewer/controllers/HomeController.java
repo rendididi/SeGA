@@ -8,10 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.sega.viewer.models.ProcessEdit;
+import javax.servlet.http.HttpServletRequest;
+
+
 import org.sega.viewer.models.ProcessInstance;
-import org.sega.viewer.repositories.ProcessEditRepository;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
+import org.sega.viewer.repositories.ProcessRepository;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Controller
 public class HomeController {
@@ -32,29 +37,37 @@ public class HomeController {
 	@Autowired
 	private ProcessInstanceRepository processInstanceRepository;
 	@Autowired
-	private ProcessEditRepository processEditRepository;
+	private ProcessRepository processRepository;
 	@Autowired
 	private ProcessInstanceService processInstanceService;
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private static final int pageSize = 6;
-
+	String city = null;
 	@RequestMapping(value = "", method = GET)
 	public String index(Principal principal, @RequestParam(defaultValue = "0") int page, Model model) {
+		logger.debug("city is ======================="+city);
 		page = page < 0 ? 0 : page;
 		Page<ProcessInstance> instances = processInstanceRepository.findByNextTaskNot(
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
-
+		city = getCity();
+		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
+    	if(instances != null && instances.getSize() != 0){
+    		for(ProcessInstance instance : instances){
+        		if(instance.getProcess().getCity().equals(city)){
+        			newInstances.add(instance);
+        		}
+        	}
+    	}
 		Map<String, String> taskNameMap = new HashMap<String, String>();
-
 		for(ProcessInstance instance: instances){
 			taskNameMap.put(instance.getNextTask(), processInstanceService.getNextTaskName(instance));
 		}
-		
-		model.addAttribute("instances", instances);
+		model.addAttribute("processType",0);
+		model.addAttribute("instances", newInstances);
 		model.addAttribute("taskNames", taskNameMap);
-		model.addAttribute("totalInstances", instances.getTotalElements());
+		model.addAttribute("totalInstances", newInstances.size());
 		model.addAttribute("page", page+1);
-		model.addAttribute("totalPages", instances.getTotalPages());
+		model.addAttribute("totalPages", newInstances.size() / pageSize);
 		return principal != null ? "home/index" : "users/signin";
 	}
 
@@ -63,18 +76,26 @@ public class HomeController {
 		page = page < 0 ? 0 : page;
 		Page<ProcessInstance> instances = processInstanceRepository.findByNextTask(
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
-
+		city = getCity();
+		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
+    	if(instances != null && instances.getSize() != 0){
+    		for(ProcessInstance instance : instances){
+        		if(instance.getProcess().getCity().equals(city)){
+        			newInstances.add(instance);
+        		}
+        	}
+    	}
 		Map<String, String> taskNameMap = new HashMap<String, String>();
 
 		for(ProcessInstance instance: instances){
 			taskNameMap.put(instance.getNextTask(), processInstanceService.getNextTaskName(instance));
 		}
-
-		model.addAttribute("instances", instances);
+		model.addAttribute("processType",0);
+		model.addAttribute("instances", newInstances);
 		model.addAttribute("taskNames", taskNameMap);
-		model.addAttribute("totalInstances", instances.getTotalElements());
+		model.addAttribute("totalInstances", newInstances.size());
 		model.addAttribute("page", page+1);
-		model.addAttribute("totalPages", instances.getTotalPages());
+		model.addAttribute("totalPages", newInstances.size() /pageSize);
 		return principal != null ? "home/completed" : "users/signin";
 	}
 	
@@ -83,30 +104,21 @@ public class HomeController {
 	@RequestMapping(value = "/type/{processType:\\d+}",method=RequestMethod.GET)
     public String selectTask(@PathVariable String processType,Principal principal, @RequestParam(defaultValue = "0") int page, Model model){
     	page = page < 0 ? 0 : page;
+    	city = getCity();
     	Page<ProcessInstance> instances = processInstanceRepository.findByNextTaskNot(
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
-    	String city = "hz";
     	List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
-    	try{
-    		List<ProcessEdit> edits = processEditRepository.findByTypeAndCity(processType,city);
-    		logger.debug(edits.size()+"==============================================");
-    		if(edits != null && instances != null && edits.size() != 0 && instances.getSize() != 0){
-    			logger.debug("first-step");
-        		for(ProcessInstance instance : instances){
-            		for(ProcessEdit edit : edits){
-            			logger.debug(instance.getProcess().getId() + ","+edit.getProcess().getId());
-            			if(instance.getProcess().getId() == edit.getProcess().getId()){
-            				logger.debug("second-step");
-            				newInstances.add(instance);
-            			}
-            		}
-            	}
+    	logger.debug("dddd"+instances.getSize());
+    	if(instances != null && instances.getSize() != 0){
+    		for(ProcessInstance instance : instances){
+    			logger.debug("id:"+instance.getProcess().getId());
+        		if(instance.getProcess().getCity().equals(city) && instance.getProcess().getType().equals(processType)){
+        			newInstances.add(instance);
+        		}
+        		logger.debug(instance.getProcess().getId()+":"+instance.getProcess().getCity()+","+instance.getProcess().getCity().equals(city) +","+instance.getProcess().getType()+","+instance.getProcess().getType().equals(processType));
         	}
-    		logger.debug("third-step");
-    		//logger.debug(newInstances.size()+"++++++++++++++++++++++++++++++++++++++");
-    	}catch(Exception e){
-    		logger.debug("111111111111111111111111"+e.getMessage()+"111111111111111111111");
     	}
+    	
     	Map<String, String> taskNameMap = new HashMap<String, String>();
 
 		for(ProcessInstance instance: newInstances){
@@ -117,9 +129,15 @@ public class HomeController {
 		model.addAttribute("taskNames", taskNameMap);
 		model.addAttribute("totalInstances", newInstances.size());
 		model.addAttribute("page", page+1);
-		model.addAttribute("totalPages", (newInstances.size())/6);
+		model.addAttribute("totalPages", (newInstances.size())/pageSize);
     	return principal != null ? "home/index" : "users/signin";
-    	
     }
-
+    
+    public String getCity(){
+    	RequestAttributes ra = RequestContextHolder.getRequestAttributes();  
+        HttpServletRequest request = ((ServletRequestAttributes)ra).getRequest();
+        String city = (String) request.getSession().getAttribute("city");
+        return city;
+    }
+    
 }

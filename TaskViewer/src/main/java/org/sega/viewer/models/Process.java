@@ -39,6 +39,8 @@ public class Process extends BaseModel {
     private String description;
 
     private String name;
+    private String type;
+    private String city;
 
     @ManyToOne
     @JoinColumn(name = "template")
@@ -54,4 +56,19 @@ public class Process extends BaseModel {
     @OneToMany(mappedBy = "process", cascade = {CascadeType.ALL},  fetch = FetchType.LAZY)
     private Collection<ProcessEdit> processInstances = new ArrayList<>();
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 }

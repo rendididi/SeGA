@@ -13,15 +13,22 @@ block content
             span 流程执行
           li
 
-        form(method="post",action="/authenticate")
+        form(method="post",action="/authenticate",id="form1")
           input(type="hidden", name='_csrf', value='#{_csrf.token}')
           input(style="display:none;",type="text",name="username",value="user")
           input(style="display:none;",type="password",name="password",value="demo")
           .login-city-box
             img(src="/images/mark.png", width="28px", height="28px")
-            select.form-control.changeSelectBg
-              option 杭州
-              option 衢州
-              option 新疆
-          button.btn.btn-default.btn-block(type="submit",style="font-family:'Microsoft YaHei'") 登录
-  
+            select.form-control.changeSelectBg(name="city")
+              option(value="0571") 杭州
+              option(value="0570") 衢州
+              option(value="0991") 乌鲁木齐
+          button.btn.btn-default.btn-block(type="button",style="font-family:'Microsoft YaHei'") 登录
+    script
+      var form = $("#form1");
+      $("button").click(function(){
+        var oldValue = $("input[name='username']").val();
+        var add = $("select option:selected").val();
+        $("input[name='username']").val(oldValue+","+add);
+        form.submit();
+      })

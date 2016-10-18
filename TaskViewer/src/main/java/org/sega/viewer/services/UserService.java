@@ -2,22 +2,29 @@ package org.sega.viewer.services;
 
 import java.util.Collections;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.sega.viewer.models.User;
 import org.sega.viewer.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.*;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class UserService implements UserDetailsService {
     private UserRepository userRepository;
-
     private PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
@@ -33,17 +40,22 @@ public class UserService implements UserDetailsService {
     }
 
     public void initialize() {
+		//String city = request.getParameter("city");
         if (userRepository.findByEmail("user") == null) {
+        	
             createUser(new User("user", "demo", User.ROLE_OPERATOR));
             createUser(new User("admin", "admin" , User.ROLE_ADMIN));
         }
     }
 
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
+    	String name = username.split(",")[0];
+    	RequestAttributes ra = RequestContextHolder.getRequestAttributes();  
+	    HttpServletRequest request = ((ServletRequestAttributes)ra).getRequest(); 
+	    request.getSession().setAttribute("city",username.split(",")[1] );
+        User user = userRepository.findByEmail(name);
         if (user == null) {
-            throw new UsernameNotFoundException("User with name " + username +" is not found.");
+            throw new UsernameNotFoundException("User with name " + name +" is not found.");
         }
         return createSecureUser(user);
     }
@@ -69,5 +81,4 @@ public class UserService implements UserDetailsService {
     private GrantedAuthority createAuthority(User user) {
         return new SimpleGrantedAuthority(user.getRole());
     }
-
 }

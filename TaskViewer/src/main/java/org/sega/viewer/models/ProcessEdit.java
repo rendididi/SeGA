@@ -24,10 +24,6 @@ public class ProcessEdit extends BaseModel {
     private String step;
 
     private String sessionid;
-    
-    private String type;
-    
-    private String city;
 
     public String getUserType() {
         return userType;
@@ -73,21 +69,5 @@ public class ProcessEdit extends BaseModel {
     public String getStepName() {
         return Constants.STEPS_MAP.get(this.step);
     }
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
     
 }

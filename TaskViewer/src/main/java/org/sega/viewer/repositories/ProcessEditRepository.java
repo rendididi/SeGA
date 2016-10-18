@@ -17,8 +17,5 @@ import java.util.List;
 @Transactional
 public interface ProcessEditRepository extends JpaRepository<ProcessEdit, Long> {
     List<ProcessEdit> findByStep(String step, Sort sort);
-    
-    @Query("select p from ProcessEdit p where p.type = :type and p.city = :city")
-    List<ProcessEdit> findByTypeAndCity(@Param("type") String type, @Param("city") String city);
 
 }
