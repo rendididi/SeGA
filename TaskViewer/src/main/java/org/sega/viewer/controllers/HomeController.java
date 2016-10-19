@@ -45,11 +45,11 @@ public class HomeController {
 	String city = null;
 	@RequestMapping(value = "", method = GET)
 	public String index(Principal principal, @RequestParam(defaultValue = "0") int page, Model model) {
-		logger.debug("city is ======================="+city);
 		page = page < 0 ? 0 : page;
 		Page<ProcessInstance> instances = processInstanceRepository.findByNextTaskNot(
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
 		city = getCity();
+		logger.debug("zx=========0   HomeController");
 		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
     	if(instances != null && instances.getSize() != 0){
     		for(ProcessInstance instance : instances){
@@ -108,14 +108,11 @@ public class HomeController {
     	Page<ProcessInstance> instances = processInstanceRepository.findByNextTaskNot(
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
     	List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
-    	logger.debug("dddd"+instances.getSize());
     	if(instances != null && instances.getSize() != 0){
     		for(ProcessInstance instance : instances){
-    			logger.debug("id:"+instance.getProcess().getId());
         		if(instance.getProcess().getCity().equals(city) && instance.getProcess().getType().equals(processType)){
         			newInstances.add(instance);
         		}
-        		logger.debug(instance.getProcess().getId()+":"+instance.getProcess().getCity()+","+instance.getProcess().getCity().equals(city) +","+instance.getProcess().getType()+","+instance.getProcess().getType().equals(processType));
         	}
     	}
     	

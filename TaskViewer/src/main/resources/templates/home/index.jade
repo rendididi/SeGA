@@ -51,12 +51,11 @@ block content
       $(function(){
           var options = {
             currentPage: #{page},
-            totalPages: #{totalPages},
+            totalPages: #{totalPages}+1,
             pageUrl: function(type, page, current){
                 return document.location.pathname+'?page='+(page-1);
             }
           };
-          
           $('#my-pagination').bootstrapPaginator(options);
       });
       //$('.nav-myself li a').click(function(){$('.current_selected').text($(this).text())})
@@ -66,6 +65,7 @@ block content
       if(#{processType} == 33) processName = "配租管理"
       if(#{processType} == 44) processName = "租金缴交"
       $('.current_selected').text(processName);
+      
       
 
         

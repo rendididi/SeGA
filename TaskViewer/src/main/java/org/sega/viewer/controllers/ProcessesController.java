@@ -1,7 +1,17 @@
 package org.sega.viewer.controllers;
 
-import org.sega.viewer.models.*;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.sega.viewer.models.Process;
+import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.JtangEngineService;
 import org.sega.viewer.services.ProcessInstanceService;
@@ -9,21 +19,14 @@ import org.sega.viewer.services.ProcessService;
 import org.sega.viewer.services.support.Node;
 import org.sega.viewer.services.support.ProcessJsonResolver;
 import org.sega.viewer.utils.Base64Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import org.springframework.data.domain.Page;
-
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.util.*;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * @author Raysmond<i@raysmond.com>.
@@ -44,34 +47,22 @@ public class ProcessesController {
     private JtangEngineService jtangEngineService;
 
     private static final int pageSize = 6;
-    
+    private static final Logger logger = LoggerFactory.getLogger(ProcessesController.class);
     @RequestMapping(value = "", method = GET)
     public String processes(Model model){
-    	try{
-    		List<Process> processes = processService.getAllProcesses();
-            List<ProcessInstance> instances = new ArrayList<ProcessInstance>();
-            for(Process process : processes){
-            	instances.add(processInstanceService.createProcessInstance(process));
-            }
-            Map<String, String> taskNameMap = new HashMap<String, String>();
-            for(ProcessInstance instance: instances){
-    			taskNameMap.put(instance.getNextTask(), processInstanceService.getNextTaskName(instance));
-    		}
-            model.addAttribute("instances", instances);
-            model.addAttribute("taskNames", taskNameMap);
-            model.addAttribute("processes", processes);
-            model.addAttribute("totalProcesses", processes.size());
+    	
+    	logger.debug("zx=========1=====ProcessesController");
+    	List<Process> processes = processService.getAllProcesses();
+        model.addAttribute("processes", processes);
+        model.addAttribute("totalProcesses", processes.size());
 
-            
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-    	return "processes/index";
+        return "processes/index";
         
     }
 
     @RequestMapping(value = "{processId:\\d+}", method = GET)
     public String showProcess(@PathVariable Long processId, Model model){
+    	logger.debug("zx=========2======ProcessesController");
         Process process = processService.getProcess(processId);
 
         model.addAttribute("process", process);
@@ -89,7 +80,8 @@ public class ProcessesController {
 
     @RequestMapping(value = "{processId:\\d+}", method = POST)
     public String createProcessInstance(@PathVariable Long processId) throws UnsupportedEncodingException, MalformedURLException {
-        Process process = processService.getProcess(processId);
+    	logger.debug("zx=========3======ProcessesController");
+    	Process process = processService.getProcess(processId);
         ProcessInstance instance = processInstanceService.createProcessInstance(process);
 
         //DEMO:jtangEngineService.publishProcess(instance);
@@ -99,7 +91,8 @@ public class ProcessesController {
 
     @RequestMapping(value = "instances/{instanceId:\\d+}", method = GET)
     public String showProcessInstance(@PathVariable Long instanceId, Model model) throws UnsupportedEncodingException {
-        ProcessInstance processInstance = processInstanceRepository.findOne(instanceId);
+    	logger.debug("zx=========4=======ProcessesController");
+    	ProcessInstance processInstance = processInstanceRepository.findOne(instanceId);
         model.addAttribute("instance", processInstance);
         model.addAttribute("processJSON", Base64Util.decode(processInstance.getProcess().getProcessJSON()));
 
@@ -117,7 +110,8 @@ public class ProcessesController {
 
     @RequestMapping(value = "{processId:\\d+}/templates/{taskId}", method = GET)
     public ModelAndView getTaskTemplate(@PathVariable Long processId, @PathVariable String taskId){
-        ModelAndView template = new ModelAndView("fragments/humantask/"+processId+"/"+taskId);
+    	logger.debug("zx=========5========ProcessesController");
+    	ModelAndView template = new ModelAndView("fragments/humantask/"+processId+"/"+taskId);
         return template;
     }
 

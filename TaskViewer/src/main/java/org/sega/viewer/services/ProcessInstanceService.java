@@ -1,28 +1,28 @@
 package org.sega.viewer.services;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.List;
+
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.sega.viewer.models.Process;
-import org.sega.viewer.models.Artifact;
 import org.sega.viewer.models.ProcessInstance;
-import org.sega.viewer.models.Process;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.support.ProcessJsonResolver;
 import org.sega.viewer.services.support.TaskType;
 import org.sega.viewer.services.support.TasksResolver;
 import org.sega.viewer.utils.Base64Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Raysmond<i@raysmond.com>.
@@ -31,6 +31,7 @@ import java.util.List;
 public class ProcessInstanceService {
     @Autowired
     private ProcessInstanceRepository instanceRepository;
+    private static final Logger logger = LoggerFactory.getLogger(ProcessInstanceService.class);
 
     public List<ProcessInstance> getProcessInstances(Process process){
         return instanceRepository.findAllByProcess(process, new Sort(Sort.Direction.DESC, "createdAt"));
@@ -203,6 +204,7 @@ public class ProcessInstanceService {
             for(int i=0, len=tasks.length(); i<len; i++){
                 task= tasks.getJSONObject(i);
                 if(task.getString("id").equals(instance.getNextTask())){
+                	logger.debug("is compelted ======="+task.getString("type"));
                     if(task.getString("type").equals("sega.End"))
                         return "Completed";
                     else if(task.getString("type").equals("sega.Task"))

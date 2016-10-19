@@ -31,9 +31,11 @@ block content
 
         .col-md-10.col-md-offset-1
           ul.list-unstyled#activityList
-            for instance in instances
+            for process in processes
               li
-                a(href="/processes/instances/#{instance.getId()}/task/#{instance.getNextTask()}")
+                a(href="javascript:$('#form-#{process.getId()}').submit()")
                   img.activityImg(src="/images/folder.png")
-                  h2.processName #{instance.getProcess().getName()}
+                  h2.processName #{process.getName()}
                   img.check(src="/images/search.png")
+                form(method="post",action="/processes/#{process.getId()}",id="form-#{process.getId()}")
+                  input(type="hidden", name='_csrf', value='#{_csrf.token}')
