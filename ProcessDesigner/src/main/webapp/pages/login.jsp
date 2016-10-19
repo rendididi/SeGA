@@ -56,9 +56,9 @@
           <div class="login-city-box">
           	<img src="/images/mark.png" style="width:28px;height:28px;" />
           	<select class="form-control changeSelectBg" name="processCity">
-          		<option value="hz">杭州</option>
-          		<option value="qz">衢州</option>
-          		<option value="wlmq">乌鲁木齐</option>
+          		<option value="0571">杭州</option>
+          		<option value="0570">衢州</option>
+          		<option value="0991">乌鲁木齐</option>
           	</select>
           </div>
           <button class="btn btn-default btn-block btn-bussiiness" type="submit">登录</button>
@@ -88,9 +88,9 @@
           <div class="login-city-box">
           	<img src="/images/mark.png" style="width:28px;height:28px;" />
           	<select class="form-control changeSelectBg" name="processCity">
-          		<option value="hz">杭州</option>
-          		<option value="qz">衢州</option>
-          		<option value="wlmq">乌鲁木齐</option>
+          		<option value="0571">杭州</option>
+          		<option value="0570">衢州</option>
+          		<option value="0991">乌鲁木齐</option>
           	</select>
           </div>
           <button class="btn btn-default btn-block ">登录</button>

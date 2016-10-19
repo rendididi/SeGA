@@ -54,7 +54,8 @@ public class TaskListAction extends ProcessDesignerSupport {
         return SUCCESS;
     }
 
-    private void getActivities(int page) throws Exception {
+    @SuppressWarnings("unchecked")
+	private void getActivities(int page) throws Exception {
         Map<String, Object> contextSession = ActionContext.getContext().getSession();
         String userType = (String) contextSession.get("userType");
         String processCity = (String) contextSession.get("city");//流程对应的城市
@@ -62,22 +63,23 @@ public class TaskListAction extends ProcessDesignerSupport {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         System.out.println(processType+"--type");
+        
         Criteria criteria = session.createCriteria(ProcessEdit.class)
         		.add(Restrictions.not(Restrictions.eq("step", "published")))
                 .add(Restrictions.not(Restrictions.eq("step", "template")))
-                .add(Restrictions.eq("city", processCity))
                 .setFirstResult((page - 1) * pageSize)
                 .setMaxResults(pageSize)
                 .addOrder(Order.desc("datetime"));
+        Criteria c1 = criteria.createCriteria("process").add(Restrictions.eq("city", processCity));
         if(processType != null){
-        	criteria.add(Restrictions.eq("type", processType));
+        	c1.add(Restrictions.eq("type", processType));
         }
 
         if (!userType.isEmpty()) {
             //criteria.add(Restrictions.eq("userType", userType));
         }
 
-        activities = (List<ProcessEdit>) criteria.list();
+        activities = (List<ProcessEdit>) c1.list();
 
         firstActivity = (ProcessEdit) session
                 .createCriteria(ProcessEdit.class)

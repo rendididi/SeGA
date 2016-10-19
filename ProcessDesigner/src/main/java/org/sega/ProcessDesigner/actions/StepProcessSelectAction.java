@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javassist.compiler.ProceedHandler;
-
 import org.apache.struts2.dispatcher.Dispatcher;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -14,7 +12,6 @@ import org.sega.ProcessDesigner.models.ProcessEdit;
 import org.sega.ProcessDesigner.models.ProcessTemplate;
 import org.sega.ProcessDesigner.models.Users;
 import org.sega.ProcessDesigner.util.Constant;
-import org.sega.ProcessDesigner.util.ExceptionUtil;
 import org.sega.ProcessDesigner.util.HibernateUtil;
 import org.sega.ProcessDesigner.util.SaveLog;
 
@@ -70,6 +67,19 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 			process.setEntityJSON(process.getTemplate().getEntityJSON());
 			process.setProcessJSON(process.getTemplate().getProcessJSON());
 			process.setEDmappingJSON(process_t.getEDmappingJSON());
+			process.setCity((String) ActionContext.getContext().getSession().get("city"));
+			if(process_t.getName().contains(Constant.FY)){
+				process.setType("11");
+			}
+			if(process_t.getName().contains(Constant.SQ)){
+				process.setType("22");
+			}
+			if(process_t.getName().contains(Constant.PZ)){
+				process.setType("33");
+			}
+			if(process_t.getName().contains(Constant.JJ)){
+				process.setType("44");
+			}
 			getSession().put("process", process);
 			//persist process
 			hb_session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -83,20 +93,6 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 			//update process edit item
 			ProcessEdit edit;
 			edit = new ProcessEdit();
-			edit.setCity((String) ActionContext.getContext().getSession().get("city"));
-			
-			if(process_t.getName().contains(Constant.FY)){
-				edit.setType("11");
-			}
-			if(process_t.getName().contains(Constant.SQ)){
-				edit.setType("22");
-			}
-			if(process_t.getName().contains(Constant.PZ)){
-				edit.setType("33");
-			}
-			if(process_t.getName().contains(Constant.JJ)){
-				edit.setType("44");
-			}
 			edit.setDatetime(new Date());
 			edit.setProcess(process);
 			//get next action in struts.xml

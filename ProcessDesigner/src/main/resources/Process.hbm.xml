@@ -38,6 +38,12 @@
         <property name="name" type="java.lang.String">
             <column name="NAME" />
         </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
         <many-to-one name="template" class="org.sega.ProcessDesigner.models.ProcessTemplate" fetch="join">
             <column name="TEMPLATE" />
         </many-to-one>

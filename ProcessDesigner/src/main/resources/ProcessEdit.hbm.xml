@@ -11,12 +11,6 @@
         <property name="userType" type="java.lang.String">
             <column name="USERTYPE" />
         </property>
-        <property name="city" type="java.lang.String">
-            <column name="CITY" />
-        </property>
-        <property name="type" type="java.lang.String">
-            <column name="TYPE" />
-        </property>
         <many-to-one name="process" class="org.sega.ProcessDesigner.models.Process" fetch="join">
             <column name="PROCESS" />
         </many-to-one>

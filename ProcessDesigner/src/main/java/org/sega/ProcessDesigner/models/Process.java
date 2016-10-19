@@ -35,6 +35,9 @@ public class Process extends BaseModel {
     private String description;
 
     private String name;
+    
+    private String city;
+    private String type;
 
     @ManyToOne
     @JoinColumn(name = "template")
@@ -141,5 +144,21 @@ public class Process extends BaseModel {
 
 	public void setBindingJSON(String bindingJSON) {
 		this.bindingJSON = bindingJSON;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }
