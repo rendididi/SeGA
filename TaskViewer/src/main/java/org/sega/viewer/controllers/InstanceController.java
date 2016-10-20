@@ -48,7 +48,7 @@ public class InstanceController {
     @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.GET)
     public String showTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model)
             throws UnsupportedEncodingException {
-
+    	logger.debug("zhi xing le ma "+taskId);
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), taskId);
 

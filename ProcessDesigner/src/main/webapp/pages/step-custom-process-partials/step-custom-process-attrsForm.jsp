@@ -1,4 +1,4 @@
-<form class="form-panel f-cb" id="task-attrs">
+﻿<form class="form-panel f-cb" id="task-attrs">
 	<div class="container">
 		<div class="col-md-2">
 			<div class="form-group">
@@ -55,19 +55,19 @@
 		</div>
 		<div class="col-md-3">
 			<div class="form-group">
-        		<label for="sourceId">sourceId:</label>
+        		<label for="sourceId">资源Id:</label>
         		<input type="text" class="form-control"  id="sourceId" readonly>
     		</div>
 		</div>
 		<div class="col-md-3">
 			<div class="form-group">
-        		<label for="targetId">sourceId:</label>
+        		<label for="targetId">资源Id:</label>
         		<input type="text" class="form-control"  id="targetId" readonly>
     		</div>
 		</div>
 		<div class="col-md-3">
 			<div class="form-group">
-        		<label for="expression">Expression:</label>
+        		<label for="expression">表达式:</label>
         		<input type="text" class="form-control"  id="expression" >
    			</div>
 		</div>

@@ -36,4 +36,18 @@ public class ProcessService {
         }
         return processes;
     }
+    
+    public List<Process> getAllProcessesByCity(String city){
+        List<ProcessEdit> edit = processEditRepository.findByStep("published", new Sort(Sort.Direction.DESC, "datetime"));
+        List<Process> processes = new ArrayList<Process>();
+        if(edit != null){
+        	for(int i=0;i<edit.size();i++){
+            	if(edit.get(i).getProcess().getCity().equals(city)){
+            		processes.add(edit.get(i).getProcess());
+            	}
+                
+            }
+        }
+        return processes;
+    }
 }

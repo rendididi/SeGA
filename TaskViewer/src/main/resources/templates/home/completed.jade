@@ -10,9 +10,8 @@ block content
           img(src="/images/ongoing.png")
           span 待办
       li.active
-        a(href="/completed_processes")
-          img(src="/images/completed.png")
-          span 已办结
+        img(src="/images/completed.png")
+        span 已办结
       li
         a(href="/processes")
           img(src="/images/create.png")
@@ -37,14 +36,13 @@ block content
                   .info
                     .btn-edit
                         span.glyphicon.glyphicon-edit
-
-                    p.date #{instance.getCreatedAt()}
                     p.task
                       |任务:
                       span.emph #{taskNames.get(instance.getNextTask())}
                     p.description
                       |流程:
                       span.emph #{instance.getProcess().getName()}
+                    p.date1 #{instance.getCreatedAt()}
 
 
           div#my-pagination
@@ -53,7 +51,7 @@ block content
       $(function(){
           var options = {
             currentPage: #{page},
-            totalPages: #{totalPages},
+            totalPages: #{totalPages}+1,
             pageUrl: function(type, page, current){
                 return document.location.pathname+'?page='+(page-1);
             }
@@ -61,7 +59,6 @@ block content
           
           $('#my-pagination').bootstrapPaginator(options);
       });
-      
 
         
 

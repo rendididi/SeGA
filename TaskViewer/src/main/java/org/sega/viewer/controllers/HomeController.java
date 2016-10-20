@@ -53,7 +53,7 @@ public class HomeController {
 		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
     	if(instances != null && instances.getSize() != 0){
     		for(ProcessInstance instance : instances){
-        		if(instance.getProcess().getCity().equals(city)){
+        		if(instance.getProcess().getCity().equals(city) && !processInstanceService.getNextTaskName(instance).equals(ProcessInstance.STATE_COMPLETED)){
         			newInstances.add(instance);
         		}
         	}
@@ -61,6 +61,15 @@ public class HomeController {
 		Map<String, String> taskNameMap = new HashMap<String, String>();
 		for(ProcessInstance instance: instances){
 			taskNameMap.put(instance.getNextTask(), processInstanceService.getNextTaskName(instance));
+			if(processInstanceService.getNextTaskName(instance).equals(ProcessInstance.STATE_COMPLETED)){
+				try{
+					instance.setNextTask(ProcessInstance.STATE_COMPLETED);
+					processInstanceService.updateInstance(instance);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+			}
 		}
 		model.addAttribute("processType",0);
 		model.addAttribute("instances", newInstances);
@@ -78,9 +87,13 @@ public class HomeController {
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
 		city = getCity();
 		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
-    	if(instances != null && instances.getSize() != 0){
+    	logger.debug("completed================");
+		if(instances != null && instances.getSize() != 0){
     		for(ProcessInstance instance : instances){
-        		if(instance.getProcess().getCity().equals(city)){
+    			logger.debug(processInstanceService.getNextTaskName(instance)+","+processInstanceService.getNextTaskName(instance).equals(ProcessInstance.STATE_COMPLETED));
+
+        		if(instance.getProcess().getCity().equals(city) && processInstanceService.getNextTaskName(instance).equals(ProcessInstance.STATE_COMPLETED)){
+        			logger.debug("jin lai le  me jin lai le me");
         			newInstances.add(instance);
         		}
         	}

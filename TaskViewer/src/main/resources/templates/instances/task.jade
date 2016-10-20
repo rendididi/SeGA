@@ -21,7 +21,7 @@ block content
   
   #task-template(ng-controller="TaskController")
     form(method="post", action="/processes/instances/#{instance.getId()}/task/#{taskId}")
-      input(type="hidden", name='_csrf', value='#{_csrf.token}')
+      //-input(type="hidden", name='_csrf', value='#{_csrf.token}')
       !{templateHtml}
       //- button.btn.btn-default.btn-block(type="submit") Commit
       a.btn.btn-primary.btn-lg.btn-commit(ng-click="commitTask('/processes/instances/#{instance.getId()}/task/#{taskId}')") 提交

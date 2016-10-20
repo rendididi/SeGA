@@ -1,4 +1,4 @@
-    <div class="modal fade" id="read_write_modal" tabindex="-1" role="dialog" aria-labelledby="read_write_modal" ng-app="dataModal">
+﻿    <div class="modal fade" id="read_write_modal" tabindex="-1" role="dialog" aria-labelledby="read_write_modal" ng-app="dataModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.sega.viewer.models.Process;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
@@ -26,6 +28,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -49,13 +55,17 @@ public class ProcessesController {
     private static final int pageSize = 6;
     private static final Logger logger = LoggerFactory.getLogger(ProcessesController.class);
     @RequestMapping(value = "", method = GET)
-    public String processes(Model model){
-    	
+    public String processes(Model model,@RequestParam(defaultValue = "0") int page){
+    	page = page < 0 ? 0 : page;
+    	RequestAttributes ra = RequestContextHolder.getRequestAttributes();  
+        HttpServletRequest request = ((ServletRequestAttributes)ra).getRequest();
+        String city = (String) request.getSession().getAttribute("city");
     	logger.debug("zx=========1=====ProcessesController");
-    	List<Process> processes = processService.getAllProcesses();
+    	List<Process> processes = processService.getAllProcessesByCity(city);
         model.addAttribute("processes", processes);
         model.addAttribute("totalProcesses", processes.size());
-
+        model.addAttribute("page",page+1);
+        model.addAttribute("totalPages", processes.size() / pageSize);
         return "processes/index";
         
     }
@@ -100,8 +110,9 @@ public class ProcessesController {
         Node node = processJsonResolver.findNode(processInstance.getNextTask());
         model.addAttribute("nextTask", node);
         String page = "";
+        logger.debug("node node node node node node"+node.getId());
         if(node.getType().equals("sega.Task")){
-            page = "instances/show";
+            page = "redirect:/processes/instances/"+processInstance.getId()+"/task/"+node.getId();
         }else if(node.getType().equals("sega.Service")){
             page = "instances/show_service";
         }

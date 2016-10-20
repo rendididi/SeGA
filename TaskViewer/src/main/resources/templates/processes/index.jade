@@ -13,13 +13,12 @@ block content
           img(src="/images/ongoing.png")
           span 待办
       li
-        a(href="/completed_processes")
+        a(href="/completed")
           img(src="/images/completed.png")
           span 已办结
       li.active
-        a
-          img(src="/images/create.png")
-          span 受理
+        img(src="/images/create.png")
+        span 受理
 
 
   .container
@@ -39,3 +38,16 @@ block content
                   img.check(src="/images/search.png")
                 form(method="post",action="/processes/#{process.getId()}",id="form-#{process.getId()}")
                   input(type="hidden", name='_csrf', value='#{_csrf.token}')
+          div#my-pagination
+          
+    script 
+      $(function(){
+          var options = {
+            currentPage: #{page},
+            totalPages: #{totalPages}+1,
+            pageUrl: function(type, page, current){
+                return document.location.pathname+'?page='+(page-1);
+            }
+          };
+          $('#my-pagination').bootstrapPaginator(options);
+      });
