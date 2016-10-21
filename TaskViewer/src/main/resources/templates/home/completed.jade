@@ -29,21 +29,20 @@ block content
         .col-md-10.col-md-offset-1
           ul.list-unstyled#activityList
             for instance in instances
-              li
-                //-a.btn-activity(href="/processes/instances/#{instance.getId()}")
-                a.btn-activity
-                  img.activityImg(src="/images/list.png")
+              li(style="width:100%;min-height:0px")
+                a.btn-activity(href="/processes/instances/#{instance.getId()}")
+                  img.activityImg(src="/images/list.png",style="width:21px;height:21px")
 
                   .info
                     .btn-edit
                         span.glyphicon.glyphicon-edit
-                    p.task
+                    span.task(style="margin-right:10%")
                       |任务:
                       span.emph #{taskNames.get(instance.getNextTask())}
-                    p.description
+                    span.description(style="margin-right:10%")
                       |流程:
                       span.emph #{instance.getProcess().getName()}
-                    p.date1 #{instance.getCreatedAt()}
+                    span.date1 #{instance.getCreatedAt()}
 
 
           div#my-pagination

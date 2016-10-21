@@ -86,7 +86,7 @@ public class InstanceController {
     @ResponseBody
     public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, @RequestBody String entity)
             throws UnsupportedEncodingException, MalformedURLException {
-
+    	logger.debug("这是不是也调用了ppppppppppppppppp");
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         processInstanceService.writeEntity(new JSONObject(entity), instance, taskId);
 
@@ -96,8 +96,9 @@ public class InstanceController {
             //Commit to JTang Server
             //DEMO:String nextTask = jtangEngineService.commitTask(instance);
             String nextTask = tasksResolver.getNextTask(taskId);
-
+            
             //persist instance
+            
             instance.setNextTask(nextTask);
             processInstanceService.updateInstance(instance);
 

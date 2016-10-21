@@ -108,14 +108,18 @@ public class ProcessesController {
 
         ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
         Node node = processJsonResolver.findNode(processInstance.getNextTask());
-        model.addAttribute("nextTask", node);
         String page = "";
-        logger.debug("node node node node node node"+node.getId());
-        if(node.getType().equals("sega.Task")){
-            page = "redirect:/processes/instances/"+processInstance.getId()+"/task/"+node.getId();
-        }else if(node.getType().equals("sega.Service")){
-            page = "instances/show_service";
+        if(node != null){
+        	model.addAttribute("nextTask", node);
+            if(node.getType().equals("sega.Task")){
+                page = "redirect:/processes/instances/"+processInstance.getId()+"/task/"+node.getId();
+            }else if(node.getType().equals("sega.Service")){
+                page = "instances/show_service";
+            }
+        }else{
+        	page = "";
         }
+        
         return page;
     }
 
