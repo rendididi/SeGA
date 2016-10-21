@@ -206,7 +206,7 @@ public class ProcessInstanceService {
                 if(task.getString("id").equals(instance.getNextTask())){
                 	logger.debug("is compelted ======="+task.getString("type"));
                     if(task.getString("type").equals("sega.End"))
-                        return "completed";
+                        return "已办结";
                     else if(task.getString("type").equals("sega.Task"))
                         return task.getJSONObject("attrs").getJSONObject("data").getString("name");
                 }

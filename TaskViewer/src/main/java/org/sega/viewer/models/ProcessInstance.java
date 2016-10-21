@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "process_instances")
 @Data
 public class ProcessInstance extends BaseModel{
-    public static final String STATE_COMPLETED = "completed";
+    public static final String STATE_COMPLETED = "已办结";
     public static final String EMPTY_KEY_VALUE = "NEW";
 
     @ManyToOne

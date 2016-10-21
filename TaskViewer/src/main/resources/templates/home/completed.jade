@@ -30,7 +30,8 @@ block content
           ul.list-unstyled#activityList
             for instance in instances
               li
-                a.btn-activity(href="/processes/instances/#{instance.getId()}")
+                //-a.btn-activity(href="/processes/instances/#{instance.getId()}")
+                a.btn-activity
                   img.activityImg(src="/images/list.png")
 
                   .info
