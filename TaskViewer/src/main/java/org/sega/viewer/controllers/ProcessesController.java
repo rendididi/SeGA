@@ -108,7 +108,7 @@ public class ProcessesController {
 
         ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(processInstance.getProcess().getProcessJSON());
         Node node = processJsonResolver.findNode(processInstance.getNextTask());
-        String page = ""; 
+        String page = "";  
         if(node != null){
         	model.addAttribute("nextTask", node);
             if(node.getType().equals("sega.Task")){

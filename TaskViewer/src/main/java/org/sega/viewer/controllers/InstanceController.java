@@ -90,7 +90,7 @@ public class InstanceController {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         processInstanceService.writeEntity(new JSONObject(entity), instance, taskId);
 
-        try {
+        try { 
             TasksResolver tasksResolver = new TasksResolver(instance.getProcess().getBindingJson(), instance.getProcess().getProcessJSON());
             
             //Commit to JTang Server
