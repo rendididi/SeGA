@@ -1,0 +1,56 @@
+extends ../layout/app
+
+block content
+  .row#user-area
+    .avatar.col-sm-12
+      img.userImg(src="/images/user/operator.png", style="height:90px;width:90px;")
+    ul.task-menu.list-unstyled.nav.navbar-nav
+      li
+        a(href="/")
+          img(src="/images/ongoing.png")
+          span 待办
+      li.active
+        img(src="/images/completed.png")
+        span 已办结
+      li
+        a(href="/processes")
+          img(src="/images/create.png")
+          span 受理
+  .container
+    .g-content
+      .m-activity
+        h3
+          //span Completed Activities
+          span 已办结活动
+          span.badge  #{totalInstances}
+
+        .col-md-10.col-md-offset-1
+          .panel.panel-default
+            .panel-heading
+              h3.panel-title #{data}
+            .panel-body
+              table.table.table-hover.table-bordered.table-stripped
+                tbody
+                each val,index in map
+                  tr
+                    td 字段名1
+                    td 字段值1
+                    td 字段名2
+                    td 字段值2
+          .panel.panel-default
+            .panel-heading
+              h3.panel-title 
+            .panel-body
+              table.table.table-hover.table-bordered.table-stripped
+                tbody
+                  tr
+                    td 字段名1
+                    td 字段值1
+                    td 字段名2
+                    td 字段值2
+                  tr
+                    td 字段名3
+                    td 字段值3
+                    td 字段名4
+                    td 字段值4
+                  

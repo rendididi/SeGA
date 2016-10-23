@@ -22,7 +22,13 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 /**
  * @author Raysmond<i@raysmond.com>
  */
@@ -98,7 +104,9 @@ public class InstanceController {
             String nextTask = tasksResolver.getNextTask(taskId);
             
             //persist instance
-            
+            Map map = new HashMap();
+            map.put("instance",instance);
+           // JSONObject jsonObject = JSONObject.fromObject(map);
             instance.setNextTask(nextTask);
             processInstanceService.updateInstance(instance);
 

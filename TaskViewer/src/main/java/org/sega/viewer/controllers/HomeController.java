@@ -5,12 +5,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.minidev.json.parser.JSONParser;
 
+import org.json.JSONObject;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.repositories.ProcessRepository;
@@ -110,6 +114,28 @@ public class HomeController {
 		model.addAttribute("page", page+1);
 		model.addAttribute("totalPages", newInstances.size() /pageSize);
 		return principal != null ? "home/completed" : "users/signin";
+	}
+	
+	//completed_detail
+	@RequestMapping(value = "/completed_detail/{instanceId:\\d+}",method=RequestMethod.GET)
+	public String showDetail(Principal principal,@PathVariable Long instanceId,Model model){
+		ProcessInstance instance = processInstanceRepository.findOne(instanceId);
+		try{
+			//JSONParser jp = new JSONParser(JSONParser.MODE_JSON_SIMPLE);
+			//HashMap<String, String> data = new HashMap<String, String>();  
+            //net.minidev.json.JSONObject o1 = (net.minidev.json.JSONObject) jp.parse(instance.getEntity()!=null?instance.getEntity().toString():"{}");
+			//JSONObject object = JSONObject.fromObject(o1);
+			String mapString = instance.getEntity()!=null?instance.getEntity().toString():"{}";
+			 Map map = new HashMap();  
+			  java.util.StringTokenizer items;  
+			  for(StringTokenizer entrys = new StringTokenizer(mapString, "^");entrys.hasMoreTokens();   
+			    map.put(items.nextToken(), items.hasMoreTokens() ? ((Object) (items.nextToken())) : null))  
+			      items = new StringTokenizer(entrys.nextToken(), "'");  
+			model.addAttribute("data",map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return principal != null ? "home/completed_detail" : "users/signin";
 	}
 	
 	//selection by wxf
