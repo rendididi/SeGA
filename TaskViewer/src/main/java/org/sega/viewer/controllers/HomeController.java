@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import net.minidev.json.parser.JSONParser;
 
 import org.json.JSONObject;
-import org.sega.viewer.models.Approve;
 import org.sega.viewer.models.ProcessInstance;
-import org.sega.viewer.repositories.ApproveRespository;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.repositories.ProcessRepository;
 import org.sega.viewer.services.ProcessInstanceService;
@@ -44,7 +42,6 @@ public class HomeController {
 	private ProcessInstanceRepository processInstanceRepository;
 	@Autowired
 	private ProcessRepository processRepository;
-	private ApproveRespository approveRepository;
 	@Autowired
 	private ProcessInstanceService processInstanceService;
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -124,11 +121,7 @@ public class HomeController {
 	public String showDetail(Principal principal,@PathVariable Long instanceId,Model model){
 		ProcessInstance instance = processInstanceRepository.findOne(instanceId);
 		logger.debug("completed_detail========================");
-		List<Approve> approves = approveRepository.findAll();
-		
-		logger.debug("11111111111111111111111111111111111111111");
-		logger.debug("approves:========================"+approves.size());
-		/*try{
+		try{
 			//JSONParser jp = new JSONParser(JSONParser.MODE_JSON_SIMPLE);
 			//HashMap<String, String> data = new HashMap<String, String>();  
             //net.minidev.json.JSONObject o1 = (net.minidev.json.JSONObject) jp.parse(instance.getEntity()!=null?instance.getEntity().toString():"{}");
@@ -140,11 +133,9 @@ public class HomeController {
 			    map.put(items.nextToken(), items.hasMoreTokens() ? ((Object) (items.nextToken())) : null))  
 			      items = new StringTokenizer(entrys.nextToken(), "'");  
 			model.addAttribute("data",map);
-			model.addAttribute("approves",approves);
 		}catch(Exception e){
 			e.printStackTrace();
-		}*/
-		model.addAttribute("approves",approves);
+		}
 		return principal != null ? "home/completed_detail" : "users/signin";
 	}
 	
