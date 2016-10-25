@@ -11,14 +11,16 @@ spring:
         caching: false
 
     dataSource:
-      mysql1:
+      uar:
+        type: org.apache.tomcat.jdbc.pool.DataSource
         driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com/uar
         username: sega_tester
         password: sega_tester123
-      mysql2:
+      edb:
+        type: org.apache.tomcat.jdbc.pool.DataSource
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com/uar
+        url: jdbc:mysql://rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com/edb
         username: sega_tester
         password: sega_tester123
 

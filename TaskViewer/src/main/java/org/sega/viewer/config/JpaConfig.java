@@ -8,6 +8,9 @@ import org.sega.viewer.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -23,27 +26,25 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = Application.class)
-abstract
-class JpaConfig implements TransactionManagementConfigurer {
 
-    @Value("${spring.dataSource.mysql1.driverClassName}")
+public class JpaConfig {
+
+    @Value("${spring.dataSource.uar.driverClassName}")
     private String driver1;
-    @Value("${spring.dataSource.mysql1.url}")
+    @Value("${spring.dataSource.uar.url}")
     private String url1;
-    @Value("${spring.dataSource.mysql1.username}")
+    @Value("${spring.dataSource.uar.username}")
     private String username1;
-    @Value("${spring.dataSource.mysql1.password}")
+    @Value("${spring.dataSource.uar.password}")
     private String password1;
     
-    @Value("${spring.dataSource.mysql2.driverClassName}")
+    @Value("${spring.dataSource.edb.driverClassName}")
     private String driver2;
-    @Value("${spring.dataSource.mysql2.url}")
+    @Value("${spring.dataSource.edb.url}")
     private String url2;
-    @Value("${spring.dataSource.mysql2.username}")
+    @Value("${spring.dataSource.edb.username}")
     private String username2;
-    @Value("${spring.dataSource.mysql2.password}")
+    @Value("${spring.dataSource.edb.password}")
     private String password2;
     
     @Value("${spring.hibernate.dialect}")
@@ -55,8 +56,9 @@ class JpaConfig implements TransactionManagementConfigurer {
     private static final Logger logger = LoggerFactory.getLogger(JpaConfig.class);
     @Bean
     @Primary
+    @ConfigurationProperties(prefix = "spring.dataSource.uar")
     public DataSource configureDataSource1() {
-        HikariConfig config = new HikariConfig();
+        /*HikariConfig config = new HikariConfig();
         logger.debug("driver1====================:"+driver1);
         config.setDriverClassName(driver1);
         config.setJdbcUrl(url1);
@@ -68,13 +70,14 @@ class JpaConfig implements TransactionManagementConfigurer {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        config.addDataSourceProperty("useServerPrepStmts", "true");
-
-        return new HikariDataSource(config);
+        config.addDataSourceProperty("useServerPrepStmts", "true");*/
+        return DataSourceBuilder.create().build();
+        //return new HikariDataSource(config);
     }
     @Bean
+    @ConfigurationProperties(prefix = "spring.dataSource.edb")
     public DataSource configureDataSource2() {
-        HikariConfig config = new HikariConfig();
+        /*HikariConfig config = new HikariConfig();
         logger.debug("driver2=======================:"+driver2);
         config.setDriverClassName(driver2);
         config.setJdbcUrl(url2);
@@ -86,55 +89,45 @@ class JpaConfig implements TransactionManagementConfigurer {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        config.addDataSourceProperty("useServerPrepStmts", "true");
+        config.addDataSourceProperty("useServerPrepStmts", "true");*/
 
-        return new HikariDataSource(config);
+       // return new HikariDataSource(config);
+        return DataSourceBuilder.create().build();
     }
     
     @Bean(name = "entityManagerFactory1")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory1() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(configureDataSource1());
-        entityManagerFactoryBean.setPackagesToScan("org.sega.viewer");
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-
-        Properties jpaProperties = new Properties();
-        jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
-        jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddlAuto);
-        jpaProperties.put(org.hibernate.cfg.Environment.SHOW_SQL, showSql);
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
-
-        return entityManagerFactoryBean;
+    @Primary
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory1(EntityManagerFactoryBuilder b) {
+    	 LocalContainerEntityManagerFactoryBean em = b
+                 .dataSource(configureDataSource1())
+                 .persistenceUnit("uar")
+                 .build();
+    	 Properties properties = new Properties();
+         properties.setProperty("hibernate.physical_naming_strategy", "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl");
+         em.setJpaProperties(properties);
+         return em;
     }
 
     @Bean(name = "entityManagerFactory2")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory2() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(configureDataSource2());
-        entityManagerFactoryBean.setPackagesToScan("org.sega.viewer");
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-
-        Properties jpaProperties = new Properties();
-        jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
-        jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddlAuto);
-        jpaProperties.put(org.hibernate.cfg.Environment.SHOW_SQL, showSql);
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
-
-        return entityManagerFactoryBean;
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory2(EntityManagerFactoryBuilder builder) {
+    	 LocalContainerEntityManagerFactoryBean em = builder
+                 .dataSource(configureDataSource2())
+                 .persistenceUnit("edb")
+                 .build();
+         Properties properties = new Properties();
+         properties.setProperty("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
+         em.setJpaProperties(properties);
+         return em;
     }
     
     @Bean(name = "mysql1TransactionManager")
     @Primary
-    public PlatformTransactionManager annotationDrivenTransactionManager1() {
-    	JpaTransactionManager manager = new JpaTransactionManager();  
-        manager.setEntityManagerFactory(entityManagerFactory1().getObject());  
-        return manager;  
+    public PlatformTransactionManager annotationDrivenTransactionManager1(EntityManagerFactoryBuilder builder) {
+    	return new JpaTransactionManager(entityManagerFactory1(builder).getObject());
     }
     
     @Bean(name = "mysql2TransactionManager")
-    public PlatformTransactionManager annotationDrivenTransactionManager2() {
-    	JpaTransactionManager manager = new JpaTransactionManager();  
-        manager.setEntityManagerFactory(entityManagerFactory2().getObject());  
-        return manager; 
+    public PlatformTransactionManager annotationDrivenTransactionManager2(EntityManagerFactoryBuilder builder) {
+    	return new JpaTransactionManager(entityManagerFactory2(builder).getObject());
     }
 }
