@@ -72,25 +72,6 @@ class JpaConfig implements TransactionManagementConfigurer {
 
         return new HikariDataSource(config);
     }
-    @Bean
-    public DataSource configureDataSource2() {
-        HikariConfig config = new HikariConfig();
-        logger.debug("driver2=======================:"+driver2);
-        config.setDriverClassName(driver2);
-        config.setJdbcUrl(url2);
-        config.setUsername(username2);
-        config.setPassword(password2);
-
-        config.addDataSourceProperty("useUnicode", "true");
-        config.addDataSourceProperty("characterEncoding", "utf8");
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        config.addDataSourceProperty("useServerPrepStmts", "true");
-
-        return new HikariDataSource(config);
-    }
-    
     @Bean(name = "entityManagerFactory1")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory1() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -106,23 +87,6 @@ class JpaConfig implements TransactionManagementConfigurer {
 
         return entityManagerFactoryBean;
     }
-
-    @Bean(name = "entityManagerFactory2")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory2() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(configureDataSource2());
-        entityManagerFactoryBean.setPackagesToScan("org.sega.viewer");
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-
-        Properties jpaProperties = new Properties();
-        jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, dialect);
-        jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, hbm2ddlAuto);
-        jpaProperties.put(org.hibernate.cfg.Environment.SHOW_SQL, showSql);
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
-
-        return entityManagerFactoryBean;
-    }
-    
     @Bean(name = "mysql1TransactionManager")
     @Primary
     public PlatformTransactionManager annotationDrivenTransactionManager1() {
@@ -131,10 +95,4 @@ class JpaConfig implements TransactionManagementConfigurer {
         return manager;  
     }
     
-    @Bean(name = "mysql2TransactionManager")
-    public PlatformTransactionManager annotationDrivenTransactionManager2() {
-    	JpaTransactionManager manager = new JpaTransactionManager();  
-        manager.setEntityManagerFactory(entityManagerFactory2().getObject());  
-        return manager; 
-    }
 }
