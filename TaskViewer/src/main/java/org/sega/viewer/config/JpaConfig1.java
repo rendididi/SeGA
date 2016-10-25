@@ -24,16 +24,16 @@ import org.sega.viewer.controllers.HomeController;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = Application.class,entityManagerFactoryRef="entityManagerFactory1",transactionManagerRef = "mysql1TransactionManager")
-class JpaConfigMysql1 implements TransactionManagementConfigurer {
+@EnableJpaRepositories(basePackageClasses = Application.class)
+class JpaConfig1 implements TransactionManagementConfigurer {
 
-    @Value("${spring.dataSource.mysql1.driverClassName}")
+    @Value("${spring.dataSource.mysql.driverClassName}")
     private String driver;
-    @Value("${spring.dataSource.mysql1.url}")
+    @Value("${spring.dataSource.mysql.url}")
     private String url;
-    @Value("${spring.dataSource.mysql1.username}")
+    @Value("${spring.dataSource.mysql.username}")
     private String username;
-    @Value("${spring.dataSource.mysql1.password}")
+    @Value("${spring.dataSource.mysql.password}")
     private String password;
     @Value("${spring.hibernate.dialect}")
     private String dialect;
@@ -41,9 +41,9 @@ class JpaConfigMysql1 implements TransactionManagementConfigurer {
     private String hbm2ddlAuto;
     @Value("${spring.hibernate.show_sql}")
     private Boolean showSql;
-    private static final Logger logger = LoggerFactory.getLogger(JpaConfigMysql1.class);
+    private static final Logger logger = LoggerFactory.getLogger(JpaConfig1.class);
     @Bean
-    public DataSource configureDataSource1() {
+    public DataSource configureDataSource() {
         HikariConfig config = new HikariConfig();
         logger.debug("driver driver driver driver driver driver :"+driver);
         config.setDriverClassName(driver);
@@ -62,9 +62,9 @@ class JpaConfigMysql1 implements TransactionManagementConfigurer {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory1() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(configureDataSource1());
+        entityManagerFactoryBean.setDataSource(configureDataSource());
         entityManagerFactoryBean.setPackagesToScan("org.sega.viewer");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
@@ -77,7 +77,7 @@ class JpaConfigMysql1 implements TransactionManagementConfigurer {
         return entityManagerFactoryBean;
     }
 
-    @Bean(name = "mysql1TransactionManager")
+    @Bean(name = "transactionManager")
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         return new JpaTransactionManager();
     }
