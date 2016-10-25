@@ -11,7 +11,12 @@ spring:
         caching: false
 
     dataSource:
-      mysql:
+      mysql1:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com/uar
+        username: sega_tester
+        password: sega_tester123
+      mysql2:
         driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com/uar
         username: sega_tester
