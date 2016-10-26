@@ -139,7 +139,7 @@ public class HomeController {
 	        ResultSetMetaData md = rs.getMetaData();
 	        int columnCount = md.getColumnCount();
 	        HashMap map = new HashMap();
-	        while(rs.next()){
+	        while(rs.next()){ 
 	            for (int i = 1; i <= columnCount; i++) {
 	            	if(rs.getObject(i) == null){
 	            		map.put(md.getColumnName(i)," ");

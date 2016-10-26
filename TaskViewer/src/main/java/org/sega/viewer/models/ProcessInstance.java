@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 public class ProcessInstance extends BaseModel{
     public static final String STATE_COMPLETED = "已办结";
-    public static final String EMPTY_KEY_VALUE = "NEW";
+    public static final String EMPTY_KEY_VALUE = "NEW"; 
 
     private Integer businessId;
     

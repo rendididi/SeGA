@@ -70,7 +70,7 @@ class JpaConfig implements TransactionManagementConfigurer {
         jpaProperties.put(org.hibernate.cfg.Environment.SHOW_SQL, showSql);
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
-        return entityManagerFactoryBean;
+        return entityManagerFactoryBean; 
     }
 
     @Bean(name = "transactionManager")
