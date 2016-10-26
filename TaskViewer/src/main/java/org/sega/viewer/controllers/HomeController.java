@@ -3,6 +3,10 @@ package org.sega.viewer.controllers;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.security.Principal;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,6 +23,7 @@ import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.repositories.ProcessRepository;
 import org.sega.viewer.services.ProcessInstanceService;
+import org.sega.viewer.services.support.MysqlConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +52,7 @@ public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private static final int pageSize = 6;
 	String city = null;
+	private Connection connection;
 	@RequestMapping(value = "", method = GET)
 	public String index(Principal principal, @RequestParam(defaultValue = "0") int page, Model model) {
 		page = page < 0 ? 0 : page;
@@ -120,22 +126,35 @@ public class HomeController {
 	@RequestMapping(value = "/completed_detail/{instanceId:\\d+}",method=RequestMethod.GET)
 	public String showDetail(Principal principal,@PathVariable Long instanceId,Model model){
 		ProcessInstance instance = processInstanceRepository.findOne(instanceId);
+		model.addAttribute("instance",instance);
 		logger.debug("completed_detail========================");
 		try{
-			//JSONParser jp = new JSONParser(JSONParser.MODE_JSON_SIMPLE);
-			//HashMap<String, String> data = new HashMap<String, String>();  
-            //net.minidev.json.JSONObject o1 = (net.minidev.json.JSONObject) jp.parse(instance.getEntity()!=null?instance.getEntity().toString():"{}");
-			//JSONObject object = JSONObject.fromObject(o1);
-			String mapString = instance.getEntity()!=null?instance.getEntity().toString():"{}";
-			 Map map = new HashMap();  
-			  java.util.StringTokenizer items;  
-			  for(StringTokenizer entrys = new StringTokenizer(mapString, "^");entrys.hasMoreTokens();   
-			    map.put(items.nextToken(), items.hasMoreTokens() ? ((Object) (items.nextToken())) : null))  
-			      items = new StringTokenizer(entrys.nextToken(), "'");  
-			model.addAttribute("data",map);
+			MysqlConnection mysql = new MysqlConnection(instance.getProcess().getDbconfig());
+			logger.debug("name ==============="+instance.getProcess().getName());
+	        connection = mysql.open();
+	        Statement stm = connection.createStatement();
+	        String sql = "select * from tpg_gzfsqspb t where t.YWSLID = "+instance.getBusinessId();
+	        ResultSet rs = stm.executeQuery(sql);
+	        
+	        ResultSetMetaData md = rs.getMetaData();
+	        int columnCount = md.getColumnCount();
+	        HashMap map = new HashMap();
+	        while(rs.next()){
+	            for (int i = 1; i <= columnCount; i++) {
+	            	if(rs.getObject(i) == null){
+	            		map.put(md.getColumnName(i)," ");
+	            	}else{
+	            		map.put(md.getColumnName(i), rs.getObject(i)+" ");
+	            	}
+	            }
+	        }
+	        
+	        
+	        model.addAttribute("map",map);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
 		return principal != null ? "home/completed_detail" : "users/signin";
 	}
 	

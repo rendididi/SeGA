@@ -6,9 +6,6 @@ import javax.sql.DataSource;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,21 +16,21 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
+
 import org.sega.viewer.Application;
-import org.sega.viewer.controllers.HomeController;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = Application.class,entityManagerFactoryRef="entityManagerFactory1",transactionManagerRef = "mysql1TransactionManager")
-class JpaConfigMysql1 implements TransactionManagementConfigurer {
+@EnableJpaRepositories(basePackageClasses = Application.class)
+class JpaConfig implements TransactionManagementConfigurer {
 
-    @Value("${spring.dataSource.mysql1.driverClassName}")
+    @Value("${spring.dataSource.driverClassName}")
     private String driver;
-    @Value("${spring.dataSource.mysql1.url}")
+    @Value("${spring.dataSource.url}")
     private String url;
-    @Value("${spring.dataSource.mysql1.username}")
+    @Value("${spring.dataSource.username}")
     private String username;
-    @Value("${spring.dataSource.mysql1.password}")
+    @Value("${spring.dataSource.password}")
     private String password;
     @Value("${spring.hibernate.dialect}")
     private String dialect;
@@ -41,11 +38,10 @@ class JpaConfigMysql1 implements TransactionManagementConfigurer {
     private String hbm2ddlAuto;
     @Value("${spring.hibernate.show_sql}")
     private Boolean showSql;
-    private static final Logger logger = LoggerFactory.getLogger(JpaConfigMysql1.class);
+
     @Bean
-    public DataSource configureDataSource1() {
+    public DataSource configureDataSource() {
         HikariConfig config = new HikariConfig();
-        logger.debug("driver driver driver driver driver driver :"+driver);
         config.setDriverClassName(driver);
         config.setJdbcUrl(url);
         config.setUsername(username);
@@ -62,9 +58,9 @@ class JpaConfigMysql1 implements TransactionManagementConfigurer {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory1() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(configureDataSource1());
+        entityManagerFactoryBean.setDataSource(configureDataSource());
         entityManagerFactoryBean.setPackagesToScan("org.sega.viewer");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
@@ -77,7 +73,7 @@ class JpaConfigMysql1 implements TransactionManagementConfigurer {
         return entityManagerFactoryBean;
     }
 
-    @Bean(name = "mysql1TransactionManager")
+    @Bean(name = "transactionManager")
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         return new JpaTransactionManager();
     }

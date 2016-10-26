@@ -11,7 +11,7 @@ import java.sql.SQLException;
  */
 public class MysqlConnection {
     private static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String MYSQL_CONNECTION_URL = "jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=UTF-8";
+    private static final String MYSQL_CONNECTION_URL = "jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
 
     private Connection connection = null;
     private DatabaseConfiguration edb;

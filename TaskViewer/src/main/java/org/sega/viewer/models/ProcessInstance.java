@@ -18,7 +18,17 @@ public class ProcessInstance extends BaseModel{
     public static final String STATE_COMPLETED = "已办结";
     public static final String EMPTY_KEY_VALUE = "NEW";
 
-    @ManyToOne
+    private Integer businessId;
+    
+    public Integer getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(Integer businessId) {
+		this.businessId = businessId;
+	}
+
+	@ManyToOne
     private Process process;
 
     public Process getProcess() {
