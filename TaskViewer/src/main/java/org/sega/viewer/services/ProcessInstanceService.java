@@ -192,7 +192,9 @@ public class ProcessInstanceService {
 
         ProcessJsonResolver processJsonResolver = new ProcessJsonResolver(process.getProcessJSON());
         instance.setNextTask(processJsonResolver.getNextTask(null).getId());
-
+        
+        //创建业务实例id
+        //instance.setBusinessId(businessId);
         instanceRepository.save(instance);
 
         return instance;
