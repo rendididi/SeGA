@@ -1,5 +1,16 @@
 package org.sega.viewer.controllers;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import org.sega.viewer.models.ProcessInstance;
@@ -16,19 +27,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import net.minidev.json.parser.JSONParser;
-import net.minidev.json.parser.ParseException;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 /**
  * @author Raysmond<i@raysmond.com>
  */
@@ -102,14 +108,25 @@ public class InstanceController {
             //Commit to JTang Server
             //DEMO:String nextTask = jtangEngineService.commitTask(instance);
             String nextTask = tasksResolver.getNextTask(taskId);
-            
+            RequestAttributes ra = RequestContextHolder.getRequestAttributes();  
+            HttpServletRequest request = ((ServletRequestAttributes)ra).getRequest();
+            String username = (String) request.getSession().getAttribute("username");
             //persist instance
             Map map = new HashMap();
-            map.put("instance",instance);
-           // JSONObject jsonObject = JSONObject.fromObject(map);
+            String operate = "";
+            if(instance.getOperatorandtime() != null){
+            	operate = instance.getOperatorandtime();
+            }
+            String taskName = processInstanceService.getNextTaskName(instance);
+            Date date=new Date(); 
+            SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+            //process_instance 表中  operatorandtime字段的格式  当前环节名称/张三,2016-10-27
+            String newStr = taskName +"/"+username+","+df.format(date)+";";
+            
             instance.setNextTask(nextTask);
+            instance.setOperatorandtime(operate + newStr);
             processInstanceService.updateInstance(instance);
-
+            
             //Sync to EDB
             if (tasksResolver.getTask(taskId).isSyncPoint()) {
                 //DEMO:edbService.sync(instance);

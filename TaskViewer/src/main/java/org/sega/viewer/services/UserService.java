@@ -53,6 +53,7 @@ public class UserService implements UserDetailsService {
     	RequestAttributes ra = RequestContextHolder.getRequestAttributes();  
 	    HttpServletRequest request = ((ServletRequestAttributes)ra).getRequest(); 
 	    request.getSession().setAttribute("city",username.split(",")[1] );
+	    request.getSession().setAttribute("username", name);
         User user = userRepository.findByEmail(name);
         if (user == null) {
             throw new UsernameNotFoundException("User with name " + name +" is not found.");

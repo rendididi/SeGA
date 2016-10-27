@@ -126,7 +126,13 @@ public class HomeController {
 	@RequestMapping(value = "/completed_detail/{instanceId:\\d+}",method=RequestMethod.GET)
 	public String showDetail(Principal principal,@PathVariable Long instanceId,Model model){
 		ProcessInstance instance = processInstanceRepository.findOne(instanceId);
+		String operateContent = instance.getOperatorandtime();
+		List<String> list = new ArrayList<String>();
+		for(int i = 0;i<operateContent.split(";").length;i++){
+			list.add(operateContent.split(";")[i]);
+		}
 		model.addAttribute("instance",instance);
+		model.addAttribute("operate",list);
 		logger.debug("completed_detail========================");
 		try{
 			MysqlConnection mysql = new MysqlConnection(instance.getProcess().getDbconfig());

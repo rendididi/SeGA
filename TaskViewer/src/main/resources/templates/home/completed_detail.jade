@@ -187,3 +187,20 @@ block content
                     td #{map.get("ZSSFTG")}
                     td 终审意见
                     td(colspan="3") #{map.get("ZSYJ")}
+                    
+          .panel.panel-default
+            .panel-heading
+              h3.panel-title 
+            .panel-body
+              table.table.table-hover.table-bordered.table-stripped
+                thead
+                  th 任务名称
+                  th 操作人名称
+                  th 操作时间
+                tbody
+                each list,index in operate
+                  tr
+                    td #{list.split("/").get(0)}
+                    td #{list.split("/").get(1).split(",").get(0)}
+                    td #{list.split("/").get(1).split(",").get(1)}
+                    

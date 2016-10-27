@@ -19,8 +19,17 @@ public class ProcessInstance extends BaseModel{
     public static final String EMPTY_KEY_VALUE = "NEW"; 
 
     private Integer businessId;
+    private String operatorandtime;
     
-    public Integer getBusinessId() {
+	public String getOperatorandtime() {
+		return operatorandtime;
+	}
+
+	public void setOperatorandtime(String operatorandtime) {
+		this.operatorandtime = operatorandtime;
+	}
+
+	public Integer getBusinessId() {
 		return businessId;
 	}
 
