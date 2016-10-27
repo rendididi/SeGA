@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿ <%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html lang="zh-CN" >
@@ -16,6 +17,7 @@
   </style>
 </head>
 <body style="min-width:998px" >
+<%@include file="/partials/i18n.jsp" %>
   <header>
     <%int step=0; %>
     <%@include file="/partials/navbar.jspf" %>

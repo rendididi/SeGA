@@ -1,3 +1,4 @@
+ <%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
@@ -6,6 +7,8 @@
 	<%@include file="/partials/common_header.jspf" %>
 	<link href="<s:url value="css/login.css" />" rel="stylesheet">
 </head>
+    <%@include file="/partials/i18n.jsp" %>
+
 <body class="login-bg">
     <nav class="navbar navbar-fixed-top">
       <div class="container">
@@ -16,13 +19,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><span style="color:#f9f9f9;font-weight:200;">住房保障公共服务平台</span></a>
+          <a class="navbar-brand" href="#"><span style="color:#f9f9f9;font-weight:200;"><%=myResourceBundle.getString("projecttitle") %></span></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">流程设计</a></li>
-            <li><a href="<s:text name="taskviewer.url"/>">业务办理</a></li>
-            <li><a href="#about">关于</a></li>
+            <li class="active"><a href="#"><%=myResourceBundle.getString("processdesigner") %></a></li>
+            <li><a href="<s:text name="taskviewer.url"/>"><%=myResourceBundle.getString("taskviewer") %></a></li>
+            <li><a href="#about"><%=myResourceBundle.getString("about") %></a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -35,20 +38,20 @@
     <section class="container login">
     	<div class="col-md-4 col-md-offset-1 login-container">
     		<img src="/images/user/expert.png" width="128px" height="128px"/>
-        <div class="title"><h2>业务专家</h2></div>  
+        <div class="title"><h2><%=myResourceBundle.getString("businessexpert") %></h2></div>  
     		<div class="login-panel">
           <ul>
             <li>
               <img src="/images/step_detail/step-process-select.png" width="28px" height="28px"/>
-              流程选择
+              <%=myResourceBundle.getString("processselect") %>
             </li>
             <li>
               <img src="/images/step_detail/step-custom-entity.png" width="28px" height="28px"/>
-              自定义实体
+              <%=myResourceBundle.getString("customizeentity") %>
             </li>
             <li>
               <img src="/images/step_detail/step-custom-process.png" width="28px" height="28px"/>
-              自定义流程
+              <%=myResourceBundle.getString("customizeprocess") %>
             </li>
           </ul>
           <s:form action="dologin">
@@ -56,31 +59,31 @@
           <div class="login-city-box">
           	<img src="/images/mark.png" style="width:28px;height:28px;" />
           	<select class="form-control changeSelectBg" name="processCity">
-          		<option value="0571">杭州</option>
-          		<option value="0570">衢州</option>
-          		<option value="0991">乌鲁木齐</option>
+          		<option value="0571"><%=myResourceBundle.getString("hz") %></option>
+          		<option value="0570"><%=myResourceBundle.getString("qz") %></option>
+          		<option value="0991"><%=myResourceBundle.getString("xj") %></option>
           	</select>
           </div>
-          <button class="btn btn-default btn-block btn-bussiiness" type="submit">登录</button>
+          <button class="btn btn-default btn-block btn-bussiiness" type="submit"><%=myResourceBundle.getString("login") %></button>
           </s:form>
         </div>
     	</div>
       <div class="col-md-4 col-md-offset-2 login-container">
         <img src="/images/user/developer.png" width="128px" height="128px"/>
-        <div class="title"><h2>开发工程师</h2></div>  
+        <div class="title"><h2><%=myResourceBundle.getString("developer") %></h2></div>  
         <div class="login-panel">
           <ul>
             <li>
               <img src="/images/step_detail/step-dbtemplate-edb-mapping.png" width="28px" height="28px"/>
-              DB Template-EDB 映射
+              <%=myResourceBundle.getString("DBTemplate-EDBMapping") %>
             </li>
             <li>
               <img src="/images/step_detail/step-entity-edb-mapping.png" width="28px" height="28px"/>
-              EDB实体映射
+              <%=myResourceBundle.getString("Entity-EDBMapping") %>
             </li>
             <li>
               <img src="/images/step_detail/step-bind-process.png" width="28px" height="28px"/>
-              服务进程绑定
+              <%=myResourceBundle.getString("Service-ProcessBinding") %>
             </li>
           </ul>
           <s:form action="dologin">
@@ -88,12 +91,12 @@
           <div class="login-city-box">
           	<img src="/images/mark.png" style="width:28px;height:28px;" />
           	<select class="form-control changeSelectBg" name="processCity">
-          		<option value="0571">杭州</option>
-          		<option value="0570">衢州</option>
-          		<option value="0991">乌鲁木齐</option>
+          		<option value="0571"><%=myResourceBundle.getString("hz") %></option>
+          		<option value="0570"><%=myResourceBundle.getString("qz") %></option>
+          		<option value="0991"><%=myResourceBundle.getString("xj") %></option>
           	</select>
           </div>
-          <button class="btn btn-default btn-block ">登录</button>
+          <button class="btn btn-default btn-block "><%=myResourceBundle.getString("login") %></button>
           </s:form>
         </div>
       </div>

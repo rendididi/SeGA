@@ -7,21 +7,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><span style="color:#f9f9f9;font-weight:200;">住房保障公共服务平台</span></a>
+          <a class="navbar-brand" href="/"><span style="color:#f9f9f9;font-weight:200;"><%=myResourceBundle.getString("projecttitle") %></span></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav nav-parent">
             <li class="active">
-            	<a href="#">流程设计 <img class="nav-bar-triangle" src="/images/triangle.png" /></a>
+            	<a href="#"><%=myResourceBundle.getString("processdesigner") %> <img class="nav-bar-triangle" src="/images/triangle.png" /></a>
 				<ul class="nav nav-myself">
-					<li><a href="task-list?processType=11">房源管理</a></li>
-					<li><a href="task-list?processType=22">资格管理</a></li>
-					<li><a href="task-list?processType=33">配租管理</a></li>
-					<li><a href="task-list?processType=44">租金缴交</a></li>
+					<li><a href="task-list?processType=11"><%=myResourceBundle.getString("Propertymanagement") %></a></li>
+					<li><a href="task-list?processType=22"><%=myResourceBundle.getString("Qualificationsmanagement") %></a></li>
+					<li><a href="task-list?processType=33"><%=myResourceBundle.getString("rentmanagement") %></a></li>
+					<li><a href="task-list?processType=44"><%=myResourceBundle.getString("Rentpayment") %></a></li>
 				</ul>
             </li>
             <li>
-            	<a href="<s:text name="taskviewer.url"/>">业务办理 </a>
+            	<a href="<s:text name="taskviewer.url"/>"><%=myResourceBundle.getString("taskviewer") %> </a>
             	<!-- <ul class="nav nav-myself">
 					<li><a href="#">房源管理</a></li>
 					<li><a href="#">资格管理</a></li>
@@ -29,12 +29,12 @@
 					<li><a href="#">租金缴交</a></li>
 				</ul> -->
             </li>
-            <li><a href="#about">关于</a></li>
-			<li><a href="<s:url action="show-log-console" />">控制台</a></li>
+            <li><a href="#about"><%=myResourceBundle.getString("about") %></a></li>
+			<li><a href="<s:url action="show-log-console" />"><%=myResourceBundle.getString("console") %></a></li>
           </ul>
           <% if(step>1 &&step<7) { %>
           <form class="navbar-form navbar-left">
-            <button type="button" class="btn btn-success" id="btn-navbar-submit">提交</button>
+            <button type="button" class="btn btn-success" id="btn-navbar-submit"><%=myResourceBundle.getString("submit") %></button>
           </form>
           <% }
             if(step>=0) { %>
@@ -44,14 +44,14 @@
 	          <div class="dropdown">
 			  <span class="dropdown-toggle" data-toggle="dropdown">
 		          	<s:set value="userType" var="user"/>
-		          	<s:if test="%{#user=='expert'}">业务专家</s:if>
-		          	<s:elseif test="%{#user=='developer'}">开发工程师</s:elseif>
+		          	<s:if test="%{#user=='expert'}"><%=myResourceBundle.getString("businessexpert") %></s:if>
+		          	<s:elseif test="%{#user=='developer'}"><%=myResourceBundle.getString("developer") %></s:elseif>
 		      </span>
 				<ul class="dropdown-menu">
 					<li> 
 						<s:form action="dologout">
 							<button class="input-logout btn-block" type="submit">
-							退出
+							<%=myResourceBundle.getString("logout") %>
 							</button>
 						</s:form>
 					</li>

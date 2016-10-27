@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿ <%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page import="org.sega.ProcessDesigner.util.Constant"%>
@@ -11,6 +12,7 @@
   <script src="<s:url value="js/lib/angular/angular.js" />"></script>
 </head>
 <body ng-controller="AppController" ng-init="init()">
+  <%@include file="/partials/i18n.jsp" %>
   <header>
     <%int step=0; %>
     <%@include file="/partials/navbar.jspf" %>
@@ -38,19 +40,19 @@
     </div>
     <span class="current_selected">
       <s:if test="processType==11">
-      <%=Constant.FYGL%>
+      <%=myResourceBundle.getString("Propertymanagement") %>
       </s:if>
       <s:elseif test="processType==22">
-      <%=Constant.ZGGL%>
+      <%=myResourceBundle.getString("Qualificationsmanagement") %>
       </s:elseif>
       <s:elseif test="processType==33">
-      <%=Constant.PZGL%>
+      <%=myResourceBundle.getString("rentmanagement") %>
       </s:elseif>
       <s:elseif test="processType==44">
-      <%=Constant.ZJJJ%>
+      <%=myResourceBundle.getString("Rentpayment") %>
       </s:elseif>
       <s:else>
-        全部
+        <%=myResourceBundle.getString("all") %>
       </s:else>
     </span>
   </div>
@@ -61,15 +63,15 @@
           <div class="g-content">
             <!-- 内容栏 -->
             <div class="m-activity">
-              <h3>Activities
-                <small class="totalNum">共<em> <s:property value="total" /> </em>个</small>
+              <h3><%=myResourceBundle.getString("activitis") %>
+                <small class="totalNum"><em><%=myResourceBundle.getString("total") %> <s:property value="total" /> </em></small>
               </h3>
               <s:set value="userType" name="userType"/>
               <s:if test="#userType=='expert'">
               <div class="btn-create">
                   <a class="" href="<s:url action='step-process-select'/>">
                     <span class="glyphicon glyphicon-plus-sign addActivity" aria-hidden="true"></span>
-                    <span><!-- Create -->创建工程</span>
+                    <span><%=myResourceBundle.getString("create") %></span>
                   </a>
               </div>
               </s:if>
@@ -81,8 +83,8 @@
                       <div class="btn-edit"><span class="glyphicon glyphicon-edit"></span></div>
                       <p class="header text-elli">{{activity.stepName}}</p>
                       <p class="date">{{activity.date}}</p>
-                      <p class="decription"><!-- Template -->模板: {{activity.process.template}}</p>
-                      <p class="name"><!-- Process -->流程: {{activity.process.name}}</p>
+                      <p class="decription"><!-- Template --><%=myResourceBundle.getString("template") %>: {{activity.process.template}}</p>
+                      <p class="name"><!-- Process --><%=myResourceBundle.getString("process") %>: {{activity.process.name}}</p>
                     </div>
                   </a>
                 </li>
@@ -104,7 +106,7 @@
           <div class="m-sidebar">
             <!-- 最近任务 -->
             <div class="latestTask">
-              <h4 class="header"><!-- Latest Task -->最近任务</h4>
+              <h4 class="header"><!-- Latest Task --><%=myResourceBundle.getString("LatestTask") %></h4>
               <div ng-show="firstActivity.id" class="list-unstyled" id="latestTaskList">
                 <img class="activityImg" src="{{firstActivity.step_image_url}}">
                 <div class="info">
@@ -112,7 +114,7 @@
                    {{firstActivity.stepName}}
                   </p>
                   <p class="date">{{firstActivity.date}}</p>
-                  <p class="decription"><!-- Process -->流程: {{firstActivity.process.name}}</p>
+                  <p class="decription"><!-- Process --><%=myResourceBundle.getString("process") %>: {{firstActivity.process.name}}</p>
                 </div>
               </div>
             </div>
@@ -121,14 +123,14 @@
             <div class="search">
                <h4>
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                <span class="header"><!-- Search -->搜索</span>
+                <span class="header"><!-- Search --><%=myResourceBundle.getString("search") %></span>
                </h4>
                <div class="row">
                 <div class="col-lg-3">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="输入关键字">
+                    <input type="text" class="form-control" placeholder="input">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><!-- Go! -->确定</button>
+                      <button class="btn btn-default" type="button"><!-- Go! --><%=myResourceBundle.getString("ok") %></button>
                     </span>
                   </div><!-- /input-group -->
                 </div><!-- /.col-lg-3 -->
@@ -140,34 +142,34 @@
                <ul class="list-unstyled" id="taskList">
                <li>
                  <img class="activityImg" src="images/step_detail/step-process-select.png">
-                 <p><!-- Select Process Template -->选择流程模板</p>
+                 <p><!-- Select Process Template --><%=myResourceBundle.getString("SelectProcessTemplate") %></p>
                </li>
                 <li>
                  <img class="activityImg" src="images/step_detail/step-custom-entity.png">
-                 <p><!-- Customize Entity -->自定义实体</p>
+                 <p><!-- Customize Entity --><%=myResourceBundle.getString("customizeentity") %></p>
                </li>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-dbtemplate-edb-mapping.png">
-                  <p><!-- Template DB-EDB Mapping -->模板DB-EDB映射</p>
+                  <p><!-- Template DB-EDB Mapping --><%=myResourceBundle.getString("TemplateDB-EDBMapping") %></p>
                 </li>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-entity-edb-mapping.png">
-                  <p><!-- Entity-EDB Mapping -->实体EDB映射</p>
+                  <p><!-- Entity-EDB Mapping --><%=myResourceBundle.getString("Entity-EDBMapping") %></p>
                 </li>
 
                 <div style="clear:both;"></div>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-custom-process.png">
-                  <p>自定义实体</p>
+                  <p><%=myResourceBundle.getString("customizeentity") %></p>
                 </li>
                 <li>
                   <img class="activityImg" src="images/step_detail/step-bind-process.png">
-                  <p>服务绑定</p>
+                  <p><%=myResourceBundle.getString("ServiceBinding") %></p>
                 </li>
 
                 <li>
                   <img class="activityImg" src="images/step_detail/step-publish.png">
-                  <p>发布</p>
+                  <p><%=myResourceBundle.getString("publish") %></p>
                 </li>
 
 

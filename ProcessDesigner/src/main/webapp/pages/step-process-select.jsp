@@ -1,3 +1,4 @@
+ <%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
@@ -10,6 +11,7 @@
 	<script src="<s:url value="js/lib/angular/angular.js" />"></script>
 </head>
 <body ng-controller="step1_controller">
+<%@include file="/partials/i18n.jsp" %>
 	<header>
 		<%int step=1; %>
 		<%@include file="/partials/navbar.jspf" %>

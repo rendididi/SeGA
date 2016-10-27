@@ -30,7 +30,7 @@ block content
           ul.list-unstyled#activityList
             for instance in instances
               li(style="width:100%;min-height:0px")
-                a.btn-activity(href="/completed_detail/#{instance.getId()}")
+                a.btn-activity(href="/completed_detail/#{instance.getId()}",target="_blank")
                   img.activityImg(src="/images/list.png",style="width:21px;height:21px")
   
                   .info

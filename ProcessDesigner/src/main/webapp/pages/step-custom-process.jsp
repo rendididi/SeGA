@@ -1,4 +1,4 @@
-
+ <%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -14,6 +14,7 @@
 	
 </head>
 <body>
+<%@include file="/partials/i18n.jsp" %>
 	<header>
 		<%int step=5; %>
 		<%@include file="/partials/navbar.jspf" %>
