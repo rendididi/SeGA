@@ -75,7 +75,7 @@
   				 <div class="tab-pane fade in active" id="tab1" >
     			 	<!-- 业务操作日志 -->
     			 	<ul class="list-unstyled list-unstyled-small" id="activityList">
-    			 	 <s:iterator value="logs">
+    			 	 <s:iterator value="log1">
     			 	   <s:if test="type == '11'">
 		                <li>
 		                  <a class="btn-activity" href="">
@@ -96,11 +96,12 @@
 		               </s:if>
 		              </s:iterator>
 		            </ul>
+		            <div id="my-pagination1"></div>
     			 </div>
     			 <div class="tab-pane fade in " id="tab2" >
     			 	<!-- 数据处理日志 -->
     			 	<ul class="list-unstyled list-unstyled-small" id="activityList">
-    			 	 <s:iterator value="logs">
+    			 	 <s:iterator value="log2">
     			 	  <s:if test="type == '22'">
 		                <li>
 		                  <a class="btn-activity" href="">
@@ -121,11 +122,12 @@
 		               </s:if>
 		               </s:iterator>
 		            </ul>
+		            <div id="my-pagination2"></div>
     			 </div>
     			 <div class="tab-pane fade" id="tab3" >
     			 	<!-- 流程记录日志 -->
     			 	<ul class="list-unstyled list-unstyled-small" id="activityList">
-		             <s:iterator value="logs">
+		             <s:iterator value="log3">
     			 	  <s:if test="type == '33'">
 		                <li>
 		                  <a class="btn-activity" href="">
@@ -146,6 +148,7 @@
 		               </s:if>
 		              </s:iterator>
 		            </ul>
+		            <div id="my-pagination3"></div>
     			 </div>
     		  </div>
             </div>
@@ -181,6 +184,55 @@
   			}
   		});
   	}
+  	
+  	$(function(){
+        var pageSize = <s:property value="pageSize"/>;
+        var pages1 = <s:property value="totalPages1+1"/>;
+
+        if(pages1>1){
+          var options1 = {
+              currentPage: <s:property value="page"/>,
+              totalPages: pages1,
+              pageUrl: function(type, page, current){
+                  return document.location.pathname+'?page='+page + '&pageSize='+pageSize;
+              }
+          }
+          $('#my-pagination1').bootstrapPaginator(options1);
+        }
+    });
+  	
+  	$(function(){
+        var pageSize = <s:property value="pageSize"/>;
+        var pages2 = <s:property value="totalPages2+1"/>;
+
+        if(pages2>1){
+          var options2 = {
+              currentPage: <s:property value="page"/>,
+              totalPages: pages2,
+              pageUrl: function(type, page, current){
+                  return document.location.pathname+'?page='+page + '&pageSize='+pageSize;
+              }
+          }
+
+          $('#my-pagination2').bootstrapPaginator(options2);
+        }
+    });
+  	
+  	$(function(){
+        var pageSize = <s:property value="pageSize"/>;
+        var pages3 = <s:property value="totalPages3+1"/>;
+
+        if(pages3>1){
+          var options3 = {
+              currentPage: <s:property value="page"/>,
+              totalPages: pages3,
+              pageUrl: function(type, page, current){
+                  return document.location.pathname+'?page='+page + '&pageSize='+pageSize;
+              }
+          }
+          $('#my-pagination3').bootstrapPaginator(options3);
+        }
+    });
   </script>
   
 

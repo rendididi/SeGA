@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.sega.ProcessDesigner.models.Log;
 import org.sega.ProcessDesigner.util.HibernateUtil;
 
@@ -16,26 +17,65 @@ public class ShowLogAction extends ProcessDesignerSupport{
 	public List<Log> log2 = new ArrayList<Log>();
 	public List<Log> log3 = new ArrayList<Log>();
 	
-	public long totalPages = 0L;
-	public long total = 0L;
+	public long totalPages1 = 0L;
+	public long total1 = 0L;
+	public long totalPages2 = 0L;
+	public long total2 = 0L;
+	public long totalPages3 = 0L;
+	public long total3 = 0L;
 	private int page = 1;
-	private int pageSize = 15;
+	private int pageSize = 5;
 	
 	public String execute() throws Exception{
-		//getLogs(page);
-		getLogs();
+		getLogs(page);
+		//getLogs();
 		return SUCCESS;
 	}
 
-	private void getLogs() throws Exception{
+	private void getLogs(int page) throws Exception{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		Criteria criteria = session
+		Criteria criteria1 = session
 				.createCriteria(Log.class)
+				.add(Restrictions.eq("type", "11"))
+				.addOrder(Order.desc("date"))
+		        .setFirstResult((page - 1) * pageSize)
+		        .setMaxResults(pageSize);
+		Criteria criteria2 = session
+				.createCriteria(Log.class)
+				.add(Restrictions.eq("type", "22"))
+				.setFirstResult((page - 1) * pageSize)
+		        .setMaxResults(pageSize)
+				.addOrder(Order.desc("date"));
+		Criteria criteria3 = session
+				.createCriteria(Log.class)
+				.add(Restrictions.eq("type", "33"))
+				.setFirstResult((page - 1) * pageSize)
+		        .setMaxResults(pageSize)
 				.addOrder(Order.desc("date"));
 		
-		logs = (List<Log>) criteria.list();
+		log1 = (List<Log>) criteria1.list();
+		log2 = (List<Log>) criteria2.list();
+		log3 = (List<Log>) criteria3.list();
+		
+		total1 = log1.size();
+		totalPages1 = total1 / pageSize;
+		System.out.println("list"+total1+"totalPages1:=+++++====="+totalPages1);
+		if (total1 % pageSize != 0)
+            {++totalPages1;System.out.println("totalPages1:=========="+totalPages1);}
+		
+		
+		total2 = log2.size();
+		totalPages2 = total2 / pageSize;
+		if (total2 % pageSize != 0)
+            ++totalPages2;
+		
+		total3 = log3.size();
+		totalPages3 = total3 / pageSize;
+		if (total3 % pageSize != 0)
+            ++totalPages3;
+		System.out.println(totalPages1+","+totalPages2+","+totalPages3);
 		session.getTransaction().commit();
 	}
 
@@ -78,4 +118,5 @@ public class ShowLogAction extends ProcessDesignerSupport{
 	public void setLog3(List<Log> log3) {
 		this.log3 = log3;
 	}
+	
 }
