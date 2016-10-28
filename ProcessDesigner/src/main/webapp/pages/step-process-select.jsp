@@ -17,11 +17,11 @@
 		<%@include file="/partials/navbar.jspf" %>
 		<%@include file="/partials/step_detail.jspf" %>
 		<select class="form-control template-select" style="width:15%;position:absolute;top:204px;left:386px">
-	        	<option value="" <s:if test="processType==null">selected</s:if>>全部</option>
-	        	<option value="房源" <s:if test="processType.contains('房源')">selected</s:if>><%= Constant.FYGL%></option>
-	        	<option value="申请" <s:if test="processType.contains('申请')">selected</s:if>><%= Constant.ZGGL%></option>
-	        	<option value="配租" <s:if test="processType.contains('配租')">selected</s:if>><%= Constant.PZGL%></option>
-	        	<option value="缴交" <s:if test="processType.contains('缴交')">selected</s:if>><%= Constant.ZJJJ%></option>
+	        	<option value="" <s:if test="processType==null">selected</s:if>><%=myResourceBundle.getString("all") %></option>
+	        	<option value="房源" <s:if test="processType.contains('房源')">selected</s:if>><%=myResourceBundle.getString("Propertymanagement") %></option>
+	        	<option value="申请" <s:if test="processType.contains('申请')">selected</s:if>><%=myResourceBundle.getString("Qualificationsmanagement") %></option>
+	        	<option value="配租" <s:if test="processType.contains('配租')">selected</s:if>><%=myResourceBundle.getString("rentmanagement") %></option>
+	        	<option value="缴交" <s:if test="processType.contains('缴交')">selected</s:if>><%=myResourceBundle.getString("Rentpayment") %></option>
 	    </select>
 	</header>
 	<section class="filter container">
@@ -47,8 +47,8 @@
 						<input type="hidden" name="process_id" value="{{node.id}}"/>
 						
 						<div class="btn-group">
-							<button class="btn btn-primary btn-custom-process" type="button"><!-- Custom -->自定义</button>
-							<button class="btn btn-success" type="button"><!-- Deploy -->部署</button>
+							<button class="btn btn-primary btn-custom-process" type="button"><!-- Custom --><%=myResourceBundle.getString("Custom") %></button>
+							<button class="btn btn-success" type="button"><!-- Deploy --><%=myResourceBundle.getString("Deploy") %></button>
 						</div>
 					</s:form>
 				</div>
@@ -65,17 +65,17 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title"><!-- Process Information -->流程信息</h4>
+						<h4 class="modal-title"><!-- Process Information --><%=myResourceBundle.getString("ProcessInformation") %></h4>
 					</div>
 					<div class="modal-body">
-						<h2><!-- Name -->名称</h2>
+						<h2><!-- Name --><%=myResourceBundle.getString("Name") %></h2>
 						<input type="text" name="process.name" class="form-control" placeholder="" aria-describedby="sizing-addon1"/>
-						<h2><!-- Description -->描述</h2>
+						<h2><!-- Description --><%=myResourceBundle.getString("Description") %></h2>
 						<textarea readOnly name="process.description" class="form-control" placeholder="" aria-describedby="sizing-addon1" rows=4></textarea>
 					</div>
 					<div class="modal-footer">
 							<input type="hidden" name="process_id" value=""/>
-							<button type="button" class="btn btn-success" id="btn-submit"><!-- Submit -->确定</button>
+							<button type="button" class="btn btn-success" id="btn-submit"><!-- Submit --><%=myResourceBundle.getString("ok") %></button>
 
 					</div>
 				</div><!-- /.modal-content -->

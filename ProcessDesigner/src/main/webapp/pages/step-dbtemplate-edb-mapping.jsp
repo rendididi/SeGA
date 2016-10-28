@@ -18,22 +18,22 @@
 
 	<section class="container toolbox">
 		<div class="container form-group">
-			<label class="col-md-2"><!-- Database Connection -->数据库连接</label>
+			<label class="col-md-2"><!-- Database Connection --><%=myResourceBundle.getString("DatabaseConnection") %></label>
 			<div class="col-md-4">
 				<input type="text" class="form-control" readonly value=""
 					id="input-db-conn-string" />
 			</div>
 			<div class="btn-group" role="group" aria-label="...">
-				<button class="btn btn-primary" id="btn-db-config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><!-- Configure -->配置</button>
-				<button class="btn btn-primary" id="btn-db-import"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span><!-- Import Schema -->导入模型</button>
-				<button class="btn btn-default"><!-- Toggle Mapping Lines -->变换映射线</button>
+				<button class="btn btn-primary" id="btn-db-config"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><!-- Configure --><%=myResourceBundle.getString("Configure") %></button>
+				<button class="btn btn-primary" id="btn-db-import"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span><!-- Import Schema --><%=myResourceBundle.getString("ImportSchema") %></button>
+				<button class="btn btn-default"><!-- Toggle Mapping Lines --><%=myResourceBundle.getString("ToggleMappingLines") %></button>
 			</div>
 		</div>
 	</section>
 
 	<section class="container db-titles">
-		<div class="db_tables col-md-5"><h2><!-- Database Template -->数据库表模板</h2></div>
-		<div class="db_tables col-md-5 col-md-offset-2"><h2><!-- Enterprise Database -->企业数据库</h2></div>
+		<div class="db_tables col-md-5"><h2><!-- Database Template --><%=myResourceBundle.getString("DatabaseTemplate") %></h2></div>
+		<div class="db_tables col-md-5 col-md-offset-2"><h2><!-- Enterprise Database --><%=myResourceBundle.getString("EnterpriseDatabase") %></h2></div>
 	</section>
 
 	<section class="container" id="mappingbox">
@@ -47,7 +47,7 @@
 		    <span></span>
 		  </div>
 		  <div class="col-md-2 btn-group" id="btn-confirm">
-		    <button class="btn btn-success btn-block"><!-- Confirm -->确定</button>
+		    <button class="btn btn-success btn-block"><!-- Confirm --><%=myResourceBundle.getString("ok") %></button>
 		  </div>
 		  <div class="col-md-5" id="db_path">
 		    <span></span>
@@ -70,12 +70,12 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title"><!-- Confiure Database Connection -->配置数据库链接</h4>
+					<h4 class="modal-title"><!-- Confiure Database Connection --><%=myResourceBundle.getString("ConfiureDatabaseConnection") %></h4>
 				</div>
 				<div class="modal-body">
 					<div>
 						<div class="form-group col-md-12">
-							<label><!-- Database -->数据库</label> <select
+							<label><!-- Database --><%=myResourceBundle.getString("Database") %></label> <select
 								class="selectpicker form-control node-type" id="sel-edb-type"
 								data-dropup-auto="false" data-hide-disabled="true">
 								<option value="mysql">Mysql</option>
@@ -123,9 +123,9 @@
 				<div class="modal-footer">
 					<span class="form-control-static input-xlarge" id="span-db-msg"></span>
 					<button type="button" class="btn btn-default"
-						id="btn-db-test-connection"><!-- Test Connection -->链接测试</button>
-					<button type="button" class="btn btn-primary" id="btn-db-save"><!-- Save -->保存</button>
-					<button type="button" class="btn btn-primary" id="btn-db-save-import"><!-- Save&Import -->保存且导入</button>
+						id="btn-db-test-connection"><!-- Test Connection --><%=myResourceBundle.getString("TestConnection") %></button>
+					<button type="button" class="btn btn-primary" id="btn-db-save"><!-- Save --><%=myResourceBundle.getString("Save") %></button>
+					<button type="button" class="btn btn-primary" id="btn-db-save-import"><!-- Save&Import --><%=myResourceBundle.getString("SaveImport") %></button>
 				</div>
 			</div>
 			<!-- /.modal-content -->

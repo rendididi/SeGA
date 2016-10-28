@@ -128,7 +128,7 @@
                <div class="row">
                 <div class="col-lg-3">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="input">
+                    <input type="text" class="form-control" placeholder=" ">
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="button"><!-- Go! --><%=myResourceBundle.getString("ok") %></button>
                     </span>
