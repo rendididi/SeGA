@@ -94,7 +94,7 @@ public class ProcessesController {
     	Process process = processService.getProcess(processId);
         ProcessInstance instance = processInstanceService.createProcessInstance(process);
 
-        //DEMO:jtangEngineService.publishProcess(instance);
+        jtangEngineService.publishProcess(instance);
 
         return "redirect:instances/" + instance.getId();
     }

@@ -106,8 +106,8 @@ public class InstanceController {
             TasksResolver tasksResolver = new TasksResolver(instance.getProcess().getBindingJson(), instance.getProcess().getProcessJSON());
             
             //Commit to JTang Server
-            //DEMO:String nextTask = jtangEngineService.commitTask(instance);
-            String nextTask = tasksResolver.getNextTask(taskId);
+            String nextTask = jtangEngineService.commitTask(instance);
+            //String nextTask = tasksResolver.getNextTask(taskId);
             RequestAttributes ra = RequestContextHolder.getRequestAttributes();  
             HttpServletRequest request = ((ServletRequestAttributes)ra).getRequest();
             String username = (String) request.getSession().getAttribute("username");
@@ -122,6 +122,7 @@ public class InstanceController {
             SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
             //process_instance 表中  operatorandtime字段的格式  当前环节名称/张三,2016-10-27
             String newStr = taskName +"/"+username+","+df.format(date)+";";
+            
             
             instance.setNextTask(nextTask);
             instance.setOperatorandtime(operate + newStr);
