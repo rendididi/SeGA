@@ -34,15 +34,12 @@ public class StepProcessSelectAction extends ProcessDesignerSupport {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		if(processType != null){
-			System.out.println("bu null");
 			process_list = (List<ProcessTemplate>)session.createCriteria(ProcessTemplate.class).add(Restrictions.like("name", "%"+processType+"%")).list();
 
 		}else{
-			System.out.println("null");
 			process_list = (List<ProcessTemplate>)session.createCriteria(ProcessTemplate.class).list();
 		}
 		session.getTransaction().commit();
-		System.out.println(processType+"--processType"+process_list.size());
 		String logContent;
 		logContent = "模板选择——显示所有的流程模板信息";
 		SaveLog.saveLog(new Users((long)1),"11",Constant.SHOW_ALL,new Date(),logContent,Constant.SEARCH_OPERATION,this.getClass().getName());

@@ -60,7 +60,6 @@ public class ProcessesController {
     	RequestAttributes ra = RequestContextHolder.getRequestAttributes();  
         HttpServletRequest request = ((ServletRequestAttributes)ra).getRequest();
         String city = (String) request.getSession().getAttribute("city");
-    	logger.debug("zx=========1=====ProcessesController");
     	List<Process> processes = processService.getAllProcessesByCity(city);
         model.addAttribute("processes", processes);
         model.addAttribute("totalProcesses", processes.size());
@@ -72,7 +71,6 @@ public class ProcessesController {
 
     @RequestMapping(value = "{processId:\\d+}", method = GET)
     public String showProcess(@PathVariable Long processId, Model model){
-    	logger.debug("zx=========2======ProcessesController");
         Process process = processService.getProcess(processId);
 
         model.addAttribute("process", process);
@@ -90,7 +88,6 @@ public class ProcessesController {
 
     @RequestMapping(value = "{processId:\\d+}", method = POST)
     public String createProcessInstance(@PathVariable Long processId) throws UnsupportedEncodingException, MalformedURLException {
-    	logger.debug("zx=========3======ProcessesController");
     	Process process = processService.getProcess(processId);
         ProcessInstance instance = processInstanceService.createProcessInstance(process);
 
@@ -101,7 +98,6 @@ public class ProcessesController {
 
     @RequestMapping(value = "instances/{instanceId:\\d+}", method = GET)
     public String showProcessInstance(@PathVariable Long instanceId, Model model) throws UnsupportedEncodingException {
-    	logger.debug("zx=========4=======ProcessesController");
     	ProcessInstance processInstance = processInstanceRepository.findOne(instanceId);
         model.addAttribute("instance", processInstance);
         model.addAttribute("processJSON", Base64Util.decode(processInstance.getProcess().getProcessJSON()));
@@ -125,7 +121,6 @@ public class ProcessesController {
 
     @RequestMapping(value = "{processId:\\d+}/templates/{taskId}", method = GET)
     public ModelAndView getTaskTemplate(@PathVariable Long processId, @PathVariable String taskId){
-    	logger.debug("zx=========5========ProcessesController");
     	ModelAndView template = new ModelAndView("fragments/humantask/"+processId+"/"+taskId);
         return template;
     }

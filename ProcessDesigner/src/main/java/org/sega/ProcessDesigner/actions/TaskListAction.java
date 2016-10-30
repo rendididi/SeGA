@@ -59,10 +59,8 @@ public class TaskListAction extends ProcessDesignerSupport {
         Map<String, Object> contextSession = ActionContext.getContext().getSession();
         String userType = (String) contextSession.get("userType");
         String processCity = (String) contextSession.get("city");//流程对应的城市
-       // System.out.println(processCity+"--city");
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        System.out.println(processType+"--type");
         
         Criteria criteria = session.createCriteria(ProcessEdit.class)
         		.add(Restrictions.not(Restrictions.eq("step", "published")))

@@ -58,7 +58,6 @@ public class HomeController {
 		Page<ProcessInstance> instances = processInstanceRepository.findByNextTaskNot(
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
 		city = getCity();
-		logger.debug("zx=========0   HomeController");
 		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
     	if(instances != null && instances.getSize() != 0){
     		for(ProcessInstance instance : instances){
@@ -96,13 +95,10 @@ public class HomeController {
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
 		city = getCity();
 		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
-    	logger.debug("completed================");
 		if(instances != null && instances.getSize() != 0){
     		for(ProcessInstance instance : instances){
-    			logger.debug(processInstanceService.getNextTaskName(instance)+","+processInstanceService.getNextTaskName(instance).equals(ProcessInstance.STATE_COMPLETED));
 
         		if(instance.getProcess().getCity().equals(city) && processInstanceService.getNextTaskName(instance).equals(ProcessInstance.STATE_COMPLETED)){
-        			logger.debug("jin lai le  me jin lai le me");
         			newInstances.add(instance);
         		}
         	}
@@ -132,10 +128,8 @@ public class HomeController {
 		}
 		model.addAttribute("instance",instance);
 		model.addAttribute("operate",list);
-		logger.debug("completed_detail========================");
 		try{
 			MysqlConnection mysql = new MysqlConnection(instance.getProcess().getDbconfig());
-			logger.debug("name ==============="+instance.getProcess().getName());
 	        connection = mysql.open();
 	        Statement stm = connection.createStatement();
 	        String sql = "select * from tpg_gzfsqspb t where t.YWSLID = "+instance.getBusinessId();
@@ -199,9 +193,7 @@ public class HomeController {
     @RequestMapping(value = "/showConsole",method=RequestMethod.GET)
     public String showConsole(@RequestParam(defaultValue = "0") int page,Principal principal, Model model){
     	page = page < 0 ? 0 : page;
-    	logger.debug("1234567890");
     	Page<Log> logs1 = logRepository.findByType("11",new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
-    	logger.debug("0987654321"+logs1.getSize()+","+logs1.getTotalElements());
     	Page<Log> logs2 = logRepository.findByType("22",new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
     	Page<Log> logs3 = logRepository.findByType("33",new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
     	model.addAttribute("logs1",logs1);

@@ -3,7 +3,11 @@ package org.sega.viewer.controllers;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,8 +23,8 @@ import org.sega.viewer.repositories.LogRepository;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.EdbService;
 import org.sega.viewer.services.JtangEngineService;
-import org.sega.viewer.services.LogService;
 import org.sega.viewer.services.ProcessInstanceService;
+import org.sega.viewer.services.support.MysqlConnection;
 import org.sega.viewer.services.support.TasksResolver;
 import org.sega.viewer.services.support.UnSupportEdbException;
 import org.sega.viewer.utils.Base64Util;
@@ -67,7 +71,6 @@ public class InstanceController {
     @RequestMapping(value = "{instanceId:\\d+}/task/{taskId}", method = RequestMethod.GET)
     public String showTask(@PathVariable Long instanceId, @PathVariable String taskId, Model model)
             throws UnsupportedEncodingException {
-    	logger.debug("zhi xing le ma "+taskId);
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), taskId);
 
@@ -105,7 +108,6 @@ public class InstanceController {
     @ResponseBody
     public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, @RequestBody String entity)
             throws UnsupportedEncodingException, MalformedURLException {
-    	 logger.debug("这是不是也调用了ppppppppppppppppp");
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         processInstanceService.writeEntity(new JSONObject(entity), instance, taskId);
 
@@ -130,10 +132,24 @@ public class InstanceController {
             //process_instance 表中  operatorandtime字段的格式  当前环节名称/张三,2016-10-27
             String newStr = taskName +"/"+username+","+df.format(date)+";";
             
+            //获取edb的name
+            MysqlConnection mysql = new MysqlConnection(instance.getProcess().getDbconfig());
+	        Connection connection = mysql.open();
+	        Statement stm = connection.createStatement();
+	        String sql = "select * from tpg_gzfsqspb t where t.YWSLID = "+instance.getBusinessId();
+	        ResultSet rs = stm.executeQuery(sql);
+	        
+	        ResultSetMetaData md = rs.getMetaData();
+	        int columnCount = md.getColumnCount();
+	        String edb_name="";
+	        while(rs.next()){ 
+	        	edb_name = rs.getString("SQRXM");
+	        }
+            
             //记录日志操作
             Log log = new Log();
             log.setDate(df.format(date));
-            log.setContent(taskName+"环节,操作人是："+username+",操作时间是："+df.format(date));
+            log.setContent(edb_name+"业务的"+taskName+"环节,操作人是："+username+",操作时间是："+df.format(date));
             log.setClassName("InstanceController");
             log.setDescriptions("业务办理");
             log.setType("11");
@@ -142,6 +158,7 @@ public class InstanceController {
             
             instance.setNextTask(nextTask);
             instance.setOperatorandtime(operate + newStr);
+            instance.setEdb_name(edb_name);
             processInstanceService.updateInstance(instance);
             
             //Sync to EDB

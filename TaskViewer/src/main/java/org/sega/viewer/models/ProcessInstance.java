@@ -20,7 +20,7 @@ public class ProcessInstance extends BaseModel{
 
     private Integer businessId;
     private String operatorandtime;
-    
+    private String edb_name;
 	public String getOperatorandtime() {
 		return operatorandtime;
 	}
@@ -36,6 +36,15 @@ public class ProcessInstance extends BaseModel{
 	public void setBusinessId(Integer businessId) {
 		this.businessId = businessId;
 	}
+
+	public String getEdb_name() {
+		return edb_name;
+	}
+
+	public void setEdb_name(String edb_name) {
+		this.edb_name = edb_name;
+	}
+
 
 	@ManyToOne
     private Process process;

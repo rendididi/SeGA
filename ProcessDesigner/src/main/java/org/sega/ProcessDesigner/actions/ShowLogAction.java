@@ -61,9 +61,8 @@ public class ShowLogAction extends ProcessDesignerSupport{
 		
 		total1 = log1.size();
 		totalPages1 = total1 / pageSize;
-		System.out.println("list"+total1+"totalPages1:=+++++====="+totalPages1);
 		if (total1 % pageSize != 0)
-            {++totalPages1;System.out.println("totalPages1:=========="+totalPages1);}
+            ++totalPages1;
 		
 		
 		total2 = log2.size();
@@ -75,7 +74,6 @@ public class ShowLogAction extends ProcessDesignerSupport{
 		totalPages3 = total3 / pageSize;
 		if (total3 % pageSize != 0)
             ++totalPages3;
-		System.out.println(totalPages1+","+totalPages2+","+totalPages3);
 		session.getTransaction().commit();
 	}
 

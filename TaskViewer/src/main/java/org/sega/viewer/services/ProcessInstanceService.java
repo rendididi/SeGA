@@ -72,8 +72,6 @@ public class ProcessInstanceService {
             JSONParser jp = new JSONParser(JSONParser.MODE_JSON_SIMPLE);
             net.minidev.json.JSONObject o1 = (net.minidev.json.JSONObject) jp.parse(processInstance.getEntity()!=null?processInstance.getEntity().toString():"{}");
             net.minidev.json.JSONObject o2 = (net.minidev.json.JSONObject) jp.parse(entity.toString());
-            logger.debug("entity的内容是：====="+o2);
-            logger.debug("o1的内容是：======="+o1);
             o1.putAll(o2);
             processInstance.setEntity(o1.toString());
         } catch (ParseException e) {
@@ -208,7 +206,6 @@ public class ProcessInstanceService {
             for(int i=0, len=tasks.length(); i<len; i++){
                 task= tasks.getJSONObject(i);
                 if(task.getString("id").equals(instance.getNextTask())){
-                	logger.debug("is compelted ======="+task.getString("type"));
                     if(task.getString("type").equals("sega.End"))
                         return "已办结";
                     else if(task.getString("type").equals("sega.Task"))

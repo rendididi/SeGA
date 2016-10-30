@@ -41,7 +41,7 @@ block content
                       span.emph #{taskNames.get(instance.getNextTask())}
                     p.description
                       |进程:
-                      span.emph #{instance.getProcess().getName()}
+                      span.emph #{instance.getProcess().getName()}--#{instance.getEdb_name()}
                     p.date1 #{instance.getCreatedAt()}
 
 
