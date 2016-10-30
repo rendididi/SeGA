@@ -1,0 +1,139 @@
+extends ../layout/app
+
+block content
+  header
+    .container
+      #user-area.row
+        .col-sm-12
+          img.userImg(src='/images/step_detail/step-custom-entity.png', style="margin-top:-50px",height='90px', width='90px')
+      br
+      .row
+        .col-sm-3
+          // 右侧栏
+          .m-sidebar(style='float:none')
+            .search
+              h4
+                span.glyphicon.glyphicon-search(aria-hidden='true')
+                span.header
+                  // Search
+                  | 搜索
+              .row
+                .col-lg-3
+                  .input-group
+                    input.form-control(type='text', placeholder='输入关键字')
+                    span.input-group-btn
+                      button.btn.btn-default(type='button')
+                        // Go!
+                        | 确定
+                  // /input-group
+                // /.col-lg-3
+        .col-sm-9
+          // 任务内容区
+          .g-content
+            // 内容栏
+            .m-activity
+              ul#myTab.nav.nav-tabs
+                li.active
+                  a(href='#tab1', data-toggle='tab') 业务操作日志
+                li
+                  a(href='#tab2', data-toggle='tab') 数据处理日志
+                li
+                  a(href='#tab3', data-toggle='tab') 流程记录日志
+              #myTabContent.tab-content
+                #tab1.tab-pane.fade.in.active
+                  // 业务操作日志
+                  ul#activityList.list-unstyled.list-unstyled-small
+                    for log1 in logs1
+                      li(style="width:100%;height:auto")
+                        a.btn-activity(href='')
+                          img.activityImg.activityImg-small(src='/images/log-item.png')
+                          .info
+                            span.header.text-elli(style="display:inline-block;width:20%") 操作者：
+                            span.date(style="display:inline-block;width:40%") 操作日期: #{log1.date}
+                            span(style="display:inline-block;") 操作类型： #{log1.operationType}
+                            p.content(style="margin-top:3px") 
+                              span.content 操作内容： 
+                              span #{log1.content}
+                  #my-pagination1
+                #tab2.tab-pane.fade.in
+                  // 数据处理日志
+                  ul#activityList.list-unstyled.list-unstyled-small
+                    for log2 in logs2
+                      li(style="width:100%;height:auto")
+                        a.btn-activity(href='')
+                          img.activityImg.activityImg-small(src='/images/log-item.png')
+                          .info
+                            span.header.text-elli(style="display:inline-block;width:20%") 操作者：
+                            span.date(style="display:inline-block;width:40%") 操作日期: #{log2.date}
+                            span(style="display:inline-block;") 操作类型： #{log2.operationType}
+                            p.content(style="margin-top:3px") 
+                              span.content 操作内容： 
+                              span #{log2.content}
+                  #my-pagination2
+                #tab3.tab-pane.fade
+                  // 流程记录日志
+                  ul#activityList.list-unstyled.list-unstyled-small
+                    for log3 in logs3
+                      li(style="width:100%;height:auto")
+                        a.btn-activity(href='')
+                          img.activityImg.activityImg-small(src='/images/log-item.png')
+                          .info
+                            span.header.text-elli(style="display:inline-block;width:20%") 操作者：
+                            span.date(style="display:inline-block;width:40%") 操作日期: #{log3.date}
+                            span(style="display:inline-block;") 操作类型： #{log3.operationType}
+                            p.content(style="margin-top:3px") 
+                              span.content 操作内容： 
+                              span #{log3.content}
+                  #my-pagination3
+            // 分页
+            //
+              <div id="my-pagination">
+              </div>
+    // END of row
+    // END of container
+    script
+      $(function(){
+          var pageSize = #{pageSize};
+          var pages1 = #{totalPages1+1};
+          if(pages1 > 1){
+            var options1 = {
+              currentPage: #{page},
+              totalPages: pages1,
+              pageUrl: function(type, page, current){
+                  return document.location.pathname+'?page='+(page-1)+'&pageSize='+pageSize;
+              }
+          };
+          $('#my-pagination1').bootstrapPaginator(options1);
+          }
+          
+      });
+      $(function(){
+          var pageSize = #{pageSize};
+          var pages2 = #{totalPages2+1};
+          if(pages2 > 1){
+            var options2 = {
+              currentPage: #{page},
+              totalPages: pages2,
+              pageUrl: function(type, page, current){
+                  return document.location.pathname+'?page='+(page-1)+'&pageSize='+pageSize;
+              }
+          };
+          $('#my-pagination2').bootstrapPaginator(options2);
+          }
+          
+      });
+      $(function(){
+          var pageSize = #{pageSize};
+          var pages3 = #{totalPages3+1};
+          if(pages3 > 1){
+            var options3 = {
+              currentPage: #{page},
+              totalPages: pages3,
+              pageUrl: function(type, page, current){
+                  return document.location.pathname+'?page='+(page-1)+'&pageSize='+pageSize;
+              }
+          };
+          $('#my-pagination3').bootstrapPaginator(options3);
+          }
+          
+      });

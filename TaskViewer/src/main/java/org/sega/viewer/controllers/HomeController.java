@@ -9,17 +9,14 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.minidev.json.parser.JSONParser;
-
-import org.json.JSONObject;
+import org.sega.viewer.models.Log;
 import org.sega.viewer.models.ProcessInstance;
+import org.sega.viewer.repositories.LogRepository;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.repositories.ProcessRepository;
 import org.sega.viewer.services.ProcessInstanceService;
@@ -47,6 +44,8 @@ public class HomeController {
 	private ProcessInstanceRepository processInstanceRepository;
 	@Autowired
 	private ProcessRepository processRepository;
+	@Autowired
+	private LogRepository logRepository;
 	@Autowired
 	private ProcessInstanceService processInstanceService;
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -195,6 +194,26 @@ public class HomeController {
     	return principal != null ? "home/index" : "users/signin";
     }
     
+    
+    //show console
+    @RequestMapping(value = "/showConsole",method=RequestMethod.GET)
+    public String showConsole(@RequestParam(defaultValue = "0") int page,Principal principal, Model model){
+    	page = page < 0 ? 0 : page;
+    	logger.debug("1234567890");
+    	Page<Log> logs1 = logRepository.findByType("11",new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
+    	logger.debug("0987654321"+logs1.getSize()+","+logs1.getTotalElements());
+    	Page<Log> logs2 = logRepository.findByType("22",new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
+    	Page<Log> logs3 = logRepository.findByType("33",new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
+    	model.addAttribute("logs1",logs1);
+    	model.addAttribute("logs2",logs2);
+    	model.addAttribute("logs3",logs3);
+    	model.addAttribute("page", page+1);
+        model.addAttribute("pageSize",pageSize);
+    	model.addAttribute("totalPages1", (logs1.getSize())/pageSize);
+    	model.addAttribute("totalPages2", (logs2.getSize())/pageSize);
+    	model.addAttribute("totalPages3", (logs3.getSize())/pageSize);
+    	return principal != null ? "home/showConsole" : "users/signin";
+    }
     public String getCity(){
     	RequestAttributes ra = RequestContextHolder.getRequestAttributes();  
         HttpServletRequest request = ((ServletRequestAttributes)ra).getRequest();

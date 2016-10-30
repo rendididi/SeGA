@@ -45,7 +45,7 @@ public class JtangEngineService {
 
         String nextTask = "";
         if(jTangInstance.getWorkitems() == null || jTangInstance.getWorkitems().isEmpty()) {
-            nextTask = "completed";
+            nextTask = "已办结";
         }else {
             nextTask = ((JTangProcess) processInstanceJTangInfo.getJtangProcess()).getActDescByActId(jTangInstance.getActWorkitems().get(0).getActID());
         }

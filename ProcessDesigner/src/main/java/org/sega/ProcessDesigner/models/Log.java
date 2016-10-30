@@ -11,7 +11,7 @@ public class Log extends BaseModel {
 	private Long id;
 	private Users user;
 	private String content;
-    private Date date;
+    private String date;
     private String descriptions;
     private String operationType;
     private String className;
@@ -21,7 +21,7 @@ public class Log extends BaseModel {
     	super();
     }
     
-    public Log(Users user,String content,Date date,String descriptions,String operationType,String className){
+    public Log(Users user,String content,String date,String descriptions,String operationType,String className){
     	super();
     	this.user = user;
     	this.content = content;
@@ -49,10 +49,10 @@ public class Log extends BaseModel {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

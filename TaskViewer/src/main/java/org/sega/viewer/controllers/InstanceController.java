@@ -13,10 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
+import org.sega.viewer.models.Log;
 import org.sega.viewer.models.ProcessInstance;
+import org.sega.viewer.repositories.LogRepository;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.EdbService;
 import org.sega.viewer.services.JtangEngineService;
+import org.sega.viewer.services.LogService;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.sega.viewer.services.support.TasksResolver;
 import org.sega.viewer.services.support.UnSupportEdbException;
@@ -52,6 +55,10 @@ public class InstanceController {
 
     @Autowired
     private EdbService edbService;
+    
+    @Autowired
+    private LogRepository logRepository;
+    
 
     private static final String TASK_TEMPLATE = "templates/fragments/humantask/%s/%s.html";
 
@@ -123,6 +130,15 @@ public class InstanceController {
             //process_instance 表中  operatorandtime字段的格式  当前环节名称/张三,2016-10-27
             String newStr = taskName +"/"+username+","+df.format(date)+";";
             
+            //记录日志操作
+            Log log = new Log();
+            log.setDate(df.format(date));
+            log.setContent(taskName+"环节,操作人是："+username+",操作时间是："+df.format(date));
+            log.setClassName("InstanceController");
+            log.setDescriptions("业务办理");
+            log.setType("11");
+            log.setOperationType("业务操作");
+            logRepository.save(log);
             
             instance.setNextTask(nextTask);
             instance.setOperatorandtime(operate + newStr);

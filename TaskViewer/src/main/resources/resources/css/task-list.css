@@ -190,7 +190,10 @@ border-bottom: 1px #16A085 solid;
   font-weight:700;
   color:#51c1b1;
 }
-
+.m-activity #activityList li .info span.content{
+  font-weight:700;
+  color:#51c1b1;
+}
 .m-activity #activityList li .info .emph {
   font-weight:300;
   color:#51c1b1;
@@ -324,3 +327,4 @@ border-bottom: 1px #16A085 solid;
   text-decoration: none;
 }
 .current_selected{position: relative;top: -65px;left: 13%;font-size:16px;font-weight:400}
+.activityImg-small{height:25px !important;width:25px !important}
