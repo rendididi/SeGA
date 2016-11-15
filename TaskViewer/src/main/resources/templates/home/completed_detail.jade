@@ -54,9 +54,9 @@ block content
                   tr
                     td 家庭人数
                     td #{map.get("JTRS")}
-                    td 家庭年总收入
+                    td 家庭年总收入（元）
                     td #{map.get("JTNZSR")}
-                    td 家庭人均年收入
+                    td 家庭人均年收入（元）
                     td #{map.get("JTRJNSR")}
                   tr
                     td 户口入杭年数
@@ -152,9 +152,9 @@ block content
                   tr
                     td 是否已配租
                     td #{map.get("SFYPZ")}
-                    td 终止标示
+                    td 终止标示(0:正常;1:终止)
                     td #{map.get("STOPFLAG")}
-                    td 申请保障优先类型
+                    td 申请保障优先类型(1:优先保障;0:常规保障)
                     td #{map.get("SQBZLX")}
                   tr
                     td 配租类型
@@ -164,26 +164,26 @@ block content
                     td 货币补贴标准
                     td #{map.get("HBBTBZ")}
                   tr
-                    td 市局公示状态
+                    td 市局公示状态(1:待公示;2:公示中;3:完成公示)
                     td #{map.get("SJGSZT")}
-                    td 区局公示状态
+                    td 区局公示状态(1:待公示;2:公示中;3:完成公示)
                     td #{map.get("QJGSZT")}
                     td 人工核查状态
                     td #{map.get("HCZT")}
                   tr
-                    td 初审是否通过
+                    td 初审是否通过(0:未通过;1:通过)
                     td #{map.get("CSSFTG")}
                     td 初审意见
                     td(colspan="3") #{map.get("CSYJ")}
                     
                   tr
-                    td 复审是否通过
+                    td 复审是否通过(0:未通过;1:通过)
                     td #{map.get("FSSFTG")}
                     td 复审意见
                     td(colspan="3") #{map.get("FSYJ")}
                     
                   tr
-                    td 终审是否通过
+                    td 终审是否通过(0:未通过;1:通过)
                     td #{map.get("ZSSFTG")}
                     td 终审意见
                     td(colspan="3") #{map.get("ZSYJ")}
