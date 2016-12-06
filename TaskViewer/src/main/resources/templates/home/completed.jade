@@ -36,10 +36,10 @@ block content
                   .info
                     .btn-edit
                         span.glyphicon.glyphicon-edit
-                    span.task(style="margin-right:10%")
+                    span.task(style="margin-right:10%;display:inline-block;width:15%")
                       |任务:
                       span.emph #{taskNames.get(instance.getNextTask())}
-                    span.description(style="margin-right:10%")
+                    span.description(style="margin-right:10%;display:inline-block;width:40%")
                       |流程:
                       span.emph #{instance.getProcess().getName()}--#{instance.getEdb_name()}
                     span.date1 #{instance.getCreatedAt()}

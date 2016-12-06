@@ -95,9 +95,11 @@ public class HomeController {
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
 		city = getCity();
 		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
+		logger.debug("instance的长度111111是："+instances.getSize());
 		if(instances != null && instances.getSize() != 0){
+			logger.debug("instance的长度是："+instances.getSize());
     		for(ProcessInstance instance : instances){
-
+    			logger.debug("为啥，代码有毒"+instance.getProcess().getCity()+instance.getProcess().getCity().equals(city)+processInstanceService.getNextTaskName(instance).equals(ProcessInstance.STATE_COMPLETED));
         		if(instance.getProcess().getCity().equals(city) && processInstanceService.getNextTaskName(instance).equals(ProcessInstance.STATE_COMPLETED)){
         			newInstances.add(instance);
         		}
@@ -108,6 +110,7 @@ public class HomeController {
 		for(ProcessInstance instance: instances){
 			taskNameMap.put(instance.getNextTask(), processInstanceService.getNextTaskName(instance));
 		}
+		logger.debug("newinstance的长度是："+newInstances.size());
 		model.addAttribute("processType",0);
 		model.addAttribute("instances", newInstances);
 		model.addAttribute("taskNames", taskNameMap);
