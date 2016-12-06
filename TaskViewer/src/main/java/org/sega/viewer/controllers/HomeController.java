@@ -57,7 +57,7 @@ public class HomeController {
 		page = page < 0 ? 0 : page;
 		Page<ProcessInstance> instances = processInstanceRepository.findByNextTaskNot(
 				ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
-		city = getCity();
+		city = getCity(); 
 		List<ProcessInstance> newInstances = new ArrayList<ProcessInstance>();
     	if(instances != null && instances.getSize() != 0){
     		for(ProcessInstance instance : instances){
