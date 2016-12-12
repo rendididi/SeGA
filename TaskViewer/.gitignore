@@ -2,3 +2,4 @@ TaskViewer.*
 .idea
 build
 out
+/bin/

@@ -109,6 +109,7 @@ public class InstanceController {
     public String commitTask(@PathVariable Long instanceId, @PathVariable String taskId, @RequestBody String entity)
             throws UnsupportedEncodingException, MalformedURLException {
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
+
         processInstanceService.writeEntity(new JSONObject(entity), instance, taskId);
 
         try { 
@@ -179,7 +180,7 @@ public class InstanceController {
      * @param file template file path
      * @return raw content of file
      */
-    private String readTaskTemplate(String file) {
+    public String readTaskTemplate(String file) {
         String result = "";
         ClassLoader classLoader = getClass().getClassLoader();
 

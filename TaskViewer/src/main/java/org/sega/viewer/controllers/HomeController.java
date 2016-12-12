@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.sega.viewer.models.Log;
 import org.sega.viewer.models.ProcessInstance;
 import org.sega.viewer.repositories.LogRepository;
@@ -21,6 +22,7 @@ import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.repositories.ProcessRepository;
 import org.sega.viewer.services.ProcessInstanceService;
 import org.sega.viewer.services.support.MysqlConnection;
+import org.sega.viewer.utils.Base64Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +50,15 @@ public class HomeController {
     private LogRepository logRepository;
     @Autowired
     private ProcessInstanceService processInstanceService;
+	@Autowired
+	private InstanceController instanceController;
+
+
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     private static final int pageSize = 6;
     String city = null;
     private Connection connection;
+	private static final String TASK_TEMPLATE = "templates/fragments/humantask/%s/%s.html";
 
     @RequestMapping(value = "", method = GET)
     public String index(Principal principal, @RequestParam(defaultValue = "0") int page, Model model) {
@@ -110,6 +117,8 @@ public class HomeController {
     //completed_detail
     @RequestMapping(value = "/completed_detail/{instanceId:\\d+}", method = RequestMethod.GET)
     public String showDetail(Principal principal, @PathVariable Long instanceId, Model model) {
+		//glp modified 2016-12-12
+
         ProcessInstance instance = processInstanceRepository.findOne(instanceId);
         String operateContent = instance.getOperatorandtime();
         List<String> list = new ArrayList<String>();
@@ -118,7 +127,9 @@ public class HomeController {
         }
         model.addAttribute("instance", instance);
         model.addAttribute("operate", list);
-        try {
+
+		/* DO NOT need to retrieve data from EDB, entity data is in UAR
+		try {
             MysqlConnection mysql = new MysqlConnection(instance.getProcess().getDbconfig());
             connection = mysql.open();
             Statement stm = connection.createStatement();
@@ -143,8 +154,23 @@ public class HomeController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+		*/
 
-        return principal != null ? "home/completed_detail" : "users/signin";
+		String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), "info");
+
+		logger.debug("Resolved task template file: " + path);
+
+        JSONObject values = new JSONObject(instance.getEntity());
+
+		model.addAttribute("entity", values.toString());
+		model.addAttribute("instance", instance);
+		model.addAttribute("templatePath", path);
+		model.addAttribute("taskId", "info");
+		model.addAttribute("taskName",processInstanceService.getNextTaskName(instance));
+		model.addAttribute("templateHtml", instanceController.readTaskTemplate(path));
+
+
+		return principal != null ? "home/completed_detail" : "users/signin";
     }
 
     //selection by wxf

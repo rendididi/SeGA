@@ -114,6 +114,19 @@ public class StepPublish extends EditStepAction {
 				}
 			}
 		}
+		
+		//glp modified 2016-12-12
+		//generate INFO template to show all attributes of an entity
+		HumanTaskInterfaceGenerator gen = new HumanTaskInterfaceGenerator();
+		String html = gen.generateReadAll(entity);
+
+		URL location = StepPublish.class.getProtectionDomain().getCodeSource().getLocation();
+		File dir = new File(FilenameUtils.concat(location.getPath(),
+				"../../../TaskViewer/src/main/resources/templates/fragments/humantask/"
+						+ sp.getId().toString()));
+		dir.mkdirs();
+		File file = new File(dir, "info.html");
+		FileUtils.writeStringToFile(file, html, "UTF-8");
 
 	}
 	

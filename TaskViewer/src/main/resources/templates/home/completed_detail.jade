@@ -1,4 +1,8 @@
-extends ../layout/app
+extends ../layout/app_ng
+
+block head
+  link(rel="stylesheet", type='text/css', href="#{basePath}/css/humantask.css")
+  link(rel="stylesheet", type='text/css', href="#{basePath}/css/instances/task.css")
 
 block content
   .row#user-area
@@ -27,7 +31,10 @@ block content
           .panel.panel-primary
             .panel-heading 
               h3.panel-title #{instance.getProcess().getName()}-#{instance.getEdb_name()}
-            .panel-body
+            .panel-body(ng-controller="TaskController")
+              !{templateHtml}
+
+            //-
               table.table.table-hover.table-bordered.table-stripped
                 tbody
                   tr
@@ -203,4 +210,11 @@ block content
                     td #{list.split("/").get(0)}
                     td #{list.split("/").get(1).split(",").get(0)}
                     td #{list.split("/").get(1).split(",").get(1)}
-                    
+
+  script
+    var values = JSON.parse('!{entity}');
+    angular.module('app', [])
+      .controller('TaskController', function($scope){
+        console.log(values);
+        $scope.entity = values;
+      });

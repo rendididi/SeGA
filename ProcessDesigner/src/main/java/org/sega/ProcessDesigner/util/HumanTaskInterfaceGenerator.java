@@ -50,6 +50,14 @@ public class HumanTaskInterfaceGenerator {
 		return result;
 	}
 
+	public String generateReadAll(final JSONObject root) throws Exception {
+		String result = "";
+		JSONObject e = JSONObject.fromObject(root);
+		markUpdateStatWithRead(e);
+		
+		result = generateElement(e, new ArrayList<Pair<String,String>>());
+		return result;
+	}
 
 	public String generateElement(JSONObject root, final List<Pair<String,String>> path) throws Exception {
 		String result = "";
@@ -179,6 +187,22 @@ public class HumanTaskInterfaceGenerator {
 			e.put(mode, result);
 		}
 		return result;
+	}
+	
+	private void markUpdateStatWithRead(JSONObject e) {
+		String type = e.getString("type");
+		String id = e.getString("id");
+		
+		if(e.has("children")){
+			JSONArray children = e.getJSONArray("children");
+			for(int i=0;i<children.size();i++){
+				JSONObject child = children.getJSONObject(i);
+				markUpdateStatWithRead(child);
+			}
+		}
+		
+		e.put("read", true);
+		
 	}
 	
 	public static class UnexpectedEntityFormat extends Exception{
