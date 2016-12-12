@@ -20,6 +20,8 @@ import java.util.List;
 public interface ProcessInstanceRepository extends JpaRepository<ProcessInstance, Long>{
     List<ProcessInstance> findAllByProcess(Process process, Sort sort);
     Page<ProcessInstance> findByNextTaskNot(String nextTask, Pageable pageable);
-    Page<ProcessInstance> findByNextTask(String nextTask, Pageable pageable);
+
+    @Query("select p from ProcessInstance p where p.process.city = ?2 and p.nextTask = ?1")
+    Page<ProcessInstance> findByNextTask(String nextTask,String city, Pageable pageable);
 
 }

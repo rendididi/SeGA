@@ -93,8 +93,7 @@ public class HomeController {
     public String indexCompleted(Principal principal, @RequestParam(defaultValue = "0") int page, Model model) {
         page = page < 0 ? 0 : page;
         Page<ProcessInstance> instances = processInstanceRepository.findByNextTask(
-                ProcessInstance.STATE_COMPLETED, new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
-        city = getCity();
+                ProcessInstance.STATE_COMPLETED, getCity(),new PageRequest(page, pageSize, Sort.Direction.DESC, "createdAt"));
         Map<String, String> taskNameMap = new HashMap<String, String>();
         for (ProcessInstance instance : instances) {
             taskNameMap.put(instance.getNextTask(), processInstanceService.getNextTaskName(instance));
