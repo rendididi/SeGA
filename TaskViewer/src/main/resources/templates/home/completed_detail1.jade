@@ -1,0 +1,206 @@
+extends ../layout/app
+
+block content
+  .row#user-area
+    .avatar.col-sm-12
+      img.userImg(src="/images/user/operator.png", style="height:90px;width:90px;")
+    ul.task-menu.list-unstyled.nav.navbar-nav
+      li
+        a(href="/")
+          img(src="/images/ongoing.png")
+          span 待办
+      li.active
+        img(src="/images/completed.png")
+        span 已办结
+      li
+        a(href="/processes") 
+          img(src="/images/create.png")
+          span 受理
+  .container
+    .g-content
+      .m-activity
+        h3
+          //span Completed Activities
+          span 活动详情
+
+        .col-md-11.col-md-offset-1(style="margin-top:20px")
+          .panel.panel-primary
+            .panel-heading 
+              h3.panel-title #{instance.getProcess().getName()}-#{instance.getEdb_name()}
+            .panel-body
+              table.table.table-hover.table-bordered.table-stripped
+                tbody
+                  tr
+                    td 业务编码
+                    td #{map.get("CODE")}
+                    td 审批年度
+                    td #{map.get("SPND")}
+                    td 申请人姓名
+                    td #{map.get("SQRXM")}
+                  tr
+                    td 申请人身份证号
+                    td #{map.get("SQRSFZH")}
+                    td 申请人年龄 
+                    td #{map.get("SQRNL")}
+                    td 申请人工作单位
+                    td #{map.get("SQRDWMC")}
+                  tr
+                    td 配偶姓名
+                    td #{map.get("POXM")}
+                    td 配偶年龄
+                    td #{map.get("PONL")}
+                    td 配偶工作单位
+                    td #{map.get("PODWMC")}
+                  tr
+                    td 家庭人数
+                    td #{map.get("JTRS")}
+                    td 家庭年总收入（元）
+                    td #{map.get("JTNZSR")}
+                    td 家庭人均年收入（元）
+                    td #{map.get("JTRJNSR")}
+                  tr
+                    td 户口入杭年数
+                    td #{map.get("HKRHNS")}
+                    td 已有住房面积
+                    td #{map.get("YYZFMJ")}
+                    td 享受实物分房面积
+                    td #{map.get("XSSWFFMJ")}
+                  tr
+                    td 困难证件类别
+                    td #{map.get("KNZJLB")}
+                    td 困难证件号码
+                    td #{map.get("KNZJHM")}
+                    td 困难证件有效期起止
+                    td #{map.get("KNZJYXQQ")}-#{map.get("KNZJYXQZ")}
+                  tr
+                    td 杭社保号
+                    td #{map.get("HSBH")}
+                    td 优待对象类别
+                    td #{map.get("YDDXLB")}
+                    td 配租资格证号
+                    td #{map.get("PZZGZH")}
+                  tr
+                    td 配租方式
+                    td #{map.get("PZFS")}
+                    td 拟配租人数
+                    td #{map.get("NPZRS")}
+                    td 补贴面积
+                    td #{map.get("BTMJ")}
+                  tr
+                    td 配租面积标准
+                    td #{map.get("PZMJBZ")}
+                    td 是否取消实物配租资格
+                    td #{map.get("SFQXSWPZZG")}
+                    td 有效期起止
+                    td #{map.get("YXQQ")}-#{map.get("YXQZ")}
+                  tr
+                    td 配租次数
+                    td #{map.get("PZCS")}
+                    td 不接受配租方案次数
+                    td #{map.get("BJSPZFACS")}
+                    td 是否放弃资格
+                    td #{map.get("SFFQZG")}
+                  tr
+                    td 变更前配租资格证号
+                    td #{map.get("BGQPZZGZH")}
+                    td 变更前配租方式
+                    td #{map.get("BGQPZFS")}
+                    td 变更原因
+                    td #{map.get("BGYY")}
+                  tr
+                    td 创建时间
+                    td #{map.get("CJSJ")}
+                    td 终止时间
+                    td #{map.get("ZZSJ")}
+                    td 历史标志
+                    td #{map.get("LSBZ")}
+                  tr
+                    td 所在城区
+                    td #{map.get("SZCQ")}
+                    td 所属社区
+                    td #{map.get("SSSQ")}
+                    td 所在街道
+                    td #{map.get("SZJD")}
+                  tr
+                    td 公示结果
+                    td #{map.get("GSJG")}
+                    td 申请渠道
+                    td #{map.get("SQQD")}
+                    td 受理时间
+                    td #{map.get("SLRQ")}
+                  tr
+                    td 是否已摇号
+                    td #{map.get("SFYYH")}
+                    td 摇号时间
+                    td #{map.get("YHSJ")}
+                    td 合同签订时间
+                    td #{map.get("HTQDSJ")}
+                  tr
+                    td 合同签订年数
+                    td #{map.get("HTQDNS")}
+                    td 养老保险交纳年数
+                    td #{map.get("JNNS")}
+                    td 完税年数
+                    td #{map.get("WSNS")}
+                  tr
+                    td 营业执照
+                    td #{map.get("YEZZ")}
+                    td 毕业学校
+                    td #{map.get("BYXX")}
+                    td 毕业时间
+                    td #{map.get("BYSJ")}
+                  tr
+                    td 是否已配租
+                    td #{map.get("SFYPZ")}
+                    td 终止标示(0:正常;1:终止)
+                    td #{map.get("STOPFLAG")}
+                    td 申请保障优先类型(1:优先保障;0:常规保障)
+                    td #{map.get("SQBZLX")}
+                  tr
+                    td 配租类型
+                    td #{map.get("PZLX")}
+                    td 月货币补贴金额
+                    td #{map.get("YHBBTJE")}
+                    td 货币补贴标准
+                    td #{map.get("HBBTBZ")}
+                  tr
+                    td 市局公示状态(1:待公示;2:公示中;3:完成公示)
+                    td #{map.get("SJGSZT")}
+                    td 区局公示状态(1:待公示;2:公示中;3:完成公示)
+                    td #{map.get("QJGSZT")}
+                    td 人工核查状态
+                    td #{map.get("HCZT")}
+                  tr
+                    td 初审是否通过(0:未通过;1:通过)
+                    td #{map.get("CSSFTG")}
+                    td 初审意见
+                    td(colspan="3") #{map.get("CSYJ")}
+                    
+                  tr
+                    td 复审是否通过(0:未通过;1:通过)
+                    td #{map.get("FSSFTG")}
+                    td 复审意见
+                    td(colspan="3") #{map.get("FSYJ")}
+                    
+                  tr
+                    td 终审是否通过(0:未通过;1:通过)
+                    td #{map.get("ZSSFTG")}
+                    td 终审意见
+                    td(colspan="3") #{map.get("ZSYJ")}
+                  
+          .panel.panel-default
+            .panel-heading
+              h3.panel-title 
+            .panel-body
+              table.table.table-hover.table-bordered.table-stripped
+                thead
+                  th 任务名称
+                  th 操作人名称
+                  th 操作时间
+                tbody
+                each list,index in operate
+                  tr
+                    td #{list.split("/").get(0)}
+                    td #{list.split("/").get(1).split(",").get(0)}
+                    td #{list.split("/").get(1).split(",").get(1)}
+                    

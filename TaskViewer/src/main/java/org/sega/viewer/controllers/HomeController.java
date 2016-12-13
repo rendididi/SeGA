@@ -127,50 +127,54 @@ public class HomeController {
         }
         model.addAttribute("instance", instance);
         model.addAttribute("operate", list);
+        //for history data
+        if(instance.getBusinessId()!=null){
+        	/* DO NOT need to retrieve data from EDB, entity data is in UAR*/
+    		try {
+                MysqlConnection mysql = new MysqlConnection(instance.getProcess().getDbconfig());
+                connection = mysql.open();
+                Statement stm = connection.createStatement();
+                String sql = "select * from tpg_gzfsqspb t where t.YWSLID = " + instance.getBusinessId();
+                ResultSet rs = stm.executeQuery(sql);
 
-		/* DO NOT need to retrieve data from EDB, entity data is in UAR
-		try {
-            MysqlConnection mysql = new MysqlConnection(instance.getProcess().getDbconfig());
-            connection = mysql.open();
-            Statement stm = connection.createStatement();
-            String sql = "select * from tpg_gzfsqspb t where t.YWSLID = " + instance.getBusinessId();
-            ResultSet rs = stm.executeQuery(sql);
-
-            ResultSetMetaData md = rs.getMetaData();
-            int columnCount = md.getColumnCount();
-            HashMap map = new HashMap();
-            while (rs.next()) {
-                for (int i = 1; i <= columnCount; i++) {
-                    if (rs.getObject(i) == null) {
-                        map.put(md.getColumnName(i), " ");
-                    } else {
-                        map.put(md.getColumnName(i), rs.getObject(i) + " ");
+                ResultSetMetaData md = rs.getMetaData();
+                int columnCount = md.getColumnCount();
+                HashMap map = new HashMap();
+                while (rs.next()) {
+                    for (int i = 1; i <= columnCount; i++) {
+                        if (rs.getObject(i) == null) {
+                            map.put(md.getColumnName(i), " ");
+                        } else {
+                            map.put(md.getColumnName(i), rs.getObject(i) + " ");
+                        }
                     }
                 }
+                model.addAttribute("map", map);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-
-            model.addAttribute("map", map);
-        } catch (Exception e) {
-            e.printStackTrace();
+    		return principal != null ? "home/completed_detail1" : "users/signin";
         }
-		*/
+        //for new create data
+        else{
+        	String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), "info");
 
-		String path = String.format(TASK_TEMPLATE, instance.getProcess().getId(), "info");
+    		logger.debug("Resolved task template file: " + path);
 
-		logger.debug("Resolved task template file: " + path);
+            JSONObject values = new JSONObject(instance.getEntity());
 
-        JSONObject values = new JSONObject(instance.getEntity());
-
-		model.addAttribute("entity", values.toString());
-		model.addAttribute("instance", instance);
-		model.addAttribute("templatePath", path);
-		model.addAttribute("taskId", "info");
-		model.addAttribute("taskName",processInstanceService.getNextTaskName(instance));
-		model.addAttribute("templateHtml", instanceController.readTaskTemplate(path));
+    		model.addAttribute("entity", values.toString());
+    		model.addAttribute("instance", instance);
+    		model.addAttribute("templatePath", path);
+    		model.addAttribute("taskId", "info");
+    		model.addAttribute("taskName",processInstanceService.getNextTaskName(instance));
+    		model.addAttribute("templateHtml", instanceController.readTaskTemplate(path));
 
 
-		return principal != null ? "home/completed_detail" : "users/signin";
+    		return principal != null ? "home/completed_detail" : "users/signin";
+        }
+
+		
     }
 
     //selection by wxf
