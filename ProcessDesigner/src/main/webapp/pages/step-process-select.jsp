@@ -16,7 +16,7 @@
 		<%int step=1; %>
 		<%@include file="/partials/navbar.jspf" %>
 		<%@include file="/partials/step_detail.jspf" %>
-		<select class="form-control template-select" style="width:15%;position:absolute;top:204px;left:386px">
+		<select class="form-control template-select" style="width:15%;position:absolute;top:204px;left:410px"><!-- 386px -->
 	        	<option value="" <s:if test="processType==null">selected</s:if>><%=myResourceBundle.getString("all") %></option>
 	        	<option value="房源" <s:if test="processType.contains('房源')">selected</s:if>><%=myResourceBundle.getString("Propertymanagement") %></option>
 	        	<option value="申请" <s:if test="processType.contains('申请')">selected</s:if>><%=myResourceBundle.getString("Qualificationsmanagement") %></option>
@@ -38,6 +38,7 @@
 			<div class="gallery-item img-thumbnail">
 				<div class="img-holder vertical-center" >
 					<img src={{node.processImageUrl}} />
+					{{node.processImageUrl}}
 				</div>
 				
 				<p class

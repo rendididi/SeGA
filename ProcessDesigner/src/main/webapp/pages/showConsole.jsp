@@ -67,9 +67,9 @@
             <!-- 内容栏 -->
             <div class="m-activity">
               <ul id="myTab" class="nav nav-tabs">
-  				<li class="active"><a href="#tab1" data-toggle="tab">业务操作日志</a></li>
-  				<li class=""><a href="#tab2" data-toggle="tab">数据处理日志</a></li>
-  				<li class=""><a href="#tab3" data-toggle="tab">流程记录日志</a></li>
+  				<li class="active"><a href="#tab1" data-toggle="tab" onclick="tab(0)">业务操作日志</a></li>
+  				<li class=""><a href="#tab2" data-toggle="tab" onclick="tab(1)">数据处理日志</a></li>
+  				<li class=""><a href="#tab3" data-toggle="tab" onclick="tab(2)">流程记录日志</a></li>
 			  </ul>
 			  <div id="myTabContent" class="tab-content" >
   				 <div class="tab-pane fade in active" id="tab1" >
@@ -165,77 +165,67 @@
 
   <script>
   	$(function() {
-	    $(".datepicker").datetimepicker({
-	    	language : 'fr',weekStart : 1,todayBtn : 1,autoclose : 1,
-	   	    todayHighlight : 1,startView : 2,minView : 2,forceParse : 0,
-	    });
+	    
 	});
   </script>
   <script>
   	$(function(){
-  		setInterval("random()",100000);
+  		var tabname = document.cookie.split(";")[1].split("=")[1];
+  	  	$('#myTab li:eq('+tabname+') a').tab('show');
+  	  	tab(tabname)
+  	  	
+  		$(".datepicker").datetimepicker({
+	    	language : 'fr',weekStart : 1,todayBtn : 1,autoclose : 1,
+	   	    todayHighlight : 1,startView : 2,minView : 2,forceParse : 0,
+	    });
+  		
+  	  var pageSize = <s:property value="pageSize"/>;
+      var pages1 = <s:property value="totalPages1+1"/>;
+        var options1 = {
+            currentPage: <s:property value="page1"/>,
+            totalPages: pages1-1,
+            pageUrl: function(type, page, current){
+                return document.location.pathname+'?page1='+(page)+"&page2=1&page3=1";
+            }
+        }
+        $('#my-pagination1').bootstrapPaginator(options1);
+      
+      var pages2 = <s:property value="totalPages2+1"/>;
+        var options2 = {
+            currentPage: <s:property value="page2"/>,
+            totalPages: pages2-1,
+            pageUrl: function(type, page, current){
+                return document.location.pathname+'?page2=1&page2='+(page)+"&page3=1";
+            }
+        }
+        $('#my-pagination2').bootstrapPaginator(options2);
+  	  	
+      var pages3 = <s:property value="totalPages3+1"/>;
+        var options3 = {
+            currentPage: <s:property value="page3"/>,
+            totalPages: pages3-2,
+            pageUrl: function(type, page, current){
+                return document.location.pathname+'?page1=1&page2=2&page3='+(page);
+            }
+        }
+        $('#my-pagination3').bootstrapPaginator(options3);
+      
+  	  setInterval("random()",100000);
   	});
   	function random(){
   		$.ajax({
   			type:"get",
   			url:"show-log-console.action",
   			success:function(text){
+  				console.log(text)
   				location.reload();
   			}
   		});
   	}
-  	
-  	$(function(){
-        var pageSize = <s:property value="pageSize"/>;
-        var pages1 = <s:property value="totalPages1+1"/>;
-
-        if(pages1>1){
-          var options1 = {
-              currentPage: <s:property value="page"/>,
-              totalPages: pages1,
-              pageUrl: function(type, page, current){
-                  return document.location.pathname+'?page='+page + '&pageSize='+pageSize;
-              }
-          }
-          $('#my-pagination1').bootstrapPaginator(options1);
-        }
-    });
-  	
-  	$(function(){
-        var pageSize = <s:property value="pageSize"/>;
-        var pages2 = <s:property value="totalPages2+1"/>;
-
-        if(pages2>1){
-          var options2 = {
-              currentPage: <s:property value="page"/>,
-              totalPages: pages2,
-              pageUrl: function(type, page, current){
-                  return document.location.pathname+'?page='+page + '&pageSize='+pageSize;
-              }
-          }
-
-          $('#my-pagination2').bootstrapPaginator(options2);
-        }
-    });
-  	
-  	$(function(){
-        var pageSize = <s:property value="pageSize"/>;
-        var pages3 = <s:property value="totalPages3+1"/>;
-
-        if(pages3>1){
-          var options3 = {
-              currentPage: <s:property value="page"/>,
-              totalPages: pages3,
-              pageUrl: function(type, page, current){
-                  return document.location.pathname+'?page='+page + '&pageSize='+pageSize;
-              }
-          }
-          $('#my-pagination3').bootstrapPaginator(options3);
-        }
-    });
+  	function tab(i){
+  		document.cookie="tab="+i;
+  	}
   </script>
-  
-
  <script src="<s:url value="js/lib/bootstrap-paginator-1.0.2/build/bootstrap-paginator.min.js" />"></script>
 </body>
 </html>

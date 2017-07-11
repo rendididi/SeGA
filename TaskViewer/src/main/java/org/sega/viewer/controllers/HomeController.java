@@ -211,19 +211,23 @@ public class HomeController {
 
     //show console
     @RequestMapping(value = "/showConsole", method = RequestMethod.GET)
-    public String showConsole(@RequestParam(defaultValue = "0") int page, Principal principal, Model model) {
-        page = page < 0 ? 0 : page;
-        Page<Log> logs1 = logRepository.findByType("11", new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
-        Page<Log> logs2 = logRepository.findByType("22", new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
-        Page<Log> logs3 = logRepository.findByType("33", new PageRequest(page, pageSize, Sort.Direction.DESC, "date"));
+    public String showConsole(@RequestParam(defaultValue = "0") int page1,@RequestParam(defaultValue = "0") int page2,@RequestParam(defaultValue = "0") int page3, Principal principal, Model model) {
+        page1 = page1 < 0 ? 0 : page1;
+        page2 = page2 < 0 ? 0 : page2;
+        page3 = page3 < 0 ? 0 : page3;
+        Page<Log> logs1 = logRepository.findByType("11", new PageRequest(page1, pageSize, Sort.Direction.DESC, "date"));
+        Page<Log> logs2 = logRepository.findByType("22", new PageRequest(page2, pageSize, Sort.Direction.DESC, "date"));
+        Page<Log> logs3 = logRepository.findByType("33", new PageRequest(page3, pageSize, Sort.Direction.DESC, "date"));
         model.addAttribute("logs1", logs1);
         model.addAttribute("logs2", logs2);
         model.addAttribute("logs3", logs3);
-        model.addAttribute("page", page + 1);
+        model.addAttribute("page1", page1 + 1);
+        model.addAttribute("page2", page2 + 1);
+        model.addAttribute("page3", page3 + 1);
         model.addAttribute("pageSize", pageSize);
-        model.addAttribute("totalPages1", (logs1.getSize()) / pageSize);
-        model.addAttribute("totalPages2", (logs2.getSize()) / pageSize);
-        model.addAttribute("totalPages3", (logs3.getSize()) / pageSize);
+        model.addAttribute("totalPages1", logRepository.findByType("11").size()/pageSize);
+        model.addAttribute("totalPages2", logRepository.findByType("22").size()/pageSize);
+        model.addAttribute("totalPages3", logRepository.findByType("33").size()/pageSize);
         return principal != null ? "home/showConsole" : "users/signin";
     }
 

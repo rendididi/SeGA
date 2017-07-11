@@ -13,9 +13,9 @@ spring:
     dataSource:
       type: org.apache.tomcat.jdbc.pool.DataSource
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com/uar
-      username: sega_tester
-      password: sega_tester123
+      url: jdbc:mysql://localhost/uar
+      username: root
+      password: 123456
 
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect

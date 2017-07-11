@@ -23,4 +23,5 @@ public interface LogRepository extends JpaRepository<Log, Long> {
 	/*@Query("select l from log l where l.type = :type")
 	List<Log> findByType(@Param("type") String type);*/
 	Page<Log> findByType(String type, Pageable pageable);
+	List<Log> findByType(String type);
 }

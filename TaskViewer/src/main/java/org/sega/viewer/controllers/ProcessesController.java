@@ -5,15 +5,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.sega.viewer.models.Log;
 import org.sega.viewer.models.Process;
 import org.sega.viewer.models.ProcessInstance;
+import org.sega.viewer.repositories.LogRepository;
 import org.sega.viewer.repositories.ProcessInstanceRepository;
 import org.sega.viewer.services.JtangEngineService;
 import org.sega.viewer.services.ProcessInstanceService;
@@ -51,6 +55,9 @@ public class ProcessesController {
 
     @Autowired
     private JtangEngineService jtangEngineService;
+    @Autowired
+    private LogRepository logRepository;
+    
 
     private static final int pageSize = 6;
     private static final Logger logger = LoggerFactory.getLogger(ProcessesController.class);
@@ -82,7 +89,6 @@ public class ProcessesController {
         model.addAttribute("edMappingJson", decodeJson(process.getEDmappingJSON()));
         model.addAttribute("databaseJson", decodeJson(process.getDatabaseJSON()));
         model.addAttribute("ddMappingJson", decodeJson(process.getDDmappingJSON()));
-
         return "processes/show";
     }
 
@@ -92,7 +98,18 @@ public class ProcessesController {
         ProcessInstance instance = processInstanceService.createProcessInstance(process);
 
         jtangEngineService.publishProcess(instance);
-
+        
+        //记录日志操作
+        Log log = new Log();
+        Date date=new Date(); 
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+        log.setDate(df.format(date));
+        log.setContent("在"+df.format(date)+" ，配置了："+process.getName()+"流程");
+        log.setClassName("ProcessController");
+        log.setDescriptions("流程配置");
+        log.setType("33");
+        log.setOperationType("流程配置");
+        logRepository.save(log);
         return "redirect:instances/" + instance.getId();
     }
 

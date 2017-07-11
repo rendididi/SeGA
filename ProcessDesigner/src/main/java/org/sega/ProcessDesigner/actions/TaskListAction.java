@@ -45,7 +45,7 @@ public class TaskListAction extends ProcessDesignerSupport {
 
         getSession().put("process", activity.getProcess());
         getSession().put("edit", activity);
-
+        //System.out.println(activity.getProcess().getBindingJSON()+",,,"+activity.getProcess().getProcessJSON());
         // Dynamically redirect a certain step action based on the step name
         redirectAction = activity.getStep();
         
@@ -78,7 +78,6 @@ public class TaskListAction extends ProcessDesignerSupport {
         }
 
         activities = (List<ProcessEdit>) c1.list();
-
         firstActivity = (ProcessEdit) session
                 .createCriteria(ProcessEdit.class)
                 .addOrder(Order.desc("datetime"))
@@ -90,7 +89,6 @@ public class TaskListAction extends ProcessDesignerSupport {
         totalPages = total / pageSize;
         if (total % pageSize != 0)
             ++totalPages;
-
         session.getTransaction().commit();
 		SaveLog.saveLog(new Users((long)1),"11",Constant.SHOW_ALL,new Date(),"显示所有的活动列表，共有"+total+"条记录",Constant.SEARCH_OPERATION,this.getClass().getName());
 

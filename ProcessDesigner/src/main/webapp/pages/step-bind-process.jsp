@@ -47,7 +47,10 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
+    <s:property value="process.processJSON" escape="false"/>
+    <s:property value="process.entityJSON" escape="false"/>
+    <s:property value="process.bindingJSON" escape="false"/>
+    
   	<script type="text/javascript">
 		var process_json = (<s:property value="process.processJSON" escape="false"/>);
 		var entity_json = (<s:property value="process.entityJSON" escape="false"/>);

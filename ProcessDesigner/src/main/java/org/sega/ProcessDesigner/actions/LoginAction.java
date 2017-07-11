@@ -37,6 +37,7 @@ public class LoginAction extends ActionSupport {
 		session.clear();
 		session.put("userType", userType);
 		session.put("city", processCity);
+		System.out.println("========================"+processCity);
 		SaveLog.saveLog(new Users((long)1),"11","用户登录",new Date(),"用户登录,登录用户类型为:"+userType,"登录操作",this.getClass().getName());
 		
 		return SUCCESS;

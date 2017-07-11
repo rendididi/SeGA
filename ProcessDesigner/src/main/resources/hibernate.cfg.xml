@@ -6,12 +6,12 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">sega_tester123</property>
-  <property name="hibernate.connection.url">jdbc:mysql://rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com/uar</property>
-  <property name="hibernate.connection.username">sega_tester</property>
+  <property name="hibernate.connection.password">123456</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost/uar</property>
+  <property name="hibernate.connection.username">root</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.connection.pool_size">100</property>
-  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.show_sql">false</property>
   
   <property name="hibernate.connection.CharSet">utf8</property>
   <property name="hibernate.connection.characterEncoding">utf8</property>

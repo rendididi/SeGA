@@ -17,7 +17,6 @@
 		<%@include file="/partials/navbar.jspf"%>
 		<%@include file="/partials/step_detail.jspf"%>
 	</header>
-	
 	<section class="container publish">
 		<div class="col-md-6 publish1 text-center">
 			<img src="images/launch.svg" width=284 heigh=282 ></img>

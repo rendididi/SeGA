@@ -20,9 +20,9 @@ public class StepCustomProcessAction extends EditStepAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 2715550204984464046L;
-	
 	@Override
 	public void updateProcess(Process sp) throws Exception {
+		System.out.println("json   json  json"+getProcess().getProcessJSON());
 		String random_name = "p_svg_"+sp.getId()+"_"+RandomStringUtils.randomAlphanumeric(32)+".svg";
 		ServletContext context = ServletActionContext.getServletContext();
 		String path = context.getRealPath(context.getContextPath());

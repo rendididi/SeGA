@@ -60,7 +60,6 @@ public class StepPublish extends EditStepAction {
 			hb_session.saveOrUpdate(edit);
 			hb_session.saveOrUpdate(sp);
 			hb_session.getTransaction().commit();
-			
 			getSession().put("edit", edit);
 			SaveLog.saveLog(new Users((long)1),"11","将活动发布为一个流程",new Date(),"发布——将活动发布为一个流程,流程ID为:"+sp.getId(),Constant.PULISH_OPERATION,this.getClass().getName());
 
@@ -81,7 +80,9 @@ public class StepPublish extends EditStepAction {
 		
 		JSONObject entity = JSONArray.fromObject(entity_json).getJSONObject(0);
 		JSONArray binding = JSONArray.fromObject(bind_json);
-		
+		///JSONObject process = JSONArray.fromObject(process_json).getJSONObject(0);
+		//System.out.println("entity entity entity entity entity"+entity);
+		//System.out.println("binding binding binding binding binding"+process);
 		for (int i = 0; i < binding.size(); i++) {
 			JSONObject bo = binding.getJSONObject(i);
 			List<String> read,write;

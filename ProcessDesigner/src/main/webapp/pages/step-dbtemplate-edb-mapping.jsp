@@ -87,7 +87,7 @@
 							<label>Host</label>
 							<div>
 								<input type="text" class="form-control" id="input-edb-host"
-									value="rm-2zetv12ybvdbxmro4o.mysql.rds.aliyuncs.com" />
+									value="localhost" />
 							</div>
 						</div>
 						<div class="form-group col-md-4">
@@ -101,14 +101,14 @@
 							<label>User</label>
 							<div>
 								<input type="text" class="form-control" id="input-edb-user"
-									value="sega_tester" />
+									value="root" />
 							</div>
 						</div>
 						<div class="form-group col-md-6">
 							<label>Password</label>
 							<div>
 								<input type="password" class="form-control"
-									id="input-edb-password" value="sega_tester123" />
+									id="input-edb-password" value="123456" />
 							</div>
 						</div>
 						<div class="form-group col-md-12">

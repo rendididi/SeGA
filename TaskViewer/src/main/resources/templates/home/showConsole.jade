@@ -34,11 +34,11 @@ block content
             .m-activity
               ul#myTab.nav.nav-tabs
                 li.active
-                  a(href='#tab1', data-toggle='tab') 业务操作日志
+                  a(href='#tab1', data-toggle='tab',onclick="fun(0)") 业务操作日志
                 li
-                  a(href='#tab2', data-toggle='tab') 数据处理日志
+                  a(href='#tab2', data-toggle='tab',onclick="fun(1)") 数据处理日志
                 li
-                  a(href='#tab3', data-toggle='tab') 流程记录日志
+                  a(href='#tab3', data-toggle='tab',,onclick="fun(2)") 流程记录日志
               #myTabContent.tab-content
                 #tab1.tab-pane.fade.in.active
                   // 业务操作日志
@@ -97,25 +97,29 @@ block content
           var pages1 = #{totalPages1+1};
           if(pages1 > 1){
             var options1 = {
-              currentPage: #{page},
+              currentPage: #{page1},
               totalPages: pages1,
               pageUrl: function(type, page, current){
-                  return document.location.pathname+'?page='+(page-1)+'&pageSize='+pageSize;
+                  return document.location.pathname+'?page1='+(page-1)+'&pageSize='+pageSize;
               }
           };
           $('#my-pagination1').bootstrapPaginator(options1);
           }
           
       });
+      var tabname = document.cookie.split(";")[1].split("=")[1]
+      console.log('#myTab li:eq('+tabname+') a')
+      $('#myTab li:eq('+tabname+') a').tab('show');
+      function fun(i){document.cookie="tab="+i;}
       $(function(){
           var pageSize = #{pageSize};
           var pages2 = #{totalPages2+1};
           if(pages2 > 1){
             var options2 = {
-              currentPage: #{page},
+              currentPage: #{page2},
               totalPages: pages2,
               pageUrl: function(type, page, current){
-                  return document.location.pathname+'?page='+(page-1)+'&pageSize='+pageSize;
+                  return document.location.pathname+'?page2='+(page-1)+'&pageSize='+pageSize;
               }
           };
           $('#my-pagination2').bootstrapPaginator(options2);
@@ -127,10 +131,10 @@ block content
           var pages3 = #{totalPages3+1};
           if(pages3 > 1){
             var options3 = {
-              currentPage: #{page},
+              currentPage: #{page3},
               totalPages: pages3,
               pageUrl: function(type, page, current){
-                  return document.location.pathname+'?page='+(page-1)+'&pageSize='+pageSize;
+                  return document.location.pathname+'?page3='+(page-1)+'&pageSize='+pageSize;
               }
           };
           $('#my-pagination3').bootstrapPaginator(options3);

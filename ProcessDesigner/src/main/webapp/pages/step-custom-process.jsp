@@ -1,4 +1,4 @@
- <%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java"  import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -65,7 +65,6 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
 	<script type="text/javascript">
 	var process_json = <s:property value="process.processJSON" escape="false"/>;
 	</script>
@@ -74,3 +73,4 @@
 	<script type="text/javascript" src="<s:url value="js/step-custom-process.js" />"></script>
 </body>
 </html>
+
